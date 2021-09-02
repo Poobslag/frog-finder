@@ -1,4 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/main-menu-panel.gd" type="Script" id=4]
+[ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
+[ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=6]
+[ext_resource path="res://src/main/game-over-panel.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.501961 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Node2D" type="Control"]
 anchor_right = 1.0
@@ -14,3 +29,163 @@ color = Color( 0.266667, 0.462745, 0.603922, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Content" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameState" type="Node" parent="Content"]
+script = ExtResource( 5 )
+_main_menu_panel_path = NodePath("../MainMenuPanel")
+_gameplay_panel_path = NodePath("../GameplayPanel")
+_game_over_panel_path = NodePath("../GameOverPanel")
+
+[node name="MainMenuPanel" type="Panel" parent="Content"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Content/MainMenuPanel"]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -136.5
+margin_top = -50.0
+margin_right = 136.5
+margin_bottom = 129.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Frog
+Finder"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="Content/MainMenuPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -160.0
+margin_right = 40.0
+margin_bottom = -80.0
+rect_min_size = Vector2( 80, 80 )
+theme = ExtResource( 3 )
+text = "?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameplayPanel" type="Panel" parent="Content"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FrogButton" type="Button" parent="Content/GameplayPanel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 100.0
+margin_top = -40.0
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 80 )
+theme = ExtResource( 3 )
+text = "Frog"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SharkButton" type="Button" parent="Content/GameplayPanel"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -179.0
+margin_top = -40.0
+margin_right = -100.0
+margin_bottom = 40.0
+theme = ExtResource( 3 )
+text = "Shark"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverPanel" type="Panel" parent="Content"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Content/GameOverPanel"]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -136.5
+margin_top = -50.0
+margin_right = 136.5
+margin_bottom = 129.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Frog
+Finder"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="Content/GameOverPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -160.0
+margin_right = 40.0
+margin_bottom = -80.0
+rect_min_size = Vector2( 80, 80 )
+theme = ExtResource( 3 )
+text = "?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="start_button_pressed" from="Content/GameOverPanel" to="Content/GameState" method="_on_GameOverPanel_start_button_pressed"]
+[connection signal="pressed" from="Content/GameOverPanel/StartButton" to="Content/GameOverPanel" method="_on_StartButton_pressed"]
+[connection signal="player_lost" from="Content/GameplayPanel" to="Content/GameState" method="_on_GameplayPanel_player_lost"]
+[connection signal="player_won" from="Content/GameplayPanel" to="Content/GameState" method="_on_GameplayPanel_player_won"]
+[connection signal="pressed" from="Content/GameplayPanel/FrogButton" to="Content/GameplayPanel" method="_on_FrogButton_pressed"]
+[connection signal="pressed" from="Content/GameplayPanel/SharkButton" to="Content/GameplayPanel" method="_on_SharkButton_pressed"]
+[connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/GameState" method="_on_MainMenuPanel_start_button_pressed"]
+[connection signal="pressed" from="Content/MainMenuPanel/StartButton" to="Content/MainMenuPanel" method="_on_StartButton_pressed"]
