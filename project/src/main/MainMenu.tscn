@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=2]
@@ -16,6 +16,11 @@
 [ext_resource path="res://assets/main/frog-frame-00-sheet.png" type="Texture" id=14]
 [ext_resource path="res://src/main/card-control.gd" type="Script" id=15]
 [ext_resource path="res://src/main/menu-state.gd" type="Script" id=16]
+[ext_resource path="res://assets/main/hand-sheet.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/finger-sheet.png" type="Texture" id=18]
+[ext_resource path="res://src/main/hand.gd" type="Script" id=19]
+[ext_resource path="res://src/main/hand-sprite.gd" type="Script" id=20]
+[ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.501961 )
@@ -53,7 +58,6 @@ _gameplay_panel_path = NodePath("../GameplayPanel")
 _game_over_panel_path = NodePath("../GameOverPanel")
 
 [node name="MainMenuPanel" type="Panel" parent="Content"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -101,6 +105,7 @@ __meta__ = {
 }
 
 [node name="GameplayPanel" type="Panel" parent="Content"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -202,6 +207,35 @@ text = "?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Hand" type="Control" parent="."]
+margin_right = 80.0
+margin_bottom = 80.0
+mouse_filter = 2
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HandSprite" type="Sprite" parent="Hand"]
+position = Vector2( 23, 14 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 17 )
+hframes = 4
+vframes = 3
+frame = 5
+script = ExtResource( 20 )
+
+[node name="WiggleTimer" parent="Hand/HandSprite" instance=ExtResource( 21 )]
+
+[node name="FingerSprite" type="Sprite" parent="Hand"]
+position = Vector2( 23, 14 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 18 )
+hframes = 4
+vframes = 2
+
+[node name="WiggleTimer" parent="Hand/FingerSprite" instance=ExtResource( 21 )]
 
 [node name="MusicPlayer" type="Node" parent="."]
 script = ExtResource( 8 )

@@ -11,6 +11,7 @@ onready var _game_over_panel: Panel = get_node(_game_over_panel_path)
 func _ready() -> void:
 	_hide_panels()
 	_main_menu_panel.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _hide_panels() -> void:
