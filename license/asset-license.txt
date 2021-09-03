@@ -1,0 +1,13 @@
+$$$ = MUST credit in your credits (you used their stuff, and their license requires it)
+$$ = SHOULD credit in your credits (you used their stuff, but their license is lenient)
+$ = MAY credit in your credits (you sort of used their stuff, i guess. Or their license doesn't require it, or doesn't really apply. 
+
+Fonts:
+$$ Fredoka One by Milena Brandao (SIL Open Font License, Version 1.1)
+$$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventional license; 'Can be used for both commercial and non-commercial purposes, so please download with confidence')
+
+Fonts
+--------------------------------------------------------------------------------
+project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
+project/assets/main/ui/nikumaru.otf Nikumaru by Kato Masashi
+
