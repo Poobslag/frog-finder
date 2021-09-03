@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=2]
@@ -7,6 +7,15 @@
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
 [ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=6]
 [ext_resource path="res://src/main/game-over-panel.gd" type="Script" id=7]
+[ext_resource path="res://src/main/music-player.gd" type="Script" id=8]
+[ext_resource path="res://assets/main/music/a-well-tempered-frog.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/main/music/can-you-find-the-frog.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/music/one-frog-two-frog.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/main/music/half-a-frog.ogg" type="AudioStream" id=12]
+[ext_resource path="res://src/main/CardSprite.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/main/frog-frame-00-sheet.png" type="Texture" id=14]
+[ext_resource path="res://src/main/card-control.gd" type="Script" id=15]
+[ext_resource path="res://src/main/menu-state.gd" type="Script" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.501961 )
@@ -25,7 +34,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.266667, 0.462745, 0.603922, 1 )
+color = Color( 0.211765, 0.47451, 0.647059, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -37,13 +46,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameState" type="Node" parent="Content"]
-script = ExtResource( 5 )
+[node name="MenuState" type="Node" parent="Content"]
+script = ExtResource( 16 )
 _main_menu_panel_path = NodePath("../MainMenuPanel")
 _gameplay_panel_path = NodePath("../GameplayPanel")
 _game_over_panel_path = NodePath("../GameOverPanel")
 
 [node name="MainMenuPanel" type="Panel" parent="Content"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -91,7 +101,6 @@ __meta__ = {
 }
 
 [node name="GameplayPanel" type="Panel" parent="Content"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -104,34 +113,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FrogButton" type="Button" parent="Content/GameplayPanel"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 100.0
-margin_top = -40.0
-margin_right = 80.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 80, 80 )
-theme = ExtResource( 3 )
-text = "Frog"
+[node name="CardControl0" type="Control" parent="Content/GameplayPanel"]
+margin_left = 240.498
+margin_top = 209.774
+margin_right = 320.498
+margin_bottom = 289.774
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+card_back_type = 3
+card_front_type = 1
 
-[node name="SharkButton" type="Button" parent="Content/GameplayPanel"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -179.0
-margin_top = -40.0
-margin_right = -100.0
-margin_bottom = 40.0
-theme = ExtResource( 3 )
-text = "Shark"
+[node name="CardBack" parent="Content/GameplayPanel/CardControl0" instance=ExtResource( 13 )]
+
+[node name="CardFront" parent="Content/GameplayPanel/CardControl0" instance=ExtResource( 13 )]
+visible = false
+texture = ExtResource( 14 )
+
+[node name="CardControl1" type="Control" parent="Content/GameplayPanel"]
+margin_left = 637.797
+margin_top = 210.833
+margin_right = 717.797
+margin_bottom = 290.833
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+card_back_type = 3
+card_front_type = 2
+
+[node name="CardBack" parent="Content/GameplayPanel/CardControl1" instance=ExtResource( 13 )]
+
+[node name="CardFront" parent="Content/GameplayPanel/CardControl1" instance=ExtResource( 13 )]
+visible = false
+texture = ExtResource( 14 )
+
+[node name="GameState" type="Node" parent="Content/GameplayPanel"]
+script = ExtResource( 5 )
+
+[node name="FlipTimer" type="Timer" parent="Content/GameplayPanel/GameState"]
+one_shot = true
 
 [node name="GameOverPanel" type="Panel" parent="Content"]
 visible = false
@@ -181,11 +203,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="start_button_pressed" from="Content/GameOverPanel" to="Content/GameState" method="_on_GameOverPanel_start_button_pressed"]
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="AWellTemperedFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 9 )
+bus = "Music"
+
+[node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 10 )
+bus = "Music"
+
+[node name="HalfAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 12 )
+bus = "Music"
+
+[node name="OneFrogTwoFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 11 )
+bus = "Music"
+
+[connection signal="start_button_pressed" from="Content/GameOverPanel" to="Content/MenuState" method="_on_GameOverPanel_start_button_pressed"]
 [connection signal="pressed" from="Content/GameOverPanel/StartButton" to="Content/GameOverPanel" method="_on_StartButton_pressed"]
-[connection signal="player_lost" from="Content/GameplayPanel" to="Content/GameState" method="_on_GameplayPanel_player_lost"]
-[connection signal="player_won" from="Content/GameplayPanel" to="Content/GameState" method="_on_GameplayPanel_player_won"]
-[connection signal="pressed" from="Content/GameplayPanel/FrogButton" to="Content/GameplayPanel" method="_on_FrogButton_pressed"]
-[connection signal="pressed" from="Content/GameplayPanel/SharkButton" to="Content/GameplayPanel" method="_on_SharkButton_pressed"]
-[connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/GameState" method="_on_MainMenuPanel_start_button_pressed"]
+[connection signal="player_lost" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_player_lost"]
+[connection signal="player_won" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_player_won"]
+[connection signal="frog_found" from="Content/GameplayPanel/CardControl0" to="Content/GameplayPanel" method="_on_CardControl_frog_found"]
+[connection signal="shark_found" from="Content/GameplayPanel/CardControl0" to="Content/GameplayPanel" method="_on_CardControl_shark_found"]
+[connection signal="frog_found" from="Content/GameplayPanel/CardControl1" to="Content/GameplayPanel" method="_on_CardControl_frog_found"]
+[connection signal="shark_found" from="Content/GameplayPanel/CardControl1" to="Content/GameplayPanel" method="_on_CardControl_shark_found"]
+[connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_button_pressed"]
 [connection signal="pressed" from="Content/MainMenuPanel/StartButton" to="Content/MainMenuPanel" method="_on_StartButton_pressed"]
