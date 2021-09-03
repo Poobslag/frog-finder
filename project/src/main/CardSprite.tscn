@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/card-sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/mystery-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=3]
 
 [node name="CardBack" type="Sprite"]
 position = Vector2( 40, 40 )
@@ -11,8 +12,4 @@ hframes = 8
 script = ExtResource( 1 )
 wiggle_frames = [ 0, 1 ]
 
-[node name="WiggleTimer" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[connection signal="timeout" from="WiggleTimer" to="." method="_on_WiggleTimer_timeout"]
+[node name="WiggleTimer" parent="." instance=ExtResource( 3 )]
