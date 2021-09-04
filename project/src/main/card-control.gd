@@ -1,7 +1,7 @@
 class_name CardControl
 extends Control
 
-enum CardFace {
+enum CardType {
 	NONE,
 	FROG,
 	SHARK,
@@ -14,15 +14,17 @@ const SHARK_COUNT := 4
 const MYSTERY_COUNT := 4
 const LETTER_COUNT := 14
 
+signal before_frog_found
 signal frog_found
+signal before_shark_found
 signal shark_found
 
-export (CardFace) var card_back_type: int = CardFace.MYSTERY setget set_card_back_type
-export (String) var card_back_details: String
-export (CardFace) var card_front_type: int = CardFace.MYSTERY setget set_card_front_type
-export (String) var card_front_details: String
+export (CardType) var card_back_type: int = CardType.MYSTERY setget set_card_back_type
+export (String) var card_back_details: String setget set_card_back_details
+export (CardType) var card_front_type: int = CardType.MYSTERY setget set_card_front_type
+export (String) var card_front_details: String setget set_card_front_details
 
-export (NodePath) var game_state_path := NodePath("../GameState")
+export (NodePath) var game_state_path := NodePath("../GameState") setget set_game_state_path
 export (bool) var practice := false
 
 const LETTER_INDEXES_BY_DETAILS := {
@@ -51,10 +53,26 @@ onready var _frog_sheet := load("res://assets/main/frog-frame-00-sheet.png")
 onready var _letter_sheet := load("res://assets/main/letter-sheet.png")
 onready var _shark_sheet := load("res://assets/main/shark-frame-00-sheet.png")
 onready var _mystery_sheet := load("res://assets/main/mystery-sheet.png")
-onready var _game_state := get_node(game_state_path)
+onready var _game_state: GameState
 
 func _ready() -> void:
 	_refresh_card_textures()
+	_refresh_game_state_path()
+
+
+func set_game_state_path(new_game_state_path: NodePath) -> void:
+	game_state_path = new_game_state_path
+	_refresh_game_state_path()
+
+
+func _refresh_game_state_path() -> void:
+	if not is_inside_tree():
+		return
+	
+	if not game_state_path:
+		return
+	
+	_game_state = get_node(game_state_path)
 
 
 func _refresh_card_textures() -> void:
@@ -67,22 +85,22 @@ func _refresh_card_textures() -> void:
 
 func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: String) -> void:
 	match card_type:
-		CardFace.FROG:
+		CardType.FROG:
 			card_sprite.texture = _frog_sheet
 			card_sprite.vframes = 4
 			var frog_index := randi() % FROG_COUNT
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
-		CardFace.SHARK:
+		CardType.SHARK:
 			card_sprite.texture = _shark_sheet
 			card_sprite.vframes = 1
 			var shark_index := randi() % SHARK_COUNT
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
-		CardFace.MYSTERY:
+		CardType.MYSTERY:
 			card_sprite.texture = _mystery_sheet
 			card_sprite.vframes = 1
 			var mystery_index := randi() % MYSTERY_COUNT
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
-		CardFace.LETTER:
+		CardType.LETTER:
 			card_sprite.texture = _letter_sheet
 			card_sprite.vframes = 4
 			var letter_index: int
@@ -112,6 +130,16 @@ func set_card_front_type(new_card_front_type: int) -> void:
 	_refresh_card_textures()
 
 
+func set_card_back_details(new_card_back_details: String) -> void:
+	card_back_details = new_card_back_details
+	_refresh_card_textures()
+
+
+func set_card_front_details(new_card_front_details: String) -> void:
+	card_front_details = new_card_front_details
+	_refresh_card_textures()
+
+
 func reset() -> void:
 	_card_back_sprite.visible = true
 	_card_front_sprite.visible = false
@@ -121,9 +149,14 @@ func reset() -> void:
 	_refresh_card_textures()
 
 
+func is_front_shown() -> bool:
+	return _card_front_sprite.visible
+
+
 func show_front() -> void:
-	_card_back_sprite.visible = false
-	_card_front_sprite.visible = true
+	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
+	$CardBack.visible = false
+	$CardFront.visible = true
 
 
 func _flip_card() -> void:
@@ -148,7 +181,7 @@ func _flip_card() -> void:
 func _on_FlipTimer_timeout() -> void:
 	_game_state.flip_timer.disconnect("timeout", self, "_on_FlipTimer_timeout")
 	match card_front_type:
-		CardFace.FROG:
+		CardType.FROG:
 			var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
 			_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3]
 			if practice:
@@ -157,20 +190,21 @@ func _on_FlipTimer_timeout() -> void:
 			else:
 				_game_state.can_interact = false
 			
+			emit_signal("before_frog_found")
 			$FrogFoundTimer.start(2.0)
 			$StopDanceTimer.start(4.0)
-		CardFace.SHARK:
+		CardType.SHARK:
 			if practice:
 				# this shark doesn't count; maybe it was on the main menu
 				pass
 			else:
 				_game_state.can_interact = false
+			emit_signal("before_shark_found")
 			$SharkFoundTimer.start(2.0)
-			
 
 
 func _on_StopDanceTimer_timeout() -> void:
-	if card_front_type != CardFace.FROG:
+	if card_front_type != CardType.FROG:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)

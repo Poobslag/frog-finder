@@ -1,3 +1,4 @@
+class_name GameState
 extends Node
 
 onready var flip_timer := $FlipTimer

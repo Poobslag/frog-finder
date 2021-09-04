@@ -2,7 +2,7 @@ extends Panel
 
 signal start_button_pressed
 
-onready var _game_state := $GameState
+onready var _game_state := $TitleGameState
 
 func _on_StartButton_pressed() -> void:
 	emit_signal("start_button_pressed")
@@ -25,5 +25,5 @@ func show_menu() -> void:
 	$Card1O.reset()
 	$Card2I.reset()
 	
-	$Card1O.card_front_type = CardControl.CardFace.SHARK if randf() < 0.15 else CardControl.CardFace.FROG
-	$Card2I.card_front_type = CardControl.CardFace.SHARK if randf() < 0.15 else CardControl.CardFace.FROG
+	$Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
+	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
