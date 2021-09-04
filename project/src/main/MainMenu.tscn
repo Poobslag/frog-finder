@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=2]
@@ -12,15 +12,13 @@
 [ext_resource path="res://assets/main/music/can-you-find-the-frog.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/main/music/one-frog-two-frog.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/main/music/half-a-frog.ogg" type="AudioStream" id=12]
-[ext_resource path="res://src/main/CardSprite.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/main/frog-frame-00-sheet.png" type="Texture" id=14]
-[ext_resource path="res://src/main/card-control.gd" type="Script" id=15]
 [ext_resource path="res://src/main/menu-state.gd" type="Script" id=16]
 [ext_resource path="res://assets/main/hand-sheet.png" type="Texture" id=17]
 [ext_resource path="res://assets/main/finger-sheet.png" type="Texture" id=18]
 [ext_resource path="res://src/main/hand.gd" type="Script" id=19]
 [ext_resource path="res://src/main/hand-sprite.gd" type="Script" id=20]
 [ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/CardControl.tscn" type="PackedScene" id=22]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.501961 )
@@ -70,23 +68,93 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Content/MainMenuPanel"]
-anchor_left = 0.5
-anchor_top = 0.25
-anchor_right = 0.5
-anchor_bottom = 0.25
-margin_left = -136.5
-margin_top = -50.0
-margin_right = 136.5
-margin_bottom = 129.0
-theme = ExtResource( 2 )
-custom_fonts/font = ExtResource( 1 )
-text = "Frog
-Finder"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Card1F" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 300.545
+margin_top = 52.0022
+margin_right = 380.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "f1"
+practice = true
+
+[node name="Card1R" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 380.545
+margin_top = 52.0022
+margin_right = 460.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "r1"
+practice = true
+
+[node name="Card1O" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 460.545
+margin_top = 52.0022
+margin_right = 540.545
+margin_bottom = 132.002
+card_front_type = 1
+practice = true
+
+[node name="Card1G" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 540.545
+margin_top = 52.0022
+margin_right = 620.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "g"
+practice = true
+
+[node name="Card2F" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 220.956
+margin_top = 134.523
+margin_right = 300.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "f2"
+practice = true
+
+[node name="Card2I" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 300.956
+margin_top = 134.523
+margin_right = 380.956
+margin_bottom = 214.523
+card_front_type = 1
+practice = true
+
+[node name="Card2N" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 380.956
+margin_top = 134.523
+margin_right = 460.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "n"
+practice = true
+
+[node name="Card2D" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 460.956
+margin_top = 134.523
+margin_right = 540.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "d"
+practice = true
+
+[node name="Card2E" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 540.956
+margin_top = 134.523
+margin_right = 620.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "e"
+practice = true
+
+[node name="Card2R" parent="Content/MainMenuPanel" instance=ExtResource( 22 )]
+margin_left = 620.956
+margin_top = 134.523
+margin_right = 700.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "r2"
+practice = true
 
 [node name="StartButton" type="Button" parent="Content/MainMenuPanel"]
 anchor_left = 0.5
@@ -104,8 +172,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GameState" type="Node" parent="Content/MainMenuPanel"]
+script = ExtResource( 5 )
+
+[node name="FlipTimer" type="Timer" parent="Content/MainMenuPanel/GameState"]
+one_shot = true
+
 [node name="GameplayPanel" type="Panel" parent="Content"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -118,41 +191,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CardControl0" type="Control" parent="Content/GameplayPanel"]
+[node name="CardControl2" parent="Content/GameplayPanel" instance=ExtResource( 22 )]
 margin_left = 240.498
 margin_top = 209.774
 margin_right = 320.498
 margin_bottom = 289.774
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-card_back_type = 3
 card_front_type = 1
 
-[node name="CardBack" parent="Content/GameplayPanel/CardControl0" instance=ExtResource( 13 )]
-
-[node name="CardFront" parent="Content/GameplayPanel/CardControl0" instance=ExtResource( 13 )]
-visible = false
-texture = ExtResource( 14 )
-
-[node name="CardControl1" type="Control" parent="Content/GameplayPanel"]
-margin_left = 637.797
-margin_top = 210.833
-margin_right = 717.797
-margin_bottom = 290.833
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-card_back_type = 3
+[node name="CardControl1" parent="Content/GameplayPanel" instance=ExtResource( 22 )]
 card_front_type = 2
-
-[node name="CardBack" parent="Content/GameplayPanel/CardControl1" instance=ExtResource( 13 )]
-
-[node name="CardFront" parent="Content/GameplayPanel/CardControl1" instance=ExtResource( 13 )]
-visible = false
-texture = ExtResource( 14 )
 
 [node name="GameState" type="Node" parent="Content/GameplayPanel"]
 script = ExtResource( 5 )
@@ -260,9 +307,9 @@ bus = "Music"
 [connection signal="pressed" from="Content/GameOverPanel/StartButton" to="Content/GameOverPanel" method="_on_StartButton_pressed"]
 [connection signal="player_lost" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_player_lost"]
 [connection signal="player_won" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_player_won"]
-[connection signal="frog_found" from="Content/GameplayPanel/CardControl0" to="Content/GameplayPanel" method="_on_CardControl_frog_found"]
-[connection signal="shark_found" from="Content/GameplayPanel/CardControl0" to="Content/GameplayPanel" method="_on_CardControl_shark_found"]
 [connection signal="frog_found" from="Content/GameplayPanel/CardControl1" to="Content/GameplayPanel" method="_on_CardControl_frog_found"]
 [connection signal="shark_found" from="Content/GameplayPanel/CardControl1" to="Content/GameplayPanel" method="_on_CardControl_shark_found"]
+[connection signal="frog_found" from="Content/GameplayPanel/CardControl2" to="Content/GameplayPanel" method="_on_CardControl_frog_found"]
+[connection signal="shark_found" from="Content/GameplayPanel/CardControl2" to="Content/GameplayPanel" method="_on_CardControl_shark_found"]
 [connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_button_pressed"]
 [connection signal="pressed" from="Content/MainMenuPanel/StartButton" to="Content/MainMenuPanel" method="_on_StartButton_pressed"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/CardSprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/card-control.gd" type="Script" id=3]
+
+[node name="CardControl1" type="Control"]
+margin_left = 637.797
+margin_top = 210.833
+margin_right = 717.797
+margin_bottom = 290.833
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardBack" parent="." instance=ExtResource( 2 )]
+
+[node name="CardFront" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="StopDanceTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SharkFoundTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FrogFoundTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FrogFoundTimer" to="." method="_on_FrogFoundTimer_timeout"]
+[connection signal="timeout" from="SharkFoundTimer" to="." method="_on_SharkFoundTimer_timeout"]
+[connection signal="timeout" from="StopDanceTimer" to="." method="_on_StopDanceTimer_timeout"]

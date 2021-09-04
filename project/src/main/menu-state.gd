@@ -9,9 +9,12 @@ onready var _gameplay_panel: Panel = get_node(_gameplay_panel_path)
 onready var _game_over_panel: Panel = get_node(_game_over_panel_path)
 
 func _ready() -> void:
-	_hide_panels()
-	_main_menu_panel.visible = true
+	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_hide_panels()
+	
+	yield(get_tree(), "idle_frame")
+	_main_menu_panel.show_menu()
 
 
 func _hide_panels() -> void:
@@ -37,4 +40,4 @@ func _on_GameplayPanel_player_won() -> void:
 
 func _on_GameOverPanel_start_button_pressed() -> void:
 	_hide_panels()
-	_gameplay_panel.show_puzzle()
+	_main_menu_panel.show_menu()

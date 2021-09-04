@@ -8,8 +8,8 @@ onready var _game_state := $GameState
 func show_puzzle() -> void:
 	visible = true
 	_game_state.reset()
-	$CardControl0.reset()
 	$CardControl1.reset()
+	$CardControl2.reset()
 
 
 func _on_FrogButton_pressed() -> void:

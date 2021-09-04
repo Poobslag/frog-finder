@@ -9,7 +9,6 @@ onready var songs: Array = [
 
 
 func _ready() -> void:
-	randomize()
 	songs.shuffle()
 	
 	var song: AudioStreamPlayer = songs.pop_front()
