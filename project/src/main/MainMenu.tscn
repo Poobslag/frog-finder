@@ -199,6 +199,10 @@ margin_bottom = 289.774
 card_front_type = 1
 
 [node name="CardControl1" parent="Content/GameplayPanel" instance=ExtResource( 22 )]
+margin_left = 638.0
+margin_top = 211.679
+margin_right = 718.0
+margin_bottom = 291.679
 card_front_type = 2
 
 [node name="GameState" type="Node" parent="Content/GameplayPanel"]
