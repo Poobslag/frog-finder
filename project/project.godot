@@ -14,20 +14,44 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/card-control.gd"
 }, {
+"base": "Panel",
+"class": "GameOverPanel",
+"language": "GDScript",
+"path": "res://src/main/game-over-panel.gd"
+}, {
 "base": "Node",
 "class": "GameState",
 "language": "GDScript",
 "path": "res://src/main/game-state.gd"
 }, {
+"base": "Panel",
+"class": "GameplayPanel",
+"language": "GDScript",
+"path": "res://src/main/gameplay-panel.gd"
+}, {
+"base": "Panel",
+"class": "IntermissionPanel",
+"language": "GDScript",
+"path": "res://src/main/intermission-panel.gd"
+}, {
 "base": "Control",
 "class": "LevelCards",
 "language": "GDScript",
 "path": "res://src/main/level-cards.gd"
+}, {
+"base": "Panel",
+"class": "MainMenuPanel",
+"language": "GDScript",
+"path": "res://src/main/main-menu-panel.gd"
 } ]
 _global_script_class_icons={
 "CardControl": "",
+"GameOverPanel": "",
 "GameState": "",
-"LevelCards": ""
+"GameplayPanel": "",
+"IntermissionPanel": "",
+"LevelCards": "",
+"MainMenuPanel": ""
 }
 
 [application]

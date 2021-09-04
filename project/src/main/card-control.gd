@@ -154,9 +154,32 @@ func is_front_shown() -> bool:
 
 
 func show_front() -> void:
+	if $CardFront.visible:
+		# already shown
+		return
+	
 	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
 	$CardBack.visible = false
 	$CardFront.visible = true
+	
+	# reset the wiggle so the characters don't have one very abbreviated dance frame
+	$CardFront.reset_wiggle()
+
+
+func copy_from(other_card: CardControl) -> void:
+	card_back_type = other_card.card_back_type
+	card_back_details = other_card.card_back_details
+	card_front_type = other_card.card_front_type
+	card_front_details = other_card.card_front_details
+	_refresh_card_textures()
+	
+	_card_front_sprite.frame = other_card._card_front_sprite.frame
+	_card_front_sprite.wiggle_frames = other_card._card_front_sprite.wiggle_frames
+	_card_front_sprite.visible = other_card._card_front_sprite.visible
+	
+	_card_back_sprite.frame = other_card._card_back_sprite.frame
+	_card_back_sprite.wiggle_frames = other_card._card_back_sprite.wiggle_frames
+	_card_back_sprite.visible = other_card._card_back_sprite.visible
 
 
 func _flip_card() -> void:
@@ -178,12 +201,24 @@ func _flip_card() -> void:
 	_game_state.flip_timer.connect("timeout", self, "_on_FlipTimer_timeout")
 
 
+func cheer() -> void:
+	if card_front_type != CardType.FROG:
+		return
+	
+	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3]
+	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
+	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
+	
+	# reset the wiggle so the characters don't have one very abbreviated dance frame
+	_card_front_sprite.reset_wiggle()
+	$StopDanceTimer.start(4.0)
+
+
 func _on_FlipTimer_timeout() -> void:
 	_game_state.flip_timer.disconnect("timeout", self, "_on_FlipTimer_timeout")
 	match card_front_type:
 		CardType.FROG:
-			var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-			_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3]
 			if practice:
 				# this frog doesn't count; maybe it was on the main menu
 				pass
@@ -191,8 +226,8 @@ func _on_FlipTimer_timeout() -> void:
 				_game_state.can_interact = false
 			
 			emit_signal("before_frog_found")
+			$CheerTimer.start()
 			$FrogFoundTimer.start(2.0)
-			$StopDanceTimer.start(4.0)
 		CardType.SHARK:
 			if practice:
 				# this shark doesn't count; maybe it was on the main menu
@@ -217,3 +252,7 @@ func _on_FrogFoundTimer_timeout() -> void:
 
 func _on_SharkFoundTimer_timeout() -> void:
 	emit_signal("shark_found")
+
+
+func _on_CheerTimer_timeout() -> void:
+	cheer()

@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/CardSprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/card-control.gd" type="Script" id=3]
 
-[node name="CardControl1" type="Control"]
+[node name="CardControl" type="Control"]
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
@@ -27,6 +27,11 @@ one_shot = true
 [node name="FrogFoundTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="CheerTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="CheerTimer" to="." method="_on_CheerTimer_timeout"]
 [connection signal="timeout" from="FrogFoundTimer" to="." method="_on_FrogFoundTimer_timeout"]
 [connection signal="timeout" from="SharkFoundTimer" to="." method="_on_SharkFoundTimer_timeout"]
 [connection signal="timeout" from="StopDanceTimer" to="." method="_on_StopDanceTimer_timeout"]

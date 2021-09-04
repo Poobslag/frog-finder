@@ -1,3 +1,4 @@
+class_name MainMenuPanel
 extends Panel
 
 signal start_button_pressed
