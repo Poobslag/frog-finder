@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/main/shark-run-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/running-shark.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "run"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "run-fed"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "move"
+} ]
+}
+
+[node name="RunningShark" type="Sprite"]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 2
+frame = 7
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "run"
+anims/run = SubResource( 1 )
+anims/run-fed = SubResource( 2 )
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="PanicTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="ThinkTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_ChaseTimer_timeout"]
+[connection signal="timeout" from="PanicTimer" to="." method="_on_PanicTimer_timeout"]
+[connection signal="timeout" from="ThinkTimer" to="." method="_on_ThinkTimer_timeout"]
