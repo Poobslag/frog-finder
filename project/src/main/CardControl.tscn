@@ -11,6 +11,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+game_state_path = NodePath("")
 
 [node name="CardBack" parent="." instance=ExtResource( 2 )]
 
