@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/intermission-panel.gd" type="Script" id=1]
+[ext_resource path="res://src/main/level-cards.gd" type="Script" id=2]
+[ext_resource path="res://src/main/game-state.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.501961 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="IntermissionPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IntermissionState" type="Node" parent="."]
+script = ExtResource( 3 )
+can_interact = false
+
+[node name="FlipTimer" type="Timer" parent="IntermissionState"]
+wait_time = 0.1
+one_shot = true
+
+[node name="IntermissionCards" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+game_state_path = NodePath("../IntermissionState")

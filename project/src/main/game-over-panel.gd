@@ -1,3 +1,4 @@
+class_name GameOverPanel
 extends Panel
 
 signal start_button_pressed
