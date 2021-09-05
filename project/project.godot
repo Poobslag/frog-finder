@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/gameplay-panel.gd"
 }, {
+"base": "Control",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://src/main/hand.gd"
+}, {
+"base": "Sprite",
+"class": "HandSprite",
+"language": "GDScript",
+"path": "res://src/main/hand-sprite.gd"
+}, {
 "base": "Panel",
 "class": "IntermissionPanel",
 "language": "GDScript",
@@ -43,15 +53,23 @@ _global_script_classes=[ {
 "class": "MainMenuPanel",
 "language": "GDScript",
 "path": "res://src/main/main-menu-panel.gd"
+}, {
+"base": "Sprite",
+"class": "RunningShark",
+"language": "GDScript",
+"path": "res://src/main/running-shark.gd"
 } ]
 _global_script_class_icons={
 "CardControl": "",
 "GameOverPanel": "",
 "GameState": "",
 "GameplayPanel": "",
+"Hand": "",
+"HandSprite": "",
 "IntermissionPanel": "",
 "LevelCards": "",
-"MainMenuPanel": ""
+"MainMenuPanel": "",
+"RunningShark": ""
 }
 
 [application]

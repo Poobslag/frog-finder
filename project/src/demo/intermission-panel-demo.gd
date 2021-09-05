@@ -18,6 +18,8 @@ func _input(event: InputEvent) -> void:
 			
 			card.show_front()
 			_intermission_panel.add_level_result(card)
+		KEY_S:
+			_intermission_panel.start_shark_spawn_timer(3)
 
 
 """

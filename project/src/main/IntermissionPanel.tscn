@@ -42,3 +42,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 game_state_path = NodePath("../IntermissionState")
+
+[node name="SharkSpawnTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="Creatures" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_SharkSpawnTimer_timeout"]

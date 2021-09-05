@@ -49,10 +49,10 @@ const LETTER_INDEXES_BY_DETAILS := {
 onready var _card_back_sprite := $CardBack
 onready var _card_front_sprite := $CardFront
 
-onready var _frog_sheet := load("res://assets/main/frog-frame-00-sheet.png")
-onready var _letter_sheet := load("res://assets/main/letter-sheet.png")
-onready var _shark_sheet := load("res://assets/main/shark-frame-00-sheet.png")
-onready var _mystery_sheet := load("res://assets/main/mystery-sheet.png")
+onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
+onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
+onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
+onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
 onready var _game_state: GameState
 
 func _ready() -> void:

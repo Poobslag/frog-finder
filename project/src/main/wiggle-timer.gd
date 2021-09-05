@@ -17,11 +17,19 @@ func reset_wiggle() -> void:
 	start(rand_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME))
 
 
+"""
+Updates the sprite's frame to the next 'wiggle frame'.
+
+Defaults to '0' if the current frame isn't a wiggle frame.
+"""
+func assign_wiggle_frame() -> void:
+	var wiggle_index:int = (_sprite.wiggle_frames.find(_sprite.frame) + 1) % _sprite.wiggle_frames.size()
+	_sprite.frame = _sprite.wiggle_frames[wiggle_index]
+
+
 func _on_timeout() -> void:
 	if not "wiggle_frames" in _sprite or not _sprite.wiggle_frames:
 		return
 	
-	# find the index of the next 'wiggle frame'; default to '0' if the current frame isn't a wiggle frame
-	var wiggle_index :int = (_sprite.wiggle_frames.find(_sprite.frame) + 1) % _sprite.wiggle_frames.size()
-	_sprite.frame = _sprite.wiggle_frames[wiggle_index]
+	assign_wiggle_frame()
 	wait_time = rand_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME)
