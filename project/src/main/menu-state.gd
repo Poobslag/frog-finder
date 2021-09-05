@@ -5,12 +5,14 @@ export (NodePath) var _gameplay_panel_path: NodePath
 export (NodePath) var _intermission_panel_path: NodePath
 export (NodePath) var _game_over_panel_path: NodePath
 export (NodePath) var _hand_path: NodePath
+export (NodePath) var _background_path: NodePath
 
 onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
 onready var _intermission_panel: IntermissionPanel = get_node(_intermission_panel_path)
 onready var _game_over_panel: GameOverPanel = get_node(_game_over_panel_path)
 onready var _hand: Hand = get_node(_hand_path)
+onready var _background: Background = get_node(_background_path)
 
 func _ready() -> void:
 	randomize()
@@ -60,6 +62,7 @@ func _end_intermission() -> void:
 		_game_over_panel.show_player_won()
 	else:
 		_hide_panels()
+		_background.change()
 		_gameplay_panel.show_puzzle()
 
 
