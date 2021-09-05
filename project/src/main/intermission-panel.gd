@@ -67,11 +67,13 @@ func _spawn_shark() -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
 	
+	var viewport_rect_size := get_viewport_rect().size
+	
 	var spawn_points := [
-		Vector2(rand_range(0, OS.window_size.x), -SHARK_SPAWN_BORDER), # top wall
-		Vector2(OS.window_size.x + SHARK_SPAWN_BORDER, rand_range(0, OS.window_size.y)), # right wall
-		Vector2(rand_range(0, OS.window_size.x), OS.window_size.y + SHARK_SPAWN_BORDER), # bottom wall
-		Vector2(-SHARK_SPAWN_BORDER, rand_range(0, OS.window_size.y)), # left wall
+		Vector2(rand_range(0, viewport_rect_size.x), -SHARK_SPAWN_BORDER), # top wall
+		Vector2(viewport_rect_size.x + SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
+		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + SHARK_SPAWN_BORDER), # bottom wall
+		Vector2(-SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
 	]
 	spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
 	

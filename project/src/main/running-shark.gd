@@ -33,8 +33,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	soon_position += velocity * delta
-	soon_position.x = clamp(soon_position.x, -200, OS.window_size.x + 200)
-	soon_position.y = clamp(soon_position.y, -200, OS.window_size.y + 200)
+	var viewport_rect_size := get_viewport_rect().size
+	soon_position.x = clamp(soon_position.x, -200, viewport_rect_size.x + 200)
+	soon_position.y = clamp(soon_position.y, -200, viewport_rect_size.y + 200)
 
 
 func chase() -> void:
