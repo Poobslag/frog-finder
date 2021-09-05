@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cartoon-bite.wav-00fe52c8492f251f9ddb729278c7e4d3.sample"
+
+[deps]
+
+source_file="res://assets/main/sfx/cartoon-bite.wav"
+dest_files=[ "res://.import/cartoon-bite.wav-00fe52c8492f251f9ddb729278c7e4d3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -65,6 +65,7 @@ func _end_intermission() -> void:
 
 func _on_MainMenuPanel_start_button_pressed() -> void:
 	_hide_panels()
+	_hand.reset()
 	_intermission_panel.restart()
 	_gameplay_panel.restart()
 	_gameplay_panel.show_puzzle()

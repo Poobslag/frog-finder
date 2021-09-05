@@ -18,3 +18,5 @@ func bite(finger_index: int) -> void:
 	wiggle_frames = WIGGLE_FRAMES_BY_FINGER[finger_index]
 	_wiggle_timer.assign_wiggle_frame()
 	$AnimationPlayer.play("bite")
+	$CartoonBiteSfx.pitch_scale = rand_range(0.95, 1.01)
+	$CartoonBiteSfx.play()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/frog-voice-2.wav-b64468a9dc72070c0375927e6083db8b.sample"
+
+[deps]
+
+source_file="res://assets/main/sfx/frog-voice-2.wav"
+dest_files=[ "res://.import/frog-voice-2.wav-b64468a9dc72070c0375927e6083db8b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
