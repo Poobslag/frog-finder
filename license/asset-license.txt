@@ -5,6 +5,9 @@ $ = MAY credit in your credits (you sort of used their stuff, i guess. Or their 
 Sounds:
 $$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
 
+Graphics:
+$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+
 Fonts:
 $$ Fredoka One by Milena Brandao (SIL Open Font License, Version 1.1)
 $$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventional license; 'Can be used for both commercial and non-commercial purposes, so please download with confidence')
@@ -19,3 +22,6 @@ Sounds
 project/assets/main/sfx/cartoon-bite.wav Cartoon Bite Sound Effect from 'Sound effects for youtubers' https://www.youtube.com/watch?v=RlvRyo4ofvM
 project/assets/main/sfx/pop-brust.wav "2000_Game_SFX_Collection/GameBurp - 2000 Game Sound FX Collection (WAV)/POPS - BURSTS - (26)/POP Brust 02.wav"
 
+Graphics
+--------------------------------------------------------------------------------
+project/assets/main/bg Icon Pack: Animal Kingdom by Freepik
