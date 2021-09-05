@@ -8,23 +8,43 @@ signal frog_found(card)
 
 const START_DIFFICULTY := 1
 
-onready var _game_state := $GameState
-onready var _level_cards := $LevelCards
-onready var _level_rules := $LevelRules
-
 var player_difficulty := START_DIFFICULTY
 var player_streak := 0
+var _level_rules: LevelRules
+
+onready var _game_state := $GameState
+onready var _level_cards := $LevelCards
+
+onready var level_rules_scenes := [
+	preload("res://src/main/SecretCollectLevelRules.tscn"),
+	preload("res://src/main/FroggoLevelRules.tscn"),
+]
+
+func _ready() -> void:
+	level_rules_scenes.shuffle()
+
 
 func show_puzzle() -> void:
 	visible = true
-	
 	reset()
 	_level_rules.add_cards()
 
 
 func reset() -> void:
 	_game_state.reset()
+	
+	if _level_rules:
+		_level_rules.queue_free()
+		remove_child(_level_rules)
+	
+	var next_level_rules_scene: PackedScene = level_rules_scenes.pop_front()
+	level_rules_scenes.shuffle()
+	level_rules_scenes.push_back(next_level_rules_scene)
+	_level_rules = next_level_rules_scene.instance()
 	_level_rules.difficulty = player_difficulty
+	add_child(_level_rules)
+	_level_rules.level_cards_path = _level_rules.get_path_to(_level_cards)
+	
 	_level_cards.reset()
 
 
