@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/a-well-tempered-fr.ogg"
+dest_files=[ "res://.import/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
