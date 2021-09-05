@@ -1,0 +1,168 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
+[ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
+[ext_resource path="res://src/main/main-menu-panel.gd" type="Script" id=4]
+[ext_resource path="res://src/main/music-control.gd" type="Script" id=5]
+[ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/main/music-notes-sheet.png" type="Texture" id=7]
+[ext_resource path="res://src/main/CardControl.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=10]
+
+[node name="MainMenuPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicControl" type="Control" parent="."]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 105.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 80, 80 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+music_player_path = NodePath("../../../MusicPlayer")
+
+[node name="Sprite" parent="MusicControl" instance=ExtResource( 6 )]
+position = Vector2( 40, 40 )
+texture = ExtResource( 7 )
+hframes = 4
+vframes = 3
+wiggle_frames = [ 0, 1 ]
+
+[node name="Card1F" parent="." instance=ExtResource( 8 )]
+margin_left = 300.545
+margin_top = 52.0022
+margin_right = 380.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "f1"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card1R" parent="." instance=ExtResource( 8 )]
+margin_left = 380.545
+margin_top = 52.0022
+margin_right = 460.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "r1"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card1O" parent="." instance=ExtResource( 8 )]
+margin_left = 460.545
+margin_top = 52.0022
+margin_right = 540.545
+margin_bottom = 132.002
+card_front_type = 1
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card1G" parent="." instance=ExtResource( 8 )]
+margin_left = 540.545
+margin_top = 52.0022
+margin_right = 620.545
+margin_bottom = 132.002
+card_front_type = 4
+card_front_details = "g"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2F" parent="." instance=ExtResource( 8 )]
+margin_left = 220.956
+margin_top = 134.523
+margin_right = 300.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "f2"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2I" parent="." instance=ExtResource( 8 )]
+margin_left = 300.956
+margin_top = 134.523
+margin_right = 380.956
+margin_bottom = 214.523
+card_front_type = 1
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2N" parent="." instance=ExtResource( 8 )]
+margin_left = 380.956
+margin_top = 134.523
+margin_right = 460.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "n"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2D" parent="." instance=ExtResource( 8 )]
+margin_left = 460.956
+margin_top = 134.523
+margin_right = 540.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "d"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2E" parent="." instance=ExtResource( 8 )]
+margin_left = 540.956
+margin_top = 134.523
+margin_right = 620.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "e"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="Card2R" parent="." instance=ExtResource( 8 )]
+margin_left = 620.956
+margin_top = 134.523
+margin_right = 700.956
+margin_bottom = 214.523
+card_front_type = 4
+card_front_details = "r2"
+game_state_path = NodePath("../TitleGameState")
+practice = true
+
+[node name="StartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -160.0
+margin_right = 40.0
+margin_bottom = -80.0
+rect_min_size = Vector2( 80, 80 )
+theme = ExtResource( 10 )
+text = "?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleGameState" type="Node" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "Special game state just for the title."
+}
+
+[node name="FlipTimer" type="Timer" parent="TitleGameState"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

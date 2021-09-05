@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frog-00-sheet.png-177ed19d3903a327a03fbe76963b5a61.stex"
+path="res://.import/music-notes-sheet.png-b6a31e88e5862d33f7d1d4d5ef0baa99.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/frog-00-sheet.png"
-dest_files=[ "res://.import/frog-00-sheet.png-177ed19d3903a327a03fbe76963b5a61.stex" ]
+source_file="res://assets/main/music-notes-sheet.png"
+dest_files=[ "res://.import/music-notes-sheet.png-b6a31e88e5862d33f7d1d4d5ef0baa99.stex" ]
 
 [params]
 

@@ -6,6 +6,8 @@ export (NodePath) var _intermission_panel_path: NodePath
 export (NodePath) var _game_over_panel_path: NodePath
 export (NodePath) var _hand_path: NodePath
 export (NodePath) var _background_path: NodePath
+export (NodePath) var _music_player_path: NodePath
+export (NodePath) var _player_data_path: NodePath
 
 onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
@@ -13,6 +15,8 @@ onready var _intermission_panel: IntermissionPanel = get_node(_intermission_pane
 onready var _game_over_panel: GameOverPanel = get_node(_game_over_panel_path)
 onready var _hand: Hand = get_node(_hand_path)
 onready var _background: Background = get_node(_background_path)
+onready var _music_player: MusicPlayer = get_node(_music_player_path)
+onready var _player_data: PlayerData = get_node(_player_data_path)
 
 func _ready() -> void:
 	randomize()
@@ -67,6 +71,9 @@ func _end_intermission() -> void:
 
 
 func _on_MainMenuPanel_start_button_pressed() -> void:
+	# save, in case the user changed their music preference
+	_player_data.save_player_data()
+	
 	_hide_panels()
 	_hand.reset()
 	_intermission_panel.restart()
@@ -74,17 +81,38 @@ func _on_MainMenuPanel_start_button_pressed() -> void:
 	_gameplay_panel.show_puzzle()
 
 
+func _on_GameplayPanel_before_shark_found() -> void:
+	if _music_player.is_playing_frog_song():
+		_music_player.play_shark_song()
+
+
+func _on_GameplayPanel_before_frog_found() -> void:
+	if _music_player.is_playing_shark_song():
+		# we don't play a shark song if there's no current song (music is off)
+		_music_player.play_preferred_song()
+
+
 func _on_GameplayPanel_shark_found(card: CardControl) -> void:
+	_player_data.shark_count += 1
 	_show_intermission_panel(card)
 
 
 func _on_GameplayPanel_frog_found(card: CardControl) -> void:
+	_player_data.frog_count += 1
 	_show_intermission_panel(card)
 
 
 func _on_GameOverPanel_start_button_pressed() -> void:
+	# save, in case the player got more frogs
+	_player_data.save_player_data()
+	
 	_hide_panels()
 	_main_menu_panel.show_menu()
+	if _music_player.is_playing_shark_song():
+		# if they're playing a shark song, it keeps playing
+		pass
+	else:
+		_music_player.play_preferred_song()
 
 
 func _on_Hand_finger_bitten() -> void:
@@ -92,3 +120,22 @@ func _on_Hand_finger_bitten() -> void:
 		yield(get_tree().create_timer(4.0), "timeout")
 		_hand.biteable_fingers = -1
 		_end_intermission()
+
+
+func _on_MainMenuPanel_frog_found() -> void:
+	_player_data.frog_count += 1
+
+
+func _on_MainMenuPanel_shark_found() -> void:
+	_player_data.shark_count += 1
+
+
+func _on_MainMenuPanel_before_shark_found() -> void:
+	if _music_player.is_playing_frog_song():
+		# we don't play a shark song if there's no current song (music is off)
+		_music_player.play_shark_song()
+
+
+func _on_MainMenuPanel_before_frog_found() -> void:
+	if _music_player.is_playing_shark_song():
+		_music_player.play_preferred_song()

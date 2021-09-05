@@ -1,7 +1,9 @@
 class_name LevelCards
 extends Control
 
+signal before_frog_found
 signal frog_found(card)
+signal before_shark_found
 signal shark_found(card)
 
 const CELL_SIZE := Vector2(80, 80)
@@ -16,8 +18,10 @@ onready var _game_state: GameState = get_node(game_state_path)
 
 func create_card() -> CardControl:
 	var card := CardControlScene.instance() as CardControl
-	card.connect("frog_found", self, "_on_frog_found", [card])
-	card.connect("shark_found", self, "_on_shark_found", [card])
+	card.connect("frog_found", self, "_on_CardControl_frog_found", [card])
+	card.connect("shark_found", self, "_on_CardControl_shark_found", [card])
+	card.connect("before_frog_found", self, "_on_CardControl_before_frog_found")
+	card.connect("before_shark_found", self, "_on_CardControl_before_shark_found")
 	return card
 
 
@@ -49,9 +53,17 @@ func reset() -> void:
 		remove_child(child)
 
 
-func _on_frog_found(card: CardControl) -> void:
+func _on_CardControl_frog_found(card: CardControl) -> void:
 	emit_signal("frog_found", card)
 
 
-func _on_shark_found(card: CardControl) -> void:
+func _on_CardControl_shark_found(card: CardControl) -> void:
 	emit_signal("shark_found", card)
+
+
+func _on_CardControl_before_frog_found() -> void:
+	emit_signal("before_frog_found")
+
+
+func _on_CardControl_before_shark_found() -> void:
+	emit_signal("before_shark_found")
