@@ -9,24 +9,6 @@ enum CardType {
 	LETTER,
 }
 
-const FROG_COUNT := 8
-const SHARK_COUNT := 4
-const MYSTERY_COUNT := 4
-const LETTER_COUNT := 14
-
-signal before_frog_found
-signal frog_found
-signal before_shark_found
-signal shark_found
-
-export (CardType) var card_back_type: int = CardType.MYSTERY setget set_card_back_type
-export (String) var card_back_details: String setget set_card_back_details
-export (CardType) var card_front_type: int = CardType.MYSTERY setget set_card_front_type
-export (String) var card_front_details: String setget set_card_front_details
-
-export (NodePath) var game_state_path := NodePath("../GameState") setget set_game_state_path
-export (bool) var practice := false
-
 const LETTER_INDEXES_BY_DETAILS := {
 	"a": [0],
 	"d": [1],
@@ -45,6 +27,46 @@ const LETTER_INDEXES_BY_DETAILS := {
 	"r2": [12],
 	"s": [13],
 }
+
+const FROG_COUNT := 8
+const SHARK_COUNT := 4
+const MYSTERY_COUNT := 4
+const LETTER_COUNT := 14
+
+signal before_frog_found
+signal frog_found
+signal before_shark_found
+signal shark_found
+
+export (CardType) var card_back_type: int = CardType.MYSTERY setget set_card_back_type
+export (String) var card_back_details: String setget set_card_back_details
+export (CardType) var card_front_type: int = CardType.MYSTERY setget set_card_front_type
+export (String) var card_front_details: String setget set_card_front_details
+
+export (NodePath) var game_state_path := NodePath("../GameState") setget set_game_state_path
+export (bool) var practice := false
+
+var _frog_sounds := [
+	preload("res://assets/main/sfx/frog-voice-0.wav"),
+	preload("res://assets/main/sfx/frog-voice-1.wav"),
+	preload("res://assets/main/sfx/frog-voice-2.wav"),
+	preload("res://assets/main/sfx/frog-voice-3.wav"),
+	preload("res://assets/main/sfx/frog-voice-4.wav"),
+	preload("res://assets/main/sfx/frog-voice-5.wav"),
+	preload("res://assets/main/sfx/frog-voice-6.wav"),
+	preload("res://assets/main/sfx/frog-voice-7.wav"),
+]
+
+var _shark_sounds := [
+	preload("res://assets/main/sfx/shark-voice-0.wav"),
+	preload("res://assets/main/sfx/shark-voice-1.wav"),
+	preload("res://assets/main/sfx/shark-voice-2.wav"),
+	preload("res://assets/main/sfx/shark-voice-3.wav"),
+	preload("res://assets/main/sfx/shark-voice-4.wav"),
+	preload("res://assets/main/sfx/shark-voice-5.wav"),
+	preload("res://assets/main/sfx/shark-voice-6.wav"),
+	preload("res://assets/main/sfx/shark-voice-7.wav"),
+]
 
 onready var _card_back_sprite := $CardBack
 onready var _card_front_sprite := $CardFront
@@ -195,6 +217,8 @@ func _flip_card() -> void:
 		# the level hasn't started, or the level has ended
 		return
 	
+	$PopBrustSfx.pitch_scale = rand_range(0.9, 1.10)
+	$PopBrustSfx.play()
 	show_front()
 	
 	_game_state.flip_timer.start()
@@ -236,6 +260,9 @@ func _on_FlipTimer_timeout() -> void:
 				_game_state.can_interact = false
 			emit_signal("before_shark_found")
 			$SharkFoundTimer.start(2.0)
+			$CreatureSfx.stream = _shark_sounds[randi() % _shark_sounds.size()]
+			$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
+			$CreatureSfx.play()
 
 
 func _on_StopDanceTimer_timeout() -> void:
@@ -255,4 +282,7 @@ func _on_SharkFoundTimer_timeout() -> void:
 
 
 func _on_CheerTimer_timeout() -> void:
+	$CreatureSfx.stream = _frog_sounds[randi() % _frog_sounds.size()]
+	$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
+	$CreatureSfx.play()
 	cheer()

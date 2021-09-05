@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://assets/main/sfx/pop-brust.wav" type="AudioStream" id=1]
 [ext_resource path="res://src/main/CardSprite.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/card-control.gd" type="Script" id=3]
 
@@ -31,7 +32,14 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="timeout" from="CheerTimer" to="." method="_on_CheerTimer_timeout"]
-[connection signal="timeout" from="FrogFoundTimer" to="." method="_on_FrogFoundTimer_timeout"]
-[connection signal="timeout" from="SharkFoundTimer" to="." method="_on_SharkFoundTimer_timeout"]
+[node name="PopBrustSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
+
+[node name="CreatureSfx" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+
 [connection signal="timeout" from="StopDanceTimer" to="." method="_on_StopDanceTimer_timeout"]
+[connection signal="timeout" from="SharkFoundTimer" to="." method="_on_SharkFoundTimer_timeout"]
+[connection signal="timeout" from="FrogFoundTimer" to="." method="_on_FrogFoundTimer_timeout"]
+[connection signal="timeout" from="CheerTimer" to="." method="_on_CheerTimer_timeout"]

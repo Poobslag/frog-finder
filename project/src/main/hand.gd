@@ -17,6 +17,11 @@ func _input(event: InputEvent) -> void:
 		rect_position = event.position
 
 
+func reset() -> void:
+	fingers = 3
+	biteable_fingers = -1
+
+
 func bite() -> void:
 	if biteable_fingers <= 0:
 		return

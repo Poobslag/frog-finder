@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shark-voice-1.wav-63afd5027a664eb9b5f12571cc31a70a.sample"
+
+[deps]
+
+source_file="res://assets/main/sfx/shark-voice-1.wav"
+dest_files=[ "res://.import/shark-voice-1.wav-63afd5027a664eb9b5f12571cc31a70a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
