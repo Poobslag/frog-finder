@@ -59,10 +59,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/main-menu-panel.gd"
 }, {
+"base": "Node",
+"class": "MusicPlayer",
+"language": "GDScript",
+"path": "res://src/main/music-player.gd"
+}, {
+"base": "Node",
+"class": "PlayerData",
+"language": "GDScript",
+"path": "res://src/main/player-data.gd"
+}, {
 "base": "Sprite",
 "class": "RunningShark",
 "language": "GDScript",
 "path": "res://src/main/running-shark.gd"
+}, {
+"base": "Sprite",
+"class": "WiggleSprite",
+"language": "GDScript",
+"path": "res://src/main/wiggle-sprite.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
@@ -75,7 +90,10 @@ _global_script_class_icons={
 "IntermissionPanel": "",
 "LevelCards": "",
 "MainMenuPanel": "",
-"RunningShark": ""
+"MusicPlayer": "",
+"PlayerData": "",
+"RunningShark": "",
+"WiggleSprite": ""
 }
 
 [application]

@@ -1,7 +1,7 @@
 class_name RunningShark
 extends Sprite
 
-const BITE_DISTANCE := 50.0
+const BITE_DISTANCE := 70.0
 const CHASE_DURATION := 6
 const PANIC_DURATION := 1.2
 const MIN_RUN_SPEED := 150.0
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 
 func chase() -> void:
 	_panic_timer.stop()
-	var wait_time := (CHASE_DURATION / agility) * rand_range(0.8, 1.2)
+	var wait_time := CHASE_DURATION * rand_range(0.8, 1.2)
 	if chase_count == 0:
 		# the first time we chase, we are more persistent
 		wait_time *= 2

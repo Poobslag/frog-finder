@@ -1,6 +1,11 @@
+class_name WiggleSprite
 extends Sprite
 
-export var wiggle_frames := [] setget set_wiggle_frames
+export (Array, int) var wiggle_frames := []
 
-func set_wiggle_frames() -> void:
-	$WiggleTimer
+func reset_wiggle() -> void:
+	$WiggleTimer.reset_wiggle()
+
+
+func assign_wiggle_frame() -> void:
+	$WiggleTimer.assign_wiggle_frame()
