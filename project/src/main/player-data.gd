@@ -35,11 +35,11 @@ func load_player_data() -> void:
 		_music_player.music_preference = save_json["music_preference"]
 		_music_player.play_preferred_song()
 	if save_json.has("frog_count"):
-		frog_count = save_json["frog_count"]
+		frog_count = int(save_json["frog_count"])
 	if save_json.has("shark_count"):
-		shark_count = save_json["shark_count"]
+		shark_count = int(save_json["shark_count"])
 	if save_json.has("hardest_difficulty_cleared"):
-		hardest_difficulty_cleared = save_json["hardest_difficulty_cleared"]
+		hardest_difficulty_cleared = int(save_json["hardest_difficulty_cleared"])
 
 
 static func file_exists(path: String) -> bool:

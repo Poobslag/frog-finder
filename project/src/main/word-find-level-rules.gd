@@ -22,7 +22,6 @@ func refresh_level_cards_path() -> void:
 
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
-	var words: Array
 	
 	for y in range(0, ROW_COUNT):
 		for x in range(0, COL_COUNT):
@@ -35,7 +34,7 @@ func add_cards() -> void:
 	var _backwards_chance: float = 0.5
 	var _frog_letter_chance: float = 0.5
 	var _fish_letter_chance: float = 0.25
-	var _shark_chance: float = 0.5
+	_shark_chance = 0.5
 	
 	var frog_word_cards := {
 	}
