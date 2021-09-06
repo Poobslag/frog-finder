@@ -45,11 +45,21 @@ func _show_intermission_panel(card: CardControl) -> void:
 	else:
 		# yay! we found a frog
 		if _intermission_panel.is_full():
+			# we won!
 			_music_player.fade_out(4.0)
-			# pause for a moment
 			yield(get_tree().create_timer(3.0), "timeout")
-			_music_player.play_ending_song()
-			_intermission_panel.start_frog_hug_timer(1, 5)
+			if _music_player.music_preference != MusicPlayer.MusicPreference.OFF:
+				_music_player.play_ending_song()
+			if _player_data.hardest_difficulty_cleared < _gameplay_panel.game_difficulty:
+				_player_data.hardest_difficulty_cleared = _gameplay_panel.game_difficulty
+				_player_data.save_player_data()
+			match _gameplay_panel.game_difficulty:
+				GameplayPanel.GameDifficulty.HARD:
+					_intermission_panel.start_frog_hug_timer(3, 30)
+				GameplayPanel.GameDifficulty.MEDIUM:
+					_intermission_panel.start_frog_hug_timer(2, 12)
+				GameplayPanel.GameDifficulty.EASY, _:
+					_intermission_panel.start_frog_hug_timer(1, 5)
 		else:
 			yield(get_tree().create_timer(3.0), "timeout")
 			_end_intermission()
@@ -60,11 +70,13 @@ func _end_intermission() -> void:
 		# we lose
 		_hide_panels()
 		_intermission_panel.reset() # free any sharks/frogs
+		_player_data.save_player_data()
 		_main_menu_panel.show_menu()
 	elif _intermission_panel.is_full():
 		# we win
 		_hide_panels()
 		_intermission_panel.reset() # free any sharks/frogs
+		_player_data.save_player_data()
 		_main_menu_panel.show_menu()
 	else:
 		_hide_panels()
@@ -72,7 +84,7 @@ func _end_intermission() -> void:
 		_gameplay_panel.show_puzzle()
 
 
-func _on_MainMenuPanel_start_button_pressed() -> void:
+func _on_MainMenuPanel_start_button_pressed(difficulty: int) -> void:
 	# save, in case the user changed their music preference
 	_player_data.save_player_data()
 	
@@ -83,8 +95,8 @@ func _on_MainMenuPanel_start_button_pressed() -> void:
 	
 	_hide_panels()
 	_hand.reset()
-	_intermission_panel.restart()
-	_gameplay_panel.restart()
+	_intermission_panel.restart(difficulty)
+	_gameplay_panel.restart(difficulty)
 	_gameplay_panel.show_puzzle()
 
 

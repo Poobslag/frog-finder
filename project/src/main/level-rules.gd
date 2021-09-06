@@ -3,7 +3,7 @@ extends Node
 
 export (NodePath) var level_cards_path: NodePath setget set_level_cards_path
 
-export (int, 8) var difficulty: int = 0 # 0 == very easy, 8 == very hard
+export (int, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
 
 var level_cards: LevelCards
 

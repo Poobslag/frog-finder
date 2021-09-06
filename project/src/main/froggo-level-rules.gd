@@ -63,7 +63,7 @@ func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
 	var words: Array
 	
-	match difficulty:
+	match puzzle_difficulty:
 		0:
 			words = ["frog/frog", "shark/shark"]
 			words[0] = _reveal_letters(words[0], 3)

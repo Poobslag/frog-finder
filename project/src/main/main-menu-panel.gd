@@ -1,16 +1,19 @@
 class_name MainMenuPanel
 extends Panel
 
-signal start_button_pressed
+signal start_button_pressed(difficulty)
 signal before_frog_found
 signal frog_found
 signal before_shark_found
 signal shark_found
 
-onready var _game_state := $TitleGameState
+export (NodePath) var player_data_path: NodePath
 
-func _on_StartButton_button_pressed() -> void:
-	emit_signal("start_button_pressed")
+onready var _game_state := $TitleGameState
+onready var _player_data: PlayerData = get_node(player_data_path)
+
+func _on_StartButton_button_pressed(difficulty: int) -> void:
+	emit_signal("start_button_pressed", difficulty)
 
 
 func _ready() -> void:
@@ -40,6 +43,16 @@ func show_menu() -> void:
 	
 	$Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
+	
+	$EasyButtons.visible = false
+	$MediumButtons.visible = false
+	$HardButtons.visible = false
+	match _player_data.hardest_difficulty_cleared:
+		GameplayPanel.GameDifficulty.EASY:
+			$MediumButtons.visible = true
+		GameplayPanel.GameDifficulty.MEDIUM, GameplayPanel.GameDifficulty.HARD:
+			$HardButtons.visible = true
+		_: $EasyButtons.visible = true
 
 
 func _on_MusicPlayer_music_preference_changed() -> void:

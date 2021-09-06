@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://assets/main/music-notes-sheet.png" type="Texture" id=7]
 [ext_resource path="res://src/main/CardControl.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/CuteButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/main/frog-frame-00-sheet.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/lizard-sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/shark-frame-00-sheet.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/fish-sheet.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=14]
 
 [node name="MainMenuPanel" type="Panel"]
 anchor_right = 1.0
@@ -145,16 +150,166 @@ card_front_details = "r2"
 game_state_path = NodePath("../TitleGameState")
 practice = true
 
-[node name="StartButton" parent="." instance=ExtResource( 9 )]
+[node name="Instructions" type="Control" parent="."]
+margin_left = 187.525
+margin_right = 227.525
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frog" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( -49.7948, 278.618 )
+texture = ExtResource( 10 )
+hframes = 8
+vframes = 4
+frame = 1
+wiggle_frames = [ 0, 1 ]
+
+[node name="Find" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( 16.5293, 278.618 )
+texture = ExtResource( 14 )
+hframes = 4
+vframes = 4
+frame = 3
+wiggle_frames = [ 2, 3 ]
+
+[node name="Lizard" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( -85.6588, 380.326 )
+texture = ExtResource( 11 )
+hframes = 8
+vframes = 8
+frame = 4
+wiggle_frames = [ 4, 5 ]
+
+[node name="Love" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( -19.058, 380.326 )
+texture = ExtResource( 14 )
+hframes = 4
+vframes = 4
+frame = 6
+wiggle_frames = [ 6, 7 ]
+
+[node name="Fish" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( 570.739, 380.326 )
+texture = ExtResource( 13 )
+hframes = 8
+vframes = 2
+frame = 1
+wiggle_frames = [ 0, 1 ]
+
+[node name="DontLove" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( 637.063, 380.326 )
+texture = ExtResource( 14 )
+hframes = 4
+vframes = 4
+frame = 8
+wiggle_frames = [ 8, 9 ]
+
+[node name="Shark" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( 535.934, 278.618 )
+texture = ExtResource( 12 )
+hframes = 8
+frame = 4
+wiggle_frames = [ 4, 5 ]
+
+[node name="DontFind" parent="Instructions" instance=ExtResource( 6 )]
+position = Vector2( 602.535, 278.618 )
+texture = ExtResource( 14 )
+hframes = 4
+vframes = 4
+frame = 4
+wiggle_frames = [ 4, 5 ]
+
+[node name="EasyButtons" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EasyButton" parent="EasyButtons" instance=ExtResource( 9 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = 91.1985
+margin_left = 402.0
+margin_top = 321.198
+margin_right = 482.0
+margin_bottom = 401.198
+icon_type = 5
+
+[node name="MediumButtons" type="Control" parent="."]
+visible = false
 margin_right = 40.0
-margin_bottom = 171.198
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EasyButton" parent="MediumButtons" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 322.0
+margin_top = 321.198
+margin_right = 402.0
+margin_bottom = 401.198
+icon_type = 5
+
+[node name="MediumButton" parent="MediumButtons" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 482.0
+margin_top = 321.198
+margin_right = 562.0
+margin_bottom = 401.198
 icon_type = 6
+
+[node name="HardButtons" type="Control" parent="."]
+margin_top = 28.6055
+margin_right = 40.0
+margin_bottom = 68.6055
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EasyButton" parent="HardButtons" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 242.0
+margin_top = 321.198
+margin_right = 322.0
+margin_bottom = 401.198
+icon_type = 5
+
+[node name="MediumButton" parent="HardButtons" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 402.0
+margin_top = 321.198
+margin_right = 482.0
+margin_bottom = 401.198
+icon_type = 6
+
+[node name="HardButton" parent="HardButtons" instance=ExtResource( 9 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 562.0
+margin_top = 321.198
+margin_right = 642.0
+margin_bottom = 401.198
+icon_type = 7
 
 [node name="TitleGameState" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -166,4 +321,9 @@ __meta__ = {
 wait_time = 0.1
 one_shot = true
 
-[connection signal="button_pressed" from="StartButton" to="." method="_on_StartButton_button_pressed"]
+[connection signal="button_pressed" from="EasyButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
+[connection signal="button_pressed" from="MediumButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
+[connection signal="button_pressed" from="MediumButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
+[connection signal="button_pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
+[connection signal="button_pressed" from="HardButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
+[connection signal="button_pressed" from="HardButtons/HardButton" to="." method="_on_StartButton_button_pressed" binds= [ 2 ]]
