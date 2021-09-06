@@ -17,3 +17,9 @@ func _input(event: InputEvent) -> void:
 			_hand.set_biteable_fingers(clamp(_hand.biteable_fingers + 1, -1, 3))
 		KEY_3:
 			_hand.set_fingers(3)
+		KEY_BRACERIGHT:
+			_hand.huggable_fingers = 3
+			_hand.hug()
+		KEY_BRACELEFT:
+			_hand.huggable_fingers = 0
+			_hand.hugged_fingers = 0

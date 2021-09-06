@@ -4,7 +4,7 @@
 [ext_resource path="res://src/demo/intermission-panel-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/Hand.tscn" type="PackedScene" id=3]
 
-[node name="Node" type="Node"]
+[node name="Demo" type="Node"]
 script = ExtResource( 2 )
 
 [node name="IntermissionPanel" parent="." instance=ExtResource( 1 )]

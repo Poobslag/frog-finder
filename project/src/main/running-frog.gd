@@ -1,12 +1,11 @@
-class_name RunningShark
+class_name RunningFrog
 extends Sprite
 
-const BITE_DISTANCE := 70.0
+const HUG_DISTANCE := 40.0
 const CHASE_DURATION := 6
 const PANIC_DURATION := 1.2
-const MIN_RUN_SPEED := 150.0
-const MAX_RUN_SPEED := 1200.0
-const MAX_AGILITY := 4.0
+const SUPER_PANIC_DURATION := 4.8
+const RUN_SPEED := 150.0
 const PINCER_DISTANCE := 150.0
 
 # where the shark has to stand to count as 'catching' the hand
@@ -15,8 +14,7 @@ const HAND_CATCH_OFFSET := Vector2(28, 20)
 var hand: Hand
 var friend: Sprite
 var velocity := Vector2.ZERO
-var run_speed := MIN_RUN_SPEED setget set_run_speed
-var agility := 1.0
+var run_speed := RUN_SPEED
 
 var soon_position: Vector2 setget set_soon_position
 var old_frame: int
@@ -28,6 +26,9 @@ onready var _panic_timer := $PanicTimer
 onready var _think_timer := $ThinkTimer
 
 func _ready() -> void:
+	if hand:
+		hand.connect("hug_finished", self, "_on_Hand_hug_finished")
+	run_speed = RUN_SPEED * rand_range(0.8, 1.2)
 	_refresh_run_speed()
 
 
@@ -50,15 +51,8 @@ func chase() -> void:
 
 func panic() -> void:
 	_chase_timer.stop()
-	_panic_timer.start((PANIC_DURATION / agility) * rand_range(0.8, 1.2))
+	_panic_timer.start(PANIC_DURATION * rand_range(0.8, 1.2))
 	velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
-
-
-func set_run_speed(new_run_speed: float) -> void:
-	run_speed = new_run_speed
-	if not is_inside_tree():
-		return
-	_refresh_run_speed()
 
 
 func move() -> void:
@@ -71,43 +65,67 @@ func set_soon_position(new_soon_position: Vector2) -> void:
 	position = new_soon_position
 
 
+func is_hugging() -> bool:
+	return _animation_player.current_animation == "hug"
+
+
 func _refresh_run_speed() -> void:
 	_animation_player.playback_speed = run_speed / 150.0
 
 
 func _on_PanicTimer_timeout() -> void:
-	chase()
-	set_run_speed(lerp(run_speed, MAX_RUN_SPEED, 0.10))
-	agility = lerp(agility, MAX_AGILITY, 0.15)
+	if hand.hugged_fingers >= hand.huggable_fingers and randf() < 0.5:
+		# oh no, we can't hug the hand! continue panicking!
+		_panic_timer.start(rand_range(SUPER_PANIC_DURATION, 5.0))
+		velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
+	else:
+		chase()
 
 
 func _on_ChaseTimer_timeout() -> void:
 	panic()
 
 
-func _on_ThinkTimer_timeout() -> void:
-	if not hand or hand.biteable_fingers < 1:
+func _on_Hand_hug_finished() -> void:
+	if not is_hugging():
 		return
 	
-	if _animation_player.current_animation == "run-fed":
+	_animation_player.play("run")
+	_think_timer.start()
+	panic()
+	soon_position += velocity.normalized() * 40
+
+
+var _id := randi() % 1000
+
+func _on_ThinkTimer_timeout() -> void:
+	if not hand or hand.huggable_fingers < 1:
 		return
 	
 	var run_target := hand.rect_global_position + HAND_CATCH_OFFSET
 
-	if ((run_target - global_position).length() < BITE_DISTANCE):
-		# we caught the hand... bite!
-		_animation_player.play("run-fed")
-		velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
-		_think_timer.stop()
-		hand.bite()
-	elif not _chase_timer.is_stopped():
-		if friend and (run_target - global_position).length() > PINCER_DISTANCE:
-			# our friend will help us; don't run towards the hand, run behind our friend
-			run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
+	if not _chase_timer.is_stopped():
+		if ((run_target - global_position).length() < HUG_DISTANCE) and hand.resting:
+			# we're close enough for a hug
+			if hand.hugged_fingers < hand.huggable_fingers:
+				# we caught the hand... hug!
+				_animation_player.play("hug")
+				_think_timer.stop()
+				_chase_timer.stop()
+				_panic_timer.stop()
+				hand.hug()
+				velocity = Vector2.ZERO
+			else:
+				# we're too shy. run away!
+				panic()
+		else:
+			if friend and not friend.is_hugging() and (run_target - global_position).length() > PINCER_DISTANCE:
+				# our friend will help us; don't run towards the hand, run behind our friend
+				run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
+				velocity = (run_target - global_position).normalized() * run_speed
+			
+			# we have no friend; run towards the hand
 			velocity = (run_target - global_position).normalized() * run_speed
-		
-		# we have no friend; run towards the hand
-		velocity = (run_target - global_position).normalized() * run_speed
 	elif not _panic_timer.is_stopped():
 		# if we're panicking, we continue running in our randomly chosen direction
 		pass

@@ -36,6 +36,7 @@ onready var _songs_by_music_preference := {
 
 onready var _frog_songs := [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog, $OneFrogTwoFrog]
 onready var _shark_song := $WeAreTheBaddies
+onready var _ending_song := $HugFromAFrog
 
 onready var _fade_tween := $FadeTween
 
@@ -61,18 +62,18 @@ func play_preferred_song() -> void:
 
 
 func _play_song(new_song: AudioStreamPlayer) -> void:
+	if _current_song and _current_song != new_song:
+		fade_out()
 	var previous_song := _current_song
 	_current_song = new_song
 	if _current_song != previous_song:
-		if previous_song:
-			_position_by_song[previous_song] = previous_song.get_playback_position()
-			_fade_tween.interpolate_property(previous_song, "volume_db", previous_song.volume_db, MIN_VOLUME, FADE_OUT_DURATION)
 		if _current_song:
 			var from_position: float = _position_by_song.get(_current_song, 0)
 			_current_song.play(from_position)
 			if from_position != 0:
 				# interpolate when playing a song from the middle, to avoid pops and clicks
 				_current_song.volume_db = MIN_VOLUME
+				_fade_tween.remove(_current_song, "volume_db")
 				_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, FADE_IN_DURATION)
 			else:
 				_current_song.volume_db = MAX_VOLUME
@@ -82,6 +83,21 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 
 func play_shark_song() -> void:
 	_play_song(_shark_song)
+
+
+func fade_out(duration := FADE_OUT_DURATION) -> void:
+	_position_by_song[_current_song] = _current_song.get_playback_position()
+	_fade_tween.remove(_current_song, "volume_db")
+	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MIN_VOLUME, duration)
+	_fade_tween.start()
+	_current_song = null
+
+
+func play_ending_song() -> void:
+	if _position_by_song.get(_ending_song, 0.0) > 80:
+		# more than half way through the ending song; start over
+		_position_by_song.erase(_ending_song)
+	_play_song(_ending_song)
 
 
 func is_playing_shark_song() -> bool:
