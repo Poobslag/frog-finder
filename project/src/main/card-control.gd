@@ -248,6 +248,16 @@ func show_front() -> void:
 	$CardFront.reset_wiggle()
 
 
+func hide_front() -> void:
+	if not $CardFront.visible:
+		# already hidden
+		return
+	
+	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
+	$CardBack.visible = true
+	$CardFront.visible = false
+
+
 func copy_from(other_card: CardControl) -> void:
 	card_back_type = other_card.card_back_type
 	card_back_details = other_card.card_back_details
@@ -279,9 +289,9 @@ func _flip_card() -> void:
 	
 	$PopBrustSfx.pitch_scale = rand_range(0.9, 1.10)
 	$PopBrustSfx.play()
-	show_front()
-	
 	emit_signal("before_card_flipped")
+	
+	show_front()
 	_game_state.flip_timer.start()
 	_game_state.flip_timer.connect("timeout", self, "_on_FlipTimer_timeout")
 

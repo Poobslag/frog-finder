@@ -55,6 +55,10 @@ var troll_silly_words := [
 	"hahaha/hahaha",
 ]
 
+func _ready() -> void:
+	random.randomize()
+
+
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
 	var words: Array
