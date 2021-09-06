@@ -12,6 +12,7 @@ func refresh_level_cards_path() -> void:
 	if not level_cards:
 		return
 	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
+	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
 
 
 func add_cards() -> void:
@@ -263,3 +264,28 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		elif card.card_front_type == CardControl.CardType.FISH:
 			# double check it's still a fish (it could have changed to an arrow)
 			card.card_front_type = CardControl.CardType.SHARK
+	
+	if not mistake and card.card_front_type == CardControl.CardType.FISH:
+		card.card_front_type = CardControl.CardType.LIZARD
+
+
+func _on_LevelCards_before_shark_found() -> void:
+	if not _frog_position_known():
+		var _unexamined_secret_cell_position: Vector2 = _unexamined_secret_cell_positions.keys()[0]
+		var _unexamined_card := level_cards.get_card(_unexamined_secret_cell_position)
+		_unexamined_card.card_front_type = CardControl.CardType.FROG
+		_unexamined_card.show_front()
+		var spoiler_card: CardControl
+		for adjacent_card in _adjacent_cards(_unexamined_card):
+			if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
+				var arrow_details := ""
+				match _unexamined_secret_cell_position - level_cards.get_cell_pos(adjacent_card):
+					Vector2.UP: arrow_details = "n"
+					Vector2.DOWN: arrow_details = "s"
+					Vector2.LEFT: arrow_details = "w"
+					Vector2.RIGHT: arrow_details = "e"
+				if arrow_details:
+					adjacent_card.card_front_type = CardControl.CardType.ARROW
+					adjacent_card.card_front_details = arrow_details
+					adjacent_card.show_front()
+					break

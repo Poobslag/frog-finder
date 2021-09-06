@@ -17,6 +17,7 @@ func refresh_level_cards_path() -> void:
 	if not level_cards:
 		return
 	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
+	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
 
 
 func add_cards() -> void:
@@ -197,6 +198,20 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 				card.card_front_type = CardControl.CardType.FROG
 			else:
 				_remaining_good_moves -= 1
+				card.card_front_type = CardControl.CardType.ARROW
+				card.card_front_details = ""
+
+
+func _on_LevelCards_before_shark_found() -> void:
+	var other_cards := level_cards.get_cards()
+	other_cards.shuffle()
+	var new_frog_card: CardControl
+	for other_card in other_cards:
+		if not other_card.is_front_shown() and other_card.card_front_type == CardControl.CardType.LIZARD:
+			new_frog_card = other_card
+	
+	_reveal_lizards(99)
+	new_frog_card.card_front_type = CardControl.CardType.FROG
 
 
 func _region(cell_pos: Vector2) -> int:
