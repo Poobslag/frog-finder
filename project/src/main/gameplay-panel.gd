@@ -27,6 +27,7 @@ onready var level_rules_scenes := [
 	preload("res://src/main/SecretCollectLevelRules.tscn"),
 	preload("res://src/main/FroggoLevelRules.tscn"),
 	preload("res://src/main/FrodokuLevelRules.tscn"),
+	preload("res://src/main/MazeLevelRules.tscn"),
 ]
 
 func _ready() -> void:
@@ -89,15 +90,18 @@ func _refresh_game_difficulty() -> void:
 
 
 func _on_LevelCards_frog_found(card: CardControl) -> void:
-	player_puzzle_difficulty = int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
+	player_puzzle_difficulty = \
+			int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
 	if player_streak >= 1:
-		player_puzzle_difficulty = int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
+		player_puzzle_difficulty = \
+				int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
 	player_streak += 1
 	emit_signal("frog_found", card)
 
 
 func _on_LevelCards_shark_found(card: CardControl) -> void:
-	player_puzzle_difficulty = int(clamp(player_puzzle_difficulty - _shark_difficulty_decrease, 0, _max_puzzle_difficulty))
+	player_puzzle_difficulty = \
+			int(clamp(player_puzzle_difficulty - _shark_difficulty_decrease, 0, _max_puzzle_difficulty))
 	player_streak = 0
 	emit_signal("shark_found", card)
 
