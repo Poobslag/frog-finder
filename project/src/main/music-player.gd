@@ -86,6 +86,9 @@ func play_shark_song() -> void:
 
 
 func fade_out(duration := FADE_OUT_DURATION) -> void:
+	if not _current_song:
+		return
+	
 	_position_by_song[_current_song] = _current_song.get_playback_position()
 	_fade_tween.remove(_current_song, "volume_db")
 	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MIN_VOLUME, duration)

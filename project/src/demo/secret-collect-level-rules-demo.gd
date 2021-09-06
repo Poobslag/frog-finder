@@ -9,10 +9,10 @@ func _input(event: InputEvent) -> void:
 		KEY_SPACE:
 			_show_puzzle()
 		KEY_EQUAL:
-			_gameplay_panel.player_difficulty = int(clamp(_gameplay_panel.player_difficulty + 1, 0, 8))
+			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty + 1, 0, 8))
 			_show_puzzle()
 		KEY_MINUS:
-			_gameplay_panel.player_difficulty = int(clamp(_gameplay_panel.player_difficulty - 1, 0, 8))
+			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty - 1, 0, 8))
 			_show_puzzle()
 
 

@@ -9,6 +9,7 @@ onready var _music_player: MusicPlayer = get_node(_music_player_path)
 
 var frog_count := 0
 var shark_count := 0
+var hardest_difficulty_cleared := -1
 var save_json := {}
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func save_player_data() -> void:
 	new_save_json["music_preference"] = _music_player.music_preference
 	new_save_json["frog_count"] = frog_count
 	new_save_json["shark_count"] = shark_count
+	new_save_json["hardest_difficulty_cleared"] = hardest_difficulty_cleared
 	if new_save_json != save_json:
 		write_file(DATA_FILENAME, JSON.print(new_save_json, "  "))
 
@@ -36,6 +38,8 @@ func load_player_data() -> void:
 		frog_count = save_json["frog_count"]
 	if save_json.has("shark_count"):
 		shark_count = save_json["shark_count"]
+	if save_json.has("hardest_difficulty_cleared"):
+		hardest_difficulty_cleared = save_json["hardest_difficulty_cleared"]
 
 
 static func file_exists(path: String) -> bool:

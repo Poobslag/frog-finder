@@ -27,7 +27,7 @@ func add_cards() -> void:
 	var _revealed_bad_move_count := 0
 	var _hidden_bad_move_count := 0
 	
-	match difficulty:
+	match puzzle_difficulty:
 		0:
 			_remaining_good_moves = 0
 			_revealed_lizard_count = 1

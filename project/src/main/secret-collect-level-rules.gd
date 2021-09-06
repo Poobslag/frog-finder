@@ -33,7 +33,7 @@ func add_cards() -> void:
 	var spoiler_arrow: bool = false
 	_lucky_chance = 0.0
 	
-	match difficulty:
+	match puzzle_difficulty:
 		0:
 			secret_count = 1
 			fish_count = 1
@@ -270,15 +270,21 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 
 
 func _on_LevelCards_before_shark_found() -> void:
+	# turn over a spoiler arrow; point it to the frog
 	if not _frog_position_known():
 		var _unexamined_secret_cell_position: Vector2 = _unexamined_secret_cell_positions.keys()[0]
 		var _unexamined_card := level_cards.get_card(_unexamined_secret_cell_position)
 		_unexamined_card.card_front_type = CardControl.CardType.FROG
-		_unexamined_card.show_front()
-		for adjacent_card in _adjacent_cards(_unexamined_card):
+	
+	var frog_position := _frog_position()
+	var frog_card := level_cards.get_card(frog_position)
+	frog_card.show_front()
+	
+	if not _arrow_placed():
+		for adjacent_card in _adjacent_cards(frog_card):
 			if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
 				var arrow_details := ""
-				match _unexamined_secret_cell_position - level_cards.get_cell_pos(adjacent_card):
+				match frog_position - level_cards.get_cell_pos(adjacent_card):
 					Vector2.UP: arrow_details = "n"
 					Vector2.DOWN: arrow_details = "s"
 					Vector2.LEFT: arrow_details = "w"

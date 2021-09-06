@@ -14,12 +14,28 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-var card_positions := [
-	Vector2(0, 3), Vector2(1, 3), Vector2(2, 3), Vector2(3, 3),
-	Vector2(2.5, 2), Vector2(1.5, 2), Vector2(0.5, 2),
-	Vector2(1, 1), Vector2(2, 1),
-	Vector2(1.5, 0),
-]
+var card_positions_by_difficulty := {
+	GameplayPanel.GameDifficulty.EASY:
+		[
+			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
+			Vector2(0.5, 1), Vector2(1.5, 1),
+			Vector2(1, 0),
+		],
+	GameplayPanel.GameDifficulty.MEDIUM:
+		[
+			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
+			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
+			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
+		],
+	GameplayPanel.GameDifficulty.HARD:
+		[
+			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
+			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
+			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
+			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
+			Vector2(3.0, 3.0),
+		],
+}
 
 var cards: Array = []
 var sharks: Array = []
@@ -35,22 +51,22 @@ onready var hand: Hand = get_node(hand_path)
 onready var _bye_button := $ByeButton
 
 func _ready() -> void:
-	for i in range(0, card_positions.size()):
-		var card := _intermission_cards.create_card()
-		_intermission_cards.add_card(card, card_positions[i])
-		cards.append(card)
 	hand.connect("hug_finished", self, "_on_Hand_hug_finished")
 
 
 func is_full() -> bool:
-	return next_card_index >= cards.size()
+	return next_card_index >= _intermission_cards.get_cards().size()
 
 
-func restart() -> void:
+func restart(game_difficulty: int) -> void:
 	next_card_index = 0
-	for card_obj in cards:
-		var card: CardControl = card_obj
-		card.reset()
+	cards.clear()
+	_intermission_cards.reset()
+	var card_positions: Array = card_positions_by_difficulty[game_difficulty]
+	for i in range(0, card_positions.size()):
+		var card := _intermission_cards.create_card()
+		_intermission_cards.add_card(card, card_positions[i])
+		cards.append(card)
 
 
 func reset() -> void:
