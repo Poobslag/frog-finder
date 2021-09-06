@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=3]
 [ext_resource path="res://src/main/main-menu-panel.gd" type="Script" id=4]
 [ext_resource path="res://src/main/music-control.gd" type="Script" id=5]
 [ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/main/music-notes-sheet.png" type="Texture" id=7]
 [ext_resource path="res://src/main/CardControl.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=10]
+[ext_resource path="res://src/main/CuteButton.tscn" type="PackedScene" id=9]
 
 [node name="MainMenuPanel" type="Panel"]
 anchor_right = 1.0
@@ -39,6 +40,13 @@ position = Vector2( 40, 40 )
 texture = ExtResource( 7 )
 hframes = 4
 vframes = 3
+wiggle_frames = [ 0, 1 ]
+
+[node name="WowSprite" parent="MusicControl" instance=ExtResource( 6 )]
+position = Vector2( 40, 40 )
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 2
 wiggle_frames = [ 0, 1 ]
 
 [node name="Card1F" parent="." instance=ExtResource( 8 )]
@@ -137,21 +145,16 @@ card_front_details = "r2"
 game_state_path = NodePath("../TitleGameState")
 practice = true
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 margin_left = -40.0
-margin_top = -160.0
+margin_top = 91.1985
 margin_right = 40.0
-margin_bottom = -80.0
-rect_min_size = Vector2( 80, 80 )
-theme = ExtResource( 10 )
-text = "?"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 171.198
+icon_type = 6
 
 [node name="TitleGameState" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -163,4 +166,4 @@ __meta__ = {
 wait_time = 0.1
 one_shot = true
 
-[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="button_pressed" from="StartButton" to="." method="_on_StartButton_button_pressed"]

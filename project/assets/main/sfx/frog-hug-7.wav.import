@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/frog-hug-7.wav-5cf6ac2478ad44e63905098af0f7fdc2.sample"
+
+[deps]
+
+source_file="res://assets/main/sfx/frog-hug-7.wav"
+dest_files=[ "res://.import/frog-hug-7.wav-5cf6ac2478ad44e63905098af0f7fdc2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

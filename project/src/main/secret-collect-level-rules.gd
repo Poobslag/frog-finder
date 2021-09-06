@@ -275,7 +275,6 @@ func _on_LevelCards_before_shark_found() -> void:
 		var _unexamined_card := level_cards.get_card(_unexamined_secret_cell_position)
 		_unexamined_card.card_front_type = CardControl.CardType.FROG
 		_unexamined_card.show_front()
-		var spoiler_card: CardControl
 		for adjacent_card in _adjacent_cards(_unexamined_card):
 			if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
 				var arrow_details := ""

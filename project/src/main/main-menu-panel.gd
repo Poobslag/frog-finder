@@ -9,7 +9,7 @@ signal shark_found
 
 onready var _game_state := $TitleGameState
 
-func _on_StartButton_pressed() -> void:
+func _on_StartButton_button_pressed() -> void:
 	emit_signal("start_button_pressed")
 
 

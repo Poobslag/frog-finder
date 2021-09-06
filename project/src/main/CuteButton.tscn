@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/wiggle-sprite.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=3]
+[ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/clickable-icon.gd" type="Script" id=5]
+
+[node name="ByeButton" type="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_min_size = Vector2( 80, 80 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IconSprite" type="Sprite" parent="." instance=ExtResource( 4 )]
+position = Vector2( 40, 40 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 4
+script = ExtResource( 1 )
+
+[node name="WowSprite" type="Sprite" parent="." instance=ExtResource( 4 )]
+position = Vector2( 40, 40 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 2
+script = ExtResource( 1 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/intermission-panel.gd" type="Script" id=1]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=2]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=3]
+[ext_resource path="res://src/main/CuteButton.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.501961 )
@@ -47,6 +48,10 @@ game_state_path = NodePath("../IntermissionState")
 wait_time = 8.0
 one_shot = true
 
+[node name="FrogSpawnTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
 [node name="Creatures" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,4 +59,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ByeButton" parent="." instance=ExtResource( 4 )]
+
+[connection signal="button_pressed" from="ByeButton" to="." method="_on_ByeButton_button_pressed"]
+[connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
 [connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_SharkSpawnTimer_timeout"]
