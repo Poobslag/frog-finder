@@ -28,6 +28,7 @@ onready var level_rules_scenes := [
 	preload("res://src/main/FroggoLevelRules.tscn"),
 	preload("res://src/main/FrodokuLevelRules.tscn"),
 	preload("res://src/main/MazeLevelRules.tscn"),
+	preload("res://src/main/WordFindLevelRules.tscn"),
 ]
 
 func _ready() -> void:
