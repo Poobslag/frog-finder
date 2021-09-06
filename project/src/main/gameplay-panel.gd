@@ -18,6 +18,7 @@ onready var _level_cards := $LevelCards
 onready var level_rules_scenes := [
 	preload("res://src/main/SecretCollectLevelRules.tscn"),
 	preload("res://src/main/FroggoLevelRules.tscn"),
+	preload("res://src/main/FrodokuLevelRules.tscn"),
 ]
 
 func _ready() -> void:
