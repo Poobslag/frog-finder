@@ -7,6 +7,9 @@ enum CardType {
 	SHARK,
 	MYSTERY,
 	LETTER,
+	ARROW,
+	FISH,
+	LIZARD,
 }
 
 const LETTER_INDEXES_BY_DETAILS := {
@@ -28,11 +31,35 @@ const LETTER_INDEXES_BY_DETAILS := {
 	"s": [13],
 }
 
+const ARROW_INDEXES_BY_DETAILS := {
+	"": [0, 1],
+	"n": [2, 3, 4],
+	"e": [5, 6, 7],
+	"s": [8, 9, 10],
+	"w": [11, 12, 13],
+	"ne": [14, 15, 16],
+	"se": [17, 18, 19],
+	"sw": [20, 21, 22],
+	"nw": [23, 24, 25],
+	"ns": [26, 27, 28],
+	"ew": [29, 30, 31],
+}
+
+const MYSTERY_INDEXES_BY_DETAILS := {
+	"": [0, 1, 2, 3],
+	"b": [0, 1, 2, 3],
+	"r": [4, 5, 6, 7],
+}
+
 const FROG_COUNT := 8
 const SHARK_COUNT := 4
-const MYSTERY_COUNT := 4
+const MYSTERY_COUNT := 8
 const LETTER_COUNT := 14
+const ARROW_COUNT := 32
+const FISH_COUNT := 8
+const LIZARD_COUNT := 32
 
+signal before_card_flipped
 signal before_frog_found
 signal frog_found
 signal before_shark_found
@@ -75,6 +102,9 @@ onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
 onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
 onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
 onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
+onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
+onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
+onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
 onready var _game_state: GameState
 
 func _ready() -> void:
@@ -119,8 +149,13 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
 		CardType.MYSTERY:
 			card_sprite.texture = _mystery_sheet
-			card_sprite.vframes = 1
-			var mystery_index := randi() % MYSTERY_COUNT
+			card_sprite.vframes = 2
+			var mystery_index: int
+			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
+				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
+				mystery_index = mystery_indexes[randi() % mystery_indexes.size()]
+			else:
+				mystery_index = randi() % MYSTERY_COUNT
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
 		CardType.LETTER:
 			card_sprite.texture = _letter_sheet
@@ -132,6 +167,26 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			else:
 				letter_index = randi() % LETTER_COUNT
 			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1]
+		CardType.ARROW:
+			card_sprite.texture = _arrow_sheet
+			card_sprite.vframes = 8
+			var arrow_index: int
+			if ARROW_INDEXES_BY_DETAILS.has(card_details):
+				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
+				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
+			else:
+				arrow_index = randi() % ARROW_COUNT
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+		CardType.FISH:
+			card_sprite.texture = _fish_sheet
+			card_sprite.vframes = 2
+			var fish_index := randi() % FISH_COUNT
+			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1]
+		CardType.LIZARD:
+			card_sprite.texture = _lizard_sheet
+			card_sprite.vframes = 8
+			var lizard_index := randi() % LIZARD_COUNT
+			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1]
 	
 	if card_sprite.wiggle_frames:
 		card_sprite.frame = card_sprite.wiggle_frames[0]
@@ -165,6 +220,11 @@ func set_card_front_details(new_card_front_details: String) -> void:
 func reset() -> void:
 	_card_back_sprite.visible = true
 	_card_front_sprite.visible = false
+	card_back_type = CardType.MYSTERY
+	card_back_details = ""
+	card_front_type = CardType.MYSTERY
+	card_front_details = ""
+	
 	$StopDanceTimer.stop()
 	$FrogFoundTimer.stop()
 	$SharkFoundTimer.stop()
@@ -221,6 +281,7 @@ func _flip_card() -> void:
 	$PopBrustSfx.play()
 	show_front()
 	
+	emit_signal("before_card_flipped")
 	_game_state.flip_timer.start()
 	_game_state.flip_timer.connect("timeout", self, "_on_FlipTimer_timeout")
 

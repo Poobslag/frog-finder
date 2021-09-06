@@ -66,7 +66,6 @@ margin_left = 460.545
 margin_top = 52.0022
 margin_right = 540.545
 margin_bottom = 132.002
-card_front_type = 1
 game_state_path = NodePath("../TitleGameState")
 practice = true
 
@@ -95,7 +94,6 @@ margin_left = 300.956
 margin_top = 134.523
 margin_right = 380.956
 margin_bottom = 214.523
-card_front_type = 1
 game_state_path = NodePath("../TitleGameState")
 practice = true
 

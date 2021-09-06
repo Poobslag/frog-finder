@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match key_scancode(event):
+	match Utils.key_scancode(event):
 		KEY_F:
 			var card: CardControl = $IntermissionPanel/IntermissionCards.create_card()
 			card.card_front_type = CardControl.CardType.FROG
@@ -20,13 +20,3 @@ func _input(event: InputEvent) -> void:
 			_intermission_panel.add_level_result(card)
 		KEY_S:
 			_intermission_panel.start_shark_spawn_timer(3)
-
-
-"""
-Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
-"""
-static func key_scancode(event: InputEvent) -> int:
-	var scancode := -1
-	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		scancode = event.scancode
-	return scancode

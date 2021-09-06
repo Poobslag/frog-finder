@@ -9,6 +9,7 @@ position = Vector2( 40, 40 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 hframes = 8
+vframes = 2
 script = ExtResource( 1 )
 wiggle_frames = [ 0, 1 ]
 
