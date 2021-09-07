@@ -51,7 +51,7 @@ const MYSTERY_INDEXES_BY_DETAILS := {
 	"r": [4, 5, 6, 7],
 }
 
-const FROG_COUNT := 8
+const FROG_COUNT := 16
 const SHARK_COUNT := 4
 const MYSTERY_COUNT := 8
 const LETTER_COUNT := 14
@@ -139,7 +139,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 	match card_type:
 		CardType.FROG:
 			card_sprite.texture = _frog_sheet
-			card_sprite.vframes = 4
+			card_sprite.vframes = 8
 			var frog_index := randi() % FROG_COUNT
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
 		CardType.SHARK:

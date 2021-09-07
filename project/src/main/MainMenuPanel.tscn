@@ -162,7 +162,7 @@ __meta__ = {
 position = Vector2( -49.7948, 278.618 )
 texture = ExtResource( 10 )
 hframes = 8
-vframes = 4
+vframes = 8
 frame = 1
 wiggle_frames = [ 0, 1 ]
 
@@ -322,8 +322,8 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="button_pressed" from="EasyButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
+[connection signal="button_pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
+[connection signal="button_pressed" from="HardButtons/HardButton" to="." method="_on_StartButton_button_pressed" binds= [ 2 ]]
+[connection signal="button_pressed" from="HardButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
 [connection signal="button_pressed" from="MediumButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
 [connection signal="button_pressed" from="MediumButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
-[connection signal="button_pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
-[connection signal="button_pressed" from="HardButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
-[connection signal="button_pressed" from="HardButtons/HardButton" to="." method="_on_StartButton_button_pressed" binds= [ 2 ]]
