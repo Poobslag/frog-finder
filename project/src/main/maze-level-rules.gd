@@ -136,10 +136,10 @@ func add_cards() -> void:
 	var start_card := level_cards.get_card(_start_position)
 	var start_directions := ["n", "w", "s", "e"]
 	_remaining_path_cells = random.randi_range(0, _average_path_cells + 1)
-	if _max_loose_end_count > 1 and randf() < 1 / _average_path_cells:
+	if _max_loose_end_count > 1 and randf() < 1.0 / _average_path_cells:
 		start_directions = ["ne", "nw", "se", "sw", "ns", "we"]
 		_remaining_path_cells = random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
-	_arrowify_card(start_card, Utils.rand_value(["ne", "nw", "se", "sw", "ns", "we", "n", "w", "s", "e"]))
+	_arrowify_card(start_card, Utils.rand_value(start_directions))
 	start_card.show_front()
 	_unflipped_card_positions.erase(_start_position)
 	
@@ -198,16 +198,15 @@ func _before_loose_end_flipped(card: CardControl) -> void:
 	elif _remaining_path_cells <= 0:
 		# if this path is long enough, it's a dead end or a fork
 		var new_arrow_dir_string: String
-		if _loose_end_positions and randf() > (1 / (_loose_end_positions.size() + 1)):
+		if _loose_end_positions and randf() > (1.0 / (_loose_end_positions.size() + 1)):
 			# there are enough loose ends; this one can be a dead end
-			new_arrow_dir_string = ""
-		elif _loose_end_positions.size() + 2 > _max_loose_end_count:
 			new_arrow_dir_string = ""
 		else:
 			var valid_forks := []
-			for fork in ["ne", "nw", "se", "sw", "ns", "ew"]:
-				if fork[0] in adjacent_unflipped_dir_strings  and fork[1] in adjacent_unflipped_dir_strings:
-					valid_forks.append(fork)
+			if _loose_end_positions.size() + 2 <= _max_loose_end_count:
+				for fork in ["ne", "nw", "se", "sw", "ns", "ew"]:
+					if fork[0] in adjacent_unflipped_dir_strings and fork[1] in adjacent_unflipped_dir_strings:
+						valid_forks.append(fork)
 			if valid_forks:
 				_remaining_path_cells = random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
 				valid_forks.shuffle()
@@ -230,7 +229,7 @@ func _before_mistake_flipped(card: CardControl) -> void:
 
 func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 	if not card.card_front_type == CardControl.CardType.FISH:
-		# we leave arrows alone
+		# we leave arrows alone. we only mess with fish
 		pass
 	else:
 		var card_pos := level_cards.get_cell_pos(card)
