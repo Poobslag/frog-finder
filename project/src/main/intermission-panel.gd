@@ -70,6 +70,8 @@ func restart(game_difficulty: int) -> void:
 
 
 func reset() -> void:
+	$SharkSpawnTimer.stop()
+	$FrogSpawnTimer.stop()
 	_bye_button.visible = false
 	for child in $Creatures.get_children():
 		child.queue_free()
