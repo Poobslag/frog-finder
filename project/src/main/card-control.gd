@@ -330,7 +330,7 @@ func _on_FlipTimer_timeout() -> void:
 			else:
 				_game_state.can_interact = false
 			emit_signal("before_shark_found")
-			$SharkFoundTimer.start(2.0)
+			$SharkFoundTimer.start(3.2)
 			$CreatureSfx.stream = _shark_sounds[randi() % _shark_sounds.size()]
 			$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
 			$CreatureSfx.play()
