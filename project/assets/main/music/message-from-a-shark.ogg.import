@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/message-from-a-shark.ogg-6c16d8211e4d3f2aeb7f9d4faf1d82f2.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/message-from-a-shark.ogg"
+dest_files=[ "res://.import/message-from-a-shark.ogg-6c16d8211e4d3f2aeb7f9d4faf1d82f2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

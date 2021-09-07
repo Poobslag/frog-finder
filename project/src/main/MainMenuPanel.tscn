@@ -46,7 +46,7 @@ music_player_path = NodePath("../../../MusicPlayer")
 position = Vector2( 40, 40 )
 texture = ExtResource( 7 )
 hframes = 4
-vframes = 3
+vframes = 4
 wiggle_frames = [ 0, 1 ]
 
 [node name="WowSprite" parent="MusicControl" instance=ExtResource( 6 )]

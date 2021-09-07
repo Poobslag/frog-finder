@@ -6,7 +6,9 @@ const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 	MusicPlayer.MusicPreference.MUSIC_2: [4, 5],
 	MusicPlayer.MusicPreference.MUSIC_3: [6, 7],
 	MusicPlayer.MusicPreference.MUSIC_4: [8, 9],
-	MusicPlayer.MusicPreference.OFF: [10, 11],
+	MusicPlayer.MusicPreference.MUSIC_5: [10, 11],
+	MusicPlayer.MusicPreference.MUSIC_6: [12, 13],
+	MusicPlayer.MusicPreference.OFF: [14, 15],
 }
 
 export (NodePath) var music_player_path: NodePath

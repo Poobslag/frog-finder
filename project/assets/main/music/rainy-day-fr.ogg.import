@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/rainy-day-fr.ogg"
+dest_files=[ "res://.import/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

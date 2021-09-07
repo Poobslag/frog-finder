@@ -9,6 +9,8 @@ enum MusicPreference {
 	MUSIC_2,
 	MUSIC_3,
 	MUSIC_4,
+	MUSIC_5,
+	MUSIC_6,
 	OFF,
 }
 
@@ -26,15 +28,19 @@ var _current_song: AudioStreamPlayer
 var _position_by_song := {}
 
 onready var _songs_by_music_preference := {
-	MusicPreference.RANDOM: [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog, $OneFrogTwoFrog],
+	MusicPreference.RANDOM: [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
+			$ImJustAFrog, $OneFrogTwoFrog, $RainyDayFrog],
 	MusicPreference.MUSIC_1: [$AWellTemperedFrog],
 	MusicPreference.MUSIC_2: [$CanYouFindTheFrog],
 	MusicPreference.MUSIC_3: [$HalfAFrog],
-	MusicPreference.MUSIC_4: [$OneFrogTwoFrog],
+	MusicPreference.MUSIC_4: [$ImJustAFrog],
+	MusicPreference.MUSIC_5: [$OneFrogTwoFrog],
+	MusicPreference.MUSIC_6: [$RainyDayFrog],
 	MusicPreference.OFF: [],
 }
 
-onready var _frog_songs := [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog, $OneFrogTwoFrog]
+onready var _frog_songs := [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
+		$ImJustAFrog, $OneFrogTwoFrog, $RainyDayFrog]
 onready var _shark_song := $WeAreTheBaddies
 onready var _ending_song := $HugFromAFrog
 
