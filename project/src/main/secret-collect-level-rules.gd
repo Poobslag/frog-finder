@@ -209,11 +209,7 @@ func _arrow_placed() -> bool:
 	return result
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
-	if not card.card_front_type == CardControl.CardType.FISH:
-		return
-	
-	# if the player turns over a fish, it could be a mistake...
+func _before_fish_flipped(card: CardControl) -> void:
 	var mistake := false
 	if _adjacent_to_frog(card):
 		# arrows are fun. let's not punish the player for revealing more arrows
@@ -267,6 +263,17 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 	
 	if not mistake and card.card_front_type == CardControl.CardType.FISH:
 		card.card_front_type = CardControl.CardType.LIZARD
+
+
+func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+	match card.card_front_type:
+		CardControl.CardType.FISH:
+			_before_fish_flipped(card)
+		CardControl.CardType.FROG:
+			pass
+		CardControl.CardType.SHARK:
+			# remove the card they clicked. otherwise it could be turned over as a frog immediately after
+			_unexamined_secret_cell_positions.erase(level_cards.get_cell_pos(card))
 
 
 func _on_LevelCards_before_shark_found() -> void:
