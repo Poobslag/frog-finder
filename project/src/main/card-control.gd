@@ -175,6 +175,8 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
 				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
 			else:
+				# We never want random arrows in a level. If this is happening, something is wrong.
+				push_warning("Unrecognized arrow: %s" % [card_details])
 				arrow_index = randi() % ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
 		CardType.FISH:

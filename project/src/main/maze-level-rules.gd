@@ -137,9 +137,10 @@ func add_cards() -> void:
 	var start_directions := ["n", "w", "s", "e"]
 	_remaining_path_cells = random.randi_range(0, _average_path_cells + 1)
 	if _max_loose_end_count > 1 and randf() < 1.0 / _average_path_cells:
-		start_directions = ["ne", "nw", "se", "sw", "ns", "we"]
+		start_directions = ["ne", "nw", "se", "sw", "ns", "ew"]
 		_remaining_path_cells = random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
-	_arrowify_card(start_card, Utils.rand_value(start_directions))
+	var start_direction: String = Utils.rand_value(start_directions)
+	_arrowify_card(start_card, start_direction)
 	start_card.show_front()
 	_unflipped_card_positions.erase(_start_position)
 	
