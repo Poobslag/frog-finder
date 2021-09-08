@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://assets/main/shark-frame-00-sheet.png" type="Texture" id=12]
 [ext_resource path="res://assets/main/fish-sheet.png" type="Texture" id=13]
 [ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=14]
+[ext_resource path="res://src/main/version-label.gd" type="Script" id=15]
+[ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=16]
 
 [node name="MainMenuPanel" type="Panel"]
 anchor_right = 1.0
@@ -321,6 +323,26 @@ __meta__ = {
 [node name="FlipTimer" type="Timer" parent="TitleGameState"]
 wait_time = 0.1
 one_shot = true
+
+[node name="VersionLabelHolder" type="Node" parent="."]
+
+[node name="VersionLabel" type="Label" parent="VersionLabelHolder"]
+modulate = Color( 0, 0, 0, 0.188235 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -68.0
+margin_top = -20.0
+margin_right = -6.0
+margin_bottom = -2.0
+theme = ExtResource( 16 )
+text = "v1.02"
+align = 2
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_pressed" from="EasyButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
 [connection signal="button_pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
