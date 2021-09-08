@@ -165,6 +165,12 @@ func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
 
 
 func _on_SharkSpawnTimer_timeout() -> void:
+	if not visible:
+		# After finishing the game, sometimes an invisible 'ghost frog' keeps chasing the cursor. It's rare, but my
+		# guess is it has to do with a race condition where this timer is triggered when the scene is invisible. I'm
+		# adding the same check here in case it happens with sharks too.
+		return
+	
 	var shark_delay_index := sharks.size() - 1
 	if shark_delay_index < SHARK_DELAYS.size() and hand.biteable_fingers >= 1:
 		_spawn_shark()
@@ -172,6 +178,12 @@ func _on_SharkSpawnTimer_timeout() -> void:
 
 
 func _on_FrogSpawnTimer_timeout() -> void:
+	if not visible:
+		# After finishing the game, sometimes an invisible 'ghost' frog keeps chasing the cursor.
+		# It's rare, but my guess is it has to do with a race condition where this timer is triggered when the scene
+		# is invisible.
+		return
+	
 	var frog_delay_index := frogs.size() - 1
 	if frog_delay_index < FROG_DELAYS.size() and frogs.size() < max_frogs:
 		_spawn_frog()

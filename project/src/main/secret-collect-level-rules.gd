@@ -287,17 +287,15 @@ func _on_LevelCards_before_shark_found() -> void:
 	var frog_card := level_cards.get_card(frog_position)
 	frog_card.show_front()
 	
-	if not _arrow_placed():
-		for adjacent_card in _adjacent_cards(frog_card):
-			if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
-				var arrow_details := ""
-				match frog_position - level_cards.get_cell_pos(adjacent_card):
-					Vector2.UP: arrow_details = "n"
-					Vector2.DOWN: arrow_details = "s"
-					Vector2.LEFT: arrow_details = "w"
-					Vector2.RIGHT: arrow_details = "e"
-				if arrow_details:
-					adjacent_card.card_front_type = CardControl.CardType.ARROW
-					adjacent_card.card_front_details = arrow_details
-					adjacent_card.show_front()
-					break
+	for adjacent_card in _adjacent_cards(frog_card):
+		if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
+			var arrow_details := ""
+			match frog_position - level_cards.get_cell_pos(adjacent_card):
+				Vector2.UP: arrow_details = "n"
+				Vector2.DOWN: arrow_details = "s"
+				Vector2.LEFT: arrow_details = "w"
+				Vector2.RIGHT: arrow_details = "e"
+			if arrow_details:
+				adjacent_card.card_front_type = CardControl.CardType.ARROW
+				adjacent_card.card_front_details = arrow_details
+				adjacent_card.show_front()
