@@ -23,54 +23,53 @@ func refresh_level_cards_path() -> void:
 func add_cards() -> void:
 	_remaining_good_moves = 99
 	_remaining_bad_moves = 99
-	var _revealed_lizard_count := 0
-	var _revealed_bad_move_count := 0
-	var _hidden_bad_move_count := 0
+	var revealed_lizard_count := 0
+	var revealed_bad_move_count := 0
+	var hidden_bad_move_count := 0
+	var easy_reveal := false
 	
 	match puzzle_difficulty:
 		0:
 			_remaining_good_moves = 0
-			_revealed_lizard_count = 1
-			_revealed_bad_move_count = 99
-			_hidden_bad_move_count = 1
+			revealed_lizard_count = 1
+			easy_reveal = true
 		1:
 			_remaining_good_moves = random.randi_range(0, 1)
 			_remaining_bad_moves = 3
-			_revealed_lizard_count = 1
-			_revealed_bad_move_count = 99
-			_hidden_bad_move_count = 3
+			revealed_lizard_count = random.randi_range(1, 2)
+			easy_reveal = true
 		2:
 			_remaining_good_moves = random.randi_range(1, 2)
-			_remaining_bad_moves = 5
-			_revealed_lizard_count = 2
-			_revealed_bad_move_count = 16
+			_remaining_bad_moves = 3
+			revealed_lizard_count = 2
+			easy_reveal = true
 		3:
 			_remaining_good_moves = random.randi_range(2, 3)
 			_remaining_bad_moves = 3
-			_revealed_lizard_count = 3
-			_revealed_bad_move_count = 14
+			revealed_lizard_count = 3
+			revealed_bad_move_count = 12
 		4:
 			_remaining_good_moves = random.randi_range(3, 5)
 			_remaining_bad_moves = 3
-			_revealed_lizard_count = 2
-			_revealed_bad_move_count = 10
+			revealed_lizard_count = random.randi_range(1, 2)
+			revealed_bad_move_count = 9
 		5:
 			_remaining_good_moves = random.randi_range(3, 7)
 			_remaining_bad_moves = 2
-			_revealed_lizard_count = 1
-			_revealed_bad_move_count = 6
+			revealed_lizard_count = 1
+			revealed_bad_move_count = 6
 		6:
 			_remaining_good_moves = random.randi_range(3, 10)
 			_remaining_bad_moves = 1
 		7:
 			_remaining_good_moves = random.randi_range(5, 7)
 			_remaining_bad_moves = random.randi_range(0, 1)
-			_revealed_lizard_count = 1
-			_revealed_bad_move_count = 3
+			revealed_lizard_count = 1
+			revealed_bad_move_count = 3
 		8:
 			_remaining_bad_moves = 0
-			_revealed_lizard_count = 2
-			_revealed_bad_move_count = 5
+			revealed_lizard_count = 2
+			revealed_bad_move_count = 5
 		
 	
 	for y in range(0, ROW_COUNT):
@@ -103,9 +102,14 @@ func add_cards() -> void:
 		used_regions[region] = true
 		card.card_front_type = CardControl.CardType.LIZARD
 	
-	_reveal_lizards(_revealed_lizard_count)
-	_reveal_bad_moves(_revealed_bad_move_count)
-	_hide_bad_moves(_hidden_bad_move_count)
+	_reveal_lizards(revealed_lizard_count)
+	if easy_reveal:
+		var method: String = Utils.rand_value(["compare_by_row", "compare_by_column", "compare_by_region"])
+		for card in level_cards.get_cards():
+			if _conflicting_lizard(card, method):
+				card.show_front()
+	_reveal_bad_moves(revealed_bad_move_count)
+	_hide_bad_moves(hidden_bad_move_count)
 
 
 func _reveal_lizards(count: int) -> void:
