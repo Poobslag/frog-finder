@@ -7,6 +7,7 @@ var _cell_pos_to_revealed_letter := {}
 
 var random := RandomNumberGenerator.new()
 var _shark_chance: float = 0.5
+var _frog_word_cards := {}
 
 func _ready() -> void:
 	random.randomize()
@@ -35,9 +36,7 @@ func add_cards() -> void:
 	var _frog_letter_chance: float = 0.5
 	var _fish_letter_chance: float = 0.25
 	_shark_chance = 0.5
-	
-	var frog_word_cards := {
-	}
+	_frog_word_cards.clear()
 	
 	match puzzle_difficulty:
 		0:
@@ -96,7 +95,7 @@ func add_cards() -> void:
 		for i in range(0, 4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x + i, word_start.y))
 			frog_word_card.card_front_details = word[i]
-			frog_word_cards[frog_word_card] = true
+			_frog_word_cards[frog_word_card] = true
 		var frog_card := level_cards.get_card(Vector2(word_start.x + random.randi_range(0, 3), word_start.y))
 		frog_card.hide_front()
 		frog_card.card_front_type = CardControl.CardType.FROG
@@ -109,7 +108,7 @@ func add_cards() -> void:
 		for i in range(0, 4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x, word_start.y + i))
 			frog_word_card.card_front_details = word[i]
-			frog_word_cards[frog_word_card] = true
+			_frog_word_cards[frog_word_card] = true
 		var frog_card := level_cards.get_card(Vector2(word_start.x, word_start.y + random.randi_range(0, 3)))
 		frog_card.hide_front()
 		frog_card.card_front_type = CardControl.CardType.FROG
@@ -118,7 +117,7 @@ func add_cards() -> void:
 	var cards := level_cards.get_cards()
 	cards.shuffle()
 	for card_obj in cards:
-		if card_obj in frog_word_cards:
+		if card_obj in _frog_word_cards:
 			continue
 		
 		if randf() > _frog_letter_chance:
@@ -139,7 +138,7 @@ func add_cards() -> void:
 	# turn over other letters randomly, but make sure to never turn over a letter which can make a word 'frog'
 	cards.shuffle()
 	for card_obj in cards:
-		if card_obj in frog_word_cards:
+		if card_obj in _frog_word_cards:
 			continue
 		
 		if randf() > _fish_letter_chance:
@@ -221,5 +220,17 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		card.card_front_type = CardControl.CardType.SHARK
 
 
-func _on_LevelCards_before_shark_found() -> void:
+func _on_LevelCards_before_shark_found(_shark_card: CardControl) -> void:
+	# hide non-frog letters
+	for card in level_cards.get_cards():
+		if not card.card_front_type == CardControl.CardType.LETTER:
+			# only conceal letter cards
+			continue
+		if card in _frog_word_cards:
+			# don't conceal the correct cards
+			continue
+		
+		# conceal all other cards
+		card.hide_front()
+	
 	level_cards.get_card(_frog_position()).show_front()

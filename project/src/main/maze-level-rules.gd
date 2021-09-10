@@ -253,7 +253,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		old_card.card_front_details = ""
 
 
-func _on_LevelCards_before_shark_found() -> void:
+func _on_LevelCards_before_shark_found(_card: CardControl) -> void:
 	# unblank blanked arrows
 	for card in _blanked_arrows_to_original.keys():
 		card.card_front_details = _blanked_arrows_to_original[card]

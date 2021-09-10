@@ -53,7 +53,7 @@ func hug() -> void:
 	if huggable_fingers <= 0:
 		return
 	
-	hugged_fingers = clamp(hugged_fingers + 1, 0, 3)
+	hugged_fingers = int(clamp(hugged_fingers + 1, 0, 3))
 	_refresh_hand_sprite()
 	_hug_sprite.assign_wiggle_frame()
 	

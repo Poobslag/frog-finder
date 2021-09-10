@@ -59,6 +59,14 @@ func _ready() -> void:
 	random.randomize()
 
 
+func refresh_level_cards_path() -> void:
+	.refresh_level_cards_path()
+	if not level_cards:
+		return
+	level_cards.connect("before_frog_found", self, "_on_LevelCards_before_frog_found")
+	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
+
+
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
 	var words: Array
@@ -279,8 +287,6 @@ func _add_word(word: String, word_cell_pos: Vector2) -> void:
 		var letter: String = card_word[i]
 		var letter_cell_pos: Vector2 = word_cell_pos + Vector2(i, 0)
 		var card := level_cards.create_card()
-		card.connect("before_frog_found", self, "_on_CardControl_before_frog_found", [letter_cell_pos])
-		card.connect("before_shark_found", self, "_on_CardControl_before_shark_found", [letter_cell_pos])
 		match(letter):
 			"+":
 				card.card_front_type = CardControl.CardType.FROG
@@ -297,7 +303,8 @@ func _add_word(word: String, word_cell_pos: Vector2) -> void:
 		_cell_pos_to_revealed_letter[letter_cell_pos] = english_word[i]
 
 
-func _show_word(clicked_cell_pos: Vector2) -> void:
+func _show_word(clicked_card: CardControl) -> void:
+	var clicked_cell_pos := level_cards.get_cell_pos(clicked_card)
 	for cell_pos in _cell_pos_to_revealed_letter:
 		if cell_pos.y != clicked_cell_pos.y:
 			# only show letters in the same row
@@ -315,9 +322,9 @@ func _show_word(clicked_cell_pos: Vector2) -> void:
 		card.show_front()
 
 
-func _on_CardControl_before_frog_found(frog_cell_pos: Vector2) -> void:
-	_show_word(frog_cell_pos)
+func _on_LevelCards_before_frog_found(card: CardControl) -> void:
+	_show_word(card)
 
 
-func _on_CardControl_before_shark_found(shark_cell_pos: Vector2) -> void:
-	_show_word(shark_cell_pos)
+func _on_LevelCards_before_shark_found(card: CardControl) -> void:
+	_show_word(card)

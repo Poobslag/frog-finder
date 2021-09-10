@@ -100,12 +100,12 @@ func _on_MainMenuPanel_start_button_pressed(difficulty: int) -> void:
 	_gameplay_panel.show_puzzle()
 
 
-func _on_GameplayPanel_before_shark_found() -> void:
+func _on_GameplayPanel_before_shark_found(_card: CardControl) -> void:
 	if _music_player.is_playing_frog_song():
 		_music_player.play_shark_song()
 
 
-func _on_GameplayPanel_before_frog_found() -> void:
+func _on_GameplayPanel_before_frog_found(_card: CardControl) -> void:
 	if _music_player.is_playing_shark_song():
 		# we don't play a shark song if there's no current song (music is off)
 		_music_player.play_preferred_song()
@@ -128,21 +128,21 @@ func _on_Hand_finger_bitten() -> void:
 		_end_intermission()
 
 
-func _on_MainMenuPanel_frog_found() -> void:
+func _on_MainMenuPanel_frog_found(_card: CardControl) -> void:
 	_player_data.frog_count += 1
 
 
-func _on_MainMenuPanel_shark_found() -> void:
+func _on_MainMenuPanel_shark_found(_card: CardControl) -> void:
 	_player_data.shark_count += 1
 
 
-func _on_MainMenuPanel_before_shark_found() -> void:
+func _on_MainMenuPanel_before_shark_found(_card: CardControl) -> void:
 	if _music_player.is_playing_frog_song():
 		# we don't play a shark song if there's no current song (music is off)
 		_music_player.play_shark_song()
 
 
-func _on_MainMenuPanel_before_frog_found() -> void:
+func _on_MainMenuPanel_before_frog_found(_card: CardControl) -> void:
 	if _music_player.is_playing_shark_song():
 		_music_player.play_preferred_song()
 
