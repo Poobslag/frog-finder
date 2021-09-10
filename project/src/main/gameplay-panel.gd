@@ -7,9 +7,9 @@ enum GameDifficulty {
 	HARD,
 }
 
-signal before_shark_found
+signal before_shark_found(card)
 signal shark_found(card)
-signal before_frog_found
+signal before_frog_found(card)
 signal frog_found(card)
 
 var game_difficulty: int = GameDifficulty.EASY setget set_game_difficulty
@@ -107,9 +107,9 @@ func _on_LevelCards_shark_found(card: CardControl) -> void:
 	emit_signal("shark_found", card)
 
 
-func _on_LevelCards_before_frog_found() -> void:
-	emit_signal("before_frog_found")
+func _on_LevelCards_before_frog_found(card: CardControl) -> void:
+	emit_signal("before_frog_found", card)
 
 
-func _on_LevelCards_before_shark_found() -> void:
-	emit_signal("before_shark_found")
+func _on_LevelCards_before_shark_found(card: CardControl) -> void:
+	emit_signal("before_shark_found", card)

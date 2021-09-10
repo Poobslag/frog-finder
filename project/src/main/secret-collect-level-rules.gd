@@ -209,6 +209,34 @@ func _arrow_placed() -> bool:
 	return result
 
 
+func _on_or_adjacent_to_red_card(card: CardControl) -> bool:
+	var result := false
+	if card.card_back_details == "r":
+		result = true
+	else:
+		for adjacent_card in _adjacent_cards(card):
+			if adjacent_card.card_back_details == "r":
+				result = true
+				break
+	return result
+
+
+func _adjacent_face_up_cards(card: CardControl) -> Array:
+	var result := []
+	for adjacent_card in _adjacent_cards(card):
+		if adjacent_card.is_front_shown():
+			result.append(adjacent_card)
+	return result
+
+
+func _reveal_adjacent_sharks(card: CardControl) -> void:
+	for adjacent_card in _adjacent_cards(card):
+		if adjacent_card.is_front_shown():
+			# already shown; don't reveal it
+			continue
+		adjacent_card.show_front()
+
+
 func _before_fish_flipped(card: CardControl) -> void:
 	var mistake := false
 	if _adjacent_to_frog(card):
@@ -276,26 +304,53 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 			_unexamined_secret_cell_positions.erase(level_cards.get_cell_pos(card))
 
 
-func _on_LevelCards_before_shark_found() -> void:
-	# turn over a spoiler arrow; point it to the frog
-	if not _frog_position_known():
-		var _unexamined_secret_cell_position: Vector2 = _unexamined_secret_cell_positions.keys()[0]
-		var _unexamined_card := level_cards.get_card(_unexamined_secret_cell_position)
-		_unexamined_card.card_front_type = CardControl.CardType.FROG
-	
-	var frog_position := _frog_position()
-	var frog_card := level_cards.get_card(frog_position)
-	frog_card.show_front()
-	
-	for adjacent_card in _adjacent_cards(frog_card):
-		if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
-			var arrow_details := ""
-			match frog_position - level_cards.get_cell_pos(adjacent_card):
-				Vector2.UP: arrow_details = "n"
-				Vector2.DOWN: arrow_details = "s"
-				Vector2.LEFT: arrow_details = "w"
-				Vector2.RIGHT: arrow_details = "e"
-			if arrow_details:
-				adjacent_card.card_front_type = CardControl.CardType.ARROW
-				adjacent_card.card_front_details = arrow_details
-				adjacent_card.show_front()
+func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
+	var adjacent_face_up_cards := _adjacent_face_up_cards(shark_card)
+	if not _on_or_adjacent_to_red_card(shark_card):
+		# if the player doesn't a card that's red, or next to a red card -- we reveal a sea of sharks and fish under the blue
+		# cards.
+		for card in level_cards.get_cards():
+			if card == shark_card:
+				continue
+			if _on_or_adjacent_to_red_card(card):
+				continue
+			if card.is_front_shown():
+				continue
+			card.card_front_type = CardControl.CardType.SHARK if randf() < 0.5 else CardControl.CardType.FISH
+			card.show_front()
+	elif adjacent_face_up_cards:
+		# if the player clicks adjacent to a face up card -- we hide everything except for those adjacent sharks.
+		# hopefully the nice 'plus' shape makes them see that they shouldn't click adjacent
+		for card in level_cards.get_cards():
+			if card == shark_card:
+				continue
+			if card in adjacent_face_up_cards:
+				continue
+			if card.card_front_type == CardControl.CardType.ARROW:
+				continue
+			card.hide_front()
+		for adjacent_card in adjacent_face_up_cards:
+			_reveal_adjacent_sharks(adjacent_card)
+	else:
+		# if the player made a different mistake, we reveal arrows pointing to where the frog was
+		if not _frog_position_known():
+			var _unexamined_secret_cell_position: Vector2 = _unexamined_secret_cell_positions.keys()[0]
+			var _unexamined_card := level_cards.get_card(_unexamined_secret_cell_position)
+			_unexamined_card.card_front_type = CardControl.CardType.FROG
+		
+		var frog_position := _frog_position()
+		var frog_card := level_cards.get_card(frog_position)
+		frog_card.show_front()
+		
+		for adjacent_card in _adjacent_cards(frog_card):
+			if not adjacent_card.is_front_shown() and adjacent_card.card_front_type == CardControl.CardType.FISH:
+				var arrow_details := ""
+				match frog_position - level_cards.get_cell_pos(adjacent_card):
+					Vector2.UP: arrow_details = "n"
+					Vector2.DOWN: arrow_details = "s"
+					Vector2.LEFT: arrow_details = "w"
+					Vector2.RIGHT: arrow_details = "e"
+				if arrow_details:
+					adjacent_card.card_front_type = CardControl.CardType.ARROW
+					adjacent_card.card_front_details = arrow_details
+					adjacent_card.show_front()

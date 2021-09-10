@@ -75,7 +75,9 @@ func add_cards() -> void:
 	
 	for y in range(0, ROW_COUNT):
 		for x in range(0, COL_COUNT):
-			var red: bool = int((x % 6)/ 3) + int((y % 4) / 2) == 1
+			# warning-ignore:integer_division
+			# warning-ignore:integer_division
+			var red: bool = int((x % 6) / 3) + int((y % 4) / 2) == 1
 			var card := level_cards.create_card()
 			card.card_back_details = "r" if red else ""
 			card.card_front_type = CardControl.CardType.FISH
@@ -129,7 +131,7 @@ func _reveal_bad_moves(count: int) -> void:
 	var cards := level_cards.get_cards()
 	cards.shuffle()
 	for card in cards:
-		if not card.is_front_shown() and _card_conflicts_with_lizards(card):
+		if not card.is_front_shown() and _conflicting_lizard(card):
 			card.show_front()
 			remaining -= 1
 			if remaining <= 0:
@@ -145,7 +147,7 @@ func _hide_bad_moves(count: int) -> void:
 	cards.shuffle()
 	for card in cards:
 		if card.is_front_shown() and card.card_front_type == CardControl.CardType.FISH\
-				and _card_conflicts_with_lizards(card):
+				and _conflicting_lizard(card):
 			card.hide_front()
 			remaining -= 1
 			if remaining <= 0:
@@ -160,15 +162,33 @@ func _revealed_lizard_count() -> int:
 	return count
 
 
-func _card_conflicts_with_lizards(card: CardControl) -> bool:
-	var result := false
-	for other_card in level_cards.get_cards():
-		if other_card.is_front_shown() and other_card.card_front_type == CardControl.CardType.LIZARD:
-			var pos := level_cards.get_cell_pos(card)
-			var other_pos := level_cards.get_cell_pos(other_card)
-			if pos.x == other_pos.x or pos.y == other_pos.y or _region(pos) == _region(other_pos):
-				result = true
+func _shown_lizard_cards() -> Array:
+	var result := []
+	for card in level_cards.get_cards():
+		if card.is_front_shown() and card.card_front_type == CardControl.CardType.LIZARD:
+			result.append(card)
+	return result
+
+
+func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
+	var result: CardControl
+	var methods: Array
+	if method:
+		# a comparator method was provided; find a lizard which conflicts in one specific way
+		methods = [method]
+	else:
+		# no comparator method was provided; find a lizard which conflicts in any of three ways
+		methods = ["compare_by_row", "compare_by_column", "compare_by_region"]
+	
+	var pos := level_cards.get_cell_pos(card)
+	for lizard_card in _shown_lizard_cards():
+		var lizard_pos := level_cards.get_cell_pos(lizard_card)
+		for current_method in methods:
+			if call(current_method, lizard_pos, pos):
+				result = lizard_card
 				break
+		if result:
+			break
 	return result
 
 
@@ -186,7 +206,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		else:
 			_remaining_good_moves -= 1
 	elif card.card_front_type == CardControl.CardType.FISH:
-		if _card_conflicts_with_lizards(card):
+		if _conflicting_lizard(card):
 			# the player found a fish which conflicts with the shown lizards
 			if _remaining_bad_moves <= 0:
 				card.card_front_type = CardControl.CardType.SHARK
@@ -202,16 +222,45 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 				card.card_front_details = ""
 
 
-func _on_LevelCards_before_shark_found() -> void:
+func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
 	var other_cards := level_cards.get_cards()
 	other_cards.shuffle()
 	var new_frog_card: CardControl
 	for other_card in other_cards:
 		if not other_card.is_front_shown() and other_card.card_front_type == CardControl.CardType.LIZARD:
 			new_frog_card = other_card
-	
-	_reveal_lizards(99)
 	new_frog_card.card_front_type = CardControl.CardType.FROG
+	
+	# reveal all cards in the row/column/region
+	var shark_card_pos := level_cards.get_cell_pos(shark_card)
+	for compare_method in ["compare_by_row", "compare_by_column", "compare_by_region"]:
+		if _conflicting_lizard(shark_card, compare_method):
+			for card in level_cards.get_cards():
+				var card_pos := level_cards.get_cell_pos(card)
+				if card == shark_card:
+					# don't mess with the card they're flipping
+					continue
+				elif call(compare_method, card_pos, shark_card_pos):
+					# show the hidden cards in the same row/column/region
+					if not card.is_front_shown():
+						card.card_front_type = CardControl.CardType.SHARK
+						card.show_front()
+				else:
+					# hide the cards not in the row/column/region
+					card.hide_front()
+			break
+
+
+func compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return pos_1.x == pos_2.x
+
+
+func compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return pos_1.y == pos_2.y
+
+
+func compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return _region(pos_1) == _region(pos_2)
 
 
 func _region(cell_pos: Vector2) -> int:

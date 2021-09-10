@@ -2,9 +2,9 @@ class_name LevelCards
 extends Control
 
 signal before_card_flipped(card)
-signal before_frog_found
+signal before_frog_found(card)
 signal frog_found(card)
-signal before_shark_found
+signal before_shark_found(card)
 signal shark_found(card)
 
 const CELL_SIZE := Vector2(80, 80)
@@ -23,8 +23,8 @@ func create_card() -> CardControl:
 	card.connect("before_card_flipped", self, "_on_CardControl_before_card_flipped", [card])
 	card.connect("frog_found", self, "_on_CardControl_frog_found", [card])
 	card.connect("shark_found", self, "_on_CardControl_shark_found", [card])
-	card.connect("before_frog_found", self, "_on_CardControl_before_frog_found")
-	card.connect("before_shark_found", self, "_on_CardControl_before_shark_found")
+	card.connect("before_frog_found", self, "_on_CardControl_before_frog_found", [card])
+	card.connect("before_shark_found", self, "_on_CardControl_before_shark_found", [card])
 	return card
 
 
@@ -86,9 +86,9 @@ func _on_CardControl_before_card_flipped(card: CardControl) -> void:
 	emit_signal("before_card_flipped", card)
 
 
-func _on_CardControl_before_frog_found() -> void:
-	emit_signal("before_frog_found")
+func _on_CardControl_before_frog_found(card: CardControl) -> void:
+	emit_signal("before_frog_found", card)
 
 
-func _on_CardControl_before_shark_found() -> void:
-	emit_signal("before_shark_found")
+func _on_CardControl_before_shark_found(card: CardControl) -> void:
+	emit_signal("before_shark_found", card)
