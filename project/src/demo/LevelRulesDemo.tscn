@@ -1,13 +1,39 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/main/game-state.gd" type="Script" id=1]
-[ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=2]
-[ext_resource path="res://src/demo/maze-level-rules-demo.gd" type="Script" id=3]
+[ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=1]
+[ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=5]
+[ext_resource path="res://src/main/MazeLevelRules.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+onready var _gameplay_panel := $GameplayPanel
+
+export (PackedScene) var LevelRulesScene: PackedScene
+
+func _input(event: InputEvent) -> void:
+	match Utils.key_scancode(event):
+		KEY_SPACE:
+			_show_puzzle()
+		KEY_EQUAL:
+			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty + 1, 0, 8))
+			_show_puzzle()
+		KEY_MINUS:
+			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty - 1, 0, 8))
+			_show_puzzle()
+
+
+func _show_puzzle() -> void:
+	_gameplay_panel.level_rules_scenes = [LevelRulesScene]
+	_gameplay_panel.reset()
+	_gameplay_panel.show_puzzle()
+"
 
 [node name="Demo" type="Node"]
-script = ExtResource( 3 )
+script = SubResource( 1 )
+LevelRulesScene = ExtResource( 5 )
 
 [node name="GameplayPanel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -16,14 +42,14 @@ margin_left = 50.0
 margin_top = 50.0
 margin_right = -50.0
 margin_bottom = -50.0
-custom_styles/panel = ExtResource( 5 )
-script = ExtResource( 2 )
+custom_styles/panel = ExtResource( 6 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GameState" type="Node" parent="GameplayPanel"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="FlipTimer" type="Timer" parent="GameplayPanel/GameState"]
 wait_time = 0.1
