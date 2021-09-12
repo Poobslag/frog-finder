@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
+[ext_resource path="res://src/main/PatternMemoryLevelRules.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=4]
-[ext_resource path="res://src/main/MazeLevelRules.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=6]
 
 [sub_resource type="GDScript" id=1]
@@ -12,6 +12,10 @@ script/source = "extends Node
 onready var _gameplay_panel := $GameplayPanel
 
 export (PackedScene) var LevelRulesScene: PackedScene
+
+func _ready() -> void:
+	_gameplay_panel.game_difficulty = GameplayPanel.GameDifficulty.HARD
+
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
@@ -33,7 +37,7 @@ func _show_puzzle() -> void:
 
 [node name="Demo" type="Node"]
 script = SubResource( 1 )
-LevelRulesScene = ExtResource( 5 )
+LevelRulesScene = ExtResource( 3 )
 
 [node name="GameplayPanel" type="Panel" parent="."]
 anchor_right = 1.0
