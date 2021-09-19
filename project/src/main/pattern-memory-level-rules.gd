@@ -30,8 +30,8 @@ func add_cards() -> void:
 	_unhidden_cards.clear()
 	
 	var hex_chance := 0.50
-	var fill_in_sides = false
-	var shark_percent = 0.50
+	var fill_in_sides := false
+	var shark_percent := 0.50
 	_cards_to_hide = 99
 	_remaining_cards_without_hiding = 0
 	_allowed_hidden_lizard_count = 0
@@ -120,7 +120,6 @@ func add_cards() -> void:
 	var remaining_shark_count := int(shark_percent * hideable_card_count) + _random.randi_range(-1, 1)
 	
 	# make some fish/shark cards and reveal them
-	var placed_shark := false
 	var cards := level_cards.get_cards()
 	cards.shuffle()
 	while remaining_shark_count > 0:

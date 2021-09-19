@@ -10,7 +10,6 @@ const DIRECTIONS_BY_STRING := {
 	"w": Vector2.LEFT,
 }
 
-var _unexamined_secret_cell_positions := {}
 var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 
@@ -25,15 +24,11 @@ var _max_unblanked_arrow_count := 99
 var _include_start_card_in_queue := true
 var _mistake_luck := 0.5
 var _start_position: Vector2
-var _loose_end_positions := {
-}
-var _unflipped_card_positions := {
-}
+var _loose_end_positions := {}
+var _unflipped_card_positions := {}
 var _shown_card_queue := []
 var _unblanked_arrow_queue := []
-var _blanked_arrows_to_original := {
-	
-}
+var _blanked_arrows_to_original := {}
 
 func _ready() -> void:
 	random.randomize()

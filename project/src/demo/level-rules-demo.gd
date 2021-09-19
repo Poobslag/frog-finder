@@ -2,7 +2,12 @@ extends Node
 
 onready var _gameplay_panel := $GameplayPanel
 
-var FrodokuLevelRulesScene: PackedScene = preload("res://src/main/FrodokuLevelRules.tscn")
+export (PackedScene) var LevelRulesScene: PackedScene
+
+func _ready() -> void:
+	randomize()
+	_gameplay_panel.game_difficulty = GameplayPanel.GameDifficulty.HARD
+
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
@@ -17,6 +22,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _show_puzzle() -> void:
-	_gameplay_panel.level_rules_scenes = [FrodokuLevelRulesScene]
+	_gameplay_panel.level_rules_scenes = [LevelRulesScene]
 	_gameplay_panel.reset()
 	_gameplay_panel.show_puzzle()
