@@ -30,6 +30,7 @@ onready var level_rules_scenes := [
 	preload("res://src/main/MazeLevelRules.tscn"),
 	preload("res://src/main/WordFindLevelRules.tscn"),
 	preload("res://src/main/PatternMemoryLevelRules.tscn"),
+	preload("res://src/main/FruitMazeRules.tscn"),
 ]
 
 func _ready() -> void:

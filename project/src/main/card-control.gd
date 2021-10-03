@@ -8,8 +8,10 @@ enum CardType {
 	MYSTERY,
 	LETTER,
 	ARROW,
+	HEX_ARROW,
 	FISH,
 	LIZARD,
+	FRUIT,
 }
 
 const LETTER_INDEXES_BY_DETAILS := {
@@ -45,6 +47,53 @@ const ARROW_INDEXES_BY_DETAILS := {
 	"ew": [29, 30, 31],
 }
 
+# Hex arrows have six directions: north, south, east, forst, west, xeath.
+# They are referenced in that exact order for forks (southeast, northxeath, forstwest)
+#
+#    n
+# w  |  e
+#  \_|_/
+#  / | \
+# x  |  f
+#    s
+const HEX_ARROW_INDEXES_BY_DETAILS := {
+	"": [0, 1],
+	"n": [2, 3, 4],
+	"e": [5, 6, 7],
+	"f": [8, 9, 10],
+	"s": [11, 12, 13],
+	"x": [14, 15, 16],
+	"w": [17, 18, 19],
+	"nf": [20, 21],
+	"se": [22, 23],
+	"sw": [24, 25],
+	"nx": [26, 27],
+	"ns": [28, 29],
+	"ex": [30, 31, 32],
+	"fw": [33, 34, 35],
+	"nfx": [36, 37],
+	"sew": [38, 39],
+	"efwx": [40, 41],
+	"nefwx": [42, 43],
+	"sefwx": [44, 45],
+	"nsefwx": [46, 47],
+}
+
+const FRUIT_DETAILS := [
+	"apple",
+	"pear",
+	"orange",
+	"banana",
+	"peach",
+	"grape",
+	"cherry",
+	"strawberry",
+	"kiwi",
+	"pineapple",
+	"watermelon",
+	"pretzel",
+]
+
 const MYSTERY_INDEXES_BY_DETAILS := {
 	"": [0, 1, 2, 3],
 	"b": [0, 1, 2, 3],
@@ -56,6 +105,8 @@ const SHARK_COUNT := 16
 const MYSTERY_COUNT := 8
 const LETTER_COUNT := 14
 const ARROW_COUNT := 32
+const HEX_ARROW_COUNT := 48
+const FRUIT_COUNT := 12
 const FISH_COUNT := 8
 const LIZARD_COUNT := 32
 
@@ -105,11 +156,21 @@ onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
 onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
 onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
 onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
+onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
+onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
 onready var _game_state: GameState
+
+var _pending_warning := ""
 
 func _ready() -> void:
 	_refresh_card_textures()
 	_refresh_game_state_path()
+
+
+func _process(_delta: float) -> void:
+	if _pending_warning:
+		push_warning(_pending_warning)
+		_pending_warning = ""
 
 
 func set_game_state_path(new_game_state_path: NodePath) -> void:
@@ -136,19 +197,23 @@ func _refresh_card_textures() -> void:
 
 
 func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: String) -> void:
+	_pending_warning = ""
 	match card_type:
 		CardType.FROG:
 			card_sprite.texture = _frog_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 8
 			var frog_index := randi() % FROG_COUNT
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
 		CardType.SHARK:
 			card_sprite.texture = _shark_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 4
 			var shark_index := randi() % SHARK_COUNT
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
 		CardType.MYSTERY:
 			card_sprite.texture = _mystery_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 2
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
@@ -159,16 +224,20 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
 		CardType.LETTER:
 			card_sprite.texture = _letter_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 4
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
 				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
 				letter_index = letter_indexes[randi() % letter_indexes.size()]
 			else:
+				# We never want random letters in a level. If this is happening, something is wrong.
+				_pending_warning = "Unrecognized letter: %s" % [card_details]
 				letter_index = randi() % LETTER_COUNT
 			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1]
 		CardType.ARROW:
 			card_sprite.texture = _arrow_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 8
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
@@ -176,19 +245,46 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
-				push_warning("Unrecognized arrow: %s" % [card_details])
+				_pending_warning = "Unrecognized arrow: %s" % [card_details]
 				arrow_index = randi() % ARROW_COUNT
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+		CardType.HEX_ARROW:
+			card_sprite.texture = _hex_arrow_sheet
+			card_sprite.hframes = 8
+			card_sprite.vframes = 12
+			var arrow_index: int
+			if HEX_ARROW_INDEXES_BY_DETAILS.has(card_details):
+				var arrow_indexes: Array = HEX_ARROW_INDEXES_BY_DETAILS[card_details]
+				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
+			else:
+				# We never want random arrows in a level. If this is happening, something is wrong.
+				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
+				arrow_index = randi() % HEX_ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
 		CardType.FISH:
 			card_sprite.texture = _fish_sheet
+			card_sprite.hframes = 8
 			card_sprite.vframes = 2
 			var fish_index := randi() % FISH_COUNT
 			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1]
 		CardType.LIZARD:
+			card_sprite.hframes = 8
 			card_sprite.texture = _lizard_sheet
 			card_sprite.vframes = 8
 			var lizard_index := randi() % LIZARD_COUNT
 			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1]
+		CardType.FRUIT:
+			card_sprite.texture = _fruit_sheet
+			card_sprite.hframes = 4
+			card_sprite.vframes = 6
+			var fruit_index: int
+			if FRUIT_DETAILS.has(card_details):
+				fruit_index = FRUIT_DETAILS.find(card_details)
+			else:
+				# We never want random arrows in a level. If this is happening, something is wrong.
+				_pending_warning = "Unrecognized fruit: %s" % [card_details]
+				fruit_index = randi() % FRUIT_COUNT
+			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1]
 	
 	if card_sprite.wiggle_frames:
 		card_sprite.frame = card_sprite.wiggle_frames[0]
