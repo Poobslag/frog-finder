@@ -6,11 +6,11 @@ A Godot puzzle game about frogs, and finding. ...Can you find the frog?
 
 ![screenshot2](https://user-images.githubusercontent.com/5902413/132281333-20e8d7dc-8667-47ef-956a-ccd61421d240.jpg)
 
-Made in one (long) weekend for Terry Cavanagh's "Stop Waiting For Godot" game jam.
+Initially developed over one (long) weekend for Terry Cavanagh's "Stop Waiting For Godot" game jam.
 
 # License
 
-Frog Finder's code and framework are licensed under the MIT licence. Please see the LICENSE.md file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+Frog Finder's code and framework are licensed under the MIT license. Please see the LICENSE.md file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
 
 Frog Finder's game resources are licensed under the CC-BY-NC license. Please see the LICENSE2.md file for more information. tl;dr you can share it and change it, but you can't use it to make money.
 
