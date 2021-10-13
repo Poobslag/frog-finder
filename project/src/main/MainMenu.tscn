@@ -1,5 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
+[ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/main/music/rainy-day-fr.ogg" type="AudioStream" id=2]
 [ext_resource path="res://src/main/MainMenuPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
 [ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=6]
@@ -97,10 +99,6 @@ script = ExtResource( 8 )
 stream = ExtResource( 9 )
 bus = "Music"
 
-[node name="HugFromAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 14 )
-bus = "Music"
-
 [node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
 stream = ExtResource( 10 )
 bus = "Music"
@@ -109,8 +107,20 @@ bus = "Music"
 stream = ExtResource( 12 )
 bus = "Music"
 
+[node name="HugFromAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 14 )
+bus = "Music"
+
 [node name="OneFrogTwoFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
 stream = ExtResource( 11 )
+bus = "Music"
+
+[node name="RainyDayFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 2 )
+bus = "Music"
+
+[node name="ImJustAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource( 1 )
 bus = "Music"
 
 [node name="WeAreTheBaddies" type="AudioStreamPlayer" parent="MusicPlayer"]
@@ -123,11 +133,6 @@ bus = "Music"
 script = ExtResource( 42 )
 _music_player_path = NodePath("../MusicPlayer")
 
-[connection signal="before_frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_frog_found"]
-[connection signal="before_shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_shark_found"]
-[connection signal="frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_frog_found"]
-[connection signal="shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_shark_found"]
-[connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_button_pressed"]
 [connection signal="before_frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_shark_found"]
 [connection signal="frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_frog_found"]
@@ -137,6 +142,11 @@ _music_player_path = NodePath("../MusicPlayer")
 [connection signal="frog_found" from="Content/GameplayPanel/LevelCards" to="Content/GameplayPanel" method="_on_LevelCards_frog_found"]
 [connection signal="shark_found" from="Content/GameplayPanel/LevelCards" to="Content/GameplayPanel" method="_on_LevelCards_shark_found"]
 [connection signal="bye_button_pressed" from="Content/IntermissionPanel" to="Content/MenuState" method="_on_IntermissionPanel_bye_button_pressed"]
+[connection signal="before_frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_frog_found"]
+[connection signal="before_shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_shark_found"]
+[connection signal="frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_frog_found"]
+[connection signal="shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_shark_found"]
+[connection signal="start_button_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_button_pressed"]
 [connection signal="finger_bitten" from="Hand" to="Content/MenuState" method="_on_Hand_finger_bitten"]
 [connection signal="music_preference_changed" from="MusicPlayer" to="Content/MainMenuPanel" method="_on_MusicPlayer_music_preference_changed"]
 [connection signal="tween_completed" from="MusicPlayer/FadeTween" to="MusicPlayer" method="_on_FadeTween_tween_completed"]
