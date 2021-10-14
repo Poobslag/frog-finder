@@ -16,6 +16,7 @@ onready var textures := [
 	$TextureRect25, $TextureRect26, $TextureRect27, $TextureRect28,
 	$TextureRect29, $TextureRect30, $TextureRect31, $TextureRect32,
 	$TextureRect33, $TextureRect34, $TextureRect35, $TextureRect36,
+	$TextureRect37, $TextureRect38, $TextureRect39, $TextureRect40,
 ]
 
 var hues := [
