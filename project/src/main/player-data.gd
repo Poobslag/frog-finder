@@ -4,8 +4,10 @@ extends Node
 const DATA_FILENAME := "user://player-data.json"
 
 export (NodePath) var _music_player_path: NodePath
+export (NodePath) var _main_menu_panel_path: NodePath
 
 onready var _music_player: MusicPlayer = get_node(_music_player_path)
+onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 
 var frog_count := 0
 var shark_count := 0
@@ -18,6 +20,7 @@ func _ready() -> void:
 
 func save_player_data() -> void:
 	var new_save_json := {}
+	new_save_json["current_world"] = _main_menu_panel.current_world_index
 	new_save_json["music_preference"] = _music_player.music_preference
 	new_save_json["frog_count"] = frog_count
 	new_save_json["shark_count"] = shark_count
@@ -31,6 +34,8 @@ func load_player_data() -> void:
 		return
 	var save_text := get_file_as_text(DATA_FILENAME)
 	save_json = parse_json(save_text)
+	if save_json.has("current_world_index"):
+		_main_menu_panel.current_world_index = save_json["current_world_index"]
 	if save_json.has("music_preference"):
 		_music_player.music_preference = save_json["music_preference"]
 		_music_player.play_preferred_song()

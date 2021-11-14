@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/main/arrow-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ui/menu/wide-wow-sprite.gd" type="Script" id=2]
+[ext_resource path="res://src/main/level-buttons.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/menu/ClickableIcon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=6]
+
+[node name="World2Buttons" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 3 )
+
+[node name="WideWowSprite" type="Control" parent="."]
+margin_left = 232.0
+margin_top = 341.198
+margin_right = 692.0
+margin_bottom = 421.198
+script = ExtResource( 2 )
+
+[node name="Left" type="Sprite" parent="WideWowSprite"]
+position = Vector2( 40, 40 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+hframes = 8
+vframes = 2
+
+[node name="Right" type="Sprite" parent="WideWowSprite"]
+position = Vector2( 420, 40 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="WiggleTimer" type="Timer" parent="WideWowSprite"]
+
+[node name="Prev" parent="." instance=ExtResource( 4 )]
+margin_left = 262.0
+margin_right = 342.0
+__meta__ = {
+"_editor_description_": ""
+}
+icon_texture = ExtResource( 1 )
+icon_index = 13
+
+[node name="Level1" parent="." instance=ExtResource( 4 )]
+icon_texture = ExtResource( 5 )
+icon_index = 5
+
+[node name="Level2" parent="." instance=ExtResource( 4 )]
+margin_left = 422.0
+margin_right = 502.0
+__meta__ = {
+"_editor_description_": ""
+}
+icon_texture = ExtResource( 5 )
+icon_index = 6
+
+[node name="Level3" parent="." instance=ExtResource( 4 )]
+margin_left = 502.0
+margin_right = 582.0
+__meta__ = {
+"_editor_description_": ""
+}
+icon_texture = ExtResource( 5 )
+icon_index = 7
+
+[node name="Next" parent="." instance=ExtResource( 4 )]
+visible = false
+margin_left = 582.0
+margin_right = 662.0
+__meta__ = {
+"_editor_description_": ""
+}
+icon_texture = ExtResource( 1 )
+icon_index = 7
+
+[connection signal="pressed" from="Level1" to="." method="_on_Level_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="Level2" to="." method="_on_Level_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="Level3" to="." method="_on_Level_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Prev" to="." method="_on_Prev_pressed"]
+[connection signal="timeout" from="WideWowSprite/WiggleTimer" to="WideWowSprite" method="_on_WiggleTimer_timeout"]
