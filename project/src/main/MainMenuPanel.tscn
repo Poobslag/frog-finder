@@ -26,9 +26,6 @@ margin_right = -50.0
 margin_bottom = -50.0
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MusicControl" type="Control" parent="."]
 margin_left = 25.0
@@ -241,7 +238,7 @@ margin_left = 402.0
 margin_top = 321.198
 margin_right = 482.0
 margin_bottom = 401.198
-icon_type = 5
+icon_index = 5
 
 [node name="MediumButtons" type="Control" parent="."]
 visible = false
@@ -260,7 +257,7 @@ margin_left = 322.0
 margin_top = 321.198
 margin_right = 402.0
 margin_bottom = 401.198
-icon_type = 5
+icon_index = 5
 
 [node name="MediumButton" parent="MediumButtons" instance=ExtResource( 9 )]
 anchor_left = 0.5
@@ -271,7 +268,7 @@ margin_left = 482.0
 margin_top = 321.198
 margin_right = 562.0
 margin_bottom = 401.198
-icon_type = 6
+icon_index = 6
 
 [node name="HardButtons" type="Control" parent="."]
 margin_top = 28.6055
@@ -290,7 +287,7 @@ margin_left = 242.0
 margin_top = 321.198
 margin_right = 322.0
 margin_bottom = 401.198
-icon_type = 5
+icon_index = 5
 
 [node name="MediumButton" parent="HardButtons" instance=ExtResource( 9 )]
 anchor_left = 0.5
@@ -301,7 +298,7 @@ margin_left = 402.0
 margin_top = 321.198
 margin_right = 482.0
 margin_bottom = 401.198
-icon_type = 6
+icon_index = 6
 
 [node name="HardButton" parent="HardButtons" instance=ExtResource( 9 )]
 anchor_left = 0.5
@@ -312,7 +309,7 @@ margin_left = 562.0
 margin_top = 321.198
 margin_right = 642.0
 margin_bottom = 401.198
-icon_type = 7
+icon_index = 7
 
 [node name="TitleGameState" type="Node" parent="."]
 script = ExtResource( 2 )
