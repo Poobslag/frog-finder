@@ -187,9 +187,7 @@ func add_cards() -> void:
 		_add_word(words[i], word_cell_pos)
 
 
-"""
-Replaces lower-case (hidden) letters with upper-case (revealed) letters.
-"""
+## Replaces lower-case (hidden) letters with upper-case (revealed) letters.
 func _reveal_letters(word: String, count: int) -> String:
 	var card_word := word.split("/")[0]
 	var english_word := word.split("/")[1]
@@ -223,16 +221,12 @@ func _reveal_letters(word: String, count: int) -> String:
 	return "%s/%s" % [card_word, english_word]
 
 
-"""
-Replaces lower-case letters with frogs. At least one frog per word.
-"""
+## Replaces lower-case letters with frogs. At least one frog per word.
 func _frogify_letters(word: String, chance: float) -> String:
 	return _replace_letters(word, "+", chance)
 
 
-"""
-Replaces lower-case letters with sharks. At least one shark per word.
-"""
+## Replaces lower-case letters with sharks. At least one shark per word.
 func _sharkify_letters(word: String, chance: float) -> String:
 	return _replace_letters(word, "-", chance)
 
@@ -254,9 +248,7 @@ func _replace_letters(word: String, replacement: String, chance: float) -> Strin
 	return "%s/%s" % [card_word, english_word]
 
 
-"""
-Replaces words with 'troll words'.
-"""
+## Replaces words with 'troll words'.
 func _trollify_words(words: Array, count: int) -> Array:
 	var troll_word_indexes := range(words.size())
 	troll_word_indexes.shuffle()
@@ -272,9 +264,7 @@ func _trollify_words(words: Array, count: int) -> Array:
 	return words
 
 
-"""
-Replaces a word with a silly word that isn't a frog or a shark.
-"""
+## Replaces a word with a silly word that isn't a frog or a shark.
 func _troll_silly_word() -> Array:
 	return troll_silly_words[randi() % troll_silly_words.size()]
 
