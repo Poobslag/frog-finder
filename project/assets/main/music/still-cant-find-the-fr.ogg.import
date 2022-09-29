@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/still-cant-find-the-fr.ogg-b5aed57ddca0634727f06bcbf3f6c965.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/still-cant-find-the-fr.ogg"
+dest_files=[ "res://.import/still-cant-find-the-fr.ogg-b5aed57ddca0634727f06bcbf3f6c965.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

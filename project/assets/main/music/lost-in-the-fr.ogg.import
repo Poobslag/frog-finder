@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lost-in-the-fr.ogg-d3ea7a9a5a12ae7345903345b120ca82.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/lost-in-the-fr.ogg"
+dest_files=[ "res://.import/lost-in-the-fr.ogg-d3ea7a9a5a12ae7345903345b120ca82.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
