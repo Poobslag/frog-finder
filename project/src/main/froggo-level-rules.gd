@@ -165,7 +165,7 @@ func add_cards() -> void:
 			words = ["frog/frog", "shark/shark", "shark/shark", "shark/shark", "shark/shark"]
 			words = _trollify_words(words, 4)
 			var hidden_word_index := randi() % 5
-			for i in range(0, 5):
+			for i in range(5):
 				# one word remains completely hidden
 				words[i] = _reveal_letters(words[i], 0 if hidden_word_index == i else 1)
 			words[0] = _frogify_letters(words[0], 0.0)
@@ -178,7 +178,7 @@ func add_cards() -> void:
 				words[4] = _troll_silly_word()
 	
 	words.shuffle()
-	for i in range(0, words.size()):
+	for i in range(words.size()):
 		var word_cell_pos := Vector2(int(rand_range(0, 3)), i)
 		
 		# shift short words to the right to keep them centered
@@ -193,7 +193,7 @@ Replaces lower-case (hidden) letters with upper-case (revealed) letters.
 func _reveal_letters(word: String, count: int) -> String:
 	var card_word := word.split("/")[0]
 	var english_word := word.split("/")[1]
-	var letter_indexes := range(0, card_word.length())
+	var letter_indexes := range(card_word.length())
 	letter_indexes.shuffle()
 	
 	# adjust the revealed letter count to account for edge cases
@@ -242,7 +242,7 @@ func _replace_letters(word: String, replacement: String, chance: float) -> Strin
 	var english_word := word.split("/")[1]
 	
 	var shark_count := 0
-	var letter_indexes := range(0, card_word.length())
+	var letter_indexes := range(card_word.length())
 	letter_indexes.shuffle()
 	for i in letter_indexes:
 		if card_word[i] == card_word[i].to_lower():
@@ -258,7 +258,7 @@ func _replace_letters(word: String, replacement: String, chance: float) -> Strin
 Replaces words with 'troll words'.
 """
 func _trollify_words(words: Array, count: int) -> Array:
-	var troll_word_indexes := range(0, words.size())
+	var troll_word_indexes := range(words.size())
 	troll_word_indexes.shuffle()
 	troll_word_indexes = troll_word_indexes.slice(0, count - 1)
 	for i in troll_word_indexes:
@@ -283,7 +283,7 @@ func _add_word(word: String, word_cell_pos: Vector2) -> void:
 	var card_word := word.split("/")[0]
 	var english_word := word.split("/")[1]
 	
-	for i in range(0, card_word.length()):
+	for i in range(card_word.length()):
 		var letter: String = card_word[i]
 		var letter_cell_pos: Vector2 = word_cell_pos + Vector2(i, 0)
 		var card := level_cards.create_card()

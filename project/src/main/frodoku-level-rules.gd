@@ -72,8 +72,8 @@ func add_cards() -> void:
 			revealed_bad_move_count = 5
 		
 	
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			# warning-ignore:integer_division
 			# warning-ignore:integer_division
 			var red: bool = int((x % 6) / 3) + int((y % 4) / 2) == 1
