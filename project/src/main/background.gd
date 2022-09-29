@@ -84,11 +84,9 @@ func _on_ChangeTween_tween_completed(object: Object, key: NodePath) -> void:
 		object.visible = false
 
 
-"""
-Returns a transparent version of the specified color.
-
-Tweening from forest green to 'Color.transparent' results in some strange in-between frames which are grey or white.
-It's better to tween to a transparent forest green.
-"""
+## Returns a transparent version of the specified color.
+##
+## Tweening from forest green to 'Color.transparent' results in some strange in-between frames which are grey or white.
+## It's better to tween to a transparent forest green.
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)

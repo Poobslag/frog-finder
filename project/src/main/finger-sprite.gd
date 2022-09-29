@@ -31,10 +31,8 @@ func _ready() -> void:
 	$AnimationPlayer.play("reset")
 
 
-"""
-Parameters:
-	'finger_index': 2 = pinky finger, 1 = naughty finger, 0 = pointer finger
-"""
+## Parameters:
+## 	'finger_index': 2 = pinky finger, 1 = naughty finger, 0 = pointer finger
 func bite(finger_index: int) -> void:
 	wiggle_frames = WIGGLE_FRAMES_BY_BITTEN_FINGER[finger_index]
 	_wiggle_timer.assign_wiggle_frame()
@@ -49,10 +47,8 @@ func bite(finger_index: int) -> void:
 	$CartoonBiteSfx.play()
 
 
-"""
-Parameters:
-	'finger_index': 0 = right frog, 2 = left frog, 1 = middle frog
-"""
+## Parameters:
+## 	'finger_index': 0 = right frog, 2 = left frog, 1 = middle frog
 func hug(finger_index: int) -> void:
 	wiggle_frames = WIGGLE_FRAMES_BY_HUGGED_FINGER[finger_index]
 	_wiggle_timer.assign_wiggle_frame()

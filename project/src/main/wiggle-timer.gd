@@ -17,11 +17,9 @@ func reset_wiggle() -> void:
 	start(rand_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME))
 
 
-"""
-Updates the sprite's frame to the next 'wiggle frame'.
-
-Defaults to '0' if the current frame isn't a wiggle frame.
-"""
+## Updates the sprite's frame to the next 'wiggle frame'.
+##
+## Defaults to '0' if the current frame isn't a wiggle frame.
 func assign_wiggle_frame() -> void:
 	var wiggle_index:int = (_sprite.wiggle_frames.find(_sprite.frame) + 1) % _sprite.wiggle_frames.size()
 	_sprite.frame = _sprite.wiggle_frames[wiggle_index]
