@@ -1,7 +1,7 @@
 class_name IntermissionPanel
 extends Panel
 
-signal bye_button_pressed
+signal bye_pressed
 
 export (NodePath) var hand_path: NodePath
 
@@ -194,5 +194,5 @@ func _on_Hand_hug_finished() -> void:
 	_bye_button.visible = true
 
 
-func _on_ByeButton_button_pressed() -> void:
-	emit_signal("bye_button_pressed")
+func _on_ByeButton_pressed() -> void:
+	emit_signal("bye_pressed")

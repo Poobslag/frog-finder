@@ -344,9 +344,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_pressed" from="EasyButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
-[connection signal="button_pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
-[connection signal="button_pressed" from="HardButtons/HardButton" to="." method="_on_StartButton_button_pressed" binds= [ 2 ]]
-[connection signal="button_pressed" from="HardButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
-[connection signal="button_pressed" from="MediumButtons/EasyButton" to="." method="_on_StartButton_button_pressed" binds= [ 0 ]]
-[connection signal="button_pressed" from="MediumButtons/MediumButton" to="." method="_on_StartButton_button_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="EasyButtons/EasyButton" to="." method="_on_StartButton_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="HardButtons/EasyButton" to="." method="_on_StartButton_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="HardButtons/HardButton" to="." method="_on_StartButton_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="HardButtons/MediumButton" to="." method="_on_StartButton_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="MediumButtons/EasyButton" to="." method="_on_StartButton_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="MediumButtons/MediumButton" to="." method="_on_StartButton_pressed" binds= [ 1 ]]
