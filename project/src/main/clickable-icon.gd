@@ -1,6 +1,6 @@
 extends Control
 
-signal button_pressed
+signal pressed
 
 enum IconType {
 	BYE,
@@ -36,7 +36,7 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
-		emit_signal("button_pressed")
+		emit_signal("pressed")
 
 
 func set_icon_type(new_icon_type: int) -> void:

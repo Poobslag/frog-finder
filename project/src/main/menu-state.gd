@@ -84,7 +84,7 @@ func _end_intermission() -> void:
 		_gameplay_panel.show_puzzle()
 
 
-func _on_MainMenuPanel_start_button_pressed(difficulty: int) -> void:
+func _on_MainMenuPanel_start_pressed(difficulty: int) -> void:
 	# save, in case the user changed their music preference
 	_player_data.save_player_data()
 	
@@ -147,5 +147,5 @@ func _on_MainMenuPanel_before_frog_found(_card: CardControl) -> void:
 		_music_player.play_preferred_song()
 
 
-func _on_IntermissionPanel_bye_button_pressed() -> void:
+func _on_IntermissionPanel_bye_pressed() -> void:
 	_end_intermission()

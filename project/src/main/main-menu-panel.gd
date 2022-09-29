@@ -1,7 +1,7 @@
 class_name MainMenuPanel
 extends Panel
 
-signal start_button_pressed(difficulty)
+signal start_pressed(difficulty)
 signal before_frog_found(card)
 signal frog_found(card)
 signal before_shark_found(card)
@@ -17,8 +17,8 @@ onready var _all_cards := [
 	$Card2F, $Card2I, $Card2N, $Card2D, $Card2E, $Card2R,
 ]
 
-func _on_StartButton_button_pressed(difficulty: int) -> void:
-	emit_signal("start_button_pressed", difficulty)
+func _on_StartButton_pressed(difficulty: int) -> void:
+	emit_signal("start_pressed", difficulty)
 
 
 func _ready() -> void:

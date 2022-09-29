@@ -63,4 +63,4 @@ __meta__ = {
 
 [connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_SharkSpawnTimer_timeout"]
 [connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
-[connection signal="button_pressed" from="ByeButton" to="." method="_on_ByeButton_button_pressed"]
+[connection signal="pressed" from="ByeButton" to="." method="_on_ByeButton_pressed"]
