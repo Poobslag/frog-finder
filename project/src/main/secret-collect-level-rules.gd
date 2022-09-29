@@ -18,8 +18,8 @@ func refresh_level_cards_path() -> void:
 func add_cards() -> void:
 	_unexamined_secret_cell_positions.clear()
 	
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			var card := level_cards.create_card()
 			card.card_front_type = CardControl.CardType.FISH
 			level_cards.add_card(card, Vector2(x, y))
@@ -83,7 +83,7 @@ func add_cards() -> void:
 	# safely clickable fish are never adjacent
 	var potential_secret_positions := []
 	var potential_fish_positions := remaining_card_positions.duplicate()
-	for _i in range(0, fish_count):
+	for _i in range(fish_count):
 		if not potential_fish_positions:
 			# no more fish positions
 			break
@@ -98,7 +98,7 @@ func add_cards() -> void:
 	
 	# add secrets
 	potential_secret_positions.shuffle()
-	for i in range(0, secret_count):
+	for i in range(secret_count):
 		if not potential_secret_positions:
 			# no more secret positions
 			break

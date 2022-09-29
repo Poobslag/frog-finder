@@ -63,7 +63,7 @@ func restart(game_difficulty: int) -> void:
 	cards.clear()
 	_intermission_cards.reset()
 	var card_positions: Array = card_positions_by_difficulty[game_difficulty]
-	for i in range(0, card_positions.size()):
+	for i in range(card_positions.size()):
 		var card := _intermission_cards.create_card()
 		_intermission_cards.add_card(card, card_positions[i])
 		cards.append(card)
@@ -146,7 +146,7 @@ func _spawn_frog() -> void:
 func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
 	hand.biteable_fingers = biteable_fingers
 	$SharkSpawnTimer.start()
-	for _finger in range(0, biteable_fingers):
+	for _finger in range(biteable_fingers):
 		# spawn one shark per finger
 		_spawn_shark()
 
@@ -155,7 +155,7 @@ func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 	max_frogs = new_max_frogs
 	hand.huggable_fingers = huggable_fingers
 	$FrogSpawnTimer.start()
-	for _finger in range(0, huggable_fingers):
+	for _finger in range(huggable_fingers):
 		# spawn one frog per finger
 		_spawn_frog()
 

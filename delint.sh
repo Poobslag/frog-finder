@@ -62,13 +62,24 @@ then
   if [ "$CLEAN" ]
   then
     # remove whitespace at the end of lines
-    find project/src project/assets -name "*.gd" -exec sed -i "s/\(\S\)\s\s*$/\1/g" {} +
+    find project/src project/assets \( -name "*.gd" \) -exec sed -i "s/\(\S\)\s\s*$/\1/g" {} +
     echo "...Whitespace removed."
   fi
 fi
 
+# comments with incorrect whitespace
+REGEX="\(^##"$'\t'"\|## "$'\t\t\t'"\)"
+RESULT=$(grep -R -n "$REGEX" --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Comments with incorrect whitespace:"
+  echo "$RESULT"
+fi
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
-RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src)
+RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src \
+  | grep -v " = parse_json(")
 if [ -n "$RESULT" ]
 then
   echo ""
@@ -102,8 +113,12 @@ fi
 
 # project settings which are enabled temporarily, but shouldn't be pushed
 RESULT=
-RESULT=${RESULT}$(grep "emulate_touch_from_mouse=true" project/project.godot)
-RESULT=${RESULT}$(grep "window/vsync/use_vsync=false" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=$(echo "${RESULT}" |
+  sed 's/ÊÊÊ*/Ê/g' | # remove consecutive newline placeholders
+  sed 's/^Ê\(.*\)$/\1/g' | # remove trailing newline placeholders
+  sed 's/^\(.*\)Ê$/\1/g' | # remove following newline placeholders
+  sed 's/Ê/\n/g') # convert newline placeholders to newlines
 if [ -n "$RESULT" ]
 then
   echo ""
@@ -113,7 +128,6 @@ then
   then
     # unset project settings
     sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
-    sed -i "/window\/vsync\/use_vsync=false/d" project/project.godot
     echo "...Temporary settings reverted."
   fi
 fi
@@ -124,6 +138,15 @@ if [ -n "$RESULT" ]
 then
   echo ""
   echo "Print statements:"
+  echo "$RESULT"
+fi
+
+# redundant 'range(0, x)' call
+RESULT=$(grep -R -n "[^_a-z]range(0," --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Redundant 'range(0, x)':"
   echo "$RESULT"
 fi
 

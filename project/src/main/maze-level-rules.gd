@@ -49,8 +49,8 @@ func add_cards() -> void:
 	_unblanked_arrow_queue.clear()
 	_blanked_arrows_to_original.clear()
 	
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			if x == 0 and y == 0:
 				continue
 			if x == 0 and y == ROW_COUNT - 1:

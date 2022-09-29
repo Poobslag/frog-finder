@@ -24,8 +24,8 @@ func refresh_level_cards_path() -> void:
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
 	
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			var card := level_cards.create_card()
 			card.card_front_type = CardControl.CardType.LETTER
 			card.card_front_details = Utils.rand_value(["a", "d", "e", "h", "i", "k", "n", "s"])
@@ -92,7 +92,7 @@ func add_cards() -> void:
 		word_start.x = random.randi_range(0, COL_COUNT - 4)
 		word_start.y = random.randi_range(0, ROW_COUNT - 1)
 		var word := "frog" if randf() > _backwards_chance else "gorf"
-		for i in range(0, 4):
+		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x + i, word_start.y))
 			frog_word_card.card_front_details = word[i]
 			_frog_word_cards[frog_word_card] = true
@@ -105,7 +105,7 @@ func add_cards() -> void:
 		word_start.x = random.randi_range(0, COL_COUNT - 1)
 		word_start.y = random.randi_range(0, ROW_COUNT - 4)
 		var word := "frog" if randf() > _backwards_chance else "gorf"
-		for i in range(0, 4):
+		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x, word_start.y + i))
 			frog_word_card.card_front_details = word[i]
 			_frog_word_cards[frog_word_card] = true
@@ -158,12 +158,12 @@ func _card_can_make_frog_word(card: CardControl) -> bool:
 	var card_position := level_cards.get_cell_pos(card)
 	
 	# check horizontally...
-	for x in range(0, card_position.x + 3):
+	for x in range(card_position.x + 3):
 		if x > COL_COUNT - 4:
 			continue
 		
 		var card_word := ""
-		for i in range(0, 4):
+		for i in range(4):
 			var other_card := level_cards.get_card(Vector2(x + i, card_position.y))
 			if not other_card.is_front_shown() or not other_card.card_front_type == CardControl.CardType.LETTER:
 				card_word += "_"
@@ -175,12 +175,12 @@ func _card_can_make_frog_word(card: CardControl) -> bool:
 			break
 	
 	# check vertically...
-	for y in range(0, card_position.y + 3):
+	for y in range(card_position.y + 3):
 		if y > ROW_COUNT - 4:
 			continue
 		
 		var card_word := ""
-		for i in range(0, 4):
+		for i in range(4):
 			var other_card := level_cards.get_card(Vector2(card_position.x, y + i))
 			if not other_card.is_front_shown() or not other_card.card_front_type == CardControl.CardType.LETTER:
 				card_word += "_"
@@ -196,7 +196,7 @@ func _card_can_make_frog_word(card: CardControl) -> bool:
 
 func _matches(word: String, pattern: String) -> bool:
 	var result := true
-	for i in range(0, word.length()):
+	for i in range(word.length()):
 		if pattern[i] == "_":
 			continue
 		if word[i] == pattern[i]:
