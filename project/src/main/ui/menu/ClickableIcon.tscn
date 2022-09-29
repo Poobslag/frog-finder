@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
+
+[node name="Button" type="Control"]
+margin_left = 342.0
+margin_top = 341.148
+margin_right = 422.0
+margin_bottom = 421.148
+rect_min_size = Vector2( 80, 80 )
+script = ExtResource( 4 )
+
+[node name="IconSprite" parent="." instance=ExtResource( 3 )]
+position = Vector2( 40, 40 )
+wiggle_frames = [ 0, 1 ]

@@ -60,7 +60,19 @@ __meta__ = {
 }
 
 [node name="ByeButton" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -100.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 
-[connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_SharkSpawnTimer_timeout"]
-[connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
 [connection signal="pressed" from="ByeButton" to="." method="_on_ByeButton_pressed"]
+[connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
+[connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_SharkSpawnTimer_timeout"]
