@@ -200,21 +200,15 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 	_pending_warning = ""
 	match card_type:
 		CardType.FROG:
-			card_sprite.texture = _frog_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 8
+			Utils.assign_card_texture(card_sprite, _frog_sheet)
 			var frog_index := randi() % FROG_COUNT
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
 		CardType.SHARK:
-			card_sprite.texture = _shark_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 4
+			Utils.assign_card_texture(card_sprite, _shark_sheet)
 			var shark_index := randi() % SHARK_COUNT
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
 		CardType.MYSTERY:
-			card_sprite.texture = _mystery_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 2
+			Utils.assign_card_texture(card_sprite, _mystery_sheet)
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
 				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
@@ -223,9 +217,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				mystery_index = randi() % MYSTERY_COUNT
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
 		CardType.LETTER:
-			card_sprite.texture = _letter_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 4
+			Utils.assign_card_texture(card_sprite, _letter_sheet)
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
 				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
@@ -236,9 +228,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				letter_index = randi() % LETTER_COUNT
 			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1]
 		CardType.ARROW:
-			card_sprite.texture = _arrow_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 8
+			Utils.assign_card_texture(card_sprite, _arrow_sheet)
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
@@ -249,9 +239,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				arrow_index = randi() % ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
 		CardType.HEX_ARROW:
-			card_sprite.texture = _hex_arrow_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 12
+			Utils.assign_card_texture(card_sprite, _hex_arrow_sheet)
 			var arrow_index: int
 			if HEX_ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = HEX_ARROW_INDEXES_BY_DETAILS[card_details]
@@ -262,21 +250,15 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				arrow_index = randi() % HEX_ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
 		CardType.FISH:
-			card_sprite.texture = _fish_sheet
-			card_sprite.hframes = 8
-			card_sprite.vframes = 2
+			Utils.assign_card_texture(card_sprite, _fish_sheet)
 			var fish_index := randi() % FISH_COUNT
 			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1]
 		CardType.LIZARD:
-			card_sprite.hframes = 8
-			card_sprite.texture = _lizard_sheet
-			card_sprite.vframes = 8
+			Utils.assign_card_texture(card_sprite, _lizard_sheet)
 			var lizard_index := randi() % LIZARD_COUNT
 			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1]
 		CardType.FRUIT:
-			card_sprite.texture = _fruit_sheet
-			card_sprite.hframes = 4
-			card_sprite.vframes = 6
+			Utils.assign_card_texture(card_sprite, _fruit_sheet)
 			var fruit_index: int
 			if FRUIT_DETAILS.has(card_details):
 				fruit_index = FRUIT_DETAILS.find(card_details)
