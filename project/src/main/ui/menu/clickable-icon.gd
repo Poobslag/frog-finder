@@ -38,6 +38,6 @@ func refresh_sprite() -> void:
 	
 	_icon_sprite.texture = icon_texture
 	_icon_sprite.hframes = _icon_sprite.texture.get_width() / 160 if _icon_sprite.texture else 1
-	_icon_sprite.vframes = _icon_sprite.texture.get_height() / 160if _icon_sprite.texture else 1
+	_icon_sprite.vframes = _icon_sprite.texture.get_height() / 160 if _icon_sprite.texture else 1
 	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1]
 	_icon_sprite.assign_wiggle_frame()
