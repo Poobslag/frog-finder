@@ -1,3 +1,4 @@
+tool
 extends Node
 
 ## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
@@ -18,5 +19,7 @@ static func rand_value(values: Array):
 ## This method assumes each frame is 160x160, which is used for the small square frog finder cards.
 static func assign_card_texture(sprite: Sprite, texture: Texture) -> void:
 	sprite.texture = texture
+	# warning-ignore:integer_division
 	sprite.hframes = int(ceil(texture.get_width() / 160))
+	# warning-ignore:integer_division
 	sprite.vframes = int(ceil(texture.get_height() / 160))

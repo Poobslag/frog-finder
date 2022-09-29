@@ -7,19 +7,29 @@ signal frog_found(card)
 signal before_shark_found(card)
 signal shark_found(card)
 
+const DIFFICULTY_BY_WORLD_STRING := {
+	"0-0": GameplayPanel.GameDifficulty.EASY,
+	"0-1": GameplayPanel.GameDifficulty.MEDIUM,
+	"0-2": GameplayPanel.GameDifficulty.HARD,
+	"1-0": GameplayPanel.GameDifficulty.EASY,
+	"1-1": GameplayPanel.GameDifficulty.MEDIUM,
+	"1-2": GameplayPanel.GameDifficulty.HARD,
+	"2-0": GameplayPanel.GameDifficulty.EASY,
+	"2-1": GameplayPanel.GameDifficulty.MEDIUM,
+	"2-2": GameplayPanel.GameDifficulty.HARD,
+}
+
 export (NodePath) var player_data_path: NodePath
 
+var current_world_index setget set_current_world_index, get_current_world_index
+
 onready var _game_state := $TitleGameState
-onready var _player_data: PlayerData = get_node(player_data_path)
+onready var _level_button_holder := $LevelButtonHolder
 
 onready var _all_cards := [
 	$Card1F, $Card1R, $Card1O, $Card1G,
 	$Card2F, $Card2I, $Card2N, $Card2D, $Card2E, $Card2R,
 ]
-
-func _on_StartButton_pressed(difficulty: int) -> void:
-	emit_signal("start_pressed", difficulty)
-
 
 func _ready() -> void:
 	for card in _all_cards:
@@ -41,16 +51,15 @@ func show_menu() -> void:
 	
 	$Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
-	
-	$EasyButtons.visible = false
-	$MediumButtons.visible = false
-	$HardButtons.visible = false
-	match _player_data.hardest_difficulty_cleared:
-		GameplayPanel.GameDifficulty.EASY:
-			$MediumButtons.visible = true
-		GameplayPanel.GameDifficulty.MEDIUM, GameplayPanel.GameDifficulty.HARD:
-			$HardButtons.visible = true
-		_: $EasyButtons.visible = true
+
+
+func set_current_world_index(new_current_world_index: int) -> void:
+	current_world_index = new_current_world_index
+	_level_button_holder.set_current_world_index(new_current_world_index)
+
+
+func get_current_world_index() -> int:
+	return _level_button_holder.get_current_world_index()
 
 
 func _on_MusicPlayer_music_preference_changed() -> void:
@@ -71,3 +80,10 @@ func _on_CardControl_frog_found(card: CardControl) -> void:
 
 func _on_CardControl_shark_found(card: CardControl) -> void:
 	emit_signal("shark_found", card)
+
+
+func _on_LevelButtons_level_pressed(level_index: int) -> void:
+	var world_index := get_current_world_index()
+	var world_string := "%s-%s" % [world_index, level_index]
+	var difficulty: int = DIFFICULTY_BY_WORLD_STRING.get(world_string, GameplayPanel.GameDifficulty.EASY)
+	emit_signal("start_pressed", difficulty)
