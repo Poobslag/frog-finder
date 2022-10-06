@@ -1,19 +1,6 @@
 class_name MusicPlayer
 extends Node
 
-signal music_preference_changed
-
-enum MusicPreference {
-	RANDOM,
-	MUSIC_1,
-	MUSIC_2,
-	MUSIC_3,
-	MUSIC_4,
-	MUSIC_5,
-	MUSIC_6,
-	OFF,
-}
-
 # volume to fade out to; once the music reaches this volume, it's stopped
 const MIN_VOLUME := -40.0
 
@@ -23,20 +10,19 @@ const MAX_VOLUME := 0.0
 const FADE_OUT_DURATION := 0.8
 const FADE_IN_DURATION := 0.5
 
-var music_preference: int = MusicPreference.RANDOM setget set_music_preference
 var _current_song: AudioStreamPlayer
 var _position_by_song := {}
 
 onready var _songs_by_music_preference := {
-	MusicPreference.RANDOM: [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
+	PlayerData.MusicPreference.RANDOM: [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
 			$ImJustAFrog, $OneFrogTwoFrog, $RainyDayFrog],
-	MusicPreference.MUSIC_1: [$AWellTemperedFrog],
-	MusicPreference.MUSIC_2: [$CanYouFindTheFrog],
-	MusicPreference.MUSIC_3: [$HalfAFrog],
-	MusicPreference.MUSIC_4: [$ImJustAFrog],
-	MusicPreference.MUSIC_5: [$OneFrogTwoFrog],
-	MusicPreference.MUSIC_6: [$RainyDayFrog],
-	MusicPreference.OFF: [],
+	PlayerData.MusicPreference.MUSIC_1: [$AWellTemperedFrog],
+	PlayerData.MusicPreference.MUSIC_2: [$CanYouFindTheFrog],
+	PlayerData.MusicPreference.MUSIC_3: [$HalfAFrog],
+	PlayerData.MusicPreference.MUSIC_4: [$ImJustAFrog],
+	PlayerData.MusicPreference.MUSIC_5: [$OneFrogTwoFrog],
+	PlayerData.MusicPreference.MUSIC_6: [$RainyDayFrog],
+	PlayerData.MusicPreference.OFF: [],
 }
 
 onready var _frog_songs := [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
@@ -47,13 +33,12 @@ onready var _ending_song := $HugFromAFrog
 onready var _fade_tween := $FadeTween
 
 func _ready() -> void:
-	# wait for player data to load before playing our preferred song
-	yield(get_tree(), "idle_frame")
+	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
 	play_preferred_song()
 
 
 func play_preferred_song() -> void:
-	var songs: Array = _songs_by_music_preference[music_preference]
+	var songs: Array = _songs_by_music_preference[PlayerData.music_preference]
 	var new_song: AudioStreamPlayer
 	if songs:
 		songs.shuffle()
@@ -117,19 +102,10 @@ func is_playing_frog_song() -> bool:
 	return _current_song in _frog_songs
 
 
-func increment_music_preference() -> void:
-	set_music_preference((music_preference + 1) % MusicPreference.size())
-	play_preferred_song()
-
-
-func set_music_preference(new_music_preference: int) -> void:
-	if new_music_preference == music_preference:
-		return
-	
-	music_preference = new_music_preference
-	emit_signal("music_preference_changed")
-
-
 func _on_FadeTween_tween_completed(object: Object, key: NodePath) -> void:
 	if key == ":volume_db" and object.volume_db == MIN_VOLUME:
 		object.stop()
+
+
+func _on_PlayerData_music_preference_changed() -> void:
+	play_preferred_song()

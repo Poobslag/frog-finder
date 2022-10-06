@@ -19,10 +19,6 @@ const DIFFICULTY_BY_WORLD_STRING := {
 	"2-2": GameplayPanel.GameDifficulty.HARD,
 }
 
-export (NodePath) var player_data_path: NodePath
-
-var current_world_index setget set_current_world_index, get_current_world_index
-
 onready var _game_state := $TitleGameState
 onready var _level_button_holder := $LevelButtonHolder
 
@@ -53,19 +49,6 @@ func show_menu() -> void:
 	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 
 
-func set_current_world_index(new_current_world_index: int) -> void:
-	current_world_index = new_current_world_index
-	_level_button_holder.set_current_world_index(new_current_world_index)
-
-
-func get_current_world_index() -> int:
-	return _level_button_holder.get_current_world_index()
-
-
-func _on_MusicPlayer_music_preference_changed() -> void:
-	$MusicControl.refresh_sprite()
-
-
 func _on_CardControl_before_frog_found(card: CardControl) -> void:
 	emit_signal("before_frog_found", card)
 
@@ -83,7 +66,6 @@ func _on_CardControl_shark_found(card: CardControl) -> void:
 
 
 func _on_LevelButtons_level_pressed(level_index: int) -> void:
-	var world_index := get_current_world_index()
-	var world_string := "%s-%s" % [world_index, level_index]
+	var world_string := "%s-%s" % [PlayerData.world_index, level_index]
 	var difficulty: int = DIFFICULTY_BY_WORLD_STRING.get(world_string, GameplayPanel.GameDifficulty.EASY)
 	emit_signal("start_pressed", difficulty)

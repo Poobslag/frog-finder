@@ -1,14 +1,26 @@
-class_name PlayerData
 extends Node
 
+enum MusicPreference {
+	RANDOM,
+	MUSIC_1,
+	MUSIC_2,
+	MUSIC_3,
+	MUSIC_4,
+	MUSIC_5,
+	MUSIC_6,
+	OFF,
+}
+
 const DATA_FILENAME := "user://player-data.json"
+
+signal world_index_changed
+signal music_preference_changed
 
 export (NodePath) var _music_player_path: NodePath
 export (NodePath) var _main_menu_panel_path: NodePath
 
-onready var _music_player: MusicPlayer = get_node(_music_player_path)
-onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
-
+var world_index := 0 setget set_world_index
+var music_preference: int = MusicPreference.RANDOM setget set_music_preference
 var frog_count := 0
 var shark_count := 0
 var hardest_difficulty_cleared := -1
@@ -18,10 +30,24 @@ func _ready() -> void:
 	load_player_data()
 
 
+func set_world_index(new_world_index: int) -> void:
+	world_index = new_world_index
+	emit_signal("world_index_changed")
+
+
+func set_music_preference(new_music_preference: int) -> void:
+	music_preference = new_music_preference
+	emit_signal("music_preference_changed")
+
+
+func increment_music_preference() -> void:
+	set_music_preference((music_preference + 1) % MusicPreference.size())
+
+
 func save_player_data() -> void:
 	var new_save_json := {}
-	new_save_json["current_world"] = _main_menu_panel.current_world_index
-	new_save_json["music_preference"] = _music_player.music_preference
+	new_save_json["world"] = world_index
+	new_save_json["music_preference"] = music_preference
 	new_save_json["frog_count"] = frog_count
 	new_save_json["shark_count"] = shark_count
 	new_save_json["hardest_difficulty_cleared"] = hardest_difficulty_cleared
@@ -34,11 +60,10 @@ func load_player_data() -> void:
 		return
 	var save_text := get_file_as_text(DATA_FILENAME)
 	save_json = parse_json(save_text)
-	if save_json.has("current_world_index"):
-		_main_menu_panel.current_world_index = save_json["current_world_index"]
+	if save_json.has("world"):
+		set_world_index(int(save_json["world"]))
 	if save_json.has("music_preference"):
-		_music_player.music_preference = save_json["music_preference"]
-		_music_player.play_preferred_song()
+		set_music_preference(int(save_json["music_preference"]))
 	if save_json.has("frog_count"):
 		frog_count = int(save_json["frog_count"])
 	if save_json.has("shark_count"):
