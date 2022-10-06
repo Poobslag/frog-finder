@@ -1,5 +1,11 @@
 extends Node
 
+enum MissionResult {
+	NONE,
+	SHARK,
+	FROG,
+}
+
 enum MusicPreference {
 	RANDOM,
 	MUSIC_1,
@@ -20,11 +26,23 @@ var world_index := 0 setget set_world_index
 var music_preference: int = MusicPreference.RANDOM setget set_music_preference
 var frog_count := 0
 var shark_count := 0
-var hardest_difficulty_cleared := -1
+
+## key: (String) hyphenated mission ID like '1-3' or '4-1'
+## value: (int) enum from MissionResult defining the mission result
+var missions_cleared := {}
+
 var save_json := {}
 
 func _ready() -> void:
 	load_player_data()
+
+
+func set_mission_cleared(mission_string: String, mission_result: int) -> void:
+	missions_cleared[mission_string] = mission_result
+
+
+func get_mission_cleared(mission_string: String) -> int:
+	return missions_cleared.get(mission_string, MissionResult.NONE)
 
 
 func set_world_index(new_world_index: int) -> void:
@@ -47,7 +65,8 @@ func save_player_data() -> void:
 	new_save_json["music_preference"] = music_preference
 	new_save_json["frog_count"] = frog_count
 	new_save_json["shark_count"] = shark_count
-	new_save_json["hardest_difficulty_cleared"] = hardest_difficulty_cleared
+	new_save_json["missions_cleared"] = missions_cleared
+	
 	if new_save_json != save_json:
 		write_file(DATA_FILENAME, JSON.print(new_save_json, "  "))
 
@@ -65,8 +84,10 @@ func load_player_data() -> void:
 		frog_count = int(save_json["frog_count"])
 	if save_json.has("shark_count"):
 		shark_count = int(save_json["shark_count"])
-	if save_json.has("hardest_difficulty_cleared"):
-		hardest_difficulty_cleared = int(save_json["hardest_difficulty_cleared"])
+	if save_json.has("missions_cleared"):
+		var new_missions_cleared: Dictionary = save_json["missions_cleared"]
+		_convert_float_values_to_ints(new_missions_cleared)
+		missions_cleared = new_missions_cleared
 
 
 static func file_exists(path: String) -> bool:
@@ -93,3 +114,13 @@ static func write_file(path: String, text: String) -> void:
 	f.open(path, f.WRITE)
 	f.store_string(text)
 	f.close()
+
+
+## Converts the float values in a Dictionary to int values.
+##
+## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
+## https://github.com/godotengine/godot/issues/9499
+static func _convert_float_values_to_ints(dict: Dictionary) -> void:
+	for key in dict:
+		if dict[key] is float:
+			dict[key] = int(dict[key])

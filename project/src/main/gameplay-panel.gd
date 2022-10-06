@@ -1,18 +1,15 @@
 class_name GameplayPanel
 extends Panel
 
-enum GameDifficulty {
-	EASY,
-	MEDIUM,
-	HARD,
-}
-
 signal before_shark_found(card)
 signal shark_found(card)
 signal before_frog_found(card)
 signal frog_found(card)
 
-var game_difficulty: int = GameDifficulty.EASY setget set_game_difficulty
+# a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
+var mission_string := "1-1" setget set_mission_string
+
+# difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
 var player_puzzle_difficulty := 0
 var player_streak := 0
 var _level_rules: LevelRules
@@ -35,12 +32,12 @@ onready var level_rules_scenes := [
 
 func _ready() -> void:
 	level_rules_scenes.shuffle()
-	_refresh_game_difficulty()
+	_refresh_mission_string()
 
 
-func set_game_difficulty(new_game_difficulty: int) -> void:
-	game_difficulty = new_game_difficulty
-	_refresh_game_difficulty()
+func set_mission_string(new_mission_string: String) -> void:
+	mission_string = new_mission_string
+	_refresh_mission_string()
 
 
 func show_puzzle() -> void:
@@ -67,29 +64,33 @@ func reset() -> void:
 	_level_cards.reset()
 
 
-func restart(new_game_difficulty: int) -> void:
-	set_game_difficulty(new_game_difficulty)
+func restart(new_mission_string: String) -> void:
+	set_mission_string(new_mission_string)
 	player_puzzle_difficulty = _start_difficulty
 	player_streak = 0
 
 
-func _refresh_game_difficulty() -> void:
+func _refresh_mission_string() -> void:
 	_max_puzzle_difficulty = 8
 	_shark_difficulty_decrease = 2
 	
-	match game_difficulty:
-		GameDifficulty.EASY:
+	match mission_string:
+		"1-1", "2-1", "3-1":
 			_start_difficulty = 0
 			_max_puzzle_difficulty = 4
 			_shark_difficulty_decrease = 4
-		GameDifficulty.MEDIUM:
+		"1-2", "2-2", "3-2":
 			_start_difficulty = 2
 			_max_puzzle_difficulty = 8
 			_shark_difficulty_decrease = 3
-		GameDifficulty.HARD:
+		"1-3", "2-3", "3-3":
 			_start_difficulty = 4
 			_max_puzzle_difficulty = 8
 			_shark_difficulty_decrease = 2
+		_:
+			_start_difficulty = 0
+			_max_puzzle_difficulty = 4
+			_shark_difficulty_decrease = 4
 
 
 func _on_LevelCards_frog_found(card: CardControl) -> void:

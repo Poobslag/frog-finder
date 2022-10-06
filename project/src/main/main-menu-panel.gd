@@ -1,23 +1,12 @@
 class_name MainMenuPanel
 extends Panel
 
-signal start_pressed(difficulty)
+signal start_pressed(mission_string)
 signal before_frog_found(card)
 signal frog_found(card)
 signal before_shark_found(card)
 signal shark_found(card)
-
-const DIFFICULTY_BY_WORLD_STRING := {
-	"0-0": GameplayPanel.GameDifficulty.EASY,
-	"0-1": GameplayPanel.GameDifficulty.MEDIUM,
-	"0-2": GameplayPanel.GameDifficulty.HARD,
-	"1-0": GameplayPanel.GameDifficulty.EASY,
-	"1-1": GameplayPanel.GameDifficulty.MEDIUM,
-	"1-2": GameplayPanel.GameDifficulty.HARD,
-	"2-0": GameplayPanel.GameDifficulty.EASY,
-	"2-1": GameplayPanel.GameDifficulty.MEDIUM,
-	"2-2": GameplayPanel.GameDifficulty.HARD,
-}
+signal menu_shown
 
 onready var _game_state := $TitleGameState
 onready var _level_button_holder := $LevelButtonHolder
@@ -47,6 +36,8 @@ func show_menu() -> void:
 	
 	$Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
+	
+	emit_signal("menu_shown")
 
 
 func _on_CardControl_before_frog_found(card: CardControl) -> void:
@@ -66,6 +57,5 @@ func _on_CardControl_shark_found(card: CardControl) -> void:
 
 
 func _on_LevelButtons_level_pressed(level_index: int) -> void:
-	var world_string := "%s-%s" % [PlayerData.world_index, level_index]
-	var difficulty: int = DIFFICULTY_BY_WORLD_STRING.get(world_string, GameplayPanel.GameDifficulty.EASY)
-	emit_signal("start_pressed", difficulty)
+	var mission_string := "%s-%s" % [PlayerData.world_index + 1, level_index + 1]
+	emit_signal("start_pressed", mission_string)
