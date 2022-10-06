@@ -1,33 +1,35 @@
 extends Control
 
 const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
-	MusicPlayer.MusicPreference.RANDOM: [0, 1],
-	MusicPlayer.MusicPreference.MUSIC_1: [2, 3],
-	MusicPlayer.MusicPreference.MUSIC_2: [4, 5],
-	MusicPlayer.MusicPreference.MUSIC_3: [6, 7],
-	MusicPlayer.MusicPreference.MUSIC_4: [8, 9],
-	MusicPlayer.MusicPreference.MUSIC_5: [10, 11],
-	MusicPlayer.MusicPreference.MUSIC_6: [12, 13],
-	MusicPlayer.MusicPreference.OFF: [14, 15],
+	PlayerData.MusicPreference.RANDOM: [0, 1],
+	PlayerData.MusicPreference.MUSIC_1: [2, 3],
+	PlayerData.MusicPreference.MUSIC_2: [4, 5],
+	PlayerData.MusicPreference.MUSIC_3: [6, 7],
+	PlayerData.MusicPreference.MUSIC_4: [8, 9],
+	PlayerData.MusicPreference.MUSIC_5: [10, 11],
+	PlayerData.MusicPreference.MUSIC_6: [12, 13],
+	PlayerData.MusicPreference.OFF: [14, 15],
 }
 
-export (NodePath) var music_player_path: NodePath
-
 onready var _sprite: WiggleSprite = $Sprite
-onready var _music_player := get_node(music_player_path)
 
 func _ready() -> void:
-	refresh_sprite()
+	_refresh_sprite()
+	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
 
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
-		_music_player.increment_music_preference()
+		PlayerData.increment_music_preference()
 
 
-func refresh_sprite() -> void:
+func _refresh_sprite() -> void:
 	if not is_inside_tree():
 		return
 	
-	_sprite.wiggle_frames = WIGGLE_FRAMES_BY_MUSIC_PREFERENCE[_music_player.music_preference]
+	_sprite.wiggle_frames = WIGGLE_FRAMES_BY_MUSIC_PREFERENCE[PlayerData.music_preference]
 	_sprite.assign_wiggle_frame()
+
+
+func _on_PlayerData_music_preference_changed() -> void:
+	_refresh_sprite()

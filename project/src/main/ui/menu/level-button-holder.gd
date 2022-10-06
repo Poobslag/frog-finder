@@ -1,36 +1,44 @@
 extends Control
 
 func _ready() -> void:
-	_refresh_world_index(get_current_world_index())
+	_refresh_world_index()
+	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
 
 
-func set_current_world_index(new_current_world_index: int) -> void:
-	new_current_world_index = int(clamp(new_current_world_index, 0, get_child_count()))
-	_refresh_world_index(new_current_world_index)
+## Ensure exactly one set of world buttons is visible.
+func _refresh_world_index() -> void:
+	var new_world_index := PlayerData.world_index
+	if new_world_index == -1:
+		new_world_index = 0
+	
+	for i in range(get_child_count()):
+		get_child(i).visible = true if i == new_world_index else false
 
 
-func get_current_world_index() -> int:
+## Returns the currently visible child index, which is used instead of world index in some cases.
+##
+## The visible child index should almost always match the world index unless there is a bug. But if there is a bug,
+## it's possible our 3rd child will be visible when the world index is 5. Rather than letting the player advance the
+## world index to 6, 7, and 8 -- we recalculate the new world index based on the current visible child, not the current
+## world index.
+func _current_visible_child_index() -> int:
 	var result := -1
 	for i in range(get_child_count()):
 		if get_child(i).visible:
 			result = i
+			break
 	return result
 
 
-## Ensure exactly one set of world buttons is visible.
-func _refresh_world_index(new_current_world_index: int) -> void:
-	if new_current_world_index == -1:
-		new_current_world_index = 0
-	
-	for i in range(get_child_count()):
-		get_child(i).visible = true if i == new_current_world_index else false
-
-
 func _on_LevelButtons_next_world_pressed() -> void:
-	var old_world_index := get_current_world_index()
-	set_current_world_index(old_world_index + 1)
+	var visible_child_index := _current_visible_child_index()
+	PlayerData.world_index = int(clamp(visible_child_index + 1, 0, get_child_count()))
 
 
 func _on_LevelButtons_prev_world_pressed() -> void:
-	var old_world_index := get_current_world_index()
-	set_current_world_index(old_world_index - 1)
+	var visible_child_index := _current_visible_child_index()
+	PlayerData.world_index = int(clamp(visible_child_index - 1, 0, get_child_count()))
+
+
+func _on_PlayerData_world_index_changed() -> void:
+	_refresh_world_index()

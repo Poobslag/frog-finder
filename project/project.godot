@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/music-player.gd"
 }, {
-"base": "Node",
-"class": "PlayerData",
-"language": "GDScript",
-"path": "res://src/main/player-data.gd"
-}, {
 "base": "Sprite",
 "class": "RunningFrog",
 "language": "GDScript",
@@ -101,7 +96,6 @@ _global_script_class_icons={
 "LevelRules": "",
 "MainMenuPanel": "",
 "MusicPlayer": "",
-"PlayerData": "",
 "RunningFrog": "",
 "RunningShark": "",
 "WiggleSprite": "",
@@ -118,6 +112,7 @@ config/version="1.05"
 [autoload]
 
 Utils="*res://src/main/utils.gd"
+PlayerData="*res://src/main/player-data.gd"
 
 [debug]
 

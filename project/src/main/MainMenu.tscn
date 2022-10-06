@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=1]
 [ext_resource path="res://assets/main/music/rainy-day-fr.ogg" type="AudioStream" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://src/main/Background.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/main/music/we-are-the-baddies.ogg" type="AudioStream" id=19]
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=38]
-[ext_resource path="res://src/main/player-data.gd" type="Script" id=42]
 
 [node name="Node2D" type="Control"]
 anchor_right = 1.0
@@ -42,12 +41,10 @@ _intermission_panel_path = NodePath("../IntermissionPanel")
 _hand_path = NodePath("../../Hand")
 _background_path = NodePath("../Background")
 _music_player_path = NodePath("../../MusicPlayer")
-_player_data_path = NodePath("../../PlayerData")
 
 [node name="Background" parent="Content" instance=ExtResource( 18 )]
 
 [node name="MainMenuPanel" parent="Content" instance=ExtResource( 4 )]
-player_data_path = NodePath("../../PlayerData")
 
 [node name="GameplayPanel" type="Panel" parent="Content"]
 visible = false
@@ -129,11 +126,6 @@ bus = "Music"
 
 [node name="FadeTween" type="Tween" parent="MusicPlayer"]
 
-[node name="PlayerData" type="Node" parent="."]
-script = ExtResource( 42 )
-_music_player_path = NodePath("../MusicPlayer")
-_main_menu_panel_path = NodePath("../Content/MainMenuPanel")
-
 [connection signal="before_frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_shark_found"]
 [connection signal="frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_frog_found"]
@@ -149,5 +141,4 @@ _main_menu_panel_path = NodePath("../Content/MainMenuPanel")
 [connection signal="shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_shark_found"]
 [connection signal="start_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_pressed"]
 [connection signal="finger_bitten" from="Hand" to="Content/MenuState" method="_on_Hand_finger_bitten"]
-[connection signal="music_preference_changed" from="MusicPlayer" to="Content/MainMenuPanel" method="_on_MusicPlayer_music_preference_changed"]
 [connection signal="tween_completed" from="MusicPlayer/FadeTween" to="MusicPlayer" method="_on_FadeTween_tween_completed"]
