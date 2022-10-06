@@ -14,20 +14,66 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-var card_positions_by_difficulty := {
-	GameplayPanel.GameDifficulty.EASY:
+const DEFAULT_CARD_POSITIONS := [
+	Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
+	Vector2(0.5, 1), Vector2(1.5, 1),
+	Vector2(1, 0),
+]
+
+var card_positions_by_mission_string := {
+	"1-1":
 		[
 			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
 			Vector2(0.5, 1), Vector2(1.5, 1),
 			Vector2(1, 0),
 		],
-	GameplayPanel.GameDifficulty.MEDIUM:
+	"1-2":
 		[
 			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
 			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
 			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
 		],
-	GameplayPanel.GameDifficulty.HARD:
+	"1-3":
+		[
+			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
+			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
+			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
+			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
+			Vector2(3.0, 3.0),
+		],
+	"2-1":
+		[
+			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
+			Vector2(0.5, 1), Vector2(1.5, 1),
+			Vector2(1, 0),
+		],
+	"2-2":
+		[
+			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
+			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
+			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
+		],
+	"2-3":
+		[
+			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
+			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
+			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
+			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
+			Vector2(3.0, 3.0),
+		],
+	"3-1":
+		[
+			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
+			Vector2(0.5, 1), Vector2(1.5, 1),
+			Vector2(1, 0),
+		],
+	"3-2":
+		[
+			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
+			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
+			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
+		],
+	"3-3":
 		[
 			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
 			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
@@ -58,11 +104,11 @@ func is_full() -> bool:
 	return next_card_index >= _intermission_cards.get_cards().size()
 
 
-func restart(game_difficulty: int) -> void:
+func restart(mission_string: String) -> void:
 	next_card_index = 0
 	cards.clear()
 	_intermission_cards.reset()
-	var card_positions: Array = card_positions_by_difficulty[game_difficulty]
+	var card_positions: Array = card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
 	for i in range(card_positions.size()):
 		var card := _intermission_cards.create_card()
 		_intermission_cards.add_card(card, card_positions[i])

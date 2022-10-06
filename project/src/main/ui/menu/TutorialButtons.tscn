@@ -52,7 +52,6 @@ icon_texture = ExtResource( 5 )
 icon_index = 5
 
 [node name="Level2" parent="." instance=ExtResource( 4 )]
-visible = false
 margin_left = 422.0
 margin_right = 502.0
 __meta__ = {
@@ -62,7 +61,6 @@ icon_texture = ExtResource( 5 )
 icon_index = 6
 
 [node name="Level3" parent="." instance=ExtResource( 4 )]
-visible = false
 margin_left = 502.0
 margin_right = 582.0
 __meta__ = {

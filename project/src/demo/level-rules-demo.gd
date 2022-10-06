@@ -6,7 +6,7 @@ export (PackedScene) var LevelRulesScene: PackedScene
 
 func _ready() -> void:
 	randomize()
-	_gameplay_panel.game_difficulty = GameplayPanel.GameDifficulty.HARD
+	_gameplay_panel.mission_string = "1-1"
 
 
 func _input(event: InputEvent) -> void:

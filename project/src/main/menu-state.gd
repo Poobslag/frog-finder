@@ -48,15 +48,14 @@ func _show_intermission_panel(card: CardControl) -> void:
 			yield(get_tree().create_timer(3.0), "timeout")
 			if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
 				_music_player.play_ending_song()
-			if PlayerData.hardest_difficulty_cleared < _gameplay_panel.game_difficulty:
-				PlayerData.hardest_difficulty_cleared = _gameplay_panel.game_difficulty
-				PlayerData.save_player_data()
-			match _gameplay_panel.game_difficulty:
-				GameplayPanel.GameDifficulty.HARD:
-					_intermission_panel.start_frog_hug_timer(3, 30)
-				GameplayPanel.GameDifficulty.MEDIUM:
+			match _gameplay_panel.mission_string:
+				"1-1", "2-1", "3-1":
+					_intermission_panel.start_frog_hug_timer(1, 5)
+				"1-2", "2-2", "3-2":
 					_intermission_panel.start_frog_hug_timer(2, 12)
-				GameplayPanel.GameDifficulty.EASY, _:
+				"1-3", "2-3", "3-3":
+					_intermission_panel.start_frog_hug_timer(3, 30)
+				_:
 					_intermission_panel.start_frog_hug_timer(1, 5)
 		else:
 			yield(get_tree().create_timer(3.0), "timeout")
@@ -68,12 +67,14 @@ func _end_intermission() -> void:
 		# we lose
 		_hide_panels()
 		_intermission_panel.reset() # free any sharks/frogs
+		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.SHARK)
 		PlayerData.save_player_data()
 		_main_menu_panel.show_menu()
 	elif _intermission_panel.is_full():
 		# we win
 		_hide_panels()
 		_intermission_panel.reset() # free any sharks/frogs
+		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.FROG)
 		PlayerData.save_player_data()
 		_main_menu_panel.show_menu()
 	else:
@@ -82,7 +83,7 @@ func _end_intermission() -> void:
 		_gameplay_panel.show_puzzle()
 
 
-func _on_MainMenuPanel_start_pressed(difficulty: int) -> void:
+func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
 	# save, in case the user changed their music preference
 	PlayerData.save_player_data()
 	
@@ -93,8 +94,8 @@ func _on_MainMenuPanel_start_pressed(difficulty: int) -> void:
 	
 	_hide_panels()
 	_hand.reset()
-	_intermission_panel.restart(difficulty)
-	_gameplay_panel.restart(difficulty)
+	_intermission_panel.restart(mission_string)
+	_gameplay_panel.restart(mission_string)
 	_gameplay_panel.show_puzzle()
 
 
