@@ -16,9 +16,6 @@ const DATA_FILENAME := "user://player-data.json"
 signal world_index_changed
 signal music_preference_changed
 
-export (NodePath) var _music_player_path: NodePath
-export (NodePath) var _main_menu_panel_path: NodePath
-
 var world_index := 0 setget set_world_index
 var music_preference: int = MusicPreference.RANDOM setget set_music_preference
 var frog_count := 0
