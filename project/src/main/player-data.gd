@@ -8,12 +8,9 @@ enum MissionResult {
 
 enum MusicPreference {
 	RANDOM,
-	MUSIC_1,
-	MUSIC_2,
-	MUSIC_3,
-	MUSIC_4,
-	MUSIC_5,
-	MUSIC_6,
+	MUSIC_1, # first song in each area; 'long song'
+	MUSIC_2, # second song in each area; 'short song'
+	MUSIC_3, # third song in each area; 'instrumental song'
 	OFF,
 }
 
@@ -76,9 +73,15 @@ func load_player_data() -> void:
 		return
 	var save_text := get_file_as_text(DATA_FILENAME)
 	save_json = parse_json(save_text)
+	
+	# backwards compatibility; music_preference used to range from 0-7
+	if save_json.has("music_preference") and int(save_json["music_preference"]) > MusicPreference.OFF:
+		save_json["music_preference"] = MusicPreference.RANDOM
+	
 	if save_json.has("world"):
 		set_world_index(int(save_json["world"]))
 	if save_json.has("music_preference"):
+		# handle old music preference; used to go from 0-7
 		set_music_preference(int(save_json["music_preference"]))
 	if save_json.has("frog_count"):
 		frog_count = int(save_json["frog_count"])

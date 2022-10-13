@@ -13,42 +13,72 @@ const FADE_IN_DURATION := 0.5
 var _current_song: AudioStreamPlayer
 var _position_by_song := {}
 
-onready var _songs_by_music_preference := {
-	PlayerData.MusicPreference.RANDOM: [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
-			$ImJustAFrog, $OneFrogTwoFrog, $RainyDayFrog],
-	PlayerData.MusicPreference.MUSIC_1: [$AWellTemperedFrog],
-	PlayerData.MusicPreference.MUSIC_2: [$CanYouFindTheFrog],
-	PlayerData.MusicPreference.MUSIC_3: [$HalfAFrog],
-	PlayerData.MusicPreference.MUSIC_4: [$ImJustAFrog],
-	PlayerData.MusicPreference.MUSIC_5: [$OneFrogTwoFrog],
-	PlayerData.MusicPreference.MUSIC_6: [$RainyDayFrog],
-	PlayerData.MusicPreference.OFF: [],
+onready var _default_songs := [
+	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
+]
+
+onready var _songs_by_world_index := {
+	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
+	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
+	2: [$StillCantFindTheFrog, $HalfAFrog, $SneakySneakyFrogInstrumental],
 }
 
-onready var _frog_songs := [$AWellTemperedFrog, $CanYouFindTheFrog, $HalfAFrog,
-		$ImJustAFrog, $OneFrogTwoFrog, $RainyDayFrog]
+onready var _frog_songs := [
+	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog, $HugFromAFrog,
+	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
+	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog
+]
+
 onready var _shark_song := $WeAreTheBaddies
 onready var _ending_song := $HugFromAFrog
 
 onready var _fade_tween := $FadeTween
 
+var random := RandomNumberGenerator.new()
+
 func _ready() -> void:
+	random.randomize()
 	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
+	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
 	play_preferred_song()
 
 
 func play_preferred_song() -> void:
-	var songs: Array = _songs_by_music_preference[PlayerData.music_preference]
+	var world_songs: Array = _songs_by_world_index.get(PlayerData.world_index, _default_songs)
+	match PlayerData.music_preference:
+		PlayerData.MusicPreference.MUSIC_1:
+			world_songs = [world_songs[0]]
+		PlayerData.MusicPreference.MUSIC_2:
+			world_songs = [world_songs[1]]
+		PlayerData.MusicPreference.MUSIC_3:
+			world_songs = [world_songs[2]]
+		PlayerData.MusicPreference.OFF:
+			world_songs = []
+		_, PlayerData.MusicPreference.RANDOM:
+			world_songs = world_songs.duplicate()
+	
 	var new_song: AudioStreamPlayer
-	if songs:
-		songs.shuffle()
-		
-		new_song = songs.pop_front()
-		# shuffle the song order, but put our song in the back
-		songs.shuffle()
-		songs.push_back(new_song)
-	else:
-		new_song = null
+	if world_songs.size() == 1:
+		new_song = world_songs[0]
+	elif world_songs.size() > 1:
+		if _current_song == world_songs[0]:
+			# playing the main song from this world; switch to a non-main song
+			new_song = world_songs[random.randi_range(1, world_songs.size() - 1)]
+		elif _current_song == world_songs[1] or _current_song == world_songs[2]:
+			# playing a non-main song from this world; switch to the main song
+			new_song = world_songs[0]
+		else:
+			var song_index := -1
+			for other_world_songs in _songs_by_world_index.values():
+				song_index = other_world_songs.find(_current_song)
+				if song_index != -1:
+					break
+			
+			if song_index == -1:
+				# playing no song, or a shark song, or something unusual
+				new_song = Utils.rand_value(world_songs)
+			else:
+				new_song = world_songs[song_index]
 	_play_song(new_song)
 
 
@@ -108,4 +138,8 @@ func _on_FadeTween_tween_completed(object: Object, key: NodePath) -> void:
 
 
 func _on_PlayerData_music_preference_changed() -> void:
+	play_preferred_song()
+
+
+func _on_PlayerData_world_index_changed() -> void:
 	play_preferred_song()

@@ -1,22 +1,14 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=1]
-[ext_resource path="res://assets/main/music/rainy-day-fr.ogg" type="AudioStream" id=2]
+[ext_resource path="res://src/main/MusicPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/MainMenuPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
 [ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=6]
-[ext_resource path="res://src/main/music-player.gd" type="Script" id=8]
-[ext_resource path="res://assets/main/music/a-well-tempered-fr.ogg" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/music/can-you-find-the-fr.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/music/one-frog-two-fr.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/main/music/half-a-fr.ogg" type="AudioStream" id=12]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=13]
-[ext_resource path="res://assets/main/music/hug-from-a-fr.ogg" type="AudioStream" id=14]
 [ext_resource path="res://src/main/IntermissionPanel.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/menu-state.gd" type="Script" id=16]
 [ext_resource path="res://src/main/Hand.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/Background.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/main/music/we-are-the-baddies.ogg" type="AudioStream" id=19]
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=38]
 
 [node name="Node2D" type="Control"]
@@ -83,42 +75,7 @@ margin_top = 49.9467
 margin_right = 132.325
 margin_bottom = 129.947
 
-[node name="MusicPlayer" type="Node" parent="."]
-script = ExtResource( 8 )
-
-[node name="AWellTemperedFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 9 )
-bus = "Music"
-
-[node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 10 )
-bus = "Music"
-
-[node name="HalfAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 12 )
-bus = "Music"
-
-[node name="HugFromAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 14 )
-bus = "Music"
-
-[node name="OneFrogTwoFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 11 )
-bus = "Music"
-
-[node name="RainyDayFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 2 )
-bus = "Music"
-
-[node name="ImJustAFrog" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 1 )
-bus = "Music"
-
-[node name="WeAreTheBaddies" type="AudioStreamPlayer" parent="MusicPlayer"]
-stream = ExtResource( 19 )
-bus = "Music"
-
-[node name="FadeTween" type="Tween" parent="MusicPlayer"]
+[node name="MusicPlayer" parent="." instance=ExtResource( 1 )]
 
 [connection signal="before_frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_shark_found"]
@@ -135,4 +92,3 @@ bus = "Music"
 [connection signal="shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_shark_found"]
 [connection signal="start_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_pressed"]
 [connection signal="finger_bitten" from="Hand" to="Content/MenuState" method="_on_Hand_finger_bitten"]
-[connection signal="tween_completed" from="MusicPlayer/FadeTween" to="MusicPlayer" method="_on_FadeTween_tween_completed"]
