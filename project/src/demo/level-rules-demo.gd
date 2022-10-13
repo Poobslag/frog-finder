@@ -22,6 +22,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _show_puzzle() -> void:
-	_gameplay_panel.level_rules_scenes = [LevelRulesScene]
+	_gameplay_panel.level_ids = ["evasive-touch"]
+	_gameplay_panel.level_rules_scenes_by_id = {"evasive-touch": LevelRulesScene}
 	_gameplay_panel.reset()
 	_gameplay_panel.show_puzzle()

@@ -23,3 +23,11 @@ static func assign_card_texture(sprite: Sprite, texture: Texture) -> void:
 	sprite.hframes = int(ceil(texture.get_width() / 160))
 	# warning-ignore:integer_division
 	sprite.vframes = int(ceil(texture.get_height() / 160))
+
+
+## Gets the substring after the first occurrence of a separator.
+static func substring_after(s: String, sep: String) -> String:
+	if not sep:
+		return s
+	var pos := s.find(sep)
+	return "" if pos == -1 else s.substr(pos + sep.length())

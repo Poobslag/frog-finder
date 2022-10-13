@@ -1,4 +1,7 @@
 extends LevelRules
+"""
+A series of words like 'FR_G' and 'S_ARK'. The player must guess which words spell 'frog'.
+"""
 
 var _cell_pos_to_revealed_letter := {}
 
