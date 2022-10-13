@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/a-well-tempered-frog-instrumental.ogg-028c9ebfabbca4d0a8b158feaec795ba.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/a-well-tempered-frog-instrumental.ogg"
+dest_files=[ "res://.import/a-well-tempered-frog-instrumental.ogg-028c9ebfabbca4d0a8b158feaec795ba.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

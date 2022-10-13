@@ -3,11 +3,8 @@ extends Control
 const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 	PlayerData.MusicPreference.RANDOM: [0, 1],
 	PlayerData.MusicPreference.MUSIC_1: [2, 3],
-	PlayerData.MusicPreference.MUSIC_2: [4, 5],
-	PlayerData.MusicPreference.MUSIC_3: [6, 7],
-	PlayerData.MusicPreference.MUSIC_4: [8, 9],
-	PlayerData.MusicPreference.MUSIC_5: [10, 11],
-	PlayerData.MusicPreference.MUSIC_6: [12, 13],
+	PlayerData.MusicPreference.MUSIC_2: [6, 7],
+	PlayerData.MusicPreference.MUSIC_3: [10, 11],
 	PlayerData.MusicPreference.OFF: [14, 15],
 }
 
