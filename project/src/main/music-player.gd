@@ -17,6 +17,8 @@ onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
+onready var _default_shark_song := $WeAreTheBaddies
+
 onready var _songs_by_world_index := {
 	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
 	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
@@ -26,10 +28,19 @@ onready var _songs_by_world_index := {
 onready var _frog_songs := [
 	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog, $HugFromAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
-	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog
+	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog,
 ]
 
-onready var _shark_song := $WeAreTheBaddies
+onready var _shark_songs := [
+	$GonnaEatYourStuff, $WeAreTheBaddies,
+]
+
+onready var _shark_song_by_world_index := {
+	0: $WeAreTheBaddies,
+	1: $GonnaEatYourStuff,
+	2: $GonnaEatYourStuff,
+}
+
 onready var _ending_song := $HugFromAFrog
 
 onready var _fade_tween := $FadeTween
@@ -103,7 +114,8 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 
 
 func play_shark_song() -> void:
-	_play_song(_shark_song)
+	var shark_song: AudioStreamPlayer = _shark_song_by_world_index.get(PlayerData.world_index, _default_shark_song)
+	_play_song(shark_song)
 
 
 func fade_out(duration := FADE_OUT_DURATION) -> void:
@@ -125,7 +137,7 @@ func play_ending_song() -> void:
 
 
 func is_playing_shark_song() -> bool:
-	return _current_song == _shark_song
+	return _current_song in _shark_songs
 
 
 func is_playing_frog_song() -> bool:

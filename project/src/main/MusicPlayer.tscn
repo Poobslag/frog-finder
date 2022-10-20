@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/main/music/a-well-tempered-frog-instrumental.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/music/sneaky-sneaky-frog-instrumental.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/im-just-a-frog-instrumental.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/main/music/gonna-eat-your-stuff.ogg" type="AudioStream" id=18]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 1 )
@@ -31,6 +32,10 @@ bus = "Music"
 
 [node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "Music"
+
+[node name="GonnaEatYourStuff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
 bus = "Music"
 
 [node name="HalfAFrog" type="AudioStreamPlayer" parent="."]
