@@ -1,4 +1,5 @@
 tool
+class_name ClickableIcon
 extends Control
 
 signal pressed

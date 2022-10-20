@@ -1,9 +1,9 @@
 extends Node
 
 enum MissionResult {
-	NONE,
-	SHARK,
-	FROG,
+	NONE, # The player has not finished this mission yet
+	SHARK, # The player finished the mission by getting eaten
+	FROG, # The player finished the mission by finding enough frogs
 }
 
 enum MusicPreference {
@@ -38,6 +38,13 @@ func set_mission_cleared(mission_string: String, mission_result: int) -> void:
 	missions_cleared[mission_string] = mission_result
 
 
+## Returns an enum from MissionResult for how the player did on a set of levels.
+##
+## Parameters:
+## 	'mission_string': A hyphenated mission ID like '1-3' or '4-1'.
+##
+## Result:
+## 	An enum from MissionResult specifying how the player did on a set of levels.
 func get_mission_cleared(mission_string: String) -> int:
 	return missions_cleared.get(mission_string, MissionResult.NONE)
 
