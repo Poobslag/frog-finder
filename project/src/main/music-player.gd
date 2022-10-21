@@ -32,13 +32,13 @@ onready var _frog_songs := [
 ]
 
 onready var _shark_songs := [
-	$GonnaEatYourStuff, $WeAreTheBaddies,
+	$WereGonnaEatYouUp, $WeAreTheBaddies,
 ]
 
 onready var _shark_song_by_world_index := {
 	0: $WeAreTheBaddies,
-	1: $GonnaEatYourStuff,
-	2: $GonnaEatYourStuff,
+	1: $WereGonnaEatYouUp,
+	2: $WereGonnaEatYouUp,
 }
 
 onready var _ending_song := $HugFromAFrog

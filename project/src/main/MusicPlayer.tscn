@@ -17,7 +17,7 @@
 [ext_resource path="res://assets/main/music/a-well-tempered-frog-instrumental.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/music/sneaky-sneaky-frog-instrumental.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/im-just-a-frog-instrumental.ogg" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/music/gonna-eat-your-stuff.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/main/music/were-gonna-eat-you-up.ogg" type="AudioStream" id=18]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 1 )
@@ -34,7 +34,7 @@ bus = "Music"
 stream = ExtResource( 7 )
 bus = "Music"
 
-[node name="GonnaEatYourStuff" type="AudioStreamPlayer" parent="."]
+[node name="WereGonnaEatYouUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 bus = "Music"
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/were-gonna-eat-you-up.ogg-0e41f711fe43a05c59aab5ff494cbfff.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/were-gonna-eat-you-up.ogg"
+dest_files=[ "res://.import/were-gonna-eat-you-up.ogg-0e41f711fe43a05c59aab5ff494cbfff.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
