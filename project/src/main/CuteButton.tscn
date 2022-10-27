@@ -17,7 +17,7 @@ icon_texture = ExtResource( 2 )
 position = Vector2( 40, 40 )
 texture = ExtResource( 2 )
 hframes = 4
-vframes = 4
+vframes = 3
 wiggle_frames = [ 0, 1 ]
 
 [node name="WowSprite" parent="." instance=ExtResource( 4 )]

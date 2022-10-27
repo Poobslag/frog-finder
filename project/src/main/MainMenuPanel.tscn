@@ -8,7 +8,7 @@
 [ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/main/music-notes-sheet.png" type="Texture" id=7]
 [ext_resource path="res://src/main/CardControl.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/ui/menu/World1Buttons.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/menu/World2Buttons.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/frog-frame-00-sheet.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/lizard-sheet.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/shark-frame-00-sheet.png" type="Texture" id=12]
@@ -16,8 +16,8 @@
 [ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=14]
 [ext_resource path="res://src/main/version-label.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=16]
-[ext_resource path="res://src/main/ui/menu/World2Buttons.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/main/ui/menu/TutorialButtons.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/ui/menu/World3Buttons.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/ui/menu/World1Buttons.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/menu/level-button-holder.gd" type="Script" id=20]
 
 [node name="MainMenuPanel" type="Panel" groups=["main_menu_panels"]]
@@ -165,7 +165,7 @@ wiggle_frames = [ 0, 1 ]
 position = Vector2( 204.054, 278.618 )
 texture = ExtResource( 14 )
 hframes = 4
-vframes = 4
+vframes = 3
 frame = 3
 wiggle_frames = [ 2, 3 ]
 
@@ -181,7 +181,7 @@ wiggle_frames = [ 4, 5 ]
 position = Vector2( 168.467, 380.326 )
 texture = ExtResource( 14 )
 hframes = 4
-vframes = 4
+vframes = 3
 frame = 6
 wiggle_frames = [ 6, 7 ]
 
@@ -197,7 +197,7 @@ wiggle_frames = [ 0, 1 ]
 position = Vector2( 824.588, 380.326 )
 texture = ExtResource( 14 )
 hframes = 4
-vframes = 4
+vframes = 3
 frame = 8
 wiggle_frames = [ 8, 9 ]
 
@@ -213,7 +213,7 @@ wiggle_frames = [ 4, 5 ]
 position = Vector2( 790.06, 278.618 )
 texture = ExtResource( 14 )
 hframes = 4
-vframes = 4
+vframes = 3
 frame = 4
 wiggle_frames = [ 4, 5 ]
 
@@ -223,12 +223,12 @@ anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 20 )
 
-[node name="TutorialButtons" parent="LevelButtonHolder" instance=ExtResource( 19 )]
+[node name="World1Buttons" parent="LevelButtonHolder" instance=ExtResource( 19 )]
 
-[node name="World1Buttons" parent="LevelButtonHolder" instance=ExtResource( 9 )]
+[node name="World2Buttons" parent="LevelButtonHolder" instance=ExtResource( 9 )]
 visible = false
 
-[node name="World2Buttons" parent="LevelButtonHolder" instance=ExtResource( 17 )]
+[node name="World3Buttons" parent="LevelButtonHolder" instance=ExtResource( 17 )]
 visible = false
 
 [node name="TitleGameState" type="Node" parent="."]
@@ -261,12 +261,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="level_pressed" from="LevelButtonHolder/TutorialButtons" to="." method="_on_LevelButtons_level_pressed"]
-[connection signal="next_world_pressed" from="LevelButtonHolder/TutorialButtons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
-[connection signal="prev_world_pressed" from="LevelButtonHolder/TutorialButtons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
 [connection signal="level_pressed" from="LevelButtonHolder/World1Buttons" to="." method="_on_LevelButtons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
 [connection signal="prev_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
 [connection signal="level_pressed" from="LevelButtonHolder/World2Buttons" to="." method="_on_LevelButtons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
 [connection signal="prev_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
+[connection signal="level_pressed" from="LevelButtonHolder/World3Buttons" to="." method="_on_LevelButtons_level_pressed"]
+[connection signal="next_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
+[connection signal="prev_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]

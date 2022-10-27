@@ -57,5 +57,5 @@ func _on_CardControl_shark_found(card: CardControl) -> void:
 
 
 func _on_LevelButtons_level_pressed(level_index: int) -> void:
-	var mission_string := "%s-%s" % [PlayerData.world_index + 1, level_index + 1]
+	var mission_string := Utils.mission_string(PlayerData.world_index, level_index)
 	emit_signal("start_pressed", mission_string)

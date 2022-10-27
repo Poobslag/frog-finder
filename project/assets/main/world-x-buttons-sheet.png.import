@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon-sheet.png-e007972cdf150d9f529ddb4898af913a.stex"
+path="res://.import/world-x-buttons-sheet.png-fc0a84e939e5f7c7c1676cde6b9fc75b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/icon-sheet.png"
-dest_files=[ "res://.import/icon-sheet.png-e007972cdf150d9f529ddb4898af913a.stex" ]
+source_file="res://assets/main/world-x-buttons-sheet.png"
+dest_files=[ "res://.import/world-x-buttons-sheet.png-fc0a84e939e5f7c7c1676cde6b9fc75b.stex" ]
 
 [params]
 
