@@ -52,105 +52,121 @@ hframes = 4
 vframes = 2
 wiggle_frames = [ 0, 1 ]
 
-[node name="Card1F" parent="." instance=ExtResource( 8 )]
+[node name="Title" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = 462.0
+margin_bottom = 250.0
+
+[node name="Card1F" parent="Title" instance=ExtResource( 8 )]
 margin_left = 300.545
 margin_top = 52.0022
 margin_right = 380.545
 margin_bottom = 132.002
 card_front_type = 4
 card_front_details = "f1"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card1R" parent="." instance=ExtResource( 8 )]
+[node name="Card1R" parent="Title" instance=ExtResource( 8 )]
 margin_left = 380.545
 margin_top = 52.0022
 margin_right = 460.545
 margin_bottom = 132.002
 card_front_type = 4
 card_front_details = "r1"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card1O" parent="." instance=ExtResource( 8 )]
+[node name="Card1O" parent="Title" instance=ExtResource( 8 )]
 margin_left = 460.545
 margin_top = 52.0022
 margin_right = 540.545
 margin_bottom = 132.002
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card1G" parent="." instance=ExtResource( 8 )]
+[node name="Card1G" parent="Title" instance=ExtResource( 8 )]
 margin_left = 540.545
 margin_top = 52.0022
 margin_right = 620.545
 margin_bottom = 132.002
 card_front_type = 4
 card_front_details = "g"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2F" parent="." instance=ExtResource( 8 )]
+[node name="Card2F" parent="Title" instance=ExtResource( 8 )]
 margin_left = 220.956
 margin_top = 134.523
 margin_right = 300.956
 margin_bottom = 214.523
 card_front_type = 4
 card_front_details = "f2"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2I" parent="." instance=ExtResource( 8 )]
+[node name="Card2I" parent="Title" instance=ExtResource( 8 )]
 margin_left = 300.956
 margin_top = 134.523
 margin_right = 380.956
 margin_bottom = 214.523
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2N" parent="." instance=ExtResource( 8 )]
+[node name="Card2N" parent="Title" instance=ExtResource( 8 )]
 margin_left = 380.956
 margin_top = 134.523
 margin_right = 460.956
 margin_bottom = 214.523
 card_front_type = 4
 card_front_details = "n"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2D" parent="." instance=ExtResource( 8 )]
+[node name="Card2D" parent="Title" instance=ExtResource( 8 )]
 margin_left = 460.956
 margin_top = 134.523
 margin_right = 540.956
 margin_bottom = 214.523
 card_front_type = 4
 card_front_details = "d"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2E" parent="." instance=ExtResource( 8 )]
+[node name="Card2E" parent="Title" instance=ExtResource( 8 )]
 margin_left = 540.956
 margin_top = 134.523
 margin_right = 620.956
 margin_bottom = 214.523
 card_front_type = 4
 card_front_details = "e"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2R" parent="." instance=ExtResource( 8 )]
+[node name="Card2R" parent="Title" instance=ExtResource( 8 )]
 margin_left = 620.956
 margin_top = 134.523
 margin_right = 700.956
 margin_bottom = 214.523
 card_front_type = 4
 card_front_details = "r2"
-game_state_path = NodePath("../TitleGameState")
+game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Instructions" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = 462.0
+margin_bottom = 250.0
 mouse_filter = 2
 
 [node name="Frog" parent="Instructions" instance=ExtResource( 6 )]
@@ -218,8 +234,14 @@ frame = 4
 wiggle_frames = [ 4, 5 ]
 
 [node name="LevelButtonHolder" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = 462.0
+margin_bottom = 250.0
 mouse_filter = 2
 script = ExtResource( 20 )
 

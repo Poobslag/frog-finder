@@ -12,8 +12,8 @@ onready var _game_state := $TitleGameState
 onready var _level_button_holder := $LevelButtonHolder
 
 onready var _all_cards := [
-	$Card1F, $Card1R, $Card1O, $Card1G,
-	$Card2F, $Card2I, $Card2N, $Card2D, $Card2E, $Card2R,
+	$Title/Card1F, $Title/Card1R, $Title/Card1O, $Title/Card1G,
+	$Title/Card2F, $Title/Card2I, $Title/Card2N, $Title/Card2D, $Title/Card2E, $Title/Card2R,
 ]
 
 func _ready() -> void:
@@ -24,18 +24,18 @@ func _ready() -> void:
 		card.connect("before_shark_found", self, "_on_CardControl_before_shark_found", [card])
 		card.connect("shark_found", self, "_on_CardControl_shark_found", [card])
 	
-	for card in [$Card1O, $Card2I]:
+	for card in [$Title/Card1O, $Title/Card2I]:
 		card.hide_front()
 
 
 func show_menu() -> void:
 	visible = true
 	_game_state.reset()
-	$Card1O.reset()
-	$Card2I.reset()
+	$Title/Card1O.reset()
+	$Title/Card2I.reset()
 	
-	$Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
-	$Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
+	$Title/Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
+	$Title/Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	
 	emit_signal("menu_shown")
 
