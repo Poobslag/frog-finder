@@ -22,7 +22,6 @@ var _key_disp = NO_SHORTCUT
 
 var _modifier_keys = [KEY_ALT, KEY_CONTROL, KEY_META, KEY_SHIFT]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_unhandled_key_input(false)
 

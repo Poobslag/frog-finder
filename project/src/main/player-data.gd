@@ -72,13 +72,13 @@ func save_player_data() -> void:
 	new_save_json["missions_cleared"] = missions_cleared
 	
 	if new_save_json != save_json:
-		write_file(DATA_FILENAME, JSON.print(new_save_json, "  "))
+		FileUtils.write_file(DATA_FILENAME, JSON.print(new_save_json, "  "))
 
 
 func load_player_data() -> void:
-	if not file_exists(DATA_FILENAME):
+	if not FileUtils.file_exists(DATA_FILENAME):
 		return
-	var save_text := get_file_as_text(DATA_FILENAME)
+	var save_text := FileUtils.get_file_as_text(DATA_FILENAME)
 	save_json = parse_json(save_text)
 	
 	# backwards compatibility; music_preference used to range from 0-7
@@ -98,32 +98,6 @@ func load_player_data() -> void:
 		var new_missions_cleared: Dictionary = save_json["missions_cleared"]
 		_convert_float_values_to_ints(new_missions_cleared)
 		missions_cleared = new_missions_cleared
-
-
-static func file_exists(path: String) -> bool:
-	var f := File.new()
-	var exists := f.file_exists(path)
-	f.close()
-	return exists
-
-
-static func get_file_as_text(path: String) -> String:
-	if not file_exists(path):
-		push_error("File not found: %s" % path)
-		return ""
-	
-	var f := File.new()
-	f.open(path, File.READ)
-	var text := f.get_as_text()
-	f.close()
-	return text
-
-
-static func write_file(path: String, text: String) -> void:
-	var f := File.new()
-	f.open(path, f.WRITE)
-	f.store_string(text)
-	f.close()
 
 
 ## Converts the float values in a Dictionary to int values.

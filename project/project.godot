@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/menu/clickable-icon.gd"
 }, {
+"base": "Reference",
+"class": "FileUtils",
+"language": "GDScript",
+"path": "res://src/main/file-utils.gd"
+}, {
 "base": "Node",
 "class": "GameState",
 "language": "GDScript",
@@ -89,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/running-shark.gd"
 }, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://src/main/utils.gd"
+}, {
 "base": "Sprite",
 "class": "WiggleSprite",
 "language": "GDScript",
@@ -103,6 +113,7 @@ _global_script_class_icons={
 "Background": "",
 "CardControl": "",
 "ClickableIcon": "",
+"FileUtils": "",
 "GameState": "",
 "GameplayPanel": "",
 "GutHookScript": "",
@@ -116,6 +127,7 @@ _global_script_class_icons={
 "MusicPlayer": "",
 "RunningFrog": "",
 "RunningShark": "",
+"Utils": "",
 "WiggleSprite": "",
 "WiggleTimer": ""
 }
