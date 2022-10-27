@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
@@ -17,8 +17,12 @@
 [ext_resource path="res://src/main/version-label.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=16]
 [ext_resource path="res://src/main/ui/menu/World3Buttons.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world-decoration-holder.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/menu/World1Buttons.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/menu/level-button-holder.gd" type="Script" id=20]
+[ext_resource path="res://src/main/World2Decorations.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/World3Decorations.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/World1Decorations.tscn" type="PackedScene" id=23]
 
 [node name="MainMenuPanel" type="Panel" groups=["main_menu_panels"]]
 anchor_right = 1.0
@@ -29,6 +33,45 @@ margin_right = -50.0
 margin_bottom = -50.0
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 4 )
+
+[node name="WorldDecorationHolder" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = 462.0
+margin_bottom = 250.0
+mouse_filter = 2
+script = ExtResource( 18 )
+
+[node name="World1Decorations" parent="WorldDecorationHolder" instance=ExtResource( 23 )]
+
+[node name="Desk3" parent="WorldDecorationHolder/World1Decorations" index="0"]
+position = Vector2( 726.869, 184.027 )
+
+[node name="Desk4" parent="WorldDecorationHolder/World1Decorations" index="1"]
+position = Vector2( 834.012, 249.292 )
+
+[node name="Desk1" parent="WorldDecorationHolder/World1Decorations" index="2"]
+position = Vector2( 644.869, 239.027 )
+
+[node name="Desk2" parent="WorldDecorationHolder/World1Decorations" index="3"]
+position = Vector2( 752.012, 304.292 )
+
+[node name="Bag" parent="WorldDecorationHolder/World1Decorations" index="4"]
+position = Vector2( 574.803, 265.536 )
+
+[node name="Globe" parent="WorldDecorationHolder/World1Decorations" index="5"]
+position = Vector2( 300.584, 259.331 )
+
+[node name="Chalkboard" parent="WorldDecorationHolder/World1Decorations" index="6"]
+position = Vector2( 112.301, 217.301 )
+
+[node name="World2Decorations" parent="WorldDecorationHolder" instance=ExtResource( 21 )]
+
+[node name="World3Decorations" parent="WorldDecorationHolder" instance=ExtResource( 22 )]
 
 [node name="MusicControl" type="Control" parent="."]
 margin_left = 25.0
@@ -293,3 +336,5 @@ __meta__ = {
 [connection signal="level_pressed" from="LevelButtonHolder/World3Buttons" to="." method="_on_LevelButtons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
 [connection signal="prev_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
+
+[editable path="WorldDecorationHolder/World1Decorations"]
