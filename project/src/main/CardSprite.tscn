@@ -6,7 +6,7 @@
 
 [node name="CardBack" type="Sprite"]
 position = Vector2( 40, 40 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 2 )
 hframes = 8
 vframes = 2
