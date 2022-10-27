@@ -22,14 +22,14 @@ script = ExtResource( 4 )
 
 [node name="Left" type="Sprite" parent="WideWowSprite"]
 position = Vector2( 40, 40 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 6 )
 hframes = 8
 vframes = 2
 
 [node name="Right" type="Sprite" parent="WideWowSprite"]
 position = Vector2( 420, 40 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 6 )
 hframes = 8
 vframes = 2
