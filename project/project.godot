@@ -34,6 +34,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/gameplay-panel.gd"
 }, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+}, {
 "base": "Control",
 "class": "Hand",
 "language": "GDScript",
@@ -95,6 +105,8 @@ _global_script_class_icons={
 "ClickableIcon": "",
 "GameState": "",
 "GameplayPanel": "",
+"GutHookScript": "",
+"GutTest": "",
 "Hand": "",
 "HandSprite": "",
 "IntermissionPanel": "",
@@ -117,8 +129,8 @@ config/version="1.05"
 
 [autoload]
 
-Utils="*res://src/main/utils.gd"
 PlayerData="*res://src/main/player-data.gd"
+CardArrangements="*res://src/main/card-arrangements.gd"
 
 [debug]
 
@@ -128,6 +140,10 @@ gdscript/warnings/return_value_discarded=false
 
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [global]
 
