@@ -61,6 +61,7 @@ margin_left = -462.0
 margin_top = -250.0
 margin_right = 462.0
 margin_bottom = 250.0
+mouse_filter = 2
 
 [node name="Card1F" parent="Title" instance=ExtResource( 8 )]
 margin_left = 300.545
