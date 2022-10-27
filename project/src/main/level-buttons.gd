@@ -42,7 +42,7 @@ func _on_MainMenuPanel_menu_shown() -> void:
 			PlayerData.MissionResult.FROG:
 				level_button.icon_index = level_index * 3 + 2
 	
-	var boss_mission := Utils.mission_string(world_index + 1, 2 + 1)
+	var boss_mission := Utils.mission_string(world_index, 2)
 	if PlayerData.get_mission_cleared(boss_mission) != PlayerData.MissionResult.NONE \
 			and get_index() < get_parent().get_child_count() - 1:
 		next_button.visible = true
