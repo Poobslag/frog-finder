@@ -14,75 +14,6 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-const DEFAULT_CARD_POSITIONS := [
-	Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
-	Vector2(0.5, 1), Vector2(1.5, 1),
-	Vector2(1, 0),
-]
-
-var card_positions_by_mission_string := {
-	"1-1":
-		[
-			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
-			Vector2(0.5, 1), Vector2(1.5, 1),
-			Vector2(1, 0),
-		],
-	"1-2":
-		[
-			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
-			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
-			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
-		],
-	"1-3":
-		[
-			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
-			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
-			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
-			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
-			Vector2(3.0, 3.0),
-		],
-	"2-1":
-		[
-			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
-			Vector2(0.5, 1), Vector2(1.5, 1),
-			Vector2(1, 0),
-		],
-	"2-2":
-		[
-			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
-			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
-			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
-		],
-	"2-3":
-		[
-			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
-			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
-			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
-			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
-			Vector2(3.0, 3.0),
-		],
-	"3-1":
-		[
-			Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
-			Vector2(0.5, 1), Vector2(1.5, 1),
-			Vector2(1, 0),
-		],
-	"3-2":
-		[
-			Vector2(1, 2), Vector2(2, 2), Vector2(3, 2),
-			Vector2(3.5, 1), Vector2(2.5, 1), Vector2(1.5, 1), Vector2(0.5, 1),
-			Vector2(0, 0), Vector2(4, 0), Vector2(2, 0),
-		],
-	"3-3":
-		[
-			Vector2(2.5, 2.0), Vector2(2.0, 3.0), Vector2(1.5, 2.0), Vector2(1.0, 3.0),
-			Vector2(0.5, 2.0), Vector2(0.0, 1.0), Vector2(0.5, 0.0), Vector2(1.5, 0.0),
-			Vector2(2.0, 1.0), Vector2(3.0, 1.0), Vector2(3.5, 0.0), Vector2(4.5, 0.0),
-			Vector2(5.0, 1.0), Vector2(4.5, 2.0), Vector2(4.0, 3.0), Vector2(3.5, 2.0),
-			Vector2(3.0, 3.0),
-		],
-}
-
 var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
@@ -108,7 +39,7 @@ func restart(mission_string: String) -> void:
 	next_card_index = 0
 	cards.clear()
 	_intermission_cards.reset()
-	var card_positions: Array = card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
+	var card_positions: Array = CardArrangements.get_card_positions(mission_string)
 	for i in range(card_positions.size()):
 		var card := _intermission_cards.create_card()
 		_intermission_cards.add_card(card, card_positions[i])

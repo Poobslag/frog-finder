@@ -1,5 +1,6 @@
 tool
-extends Node
+class_name Utils
+## Contains global utilities.
 
 ## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
 static func key_scancode(event: InputEvent) -> int:
