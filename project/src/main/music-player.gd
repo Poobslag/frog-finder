@@ -28,7 +28,7 @@ onready var _songs_by_world_index := {
 onready var _frog_songs := [
 	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog, $HugFromAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
-	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog,
+	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog, $TakeComfortInYourFrog,
 ]
 
 onready var _shark_songs := [

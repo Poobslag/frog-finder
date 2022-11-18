@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/main/music/sneaky-sneaky-frog-instrumental.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/im-just-a-frog-instrumental.ogg" type="AudioStream" id=17]
 [ext_resource path="res://assets/main/music/were-gonna-eat-you-up.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/main/music/take-comfort-in-your-fr.ogg" type="AudioStream" id=19]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 1 )
@@ -84,6 +85,10 @@ bus = "Music"
 
 [node name="StillCantFindTheFrog" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+bus = "Music"
+
+[node name="TakeComfortInYourFrog" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
 bus = "Music"
 
 [node name="WeAreTheBaddies" type="AudioStreamPlayer" parent="."]

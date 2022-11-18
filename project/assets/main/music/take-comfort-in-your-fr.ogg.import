@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/take-comfort-in-your-fr.ogg"
+dest_files=[ "res://.import/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
