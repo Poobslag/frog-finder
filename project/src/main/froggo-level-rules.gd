@@ -10,15 +10,6 @@ extends LevelRules
 ## 	4. Do not click any row with an 'A', 'H', 'K' or 'S' in any position.
 ## 	5. Do not click any row with an 'R' in the fourth position.
 ##  6. You may click any other cards.
-##
-## This script uses 'words' which are strings like "fRO+e/froge". The letters right of the slash are an unmodified
-## lower-case pseudo-word like 'froge' or 'sarkh'. The letters left of the slash correspond to the cards the player can
-## reveal, and can be any of the following:
-##
-## 	[A-Z]: A face-up card which shows a letter
-## 	[a-z]: A face-down card which hides a letter
-## 	[+]: A face-down card which hides a frog
-## 	[-]: A face-down card which hides a shark
 
 ## key: (Vector2) cell position of a card
 ## value: (String) letter to reveal when revealing the word the player clicked
@@ -29,52 +20,52 @@ var random := RandomNumberGenerator.new()
 ## Words which have frogs but aren't 'frog'. These should not have any letters in common with any troll_shark_words,
 ## except for the 'R' in the third position
 var troll_frog_words := [
-	"freg/freg",
-	"frig/frig",
-	"forg/forg",
-	"greg/greg",
-	"froge/froge",
-	"firgg/firgg",
-	"forge/forge",
-	"froog/froog",
-	"froggo/froggo",
+	"freg",
+	"frig",
+	"forg",
+	"greg",
+	"froge",
+	"firgg",
+	"forge",
+	"froog",
+	"froggo",
 ]
 
 ## Words which have sharks but aren't 'shark'. These should not have any letters in common with any troll_frog_words,
 ## except for the 'R' in the third position
 var troll_shark_words := [
-	"shak/shak",
-	"shrk/shrk",
-	"sark/sark",
-	"hark/hark",
-	"sarkh/sarkh",
-	"shrak/shrak",
-	"sahrk/sahrk",
-	"sherk/sherk",
+	"shak",
+	"shrk",
+	"sark",
+	"hark",
+	"sarkh",
+	"shrak",
+	"sahrk",
+	"sherk",
 ]
 
 ## Words which don't have frogs or sharks. These words are generally themed around the frog hiding, or the player
 ## making a mistake
 var troll_silly_words := [
-	"ha/ha",
-	"hi/hi",
-	"no/no",
-	"fake/fake",
-	"find/find",
-	"fond/fond",
-	"fish/fish",
-	"hide/hide",
-	"haha/haha",
-	"gone/gone",
-	"goof/goof",
-	"ohno/ohno",
-	"faker/faker",
-	"snore/snore",
-	"hidden/hidden",
-	"friend/friend",
-	"ignore/ignore",
-	"heehee/heehee",
-	"hahaha/hahaha",
+	"ha",
+	"hi",
+	"no",
+	"fake",
+	"find",
+	"fond",
+	"fish",
+	"hide",
+	"haha",
+	"gone",
+	"goof",
+	"ohno",
+	"faker",
+	"snore",
+	"hidden",
+	"friend",
+	"ignore",
+	"heehee",
+	"hahaha",
 ]
 
 func _ready() -> void:
@@ -91,137 +82,176 @@ func refresh_level_cards_path() -> void:
 
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
-	var words: Array
+	var aliaxes: Array
 	
 	match puzzle_difficulty:
 		0:
-			words = ["frog/frog", "shark/shark"]
-			words[0] = _reveal_letters(words[0], 3)
-			words[0] = _frogify_letters(words[0], 1.0)
-			words[1] = _reveal_letters(words[1], 4)
-			words[1] = _sharkify_letters(words[1], 0.0)
+			aliaxes = _aliaxes(["frog", "shark"])
+			aliaxes[0] = _reveal_letters(aliaxes[0], 3)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 1.0)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 4)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.0)
 		1:
-			words = ["frog/frog", "shark/shark"]
-			words[0] = _reveal_letters(words[0], 2)
-			words[0] = _frogify_letters(words[0], 0.8)
-			words[1] = _reveal_letters(words[1], random.randi_range(2, 3))
-			words[1] = _sharkify_letters(words[1], 0.5)
+			aliaxes = _aliaxes(["frog", "shark"])
+			aliaxes[0] = _reveal_letters(aliaxes[0], 2)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.8)
+			aliaxes[1] = _reveal_letters(aliaxes[1], random.randi_range(2, 3))
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
 		2:
-			words = ["frog/frog", "shark/shark"]
-			words[0] = _reveal_letters(words[0], 1)
-			words[0] = _frogify_letters(words[0], 0.6)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 1.0)
+			aliaxes = _aliaxes(["frog", "shark"])
+			aliaxes[0] = _reveal_letters(aliaxes[0], 1)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.6)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 1.0)
 		3:
-			# one troll word
-			words = ["frog/frog", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 1)
-			words[0] = _reveal_letters(words[0], random.randi_range(1, 2))
-			words[0] = _frogify_letters(words[0], 0.4)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 0.4)
-			words[2] = _reveal_letters(words[2], 2)
-			words[2] = _sharkify_letters(words[2], 0.4)
+			# one troll aliax
+			aliaxes = _aliaxes(["frog", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 1)
+			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.4)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.4)
+			aliaxes[2] = _reveal_letters(aliaxes[2], 2)
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.4)
 			
 			if randf() < 0.5:
-				words[1] = _troll_silly_word()
-				words[1] = _reveal_letters(words[1], 1)
+				aliaxes[1] = _troll_silly_aliax()
+				aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 		4:
-			# two troll words
-			words = ["frog/frog", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 2)
-			words[0] = _reveal_letters(words[0], random.randi_range(1, 2))
-			words[0] = _frogify_letters(words[0], 0.2)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 0.5)
-			words[2] = _reveal_letters(words[2], 2)
-			words[2] = _sharkify_letters(words[2], 0.5)
+			# two troll aliaxes
+			aliaxes = _aliaxes(["frog", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 2)
+			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.2)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
+			aliaxes[2] = _reveal_letters(aliaxes[2], 2)
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.5)
 		5:
-			# three troll words
-			words = ["frog/frog", "shark/shark", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 3)
-			words[0] = _reveal_letters(words[0], random.randi_range(1, 2))
-			words[0] = _frogify_letters(words[0], 0.0)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 0.6)
-			words[2] = _reveal_letters(words[2], random.randi_range(1, 2))
-			words[2] = _sharkify_letters(words[2], 0.6)
-			words[3] = _reveal_letters(words[3], 2)
-			words[3] = _sharkify_letters(words[3], 0.6)
+			# three troll aliaxes
+			aliaxes = _aliaxes(["frog", "shark", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 3)
+			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.6)
+			aliaxes[2] = _reveal_letters(aliaxes[2], random.randi_range(1, 2))
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.6)
+			aliaxes[3] = _reveal_letters(aliaxes[3], 2)
+			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.6)
 			
 			if randf() < 0.5:
-				words[3] = _troll_silly_word()
-				words[3] = _reveal_letters(words[3], 1)
+				aliaxes[3] = _troll_silly_aliax()
+				aliaxes[3] = _reveal_letters(aliaxes[3], 1)
 		6:
-			# four troll words
-			words = ["frog/frog", "shark/shark", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 4)
-			words[0] = _reveal_letters(words[0], 1)
-			words[0] = _frogify_letters(words[0], 0.0)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 0.7)
-			words[2] = _reveal_letters(words[2], 1)
-			words[2] = _sharkify_letters(words[2], 0.7)
-			words[3] = _reveal_letters(words[3], 1)
-			words[3] = _sharkify_letters(words[3], 0.7)
+			# four troll aliaxes
+			aliaxes = _aliaxes(["frog", "shark", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 4)
+			aliaxes[0] = _reveal_letters(aliaxes[0], 1)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.7)
+			aliaxes[2] = _reveal_letters(aliaxes[2], 1)
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.7)
+			aliaxes[3] = _reveal_letters(aliaxes[3], 1)
+			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.7)
 		7:
-			# four troll words
-			words = ["frog/frog", "shark/shark", "shark/shark", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 4)
-			words[0] = _reveal_letters(words[0], 1)
-			words[0] = _frogify_letters(words[0], 0.0)
-			words[1] = _reveal_letters(words[1], 1)
-			words[1] = _sharkify_letters(words[1], 0.8)
-			words[2] = _reveal_letters(words[2], 1)
-			words[2] = _sharkify_letters(words[2], 0.8)
-			words[3] = _reveal_letters(words[3], 1)
-			words[3] = _sharkify_letters(words[3], 0.8)
-			words[4] = _reveal_letters(words[4], 1)
-			words[4] = _sharkify_letters(words[4], 0.8)
+			# four troll aliaxes
+			aliaxes = _aliaxes(["frog", "shark", "shark", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 4)
+			aliaxes[0] = _reveal_letters(aliaxes[0], 1)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
+			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.8)
+			aliaxes[2] = _reveal_letters(aliaxes[2], 1)
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.8)
+			aliaxes[3] = _reveal_letters(aliaxes[3], 1)
+			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.8)
+			aliaxes[4] = _reveal_letters(aliaxes[4], 1)
+			aliaxes[4] = _sharkify_letters(aliaxes[4], 0.8)
 			
 			if randf() < 0.5:
-				words[4] = _troll_silly_word()
-				words[4] = _reveal_letters(words[4], 1)
+				aliaxes[4] = _troll_silly_aliax()
+				aliaxes[4] = _reveal_letters(aliaxes[4], 1)
 		8:
-			# four troll words; one with no letters revealed
-			words = ["frog/frog", "shark/shark", "shark/shark", "shark/shark", "shark/shark"]
-			words = _trollify_words(words, 4)
-			var hidden_word_index := randi() % 5
+			# four troll aliaxes; one with no letters revealed
+			aliaxes = _aliaxes(["frog", "shark", "shark", "shark", "shark"])
+			aliaxes = _trollify_aliaxes(aliaxes, 4)
+			var hidden_aliax_index := randi() % 5
 			for i in range(5):
-				# one word remains completely hidden
-				words[i] = _reveal_letters(words[i], 0 if hidden_word_index == i else 1)
-			words[0] = _frogify_letters(words[0], 0.0)
-			words[1] = _sharkify_letters(words[1], 0.9)
-			words[2] = _sharkify_letters(words[2], 0.9)
-			words[3] = _sharkify_letters(words[3], 0.9)
-			words[4] = _sharkify_letters(words[4], 0.9)
+				# one aliax remains completely hidden
+				aliaxes[i] = _reveal_letters(aliaxes[i], 0 if hidden_aliax_index == i else 1)
+			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
+			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.9)
+			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.9)
+			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.9)
+			aliaxes[4] = _sharkify_letters(aliaxes[4], 0.9)
 			
 			if randf() < 0.5:
-				words[4] = _troll_silly_word()
+				aliaxes[4] = _troll_silly_aliax()
 	
-	words.shuffle()
-	for i in range(words.size()):
-		var word_cell_pos := Vector2(Utils.randi_range(0, 2), i)
+	aliaxes.shuffle()
+	for i in range(aliaxes.size()):
+		var aliax_cell_pos := Vector2(Utils.randi_range(0, 2), i)
 		
-		# shift short words to the right to keep them centered
-		word_cell_pos.x += int(3 - words[i].length() / 2)
+		# shift short aliaxes to the right to keep them centered
+		aliax_cell_pos.x += int(3 - aliaxes[i].length() / 2)
 		
-		_add_word(words[i], word_cell_pos)
+		_add_aliax(aliaxes[i], aliax_cell_pos)
+
+
+## Converts a word into an 'aliax', a string like 'fRO+e/froge'.
+##
+## An aliax is a a string with two parts separated by a forward slash like 'fRO+e/froge'. The letters right of the
+## slash are an unmodified lower-case word like 'froge' or 'sarkh'. The letters left of the slash correspond to the
+## cards the player can reveal, and can be any of the following:
+##
+## 	[A-Z]: A face-up card which shows a letter
+## 	[a-z]: A face-down card which hides a letter
+## 	[+]: A face-down card which hides a frog
+## 	[-]: A face-down card which hides a shark
+##
+## Parameters:
+## 	'card_word': A mangled word which represents the frogs, sharks and letters to show the player
+##
+## 	'english_word': (Optional) A word which the cards spell if you ignore the frogs and sharks. If omitted, the card
+## 		word will be used for both parts of the aliax.
+##
+## Returns:
+## 	A new aliax like 'fRO+e/froge' which combines the specified words.
+func _aliax(card_word: String, english_word: String = "") -> String:
+	return "%s/%s" % [card_word, english_word if english_word else card_word]
+
+
+## Converts a list of words into 'aliaxes', strings like 'frog/frog'.
+##
+## See the documentation for the _aliax() function for more details.
+##
+## Parameters:
+## 	'words': A list of words to convert like ['frog', 'shark']
+##
+## Returns:
+## 	A list of aliaxes like ['frog/frog', 'shark/shark']
+func _aliaxes(words: Array) -> Array:
+	var result := []
+	for word in words:
+		result.append(_aliax(word))
+	return result
 
 
 ## Replaces lower-case (hidden) letters with upper-case (revealed) letters.
-func _reveal_letters(word: String, count: int) -> String:
-	var card_word := word.split("/")[0]
-	var english_word := word.split("/")[1]
+func _reveal_letters(aliax: String, count: int) -> String:
+	var card_word := aliax.split("/")[0]
+	var english_word := aliax.split("/")[1]
 	var letter_indexes := range(card_word.length())
 	letter_indexes.shuffle()
 	
 	# adjust the revealed letter count to account for edge cases
 	var actual_count := count
-	if count == 1 and word[letter_indexes[0]] == "r":
+	if count == 1 and aliax[letter_indexes[0]] == "r":
 		# if count is 1 and the third letter is an "R", it's ambiguous -- so reveal a different letter
 		letter_indexes.push_back(letter_indexes.pop_front())
-	if count == 0 and word[letter_indexes[0]] == "r":
+	if count == 0 and aliax[letter_indexes[0]] == "r":
 		# if count is 0 and the third letter is an "R", it's ambiguous -- so we can reveal it
 		actual_count = 1
 	
@@ -240,22 +270,22 @@ func _reveal_letters(word: String, count: int) -> String:
 		card_word.erase(i, 1)
 		card_word = card_word.insert(i, letter.to_upper())
 	
-	return "%s/%s" % [card_word, english_word]
+	return _aliax(card_word, english_word)
 
 
-## Replaces lower-case letters with frogs. At least one frog per word.
-func _frogify_letters(word: String, chance: float) -> String:
-	return _replace_letters(word, "+", chance)
+## Replaces lower-case letters with frogs. At least one frog per aliax.
+func _frogify_letters(aliax: String, chance: float) -> String:
+	return _replace_letters(aliax, "+", chance)
 
 
-## Replaces lower-case letters with sharks. At least one shark per word.
-func _sharkify_letters(word: String, chance: float) -> String:
-	return _replace_letters(word, "-", chance)
+## Replaces lower-case letters with sharks. At least one shark per aliax.
+func _sharkify_letters(aliax: String, chance: float) -> String:
+	return _replace_letters(aliax, "-", chance)
 
 
-func _replace_letters(word: String, replacement: String, chance: float) -> String:
-	var card_word := word.split("/")[0]
-	var english_word := word.split("/")[1]
+func _replace_letters(aliax: String, replacement: String, chance: float) -> String:
+	var card_word := aliax.split("/")[0]
+	var english_word := aliax.split("/")[1]
 	
 	var shark_count := 0
 	var letter_indexes := range(card_word.length())
@@ -267,45 +297,45 @@ func _replace_letters(word: String, replacement: String, chance: float) -> Strin
 				card_word.erase(i, 1)
 				card_word = card_word.insert(i, replacement)
 	
-	return "%s/%s" % [card_word, english_word]
+	return _aliax(card_word, english_word)
 
 
-## Replaces words with 'troll words'.
-func _trollify_words(words: Array, count: int) -> Array:
-	var troll_word_indexes := range(words.size())
-	troll_word_indexes.shuffle()
-	troll_word_indexes = troll_word_indexes.slice(0, count - 1)
-	for i in troll_word_indexes:
+## Replaces aliaxes with 'troll aliaxes'.
+func _trollify_aliaxes(aliaxes: Array, count: int) -> Array:
+	var troll_aliax_indexes := range(aliaxes.size())
+	troll_aliax_indexes.shuffle()
+	troll_aliax_indexes = troll_aliax_indexes.slice(0, count - 1)
+	for i in troll_aliax_indexes:
 		if i == 0:
-			words[i] = _troll_frog_word()
+			aliaxes[i] = _troll_frog_aliax()
 		else:
-			words[i] = _troll_shark_word()
+			aliaxes[i] = _troll_shark_aliax()
 	
-	return words
+	return aliaxes
 
 
-## Returns a random troll frog word.
-func _troll_frog_word() -> String:
-	return troll_frog_words[randi() % troll_frog_words.size()]
+## Returns a random troll frog aliax.
+func _troll_frog_aliax() -> String:
+	return _aliax(Utils.rand_value(troll_frog_words))
 
 
-## Returns a random troll shark word.
-func _troll_shark_word() -> String:
-	return troll_shark_words[randi() % troll_shark_words.size()]
+## Returns a random troll shark aliax.
+func _troll_shark_aliax() -> String:
+	return _aliax(Utils.rand_value(troll_shark_words))
 
 
-## Returns a random silly word that isn't a frog or a shark.
-func _troll_silly_word() -> String:
-	return troll_silly_words[randi() % troll_silly_words.size()]
+## Returns a random silly aliax that isn't a frog or a shark.
+func _troll_silly_aliax() -> String:
+	return _aliax(Utils.rand_value(troll_silly_words))
 
 
-func _add_word(word: String, word_cell_pos: Vector2) -> void:
-	var card_word := word.split("/")[0]
-	var english_word := word.split("/")[1]
+func _add_aliax(aliax: String, aliax_cell_pos: Vector2) -> void:
+	var card_word := aliax.split("/")[0]
+	var english_word := aliax.split("/")[1]
 	
 	for i in range(card_word.length()):
 		var letter: String = card_word[i]
-		var letter_cell_pos: Vector2 = word_cell_pos + Vector2(i, 0)
+		var letter_cell_pos: Vector2 = aliax_cell_pos + Vector2(i, 0)
 		var card := level_cards.create_card()
 		match(letter):
 			"+":
@@ -317,13 +347,13 @@ func _add_word(word: String, word_cell_pos: Vector2) -> void:
 				card.card_front_details = letter.to_lower()
 				if letter == letter.to_upper():
 					card.show_front()
-		if word_cell_pos.y == 1:
+		if aliax_cell_pos.y == 1:
 			card.card_back_details = "r"
 		level_cards.add_card(card, letter_cell_pos)
 		_cell_pos_to_revealed_letter[letter_cell_pos] = english_word[i]
 
 
-func _show_word(clicked_card: CardControl) -> void:
+func _show_aliax(clicked_card: CardControl) -> void:
 	var clicked_cell_pos := level_cards.get_cell_pos(clicked_card)
 	for cell_pos in _cell_pos_to_revealed_letter:
 		if cell_pos.y != clicked_cell_pos.y:
@@ -343,8 +373,8 @@ func _show_word(clicked_card: CardControl) -> void:
 
 
 func _on_LevelCards_before_frog_found(card: CardControl) -> void:
-	_show_word(card)
+	_show_aliax(card)
 
 
 func _on_LevelCards_before_shark_found(card: CardControl) -> void:
-	_show_word(card)
+	_show_aliax(card)
