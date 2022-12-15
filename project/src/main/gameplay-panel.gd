@@ -3,7 +3,7 @@ extends Panel
 ## Panel which shows the level the player is currently playing.
 
 ## List of level IDs to show if the mission is not found
-const _DEFAULT_LEVEL_IDS := ["froggo", "maze"]
+const DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 
 ## Dictionary of levels for each mission.
 ##
@@ -22,7 +22,7 @@ const _DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 ##
 ## key: (String) mission string
 ## value: (Array, String) level ids with an optional difficulty adjustment. '--' = very easy, '++' = very hard
-const _LEVEL_IDS_BY_MISSION_STRING := {
+const LEVEL_IDS_BY_MISSION_STRING := {
 	"1-1": ["froggo-", "maze-"],
 	"1-2": ["pattern-memory-", "word-find-"],
 	"1-3": ["froggo", "pattern-memory", "maze", "word-find", "secret-collect--"],
@@ -67,7 +67,7 @@ onready var level_rules_scenes_by_id := {
 	"fruit-maze": preload("res://src/main/FruitMazeRules.tscn"),
 }
 
-var level_ids := _DEFAULT_LEVEL_IDS
+var level_ids := DEFAULT_LEVEL_IDS
 
 func _ready() -> void:
 	_refresh_mission_string()
@@ -165,7 +165,7 @@ func _refresh_mission_string() -> void:
 			_max_puzzle_difficulty = 7
 			_shark_difficulty_decrease = 2
 	
-	level_ids = _LEVEL_IDS_BY_MISSION_STRING.get(mission_string, _DEFAULT_LEVEL_IDS)
+	level_ids = LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS)
 
 
 func _on_LevelCards_frog_found(card: CardControl) -> void:
