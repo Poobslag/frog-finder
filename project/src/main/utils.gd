@@ -15,6 +15,11 @@ static func rand_value(values: Array):
 	return values[randi() % values.size()]
 
 
+## Generates a pseudo-random 32-bit signed integer between from and to (inclusive).
+static func randi_range(from: int, to: int) -> int:
+	return randi() % (to + 1 - from) + from
+
+
 ## Updates a card sprite's texture, hframes and vframes.
 ##
 ## This method assumes each frame is 240x240, which is used for the small square frog finder cards.

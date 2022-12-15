@@ -201,7 +201,7 @@ func add_cards() -> void:
 	
 	words.shuffle()
 	for i in range(words.size()):
-		var word_cell_pos := Vector2(int(rand_range(0, 3)), i)
+		var word_cell_pos := Vector2(Utils.randi_range(0, 2), i)
 		
 		# shift short words to the right to keep them centered
 		word_cell_pos.x += int(3 - words[i].length() / 2)
