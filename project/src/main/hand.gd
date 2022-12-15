@@ -8,6 +8,12 @@ signal finger_bitten
 signal hug_finished
 
 var fingers := 3 setget set_fingers
+
+## Number of fingers remaining on the player's hand which can be bitten by sharks.
+##
+## If this number is 0 or greater, the player is in a chase and the hand shows the number of fingers remaining.
+##
+## If this number is -1, then the player is in a puzzle or on the main menu and the hand shows an index finger.
 var biteable_fingers := -1 setget set_biteable_fingers
 var huggable_fingers := 0 setget set_huggable_fingers
 var hugged_fingers := 0
@@ -34,6 +40,7 @@ func reset() -> void:
 	biteable_fingers = -1
 	huggable_fingers = 0
 	hugged_fingers = 0
+	_refresh_hand_sprite()
 
 
 func bite() -> void:

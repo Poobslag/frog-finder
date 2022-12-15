@@ -5,8 +5,7 @@ extends Node
 ## 	[B]: Bite a finger
 ## 	[3]: Restore all three fingers
 ## 	[=/-]: Change the number of biteable fingers
-## 	[brace right]: Maximize the number of huggable fingers
-## 	[brace left]: Minimize the number of huggable fingers
+## 	[brace keys]: Change the number of hugged fingers
 
 onready var _hand: Hand = $Hand
 
@@ -20,9 +19,9 @@ func _input(event: InputEvent) -> void:
 			_hand.set_biteable_fingers(1)
 			_hand.bite()
 		KEY_MINUS:
-			_hand.set_biteable_fingers(clamp(_hand.biteable_fingers - 1, -1, 3))
+			_hand.set_biteable_fingers(int(clamp(_hand.biteable_fingers - 1, -1, 3)))
 		KEY_EQUAL:
-			_hand.set_biteable_fingers(clamp(_hand.biteable_fingers + 1, -1, 3))
+			_hand.set_biteable_fingers(int(clamp(_hand.biteable_fingers + 1, -1, 3)))
 		KEY_3:
 			_hand.set_fingers(3)
 		KEY_BRACKETRIGHT:
