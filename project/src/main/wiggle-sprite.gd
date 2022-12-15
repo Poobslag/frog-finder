@@ -1,6 +1,8 @@
 tool
 class_name WiggleSprite
 extends Sprite
+## A sprite which alternates between two animation frames to give a squigglevision effect, emulating the effect of
+## sketchily hand-drawn animation.
 
 export (Array, int) var wiggle_frames := []
 

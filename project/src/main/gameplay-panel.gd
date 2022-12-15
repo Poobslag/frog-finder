@@ -1,6 +1,8 @@
 class_name GameplayPanel
 extends Panel
+## Panel which shows the level the player is currently playing.
 
+## List of level IDs to show if the mission is not found
 const _DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 
 ## Dictionary of levels for each mission.
@@ -39,10 +41,10 @@ signal shark_found(card)
 signal before_frog_found(card)
 signal frog_found(card)
 
-# a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
+## a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
 var mission_string := "1-1" setget set_mission_string
 
-# difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
+## difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
 var player_puzzle_difficulty := 0
 var player_streak := 0
 var _level_rules: LevelRules
@@ -53,6 +55,8 @@ var _start_difficulty := 0
 onready var _game_state := $GameState
 onready var _level_cards := $LevelCards
 
+## key: (String) level id
+## value: (PackedScene) scene with LevelRules for the specified level
 onready var level_rules_scenes_by_id := {
 	"secret-collect": preload("res://src/main/SecretCollectLevelRules.tscn"),
 	"froggo": preload("res://src/main/FroggoLevelRules.tscn"),

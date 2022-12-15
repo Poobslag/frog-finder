@@ -1,12 +1,19 @@
 extends LevelRules
+## Rules for 'word find', a level where the player must find the word 'frog' in a grid of letters.
+##
+## Rules:
+## 	1. Click a card which could spell 'frog' when combined with the surrounding row or column of letters. (Diagonals do
+## 		not count.)
+## 	2. Do not click any other cards.
 
 const ROW_COUNT := 6
 const COL_COUNT := 8
 
-var _cell_pos_to_revealed_letter := {}
-
 var random := RandomNumberGenerator.new()
 var _shark_chance: float = 0.5
+
+## key: (CardControl) card in the word 'frog' hidden in the word find
+## value: (bool) true
 var _frog_word_cards := {}
 
 func _ready() -> void:
@@ -22,8 +29,6 @@ func refresh_level_cards_path() -> void:
 
 
 func add_cards() -> void:
-	_cell_pos_to_revealed_letter.clear()
-	
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
 			var card := level_cards.create_card()

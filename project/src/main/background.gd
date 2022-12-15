@@ -1,11 +1,12 @@
 class_name Background
 extends Control
+## Draws the animal backdrop which appears behind the menus and puzzles.
 
 const TWEEN_DURATION := 2.5
 const BACKGROUND_COLOR := Color("3679a5")
 const TEXTURE_COLOR := Color("45a5e6")
 
-# the background texture at the front of the list is currently visible
+## TextureRect instances used for backgrounds. The texture at the front of the list is currently visible.
 onready var textures := [
 	$TextureRect1, $TextureRect2, $TextureRect3, $TextureRect4,
 	$TextureRect5, $TextureRect6, $TextureRect7, $TextureRect8,
@@ -19,22 +20,11 @@ onready var textures := [
 	$TextureRect37, $TextureRect38, $TextureRect39, $TextureRect40,
 ]
 
+## Hue values in the range [0, 1] used for backgrounds. The hue at the front of the list is currently visible.
 var hues := [
-	0.0,
-	0.05,
-	0.10,
-	0.15,
-	0.20,
-	0.30,
-	0.40,
-	0.50,
-	0.55,
-	0.60,
-	0.63,
-	0.66,
-	0.70,
-	0.75,
-	0.80,
+	0.0, 0.05, 0.10, 0.15, 0.20,
+	0.30, 0.40, 0.50, 0.55, 0.60,
+	0.63, 0.66, 0.70, 0.75, 0.80,
 	0.90,
 ]
 

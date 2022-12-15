@@ -1,5 +1,6 @@
 class_name CardControl
 extends Control
+## Shows a card. These cards can turn over to reveal frogs, sharks, fruit, or other surprises.
 
 enum CardType {
 	NONE,
@@ -14,6 +15,8 @@ enum CardType {
 	FRUIT,
 }
 
+## key: (String) card details string corresponding to letters
+## value: (Array, int) indexes which correspond to possible pairs of wiggle frames.
 const LETTER_INDEXES_BY_DETAILS := {
 	"a": [0],
 	"d": [1],
@@ -33,6 +36,8 @@ const LETTER_INDEXES_BY_DETAILS := {
 	"s": [13],
 }
 
+## key: (String) card details string corresponding to a set of cardinal directions
+## value: (Array, int) indexes which correspond to possible pairs of wiggle frames.
 const ARROW_INDEXES_BY_DETAILS := {
 	"": [0, 1],
 	"n": [2, 3, 4],
@@ -47,15 +52,18 @@ const ARROW_INDEXES_BY_DETAILS := {
 	"ew": [29, 30, 31],
 }
 
-# Hex arrows have six directions: north, south, east, forst, west, xeath.
-# They are referenced in that exact order for forks (southeast, northxeath, forstwest)
-#
-#    n
-# w  |  e
-#  \_|_/
-#  / | \
-# x  |  f
-#    s
+## Hex arrows have six directions: north, south, east, forst, west, xeath.
+## They are referenced in that exact order for forks (southeast, northxeath, forstwest)
+##
+##    n
+## w  |  e
+##  \_|_/
+##  / | \
+## x  |  f
+##    s
+##
+## key: (String) card details string corresponding to a set of hex directions
+## value: (Array, int) indexes which correspond to possible pairs of wiggle frames.
 const HEX_ARROW_INDEXES_BY_DETAILS := {
 	"": [0, 1],
 	"n": [2, 3, 4],
@@ -79,6 +87,9 @@ const HEX_ARROW_INDEXES_BY_DETAILS := {
 	"nsefwx": [46, 47],
 }
 
+## List of String card details string corresponding to fruit cards' contents.
+##
+## These strings are ordered to match fruit-sheet.png.
 const FRUIT_DETAILS := [
 	"apple",
 	"pear",
@@ -94,6 +105,8 @@ const FRUIT_DETAILS := [
 	"pretzel",
 ]
 
+## key: (String) card details string corresponding to the card back
+## value: (Array, int) indexes which correspond to possible pairs of wiggle frames.
 const MYSTERY_INDEXES_BY_DETAILS := {
 	"": [0, 1, 2, 3],
 	"b": [0, 1, 2, 3],

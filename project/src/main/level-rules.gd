@@ -1,5 +1,8 @@
 class_name LevelRules
 extends Node
+## Abstract class which represents a generic set of level rules.
+##
+## Subclasses should extend this script to define how cards are arranged and where to find the frog.
 
 export (NodePath) var level_cards_path: NodePath setget set_level_cards_path
 

@@ -1,4 +1,9 @@
 extends Node
+## Demonstrates a level's rules.
+##
+## Keys:
+## 	[space bar]: Generates a new puzzle.
+## 	[=/-]: Increases/decreases the puzzle difficulty and generates a new puzzle.
 
 onready var _gameplay_panel := $GameplayPanel
 

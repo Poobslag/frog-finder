@@ -1,11 +1,20 @@
 extends Sprite
+## Draws a part of the player's hand sprite.
+##
+## The hand is usually drawn as a single unit, but sometimes we draw separate parts of it. When a shark bites off a
+## finger, the finger detaches and is drawn as a separate sprite. When a frog hugs the player's hand, a heart sprite
+## appears and floats away. This sprite handles drawing both detached fingers and floating hearts.
 
+## key: (int) index of bitten finger
+## value: (Array, int) pair of wiggle frames to show when the finger is bitten
 const WIGGLE_FRAMES_BY_BITTEN_FINGER := {
 	0: [1, 2],
 	1: [3, 4],
 	2: [5, 6],
 }
 
+## key: (int) index of hugged finger
+## value: (Array, int) pair of wiggle frames to show when the finger is hugged
 const WIGGLE_FRAMES_BY_HUGGED_FINGER := {
 	0: [7, 8],
 	1: [9, 10],

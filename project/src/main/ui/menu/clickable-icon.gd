@@ -1,6 +1,10 @@
 tool
 class_name ClickableIcon
 extends Control
+## A clickable menu icon which looks like a card.
+##
+## These icons look like cards used in puzzles, but can be clicked while they are face-up. For this reason we surround
+## them with 'wow sprites' so that the player understands they are interactive.
 
 signal pressed
 

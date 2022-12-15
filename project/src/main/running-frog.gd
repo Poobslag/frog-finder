@@ -1,5 +1,6 @@
 class_name RunningFrog
 extends Sprite
+## Frog which chases the player's cursor.
 
 const HUG_DISTANCE := 40.0
 const CHASE_DURATION := 6
@@ -8,7 +9,7 @@ const SUPER_PANIC_DURATION := 4.8
 const RUN_SPEED := 150.0
 const PINCER_DISTANCE := 150.0
 
-# where the shark has to stand to count as 'catching' the hand
+## where the shark has to stand to count as 'catching' the hand
 const HAND_CATCH_OFFSET := Vector2(28, 20)
 
 var hand: Hand

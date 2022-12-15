@@ -1,5 +1,6 @@
 class_name RunningShark
 extends Sprite
+## Shark which chases the player's cursor.
 
 const BITE_DISTANCE := 70.0
 const CHASE_DURATION := 6
@@ -9,7 +10,7 @@ const MAX_RUN_SPEED := 1200.0
 const MAX_AGILITY := 4.0
 const PINCER_DISTANCE := 150.0
 
-# where the shark has to stand to count as 'catching' the hand
+## where the shark has to stand to count as 'catching' the hand
 const HAND_CATCH_OFFSET := Vector2(28, 20)
 
 var hand: Hand

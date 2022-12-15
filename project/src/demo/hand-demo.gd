@@ -1,4 +1,12 @@
 extends Node
+## Demonstrates the hand sprite.
+##
+## Keys:
+## 	[B]: Bite a finger
+## 	[3]: Restore all three fingers
+## 	[=/-]: Change the number of biteable fingers
+## 	[brace right]: Maximize the number of huggable fingers
+## 	[brace left]: Minimize the number of huggable fingers
 
 onready var _hand: Hand = $Hand
 

@@ -1,5 +1,9 @@
 class_name HandSprite
 extends Sprite
+## Sprite which shows the main part of the player's cursor.
+##
+## The player's cursor is made up of a main hand sprite, as well as sometimes detached fingers, hearts or even frogs.
+## This script only handles animating the main hand sprite.
 
 enum State {
 	NONE,
@@ -11,6 +15,7 @@ enum State {
 
 var state: int = State.ONE_FINGER setget set_state
 
+## List of int animation frames which the sprite should alternate between
 var wiggle_frames := []
 
 func _ready() -> void:

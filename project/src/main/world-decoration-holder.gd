@@ -1,4 +1,5 @@
 extends Control
+## Shows the decorations for the currently selected world.
 
 func _ready() -> void:
 	_refresh_world_index()

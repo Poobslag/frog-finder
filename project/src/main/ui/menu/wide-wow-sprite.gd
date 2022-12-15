@@ -1,6 +1,13 @@
 extends Control
+## A 'wow sprite' which is wide enough to surround multiple clickable icons at once.
+##
+## Clickable menu icons look like cards used in puzzles, but can be clicked while they are face-up. For this reason we
+## surround them with a 'wow sprite' so that the player understands they are interactive.
 
+## List of potential wiggle frame pairs corresponding to the left half of a 'wow sprite'
 const ALL_LEFT_WIGGLE_FRAMES := [[0, 2], [4, 6], [8, 10], [12, 14]]
+
+## List of potential wiggle frame pairs corresponding to the right half of a 'wow sprite'
 const ALL_RIGHT_WIGGLE_FRAMES := [[1, 3], [5, 7], [9, 11], [13, 15]]
 
 var _left_wiggle_frames := []
@@ -24,11 +31,9 @@ func reset_wiggle() -> void:
 	_wiggle_timer.start(rand_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME))
 
 
-"""
-Updates the sprites' frames to the next 'wiggle frame'.
-
-Defaults to '0' if the current frame isn't a wiggle frame.
-"""
+## Updates the sprites' frames to the next 'wiggle frame'.
+##
+## Defaults to '0' if the current frame isn't a wiggle frame.
 func assign_wiggle_frame() -> void:
 	var wiggle_index:int = (_left_wiggle_frames.find(_left.frame) + 1) % _left_wiggle_frames.size()
 	_left.frame = _left_wiggle_frames[wiggle_index]

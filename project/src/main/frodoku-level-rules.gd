@@ -1,4 +1,12 @@
 extends LevelRules
+## Rules for 'frodoku', a level with rules similar to Sudoku.
+##
+## Rules:
+##
+## 	1. Do not click a card in the same row as a lizard
+## 	2. Do not click a card in the same column as a lizard
+## 	3. Do not click a card in the same 3x2 rectangle as a lizard. These groups are color-coded, which is why some of
+## 		the cards are red and others are blue.
 
 const ROW_COUNT := 6
 const COL_COUNT := 6
