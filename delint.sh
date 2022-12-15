@@ -114,6 +114,8 @@ fi
 # project settings which are enabled temporarily, but shouldn't be pushed
 RESULT=
 RESULT=${RESULT}"Ê"$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "^window/size/test_width=" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "^window/size/test_height=" project/project.godot)
 RESULT=$(echo "${RESULT}" |
   sed 's/ÊÊÊ*/Ê/g' | # remove consecutive newline placeholders
   sed 's/^Ê\(.*\)$/\1/g' | # remove trailing newline placeholders
@@ -128,6 +130,8 @@ then
   then
     # unset project settings
     sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
+    sed -i "/^window\/size\/test_width=/d" project/project.godot
+    sed -i "/^window\/size\/test_height=/d" project/project.godot
     echo "...Temporary settings reverted."
   fi
 fi
@@ -147,6 +151,15 @@ if [ -n "$RESULT" ]
 then
   echo ""
   echo "Redundant 'range(0, x)':"
+  echo "$RESULT"
+fi
+
+# node names with spaces
+RESULT=$(grep -R -n "node name=\"[^\"]* [^\"]*\"" --include="*.tscn" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Node names with spaces:"
   echo "$RESULT"
 fi
 
