@@ -15,6 +15,11 @@ onready var _hand: Hand = get_node(_hand_path)
 onready var _background: Background = get_node(_background_path)
 onready var _music_player: MusicPlayer = get_node(_music_player_path)
 
+## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
+## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from
+## now, but then the player quits to the main menu and the intermission appears anyway.
+onready var _timers := $Timers
+
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -46,11 +51,42 @@ func _show_intermission_panel(card: CardControl) -> void:
 		if _intermission_panel.is_full():
 			# we won!
 			_music_player.fade_out(4.0)
-			yield(get_tree().create_timer(3.0), "timeout")
-			_play_ending()
+			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_play_ending")
 		else:
-			yield(get_tree().create_timer(3.0), "timeout")
-			_end_intermission()
+			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
+
+
+## Creates and starts a one-shot timer.
+##
+## This timer is freed when it times out or when the level is interrupted.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree, and is currently active.
+func _start_timer(wait_time: float) -> Timer:
+	var timer := _add_timer(wait_time)
+	timer.start()
+	return timer
+
+
+## Creates a one-shot timer, but does not start it.
+##
+## This timer is freed when it times out or when the level is interrupted.
+##
+## Parameters:
+## 	'wait_time': The amount of time to wait. A value of '0.0' will result in an error.
+##
+## Returns:
+## 	A timer which has been added to the scene tree, but is not yet active.
+func _add_timer(wait_time: float) -> Timer:
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = wait_time
+	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
+	_timers.add_child(timer)
+	return timer
 
 
 func _end_intermission() -> void:
@@ -133,8 +169,7 @@ func _on_GameplayPanel_frog_found(card: CardControl) -> void:
 
 func _on_Hand_finger_bitten() -> void:
 	if _hand.biteable_fingers == 0:
-		yield(get_tree().create_timer(4.0), "timeout")
-		_end_intermission()
+		_start_timer(4.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
 
 
 func _on_MainMenuPanel_frog_found(_card: CardControl) -> void:
@@ -157,4 +192,16 @@ func _on_MainMenuPanel_before_frog_found(_card: CardControl) -> void:
 
 
 func _on_IntermissionPanel_bye_pressed() -> void:
+	_end_intermission()
+
+
+func _on_Timer_timeout_queue_free(timer: Timer) -> void:
+	timer.queue_free()
+
+
+func _on_Timer_timeout_play_ending() -> void:
+	_play_ending()
+
+
+func _on_Timer_timeout_end_intermission() -> void:
 	_end_intermission()
