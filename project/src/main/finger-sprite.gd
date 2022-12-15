@@ -69,6 +69,6 @@ func hug(finger_index: int) -> void:
 	
 	$AnimationPlayer.play("hug%s" % [finger_index])
 	$HugSfx.pitch_scale = rand_range(0.8, 1.2)
-	$HugSfx.stream = _hug_sounds[randi() % _hug_sounds.size()]
+	$HugSfx.stream = Utils.rand_value(_hug_sounds)
 	
 	$HugSfx.play()

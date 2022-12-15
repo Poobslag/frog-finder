@@ -225,7 +225,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
 				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
-				mystery_index = mystery_indexes[randi() % mystery_indexes.size()]
+				mystery_index = Utils.rand_value(mystery_indexes)
 			else:
 				mystery_index = randi() % MYSTERY_COUNT
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
@@ -234,7 +234,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
 				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
-				letter_index = letter_indexes[randi() % letter_indexes.size()]
+				letter_index = Utils.rand_value(letter_indexes)
 			else:
 				# We never want random letters in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized letter: %s" % [card_details]
@@ -245,7 +245,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
-				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
+				arrow_index = Utils.rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized arrow: %s" % [card_details]
@@ -256,7 +256,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 			var arrow_index: int
 			if HEX_ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = HEX_ARROW_INDEXES_BY_DETAILS[card_details]
-				arrow_index = arrow_indexes[randi() % arrow_indexes.size()]
+				arrow_index = Utils.rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
@@ -424,7 +424,7 @@ func _on_FlipTimer_timeout() -> void:
 				_game_state.can_interact = false
 			emit_signal("before_shark_found")
 			$SharkFoundTimer.start(3.2)
-			$CreatureSfx.stream = _shark_sounds[randi() % _shark_sounds.size()]
+			$CreatureSfx.stream = Utils.rand_value(_shark_sounds)
 			$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
 			$CreatureSfx.play()
 
@@ -446,7 +446,7 @@ func _on_SharkFoundTimer_timeout() -> void:
 
 
 func _on_CheerTimer_timeout() -> void:
-	$CreatureSfx.stream = _frog_sounds[randi() % _frog_sounds.size()]
+	$CreatureSfx.stream = Utils.rand_value(_frog_sounds)
 	$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
 	$CreatureSfx.play()
 	cheer()
