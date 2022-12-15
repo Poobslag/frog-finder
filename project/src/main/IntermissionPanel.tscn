@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/intermission-panel.gd" type="Script" id=1]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=2]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=3]
-[ext_resource path="res://src/main/CuteButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
+[ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=6]
+[ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.501961 )
@@ -59,7 +62,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ByeButton" parent="." instance=ExtResource( 4 )]
+[node name="ByeButton" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -68,10 +71,25 @@ margin_left = -100.0
 margin_top = -100.0
 margin_right = -20.0
 margin_bottom = -20.0
+rect_min_size = Vector2( 80, 80 )
+script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+icon_texture = ExtResource( 5 )
+
+[node name="IconSprite" parent="ByeButton" instance=ExtResource( 7 )]
+position = Vector2( 40, 40 )
+texture = ExtResource( 5 )
+hframes = 4
+vframes = 3
+wiggle_frames = [ 0, 1 ]
+
+[node name="WowSprite" parent="ByeButton" instance=ExtResource( 7 )]
+position = Vector2( 40, 40 )
+texture = ExtResource( 6 )
+hframes = 4
+vframes = 2
 
 [connection signal="pressed" from="ByeButton" to="." method="_on_ByeButton_pressed"]
 [connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
