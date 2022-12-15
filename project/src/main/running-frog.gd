@@ -96,8 +96,6 @@ func _on_Hand_hug_finished() -> void:
 	soon_position += velocity.normalized() * 40
 
 
-var _id := randi() % 1000
-
 func _on_ThinkTimer_timeout() -> void:
 	if not hand or hand.huggable_fingers < 1:
 		return
