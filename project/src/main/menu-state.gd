@@ -47,17 +47,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 			# we won!
 			_music_player.fade_out(4.0)
 			yield(get_tree().create_timer(3.0), "timeout")
-			if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
-				_music_player.play_ending_song()
-			match _gameplay_panel.mission_string:
-				"1-1", "2-1", "3-1":
-					_intermission_panel.start_frog_hug_timer(1, 5)
-				"1-2", "2-2", "3-2":
-					_intermission_panel.start_frog_hug_timer(2, 12)
-				"1-3", "2-3", "3-3":
-					_intermission_panel.start_frog_hug_timer(3, 30)
-				_:
-					_intermission_panel.start_frog_hug_timer(1, 5)
+			_play_ending()
 		else:
 			yield(get_tree().create_timer(3.0), "timeout")
 			_end_intermission()
@@ -65,23 +55,43 @@ func _show_intermission_panel(card: CardControl) -> void:
 
 func _end_intermission() -> void:
 	if _hand.fingers == 0:
-		# we lose
+		# we lose; return to the main menu
 		_hide_panels()
+		_hand.reset() # restore any bitten fingers
 		_intermission_panel.reset() # free any sharks/frogs
 		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.SHARK)
 		PlayerData.save_player_data()
 		_main_menu_panel.show_menu()
 	elif _intermission_panel.is_full():
-		# we win
+		# we win; return to the main menu
 		_hide_panels()
+		_hand.reset() # restore any bitten fingers
 		_intermission_panel.reset() # free any sharks/frogs
 		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.FROG)
 		PlayerData.save_player_data()
 		_main_menu_panel.show_menu()
 	else:
+		# restore the hand to an index finger
+		_hand.biteable_fingers = -1
+		
+		# show the next puzzle
 		_hide_panels()
 		_background.change()
 		_gameplay_panel.show_puzzle()
+
+
+func _play_ending() -> void:
+	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
+		_music_player.play_ending_song()
+	match _gameplay_panel.mission_string:
+		"1-1", "2-1", "3-1":
+			_intermission_panel.start_frog_hug_timer(1, 5)
+		"1-2", "2-2", "3-2":
+			_intermission_panel.start_frog_hug_timer(2, 12)
+		"1-3", "2-3", "3-3":
+			_intermission_panel.start_frog_hug_timer(3, 30)
+		_:
+			_intermission_panel.start_frog_hug_timer(1, 5)
 
 
 func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
@@ -124,7 +134,6 @@ func _on_GameplayPanel_frog_found(card: CardControl) -> void:
 func _on_Hand_finger_bitten() -> void:
 	if _hand.biteable_fingers == 0:
 		yield(get_tree().create_timer(4.0), "timeout")
-		_hand.biteable_fingers = -1
 		_end_intermission()
 
 
