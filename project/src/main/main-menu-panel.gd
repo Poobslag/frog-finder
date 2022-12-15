@@ -1,7 +1,13 @@
 class_name MainMenuPanel
 extends Panel
+## Panel which shows the main menu where the player can adjust settings and choose missions.
 
+## Emitted when one of the level buttons is pressed.
+##
+## Parameters:
+## 	'mission_string': A hyphenated mission ID like '1-3' or '4-1'.
 signal start_pressed(mission_string)
+
 signal before_frog_found(card)
 signal frog_found(card)
 signal before_shark_found(card)
@@ -11,6 +17,8 @@ signal menu_shown
 onready var _game_state := $TitleGameState
 onready var _level_button_holder := $LevelButtonHolder
 
+## List of CardControls for cards making up the phrase 'frog finder' on the main menu. Some of these cards are hidden
+## so they can be clicked.
 onready var _all_cards := [
 	$Title/Card1F, $Title/Card1R, $Title/Card1O, $Title/Card1G,
 	$Title/Card2F, $Title/Card2I, $Title/Card2N, $Title/Card2D, $Title/Card2E, $Title/Card2R,

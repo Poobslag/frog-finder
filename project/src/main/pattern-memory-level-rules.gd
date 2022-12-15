@@ -1,9 +1,18 @@
 extends LevelRules
+## Rules for 'pattern memory', a level where the player must memorize a binary 2D pattern and reveal cards without
+## fish or sharks.
+##
+## Rules:
+## 	1. Click any card which was not previously revealed.
+## 	2. DO not click any other cards.
 
 const ROW_COUNT := 5
 const COL_COUNT := 6
 
-const HEX_COL_COUNTS := [5, 6, 7, 6, 5]
+## The number of cards in each row
+const HEX_ROW_COUNTS := [5, 6, 7, 6, 5]
+
+## The horizontal offset for each row of cards, measured in card widths
 const HEX_X_OFFSETS := [1, 0.5, 0, 0.5, 1]
 
 var _random := RandomNumberGenerator.new()
@@ -85,14 +94,14 @@ func add_cards() -> void:
 	if randf() < hex_chance:
 		# arrange the tiles in a hex grid
 		for y in range(ROW_COUNT):
-			for x in range(HEX_COL_COUNTS[y]):
+			for x in range(HEX_ROW_COUNTS[y]):
 				var card := level_cards.create_card()
 				card.card_front_type = CardControl.CardType.LIZARD
 				level_cards.add_card(card, Vector2(x + HEX_X_OFFSETS[y], y))
 		
 		if fill_in_sides:
 			for y in range(ROW_COUNT):
-				for x in [HEX_X_OFFSETS[y], HEX_X_OFFSETS[y] + HEX_COL_COUNTS[y] - 1]:
+				for x in [HEX_X_OFFSETS[y], HEX_X_OFFSETS[y] + HEX_ROW_COUNTS[y] - 1]:
 					var card := level_cards.get_card(Vector2(x, y))
 					card.card_front_type = CardControl.CardType.ARROW
 					card.card_front_details = ""

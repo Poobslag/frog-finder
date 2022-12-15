@@ -1,4 +1,5 @@
 extends Control
+## Button which lets the player control the music.
 
 const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 	PlayerData.MusicPreference.RANDOM: [0, 1],

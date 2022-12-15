@@ -1,9 +1,24 @@
 extends LevelRules
+## Rules for 'secret collect', a level where the player must find a red card with an arrow pointing to it.
+##
+## Rules:
+## 	1. If possible, click a red card with an arrow pointing to it.
+## 	2. Do not click any blue cards adjacent to cards you have already clicked.
+## 	3. Click any blue card adjacent to a red card.
+## 	4. Do not click any other cards.
+##
+## While these rules are simple, many other rules are implicit. If any arrows are revealed but you do not click a red
+## card, you have violated rule 1. If you click any blue cards which are not adjacent to red cards, you have violated
+## rule 3. If you select the wrong blue cards, you can be forced to break rule 2 or rule 3. It is important to plan
+## ahead.
 
 const ROW_COUNT := 5
 const COL_COUNT := 7
 
+## key: (Vector2) position of an unrevealed red card
+## value: (bool) true
 var _unexamined_secret_cell_positions := {}
+
 var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 

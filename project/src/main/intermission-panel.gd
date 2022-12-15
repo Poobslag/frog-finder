@@ -1,5 +1,9 @@
 class_name IntermissionPanel
 extends Panel
+## Panel which shows intermissions.
+##
+## These intermissions show the frogs/sharks the player's found and sometimes feature animated sequences with frogs and
+## sharks.
 
 signal bye_pressed
 
@@ -7,7 +11,13 @@ export (NodePath) var hand_path: NodePath
 
 const SHARK_SPAWN_WAIT_TIME := 8.0
 const SHARK_SPAWN_BORDER := 80.0
+
+## Delay (in seconds) between when each shark appears. The first item in the array corresponds to the number of seconds
+## until the second shark appears.
 const SHARK_DELAYS := [10.0, 2.0, 6.0, 2.0, 10.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+## Delay (in seconds) between when each frog appears. The first item in the array corresponds to the number of seconds
+## until the second frog appears.
 const FROG_DELAYS := [
 	3.0, 3.0, 3.0, 3.0, 3.0, 2.0, 2.0, 2.0, 2.0, 2.0,
 	1.5, 1.5, 1.5, 1.5, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0,

@@ -1,46 +1,60 @@
 class_name MusicPlayer
 extends Node
+## Manages all of the songs in the game and plays music appropriately.
 
-# volume to fade out to; once the music reaches this volume, it's stopped
+## Volume to fade out to; once the music reaches this volume, it's stopped
 const MIN_VOLUME := -40.0
 
-# volume to fade in to
+## Volume to fade in to
 const MAX_VOLUME := 0.0
 
 const FADE_OUT_DURATION := 0.8
 const FADE_IN_DURATION := 0.5
 
 var _current_song: AudioStreamPlayer
+
+## key: (AudioStreamPlayer) song
+## value: (float) previous playback position
 var _position_by_song := {}
 
+## List of AudioStreamPlayer instances to play if the world does not define any music.
 onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
+## AudioStreamPlayer instance to play if the world does not define a shark song.
 onready var _default_shark_song := $WeAreTheBaddies
 
+## key: (int) world index
+## value: (Array, AudioStreamPlayer) list of frog songs to play for a world
 onready var _songs_by_world_index := {
 	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
 	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
 	2: [$StillCantFindTheFrog, $HalfAFrog, $SneakySneakyFrogInstrumental],
 }
 
+## List of AudioStreamPlayer instances corresponding to 'frog songs', songs which play by default or when the player
+## finds a frog
 onready var _frog_songs := [
 	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog, $HugFromAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
 	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog, $TakeComfortInYourFrog,
 ]
 
+## List of AudioStreamPlayer instances corresponding to 'shark songs', songs which play when the player finds a shark
 onready var _shark_songs := [
 	$WereGonnaEatYouUp, $WeAreTheBaddies,
 ]
 
+## key: (int) world index
+## value: (Array, AudioStreamPlayer) list of shark songs to play for a world
 onready var _shark_song_by_world_index := {
 	0: $WeAreTheBaddies,
 	1: $WereGonnaEatYouUp,
 	2: $WereGonnaEatYouUp,
 }
 
+## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
 onready var _ending_song := $HugFromAFrog
 
 onready var _fade_tween := $FadeTween

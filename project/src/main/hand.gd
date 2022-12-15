@@ -1,5 +1,8 @@
 class_name Hand
 extends Control
+## Sprite which shows the player's cursor.
+##
+## The player's cursor is made up of a main hand sprite, as well as sometimes detached fingers, hearts or even frogs.
 
 signal finger_bitten
 signal hug_finished

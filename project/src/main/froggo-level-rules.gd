@@ -1,14 +1,33 @@
 extends LevelRules
-"""
-A series of words like 'FR_G' and 'S_ARK'. The player must guess which words spell 'frog'.
-"""
+## Rules for 'froggo', a level with a series of words like 'FR_G' and 'S_ARK'. The player must guess which words spell
+## 'frog'.
+##
+## Rules:
+##
+## 	1. If possible, click any row with 'F', I', 'G' or 'O' in any position.
+## 	2. If possible, click any row with 'R' in the first or second position.
+## 	3. If possible, click any row with 'E' in the third position.
+## 	4. Do not click any row with an 'A', 'H', 'K' or 'S' in any position.
+## 	5. Do not click any row with an 'R' in the fourth position.
+##  6. You may click any other cards.
+##
+## This script uses 'words' which are strings like "fRO+e/froge". The letters right of the slash are an unmodified
+## lower-case pseudo-word like 'froge' or 'sarkh'. The letters left of the slash correspond to the cards the player can
+## reveal, and can be any of the following:
+##
+## 	[A-Z]: A face-up card which shows a letter
+## 	[a-z]: A face-down card which hides a letter
+## 	[+]: A face-down card which hides a frog
+## 	[-]: A face-down card which hides a shark
 
+## key: (Vector2) cell position of a card
+## value: (String) letter to reveal when revealing the word the player clicked
 var _cell_pos_to_revealed_letter := {}
 
 var random := RandomNumberGenerator.new()
 
-# words which have frogs but aren't 'frog'. these should not have any letters in common with any troll_shark_words,
-# except for the 'R' in the third position
+## Words which have frogs but aren't 'frog'. These should not have any letters in common with any troll_shark_words,
+## except for the 'R' in the third position
 var troll_frog_words := [
 	"freg/freg",
 	"frig/frig",
@@ -21,8 +40,8 @@ var troll_frog_words := [
 	"froggo/froggo",
 ]
 
-# words which have sharks but aren't 'shark'. these should not have any letters in common with any troll_frog_words,
-# except for the 'R' in the third position
+## Words which have sharks but aren't 'shark'. These should not have any letters in common with any troll_frog_words,
+## except for the 'R' in the third position
 var troll_shark_words := [
 	"shak/shak",
 	"shrk/shrk",
@@ -34,8 +53,8 @@ var troll_shark_words := [
 	"sherk/sherk",
 ]
 
-# words which don't have frogs or sharks. these words are generally themed around the frog hiding, or the player
-# making a mistake
+## Words which don't have frogs or sharks. These words are generally themed around the frog hiding, or the player
+## making a mistake
 var troll_silly_words := [
 	"ha/ha",
 	"hi/hi",
@@ -258,17 +277,25 @@ func _trollify_words(words: Array, count: int) -> Array:
 	troll_word_indexes = troll_word_indexes.slice(0, count - 1)
 	for i in troll_word_indexes:
 		if i == 0:
-			# replace first element with troll frog word
-			words[i] = troll_frog_words[randi() % troll_frog_words.size()]
+			words[i] = _troll_frog_word()
 		else:
-			# replace non-first element with troll shark word
-			words[i] = troll_shark_words[randi() % troll_shark_words.size()]
+			words[i] = _troll_shark_word()
 	
 	return words
 
 
-## Replaces a word with a silly word that isn't a frog or a shark.
-func _troll_silly_word() -> Array:
+## Returns a random troll frog word.
+func _troll_frog_word() -> String:
+	return troll_frog_words[randi() % troll_frog_words.size()]
+
+
+## Returns a random troll shark word.
+func _troll_shark_word() -> String:
+	return troll_shark_words[randi() % troll_shark_words.size()]
+
+
+## Returns a random silly word that isn't a frog or a shark.
+func _troll_silly_word() -> String:
 	return troll_silly_words[randi() % troll_silly_words.size()]
 
 

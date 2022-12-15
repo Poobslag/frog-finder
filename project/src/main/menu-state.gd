@@ -1,4 +1,5 @@
 extends Node
+## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
 export (NodePath) var _main_menu_panel_path: NodePath
 export (NodePath) var _gameplay_panel_path: NodePath

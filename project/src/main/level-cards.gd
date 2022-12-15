@@ -1,5 +1,6 @@
 class_name LevelCards
 extends Control
+## A visual arrangement of cards shown during a level.
 
 signal before_card_flipped(card)
 signal before_frog_found(card)
@@ -12,8 +13,15 @@ const CELL_SIZE := Vector2(80, 80)
 export (NodePath) var game_state_path: NodePath
 
 var CardControlScene: PackedScene = preload("res://src/main/CardControl.tscn")
+
+## key: (Vector2) cell position
+## value: (CardControl) card at the specified cell position
 var cards_by_cell_pos := {}
+
+## key: (CardControl) level card
+## value: (Vector2) cell position of the specified card
 var cell_positions_by_card := {}
+
 var cell_pos_bounds := Rect2()
 
 onready var _game_state: GameState = get_node(game_state_path)

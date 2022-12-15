@@ -1,4 +1,8 @@
 extends Node
+## Stores the player's progress and settings.
+##
+## This includes details about their progression through the game such as how many frogs they've found and which levels
+## they've cleared. It also includes details about their settings such as whether they want music to play.
 
 enum MissionResult {
 	NONE, # The player has not finished this mission yet
@@ -28,6 +32,8 @@ var shark_count := 0
 ## value: (int) enum from MissionResult defining the mission result
 var missions_cleared := {}
 
+## key: (String) save data key
+## key: (?) save data value for the specified key
 var save_json := {}
 
 func _ready() -> void:

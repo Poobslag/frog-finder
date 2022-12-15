@@ -1,7 +1,19 @@
 extends LevelRules
+## Rules for 'fruit maze', a level where you search for fruits in a maze and match them to fruits outside the maze.
+##
+## Rules:
+##
+## 	1. If you have found a fruit in the maze matching a hidden fruit outside the maze, click the fruit outside the
+## 		maze.
+## 	2. If possible, click any unrevealed card with an arrow pointing to it.
+## 	3. If possible, click any unrevealed card which an arrow previously pointed to.
+## 	4. You may click any previously revealed card in the maze.
+## 	5. Do not click any other cards.
 
 const CENTER_CELL_POS := Vector2(4, 2)
 
+## key: (String) card details string corresponding to a hex direction
+## value: (Vector2) direction of the card pointed to, measured in card widths
 const DIRECTIONS_BY_STRING := {
 	"n": Vector2.UP,
 	"s": Vector2.DOWN,
@@ -11,6 +23,8 @@ const DIRECTIONS_BY_STRING := {
 	"x": Vector2(-1.0, 0.5),
 }
 
+## key: (int) number of hex arrows from 0-6
+## value: (Array, String) possible card details strings with the specified number of hex arrows
 const HEX_ARROW_DETAILS_BY_ARROW_COUNT := {
 	0: [""],
 	1: ["n", "e", "f", "s", "x", "w"],
@@ -44,12 +58,28 @@ const INNER_CELLS := [
 
 var random := RandomNumberGenerator.new()
 
+## key: (Vector2) cell coordinates of an outer cell which contains a fruit
+## value: (bool) true
 var _outer_fruit_cells := {}
+
+## key: (Vector2) cell coordinates of a maze cell which contains a fruit
+## value: (bool) true
 var _inner_fruit_cells := {}
+
+## key: (Vector2) cell coordinates of an unflipped maze cell
+## value: (bool) true
 var _unflipped_inner_cell_positions := {}
+
+## key: (Vector2) cell coordinates of an outer cell which contains a wrong fruit (a fruit not in the maze)
 var _wrong_outer_fruit_cells_by_details := {}
+
+## key: (String) card details string corresponding to a fruit
+## value: (int) number of times the path leading to that fruit has forked
 var _fork_counts_per_fruit := {}
+
+## Queue of CardControls for cards the player has seen. The front of the queue corresponds to the oldest card.
 var _shown_card_queue := []
+
 var _correct_outer_fruit_detail := ""
 var _found_correct_inner_fruit := false
 var _outer_fruits_hidden := false

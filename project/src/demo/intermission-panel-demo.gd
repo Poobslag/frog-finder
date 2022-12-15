@@ -1,4 +1,12 @@
 extends Node
+## Demonstrates the Intermission Panel.
+##
+## Keys:
+## 	[F]: Show a frog card.
+## 	[S]: Spawn a shark.
+## 	[1]: Spawn some frogs, one of which will hug your hand.
+## 	[2]: Spawn some frogs, two of which will hug your hand.
+## 	[3]: Spawn some frogs, three of which will hug your hand.
 
 onready var _intermission_panel := $IntermissionPanel
 
@@ -21,7 +29,6 @@ func _input(event: InputEvent) -> void:
 		KEY_S:
 			_intermission_panel.start_shark_spawn_timer(3)
 		KEY_1:
-			$Hand.fingers
 			_intermission_panel.start_frog_hug_timer(1, 5)
 		KEY_2:
 			_intermission_panel.start_frog_hug_timer(2, 12)

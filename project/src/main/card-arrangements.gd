@@ -29,9 +29,9 @@ var _index_by_char := {}
 var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
 
 ## key: (String) A mission string such as '1-3' or '4-1' corresponding to a sequence of levels.
-## value: (Array, Vector2) Cards positions for that mission, such as [1, 3] which corresponds to the 2nd row and 4th
-## 	column. These card positions also define how many levels are in the mission, as the mission is complete when all
-## 	cards are turned over.
+## value: (Array, Vector2) Cards positions for that mission, measured in card widths. For instance, [1, 3] corresponds
+## 	to the 2nd row and 4th column. These card positions also define how many levels are in the mission, as the mission
+## 	is complete when all cards are turned over.
 var _card_positions_by_mission_string := {}
 
 func _ready() -> void:
@@ -69,8 +69,8 @@ func get_card_positions(mission_string: String) -> Array:
 ## 	'picture': (Array, String) An array of strings corresponding to an ASCII picture defining a card arrangement.
 ##
 ## Returns:
-## 	An array of Vector2 instances defining an ordering of card positions. A value like [2, 0.5] corresponds to a card
-## 	in the third column, and half-way between the first and second rows.
+## 	An array of Vector2 instances defining an ordering of card positions, measured in card widths. For example,
+## 	[2, 0.5] corresponds to a card in the third column, and half-way between the first and second rows.
 func positions_from_picture(picture: Array) -> Array:
 	# key: (int) char index like '1' or '11' corresponding to the picture characters '1' or 'b'
 	# value: (Vector2) coordinate in the picture

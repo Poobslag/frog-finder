@@ -1,5 +1,7 @@
 class_name WiggleTimer
 extends Timer
+## A timer which alternates between two animation frames to give a squigglevision effect, emulating the effect of
+## sketchily hand-drawn animation.
 
 const MIN_WIGGLE_TIME := 0.35
 const MAX_WIGGLE_TIME := 0.45

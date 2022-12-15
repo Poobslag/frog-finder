@@ -1,7 +1,18 @@
 extends Control
+## The level and world buttons visible on the main menu.
+##
+## This script shows and hides the buttons and emits signals as the different buttons are pressed.
 
+## Emitted when the 'previous world' button is pressed.
 signal prev_world_pressed
+
+## Emitted when the 'next world' button is pressed.
 signal next_world_pressed
+
+## Emitted when one of the level buttons is pressed.
+##
+## Parameters:
+## 	'level_index': A number in the range [0, 2] for which button was pressed.
 signal level_pressed(level_index)
 
 onready var next_button: Node = $Next

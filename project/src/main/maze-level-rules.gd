@@ -1,8 +1,19 @@
 extends LevelRules
+## Rules for 'maze', a 2D maze where the player follows arrows pointing in cardinal directions (up, down, left right)
+## to find a frog.
+##
+## Rules:
+##
+## 	1. If possible, click any unrevealed card with an arrow pointing to it.
+## 	2. If possible, click any unrevealed card which an arrow previously pointed to.
+## 	3. You may click any previously revealed card.
+## 	4. Do not click any other cards.
 
 const ROW_COUNT := 6
 const COL_COUNT := 9
 
+## key: (String) card details string corresponding to a cardinal direction
+## value: (Vector2) direction of the card pointed to, measured in card widths
 const DIRECTIONS_BY_STRING := {
 	"n": Vector2.UP,
 	"s": Vector2.DOWN,
@@ -24,10 +35,25 @@ var _max_unblanked_arrow_count := 99
 var _include_start_card_in_queue := true
 var _mistake_luck := 0.5
 var _start_position: Vector2
+
+## key: (Vector2) cell position of an unflipped card which is pointed to by an arrow, or has been pointed to previously
+## value: (bool) true
 var _loose_end_positions := {}
+
+## key: (vector2) cell position of an unflipped card
+## value: (bool) true
 var _unflipped_card_positions := {}
+
+## Queue of CardControls for cards the player has seen. The front of the queue corresponds to the oldest card.
 var _shown_card_queue := []
+
+## Queue of CardControls for arrow cards the player has seen. The front of the queue corresponds to the oldest card.
+## Depending on the level difficulty, these cards may be hidden to force the player to rely on their memory instead of
+## backtracking.
 var _unblanked_arrow_queue := []
+
+## key: (CardControl) level card
+## value: (String) card details string for the card's contents before it was blanked
 var _blanked_arrows_to_original := {}
 
 func _ready() -> void:
