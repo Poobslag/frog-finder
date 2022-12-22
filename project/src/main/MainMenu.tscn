@@ -41,9 +41,6 @@ margin_right = -50.0
 margin_bottom = -50.0
 custom_styles/panel = ExtResource( 38 )
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameState" type="Node" parent="Content/GameplayPanel"]
 script = ExtResource( 5 )
@@ -58,9 +55,6 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 game_state_path = NodePath("../GameState")
 
 [node name="IntermissionPanel" parent="Content" instance=ExtResource( 15 )]
