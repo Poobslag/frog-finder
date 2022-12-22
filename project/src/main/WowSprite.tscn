@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/wow-sprite.gd" type="Script" id=3]
+[ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=4]
+
+[node name="WowSprite" type="Sprite"]
+scale = Vector2( 0.333, 0.333 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 2
+script = ExtResource( 3 )
+wiggle_frames = [ 0, 1 ]
+
+[node name="WiggleTimer" parent="." instance=ExtResource( 4 )]

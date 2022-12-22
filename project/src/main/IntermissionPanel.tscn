@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=6]
+[ext_resource path="res://src/main/WowSprite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -24,9 +24,6 @@ margin_right = -50.0
 margin_bottom = -50.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IntermissionState" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -85,11 +82,8 @@ hframes = 4
 vframes = 3
 wiggle_frames = [ 0, 1 ]
 
-[node name="WowSprite" parent="ByeButton" instance=ExtResource( 7 )]
+[node name="WowSprite" parent="ByeButton" instance=ExtResource( 6 )]
 position = Vector2( 40, 40 )
-texture = ExtResource( 6 )
-hframes = 4
-vframes = 2
 
 [connection signal="pressed" from="ByeButton" to="." method="_on_ByeButton_pressed"]
 [connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_FrogSpawnTimer_timeout"]
