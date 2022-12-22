@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=1]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
-[ext_resource path="res://assets/main/wow-sheet.png" type="Texture" id=3]
+[ext_resource path="res://src/main/WowSprite.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/main-menu-panel.gd" type="Script" id=4]
 [ext_resource path="res://src/main/music-control.gd" type="Script" id=5]
 [ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=6]
@@ -88,12 +88,8 @@ hframes = 4
 vframes = 4
 wiggle_frames = [ 0, 1 ]
 
-[node name="WowSprite" parent="MusicControl" instance=ExtResource( 6 )]
+[node name="WowSprite" parent="MusicControl" instance=ExtResource( 3 )]
 position = Vector2( 40, 40 )
-texture = ExtResource( 3 )
-hframes = 4
-vframes = 2
-wiggle_frames = [ 0, 1 ]
 
 [node name="Title" type="Control" parent="."]
 anchor_left = 0.5
