@@ -319,9 +319,6 @@ theme = ExtResource( 16 )
 text = "v1.02"
 align = 2
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="level_pressed" from="LevelButtonHolder/World1Buttons" to="." method="_on_LevelButtons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
