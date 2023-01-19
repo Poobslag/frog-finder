@@ -27,11 +27,6 @@ const FROG_DELAYS := [
 var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
-
-# key: (RunningFrog) frog
-# value: (RunningFrog) friend
-var friends_by_frog := {}
-
 var max_frogs := 0
 var next_card_index := 0
 
@@ -87,24 +82,6 @@ func show_intermission_panel() -> void:
 	reset()
 
 
-func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
-	hand.biteable_fingers = biteable_fingers
-	$SharkSpawnTimer.start()
-	for _finger in range(biteable_fingers):
-		# spawn one shark per finger
-		_spawn_shark()
-
-
-func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
-	max_frogs = new_max_frogs
-	hand.huggable_fingers = huggable_fingers
-	$FrogSpawnTimer.start()
-	for _finger in range(huggable_fingers):
-		# spawn one frog per finger
-		var frog := _spawn_frog()
-		_chase(frog)
-
-
 func _spawn_shark() -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
@@ -129,8 +106,9 @@ func _spawn_shark() -> void:
 	shark.chase()
 
 
-func _spawn_frog() -> RunningFrog:
+func _spawn_frog() -> void:
 	var frog: RunningFrog = RunningFrogScene.instance()
+	frog.hand = hand
 	
 	var viewport_rect_size := get_viewport_rect().size
 	
@@ -142,18 +120,32 @@ func _spawn_frog() -> RunningFrog:
 	]
 	spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
 	
+	if frogs.size() % 2 == 1:
+		# this frog has a friend
+		frog.friend = frogs[frogs.size() - 1]
+	
 	frog.soon_position = spawn_points[0]
 	$Creatures.add_child(frog)
 	frogs.append(frog)
-	
-	if frogs.size() % 2 == 0:
-		friends_by_frog[frog] = frogs[frogs.size() - 1]
-	return frog
+	frog.chase()
 
 
-func _chase(frog: RunningFrog) -> void:
-	frog.chase(hand, friends_by_frog.get(frog, null))
-	
+func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
+	hand.biteable_fingers = biteable_fingers
+	$SharkSpawnTimer.start()
+	for _finger in range(biteable_fingers):
+		# spawn one shark per finger
+		_spawn_shark()
+
+
+func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
+	max_frogs = new_max_frogs
+	hand.huggable_fingers = huggable_fingers
+	$FrogSpawnTimer.start()
+	for _finger in range(huggable_fingers):
+		# spawn one frog per finger
+		_spawn_frog()
+
 
 func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
 	return hand.rect_global_position.distance_to(a) > hand.rect_global_position.distance_to(b)
@@ -181,8 +173,7 @@ func _on_FrogSpawnTimer_timeout() -> void:
 	
 	var frog_delay_index := frogs.size() - 1
 	if frog_delay_index < FROG_DELAYS.size() and frogs.size() < max_frogs:
-		var frog := _spawn_frog()
-		_chase(frog)
+		_spawn_frog()
 		$FrogSpawnTimer.start(FROG_DELAYS[frog_delay_index])
 
 
