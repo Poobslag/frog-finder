@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/menu/clickable-icon.gd"
 }, {
+"base": "Node",
+"class": "CreatureBehavior",
+"language": "GDScript",
+"path": "res://src/main/creature-behavior.gd"
+}, {
 "base": "Reference",
 "class": "FileUtils",
 "language": "GDScript",
@@ -113,6 +118,7 @@ _global_script_class_icons={
 "Background": "",
 "CardControl": "",
 "ClickableIcon": "",
+"CreatureBehavior": "",
 "FileUtils": "",
 "GameState": "",
 "GameplayPanel": "",
@@ -141,8 +147,8 @@ config/version="1.05"
 
 [autoload]
 
-PlayerData="*res://src/main/player-data.gd"
 CardArrangements="*res://src/main/card-arrangements.gd"
+PlayerData="*res://src/main/player-data.gd"
 
 [debug]
 
