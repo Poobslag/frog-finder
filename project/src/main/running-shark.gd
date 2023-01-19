@@ -19,9 +19,9 @@ var velocity := Vector2.ZERO
 var run_speed := MIN_RUN_SPEED setget set_run_speed
 var agility := 1.0
 
+## sharks move in a jerky way. soon_position stores the location where the frog will blink to after a delay
 var soon_position: Vector2 setget set_soon_position
-var old_frame: int
-var chase_count := 0
+var _chase_count := 0
 
 onready var _animation_player := $AnimationPlayer
 onready var _chase_timer := $ChaseTimer
@@ -42,11 +42,11 @@ func _physics_process(delta: float) -> void:
 func chase() -> void:
 	_panic_timer.stop()
 	var wait_time := CHASE_DURATION * rand_range(0.8, 1.2)
-	if chase_count == 0:
+	if _chase_count == 0:
 		# the first time we chase, we are more persistent
 		wait_time *= 2
 	_chase_timer.start(wait_time)
-	chase_count += 1
+	_chase_count += 1
 
 
 func panic() -> void:
@@ -105,7 +105,9 @@ func _on_ThinkTimer_timeout() -> void:
 		if friend and (run_target - global_position).length() > PINCER_DISTANCE:
 			# our friend will help us; don't run towards the hand, run behind our friend
 			run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
-			velocity = (run_target - global_position).normalized() * run_speed
+		else:
+			# we have no friend; run towards the hand
+			pass
 		
 		# we have no friend; run towards the hand
 		velocity = (run_target - global_position).normalized() * run_speed
