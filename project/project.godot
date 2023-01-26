@@ -156,6 +156,7 @@ config/version="1.05"
 CardArrangements="*res://src/main/card-arrangements.gd"
 PlayerData="*res://src/main/player-data.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"
+FrogArrangements="*res://src/main/frog-arrangements.gd"
 
 [debug]
 

@@ -2,6 +2,16 @@ tool
 class_name Utils
 ## Contains global utilities.
 
+const NUM_SCANCODES := {
+	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
+	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
+}
+
+## Returns [0-9] for a number key event, or -1 if the event is not a number key event.
+static func key_num(event: InputEvent) -> int:
+	return NUM_SCANCODES.get(key_scancode(event), -1)
+
+
 ## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
 static func key_scancode(event: InputEvent) -> int:
 	var scancode := -1
