@@ -64,7 +64,6 @@ func _ready() -> void:
 	random.randomize()
 	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
 	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
-	play_preferred_song()
 
 
 func play_preferred_song() -> void:

@@ -25,6 +25,8 @@ func _ready() -> void:
 	
 	yield(get_tree(), "idle_frame")
 	_main_menu_panel.show_menu()
+	
+	MusicPlayer.play_preferred_song()
 
 
 func _hide_panels() -> void:
