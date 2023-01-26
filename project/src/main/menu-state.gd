@@ -118,7 +118,9 @@ func _play_ending() -> void:
 	# we won!
 	match _gameplay_panel.mission_string:
 		"1-1", "1-2", "2-1", "2-2", "3-1", "3-2":
-			_intermission_panel.start_frog_dance(1)
+			var dancer_count := FrogArrangements.get_dancer_count(PlayerData.frog_dance_count)
+			_intermission_panel.start_frog_dance(dancer_count)
+			PlayerData.frog_dance_count += 1
 		"1-3":
 			_schedule_frog_hug_ending(1, 5)
 		"2-3":
