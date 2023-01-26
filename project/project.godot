@@ -84,11 +84,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/main-menu-panel.gd"
 }, {
-"base": "Node",
-"class": "MusicPlayer",
-"language": "GDScript",
-"path": "res://src/main/music-player.gd"
-}, {
 "base": "Sprite",
 "class": "RunningFrog",
 "language": "GDScript",
@@ -130,7 +125,6 @@ _global_script_class_icons={
 "LevelCards": "",
 "LevelRules": "",
 "MainMenuPanel": "",
-"MusicPlayer": "",
 "RunningFrog": "",
 "RunningShark": "",
 "Utils": "",
@@ -147,8 +141,9 @@ config/version="1.05"
 
 [autoload]
 
-PlayerData="*res://src/main/player-data.gd"
 CardArrangements="*res://src/main/card-arrangements.gd"
+PlayerData="*res://src/main/player-data.gd"
+MusicPlayer="*res://src/main/MusicPlayer.tscn"
 
 [debug]
 

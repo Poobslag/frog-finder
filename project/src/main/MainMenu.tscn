@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/main/MusicPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/MenuState.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/MainMenuPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
@@ -25,7 +24,6 @@ _gameplay_panel_path = NodePath("../GameplayPanel")
 _intermission_panel_path = NodePath("../IntermissionPanel")
 _hand_path = NodePath("../../Hand")
 _background_path = NodePath("../Background")
-_music_player_path = NodePath("../../MusicPlayer")
 
 [node name="Background" parent="Content" instance=ExtResource( 18 )]
 
@@ -67,8 +65,6 @@ margin_left = 52.3251
 margin_top = 49.9467
 margin_right = 132.325
 margin_bottom = 129.947
-
-[node name="MusicPlayer" parent="." instance=ExtResource( 1 )]
 
 [connection signal="before_frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_shark_found"]
