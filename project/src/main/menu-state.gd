@@ -6,14 +6,12 @@ export (NodePath) var _gameplay_panel_path: NodePath
 export (NodePath) var _intermission_panel_path: NodePath
 export (NodePath) var _hand_path: NodePath
 export (NodePath) var _background_path: NodePath
-export (NodePath) var _music_player_path: NodePath
 
 onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
 onready var _intermission_panel: IntermissionPanel = get_node(_intermission_panel_path)
 onready var _hand: Hand = get_node(_hand_path)
 onready var _background: Background = get_node(_background_path)
-onready var _music_player: MusicPlayer = get_node(_music_player_path)
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from
@@ -50,7 +48,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 		# yay! we found a frog
 		if _intermission_panel.is_full():
 			# we won!
-			_music_player.fade_out(4.0)
+			MusicPlayer.fade_out(4.0)
 			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_play_ending")
 		else:
 			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
@@ -118,7 +116,7 @@ func _end_intermission() -> void:
 
 func _play_ending() -> void:
 	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
-		_music_player.play_ending_song()
+		MusicPlayer.play_ending_song()
 	match _gameplay_panel.mission_string:
 		"1-1", "2-1", "3-1":
 			_intermission_panel.start_frog_hug_timer(1, 5)
@@ -135,9 +133,9 @@ func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
 	PlayerData.save_player_data()
 	
 	# we just beat the game (or lost to sharks); start a new song
-	if not _music_player.is_playing_frog_song() \
+	if not MusicPlayer.is_playing_frog_song() \
 			and PlayerData.music_preference != PlayerData.MusicPreference.OFF:
-		_music_player.play_preferred_song()
+		MusicPlayer.play_preferred_song()
 	
 	_hide_panels()
 	_hand.reset()
@@ -147,14 +145,14 @@ func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
 
 
 func _on_GameplayPanel_before_shark_found(_card: CardControl) -> void:
-	if _music_player.is_playing_frog_song():
-		_music_player.play_shark_song()
+	if MusicPlayer.is_playing_frog_song():
+		MusicPlayer.play_shark_song()
 
 
 func _on_GameplayPanel_before_frog_found(_card: CardControl) -> void:
-	if _music_player.is_playing_shark_song():
+	if MusicPlayer.is_playing_shark_song():
 		# we don't play a shark song if there's no current song (music is off)
-		_music_player.play_preferred_song()
+		MusicPlayer.play_preferred_song()
 
 
 func _on_GameplayPanel_shark_found(card: CardControl) -> void:
@@ -181,14 +179,14 @@ func _on_MainMenuPanel_shark_found(_card: CardControl) -> void:
 
 
 func _on_MainMenuPanel_before_shark_found(_card: CardControl) -> void:
-	if _music_player.is_playing_frog_song():
+	if MusicPlayer.is_playing_frog_song():
 		# we don't play a shark song if there's no current song (music is off)
-		_music_player.play_shark_song()
+		MusicPlayer.play_shark_song()
 
 
 func _on_MainMenuPanel_before_frog_found(_card: CardControl) -> void:
-	if _music_player.is_playing_shark_song():
-		_music_player.play_preferred_song()
+	if MusicPlayer.is_playing_shark_song():
+		MusicPlayer.play_preferred_song()
 
 
 func _on_IntermissionPanel_bye_pressed() -> void:

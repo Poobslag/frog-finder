@@ -1,4 +1,3 @@
-class_name MusicPlayer
 extends Node
 ## Manages all of the songs in the game and plays music appropriately.
 
