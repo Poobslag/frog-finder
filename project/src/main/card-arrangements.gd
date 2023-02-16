@@ -28,6 +28,11 @@ var _index_by_char := {}
 ## Path to the json file with card arrangements. Can be changed for tests.
 var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
 
+## If 'true', every mission will only have one level.
+##
+## This setting is enabled with a cheat code.
+var one_frog_cheat: bool = false
+
 ## key: (String) A mission string such as '1-3' or '4-1' corresponding to a sequence of levels.
 ## value: (Array, Vector2) Cards positions for that mission, measured in card widths. For instance, [1, 3] corresponds
 ## 	to the 2nd row and 4th column. These card positions also define how many levels are in the mission, as the mission
@@ -47,7 +52,13 @@ func set_arrangements_path(new_arrangements_path: String) -> void:
 
 
 func get_card_positions(mission_string: String) -> Array:
-	return _card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
+	var result: Array = _card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
+	
+	# cheat is enabled; just one frog
+	if one_frog_cheat:
+		result = [Vector2.ZERO]
+	
+	return result
 
 
 ## Converts an ASCII picture into a list of coordinates.
