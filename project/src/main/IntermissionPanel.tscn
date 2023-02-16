@@ -50,8 +50,14 @@ wait_time = 8.0
 one_shot = true
 
 [node name="Creatures" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -250.0
+margin_right = 462.0
+margin_bottom = 250.0
 
 [node name="ByeButton" type="Control" parent="."]
 anchor_left = 1.0
