@@ -123,7 +123,7 @@ func _spawn_shark() -> void:
 		# this shark has a friend
 		shark.friend = sharks[sharks.size() - 1]
 	
-	shark.soon_position = spawn_points[0]
+	shark.soon_position = spawn_points[0] - $Creatures.rect_global_position
 	$Creatures.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
@@ -146,7 +146,7 @@ func _spawn_frog() -> RunningFrog:
 		# this frog has a friend
 		friends_by_frog[frog] = frogs[frogs.size() - 1]
 	
-	frog.soon_position = spawn_points[0]
+	frog.soon_position = spawn_points[0] - $Creatures.rect_global_position
 	$Creatures.add_child(frog)
 	frogs.append(frog)
 	return frog
