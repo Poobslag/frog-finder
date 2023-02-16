@@ -3,6 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[F]: Show a frog card.
+## 	[M]: Play some music.
 ## 	[S]: Spawn a shark.
 ## 	[1]: Spawn some frogs, one of which will hug your hand.
 ## 	[2]: Spawn some frogs, two of which will hug your hand.
@@ -26,6 +27,10 @@ func _input(event: InputEvent) -> void:
 			
 			card.show_front()
 			_intermission_panel.add_level_result(card)
+		KEY_M:
+			if PlayerData.music_preference == PlayerData.MusicPreference.OFF:
+				PlayerData.music_preference = PlayerData.MusicPreference.RANDOM
+			MusicPlayer.play_preferred_song()
 		KEY_S:
 			_intermission_panel.start_shark_spawn_timer(3)
 		KEY_1:
