@@ -65,6 +65,7 @@ tracks/1/keys = {
 [node name="RunningFrog" type="Sprite"]
 scale = Vector2( 0.467, 0.467 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, -80 )
 hframes = 5
 frame = 2
 script = ExtResource( 1 )

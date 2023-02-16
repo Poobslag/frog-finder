@@ -8,7 +8,7 @@ const SUPER_PANIC_DURATION := 4.8
 const PINCER_DISTANCE := 150.0
 
 ## where the frog has to stand to count as 'catching' the hand
-const HAND_CATCH_OFFSET := Vector2(28, 20)
+const HAND_CATCH_OFFSET := Vector2(28, 57)
 
 var friend: Sprite
 var hand: Hand setget set_hand
