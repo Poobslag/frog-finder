@@ -152,9 +152,10 @@ func _spawn_frog() -> RunningFrog:
 	return frog
 
 
+## Puts a frog into 'chase mode'.
 func _chase(frog: RunningFrog) -> void:
 	frog.chase(hand, friends_by_frog.get(frog, null))
-	
+
 
 func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
 	return hand.rect_global_position.distance_to(a) > hand.rect_global_position.distance_to(b)
