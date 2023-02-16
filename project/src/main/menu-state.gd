@@ -49,9 +49,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 	else:
 		# yay! we found a frog
 		if _intermission_panel.is_full():
-			# we won!
-			MusicPlayer.fade_out(4.0)
-			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_play_ending")
+			_play_ending()
 		else:
 			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
 
@@ -117,17 +115,30 @@ func _end_intermission() -> void:
 
 
 func _play_ending() -> void:
-	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
-		MusicPlayer.play_ending_song()
+	# we won!
 	match _gameplay_panel.mission_string:
 		"1-1", "2-1", "3-1":
-			_intermission_panel.start_frog_hug_timer(1, 5)
+			_schedule_frog_hug_ending(1, 5)
 		"1-2", "2-2", "3-2":
-			_intermission_panel.start_frog_hug_timer(2, 12)
+			_schedule_frog_hug_ending(2, 12)
 		"1-3", "2-3", "3-3":
-			_intermission_panel.start_frog_hug_timer(3, 30)
+			_schedule_frog_hug_ending(3, 30)
 		_:
-			_intermission_panel.start_frog_hug_timer(1, 5)
+			_schedule_frog_hug_ending(1, 5)
+
+
+## After a delay, spawns frogs which hug the cursor.
+func _schedule_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
+	MusicPlayer.fade_out(4.0)
+	_start_timer(3.0).connect("timeout", self,
+			"_on_Timer_timeout_play_frog_hug_ending", [huggable_fingers, new_max_frogs])
+
+
+## Spawns frogs which hug the cursor.
+func _on_Timer_timeout_play_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
+	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
+		MusicPlayer.play_ending_song()
+	_intermission_panel.start_frog_hug_timer(huggable_fingers, new_max_frogs)
 
 
 func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
@@ -197,10 +208,6 @@ func _on_IntermissionPanel_bye_pressed() -> void:
 
 func _on_Timer_timeout_queue_free(timer: Timer) -> void:
 	timer.queue_free()
-
-
-func _on_Timer_timeout_play_ending() -> void:
-	_play_ending()
 
 
 func _on_Timer_timeout_end_intermission() -> void:
