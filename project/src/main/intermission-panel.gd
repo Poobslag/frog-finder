@@ -105,6 +105,20 @@ func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 		_chase(frog)
 
 
+func start_frog_dance() -> void:
+	var frog_count := 1
+	
+	# spawn frogs
+	for _i in range(frog_count):
+		_spawn_frog()
+	
+	frogs[0].connect("finished_dance", self, "_on_RunningFrog_finished_dance")
+	
+	# frog runs into position, dances and leaves
+	for frog in frogs:
+		_dance(frog)
+
+
 func _spawn_shark() -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
@@ -157,6 +171,11 @@ func _chase(frog: RunningFrog) -> void:
 	frog.chase(hand, friends_by_frog.get(frog, null))
 
 
+## Puts a frog into 'dance mode'.
+func _dance(frog: RunningFrog) -> void:
+	frog.dance(frogs, Rect2(Vector2.ZERO, $Creatures.rect_size))
+
+
 func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
 	return hand.rect_global_position.distance_to(a) > hand.rect_global_position.distance_to(b)
 
@@ -189,6 +208,10 @@ func _on_FrogSpawnTimer_timeout() -> void:
 
 
 func _on_Hand_hug_finished() -> void:
+	_bye_button.visible = true
+
+
+func _on_RunningFrog_finished_dance() -> void:
 	_bye_button.visible = true
 
 

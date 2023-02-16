@@ -21,6 +21,9 @@ onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
+## song to play when the frogs dance after a stage
+onready var _dance_song := $FrogDance
+
 ## AudioStreamPlayer instance to play if the world does not define a shark song.
 onready var _default_shark_song := $WeAreTheBaddies
 
@@ -130,6 +133,10 @@ func play_shark_song() -> void:
 	_play_song(shark_song)
 
 
+func play_dance_song() -> void:
+	_play_song(_dance_song)
+
+
 func fade_out(duration := FADE_OUT_DURATION) -> void:
 	if not _current_song:
 		return
@@ -169,6 +176,10 @@ func is_playing_frog_song() -> bool:
 	return _current_song in _frog_songs
 
 
+func is_playing_dance_song() -> bool:
+	return _current_song == _dance_song
+
+
 func get_playback_position() -> float:
 	var result := 0.0
 	if _current_song:
@@ -187,3 +198,7 @@ func _on_PlayerData_music_preference_changed() -> void:
 
 func _on_PlayerData_world_index_changed() -> void:
 	play_preferred_song()
+
+
+func _on_FrogDance_finished() -> void:
+	_current_song = null

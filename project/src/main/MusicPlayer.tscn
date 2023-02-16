@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/main/music/im-just-a-frog-instrumental.ogg" type="AudioStream" id=17]
 [ext_resource path="res://assets/main/music/were-gonna-eat-you-up.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/main/music/take-comfort-in-your-fr.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/main/music/frog-dance.ogg" type="AudioStream" id=20]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource( 1 )
@@ -33,6 +34,10 @@ bus = "Music"
 
 [node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "Music"
+
+[node name="FrogDance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 bus = "Music"
 
 [node name="HalfAFrog" type="AudioStreamPlayer" parent="."]
@@ -98,3 +103,4 @@ bus = "Music"
 [node name="FadeTween" type="Tween" parent="."]
 
 [connection signal="tween_completed" from="FadeTween" to="." method="_on_FadeTween_tween_completed"]
+[connection signal="finished" from="FrogDance" to="." method="_on_FrogDance_finished"]

@@ -117,11 +117,13 @@ func _end_intermission() -> void:
 func _play_ending() -> void:
 	# we won!
 	match _gameplay_panel.mission_string:
-		"1-1", "2-1", "3-1":
+		"1-1", "1-2", "2-1", "2-2", "3-1", "3-2":
+			_intermission_panel.start_frog_dance()
+		"1-3":
 			_schedule_frog_hug_ending(1, 5)
-		"1-2", "2-2", "3-2":
+		"2-3":
 			_schedule_frog_hug_ending(2, 12)
-		"1-3", "2-3", "3-3":
+		"3-3":
 			_schedule_frog_hug_ending(3, 30)
 		_:
 			_schedule_frog_hug_ending(1, 5)

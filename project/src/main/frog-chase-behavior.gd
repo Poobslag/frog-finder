@@ -34,7 +34,7 @@ func set_hand(new_hand: Hand) -> void:
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
 	_think_timer.start(rand_range(0, 0.1))
-	_frog.run()
+	_frog.run("chase")
 	_chase()
 
 
@@ -84,7 +84,7 @@ func _on_Hand_hug_finished() -> void:
 	if not _frog.is_hugging():
 		return
 	
-	_frog.run()
+	_frog.run("chase")
 	_think_timer.start()
 	_panic()
 	_frog.soon_position += _frog.velocity.normalized() * 40
