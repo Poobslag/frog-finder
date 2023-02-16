@@ -31,12 +31,18 @@ func is_hugging() -> bool:
 	return _animation_player.current_animation == "hug"
 
 
+## Puts the frog into 'chase mode'.
+##
+## In chase mode, the frog runs after the hand and tries to hug it.
 func chase(hand: Hand, friend: RunningFrog) -> void:
 	_chase_behavior.hand = hand
 	_chase_behavior.friend = friend
 	_start_behavior(_chase_behavior)
 
 
+## Updates the frog's position to their soon_position.
+##
+## This is called periodically to result in a jerky movement effect.
 func move() -> void:
 	flip_h = true if soon_position > position else false
 	position = soon_position

@@ -62,6 +62,9 @@ func set_run_speed(new_run_speed: float) -> void:
 	_refresh_run_speed()
 
 
+## Updates the shark's position to their soon_position.
+##
+## This is called periodically to result in a jerky movement effect.
 func move() -> void:
 	flip_h = true if soon_position > position else false
 	position = soon_position
@@ -113,7 +116,6 @@ func _on_ThinkTimer_timeout() -> void:
 			# we have no friend; run towards the hand
 			pass
 		
-		# we have no friend; run towards the hand
 		velocity = (run_target - global_position).normalized() * run_speed
 	elif not _panic_timer.is_stopped():
 		# if we're panicking, we continue running in our randomly chosen direction
