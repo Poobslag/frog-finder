@@ -2,6 +2,7 @@ extends Node
 ## Demonstrates the Intermission Panel.
 ##
 ## Keys:
+## 	[D]: Launches a random dance sequence.
 ## 	[F]: Show a frog card.
 ## 	[M]: Play some music.
 ## 	[S]: Spawn a shark.
@@ -17,6 +18,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
+		KEY_D:
+			_intermission_panel.reset()
+			_intermission_panel.start_frog_dance()
 		KEY_F:
 			var card: CardControl = $IntermissionPanel/IntermissionCards.create_card()
 			card.card_front_type = CardControl.CardType.FROG

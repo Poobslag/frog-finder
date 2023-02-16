@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/frog-dance.ogg-9c9b064e7323f632a443c983ec98ca10.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/frog-dance.ogg"
+dest_files=[ "res://.import/frog-dance.ogg-9c9b064e7323f632a443c983ec98ca10.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
