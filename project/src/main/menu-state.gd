@@ -205,3 +205,11 @@ func _on_Timer_timeout_play_ending() -> void:
 
 func _on_Timer_timeout_end_intermission() -> void:
 	_end_intermission()
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	match cheat:
+		"onefrog":
+			if _main_menu_panel.visible:
+				CardArrangements.one_frog_cheat = !CardArrangements.one_frog_cheat
+				detector.play_cheat_sound(CardArrangements.one_frog_cheat)
