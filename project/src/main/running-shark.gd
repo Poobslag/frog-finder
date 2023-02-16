@@ -76,6 +76,10 @@ func _refresh_run_speed() -> void:
 	_animation_player.playback_speed = run_speed / 150.0
 
 
+func is_fed() -> bool:
+	return _animation_player.current_animation == "run-fed"
+
+
 func _on_PanicTimer_timeout() -> void:
 	chase()
 	set_run_speed(lerp(run_speed, MAX_RUN_SPEED, 0.10))
@@ -90,11 +94,11 @@ func _on_ThinkTimer_timeout() -> void:
 	if not hand or hand.biteable_fingers < 1:
 		return
 	
-	if _animation_player.current_animation == "run-fed":
+	if is_fed():
 		return
 	
 	var run_target := hand.rect_global_position + HAND_CATCH_OFFSET
-
+	
 	if ((run_target - global_position).length() < BITE_DISTANCE):
 		# we caught the hand... bite!
 		_animation_player.play("run-fed")
@@ -102,7 +106,7 @@ func _on_ThinkTimer_timeout() -> void:
 		_think_timer.stop()
 		hand.bite()
 	elif not _chase_timer.is_stopped():
-		if friend and (run_target - global_position).length() > PINCER_DISTANCE:
+		if friend and not friend.is_fed() and (run_target - global_position).length() > PINCER_DISTANCE:
 			# our friend will help us; don't run towards the hand, run behind our friend
 			run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
 		else:
