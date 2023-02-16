@@ -16,7 +16,7 @@ onready var _chase_behavior := $ChaseBehavior
 onready var behavior: CreatureBehavior
 
 func _ready() -> void:
-	run_speed = RUN_SPEED * rand_range(0.8, 1.2)
+	_randomize_run_style()
 	_refresh_run_speed()
 
 
@@ -42,13 +42,26 @@ func move() -> void:
 	position = soon_position
 
 
+func run() -> void:
+	_animation_player.play("chase")
+
+
 func play_animation(name: String) -> void:
 	_animation_player.play(name)
+
+
+func stop_animation() -> void:
+	_animation_player.stop()
 
 
 func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
 	position = new_soon_position
+
+
+## Randomize the frog's running speed.
+func _randomize_run_style() -> void:
+	run_speed = RUN_SPEED * rand_range(0.8, 1.2)
 
 
 func _start_behavior(new_behavior: CreatureBehavior) -> void:

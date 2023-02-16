@@ -34,14 +34,17 @@ func set_hand(new_hand: Hand) -> void:
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
 	_think_timer.start(rand_range(0, 0.1))
+	_frog.run()
 	_chase()
 
 
+## Stops any timers and resets any transient data for this behavior.
 func stop_behavior(_new_frog: Node) -> void:
 	# disconnect signals
-	_frog = null
 	friend = null
 	set_hand(null)
+	_frog = null
+	_chase_count = 0
 	
 	_think_timer.stop()
 	_chase_timer.stop()
@@ -81,7 +84,7 @@ func _on_Hand_hug_finished() -> void:
 	if not _frog.is_hugging():
 		return
 	
-	_frog.play_animation("run")
+	_frog.run()
 	_think_timer.start()
 	_panic()
 	_frog.soon_position += _frog.velocity.normalized() * 40
