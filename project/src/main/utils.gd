@@ -42,3 +42,23 @@ static func substring_after(s: String, sep: String) -> String:
 ## Converts level indexes like [3, 0] into a player-friendly mission string like "4-1".
 static func mission_string(world_index: int, level_index: int) -> String:
 	return "%s-%s" % [world_index + 1, level_index + 1]
+
+
+## Returns a new array containing a - b.
+##
+## The input arrays are not modified. This code is adapted from Apache Common Collections.
+static func subtract(a: Array, b: Array) -> Array:
+	var result := []
+	var bag := {}
+	for item in b:
+		if not bag.has(item):
+			bag[item] = 0
+		bag[item] += 1
+	for item in a:
+		if bag.has(item):
+			bag[item] -= 1
+			if bag[item] == 0:
+				bag.erase(item)
+		else:
+			result.append(item)
+	return result
