@@ -141,6 +141,19 @@ func fade_out(duration := FADE_OUT_DURATION) -> void:
 	_current_song = null
 
 
+## Force the currently playing song to fade in.
+##
+## This can be called immediately after playing a song to ensure it fades in, rather than starting abruptly.
+func fade_in(duration := FADE_OUT_DURATION) -> void:
+	if not _current_song:
+		return
+	
+	_current_song.volume_db = MIN_VOLUME
+	_fade_tween.remove(_current_song, "volume_db")
+	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, duration)
+	_fade_tween.start()
+
+
 func play_ending_song() -> void:
 	if _position_by_song.get(_ending_song, 0.0) > 80:
 		# more than half way through the ending song; start over
@@ -154,6 +167,13 @@ func is_playing_shark_song() -> bool:
 
 func is_playing_frog_song() -> bool:
 	return _current_song in _frog_songs
+
+
+func get_playback_position() -> float:
+	var result := 0.0
+	if _current_song:
+		result = _current_song.get_playback_position()
+	return result
 
 
 func _on_FadeTween_tween_completed(object: Object, key: NodePath) -> void:

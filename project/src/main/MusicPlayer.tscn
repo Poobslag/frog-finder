@@ -35,10 +35,6 @@ bus = "Music"
 stream = ExtResource( 7 )
 bus = "Music"
 
-[node name="WereGonnaEatYouUp" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 18 )
-bus = "Music"
-
 [node name="HalfAFrog" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 bus = "Music"
@@ -93,6 +89,10 @@ bus = "Music"
 
 [node name="WeAreTheBaddies" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "Music"
+
+[node name="WereGonnaEatYouUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
 bus = "Music"
 
 [node name="FadeTween" type="Tween" parent="."]
