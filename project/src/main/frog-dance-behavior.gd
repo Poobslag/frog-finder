@@ -81,7 +81,6 @@ func set_state(new_dance_state: int) -> void:
 			_adjust_velocity_toward_dance_target()
 			_frog.run()
 		DanceState.WAIT_TO_DANCE:
-			var old_position := _frog.position
 			# The frog waits for other frogs to reach their dance targets
 			_frog.set_soon_position(dance_target)
 			_frog.velocity = Vector2.ZERO

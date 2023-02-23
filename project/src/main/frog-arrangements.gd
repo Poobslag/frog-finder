@@ -11,6 +11,23 @@ const DEFAULT_FROG_POSITIONS := [
 	Vector2(0, 0),
 ]
 
+## Number of dancers which should appear after each dance.
+##
+## The number increases gradually from one frog to ten frogs, and then resets back to one.
+var FROG_DANCER_COUNTS := [
+	 1,  2,  3,
+	 2,  3,  4,
+	 3,  4,  5,
+	 4,  5,  6,
+	 5,  6,  7,
+	 6,  7,  8,
+	 7,  8,  9,
+	 8,  9, 10,
+	 9, 10, 10,
+	10, 10,  1,
+	10,  1,  2,
+]
+
 ## Path to the json file with card arrangements. Can be changed for tests.
 var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
 
@@ -26,6 +43,16 @@ func _ready() -> void:
 func set_arrangements_path(new_arrangements_path: String) -> void:
 	arrangements_path = new_arrangements_path
 	_load_raw_json_data()
+
+
+## Returns the number of frogs which should participate in the dance.
+##
+## The number of frogs increases as the player watches more dances.
+##
+## Parameters:
+## 	'frog_dance_count': Number of times the player has watched frogs dance
+func get_dancer_count(frog_dance_count: int) -> int:
+	return FROG_DANCER_COUNTS[frog_dance_count % FROG_DANCER_COUNTS.size()]
 
 
 ## Returns a random arrangement for the specified frog count.

@@ -28,6 +28,9 @@ var music_preference: int = MusicPreference.RANDOM setget set_music_preference
 var frog_count := 0
 var shark_count := 0
 
+## number of times the player has watched frogs dance
+var frog_dance_count := 0
+
 ## key: (String) hyphenated mission ID like '1-3' or '4-1'
 ## value: (int) enum from MissionResult defining the mission result
 var missions_cleared := {}
@@ -76,6 +79,7 @@ func save_player_data() -> void:
 	new_save_json["frog_count"] = frog_count
 	new_save_json["shark_count"] = shark_count
 	new_save_json["missions_cleared"] = missions_cleared
+	new_save_json["frog_dance_count"] = frog_dance_count
 	
 	if new_save_json != save_json:
 		FileUtils.write_file(DATA_FILENAME, JSON.print(new_save_json, "  "))
@@ -104,6 +108,8 @@ func load_player_data() -> void:
 		var new_missions_cleared: Dictionary = save_json["missions_cleared"]
 		_convert_float_values_to_ints(new_missions_cleared)
 		missions_cleared = new_missions_cleared
+	if save_json.has("frog_dance_count"):
+		frog_dance_count = int(save_json["frog_dance_count"])
 
 
 ## Converts the float values in a Dictionary to int values.
