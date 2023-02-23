@@ -134,6 +134,8 @@ func play_shark_song() -> void:
 
 
 func play_dance_song() -> void:
+	# dance song does not save position
+	_position_by_song.erase(_dance_song)
 	_play_song(_dance_song)
 
 
