@@ -59,6 +59,8 @@ margin_top = -250.0
 margin_right = 462.0
 margin_bottom = 250.0
 
+[node name="YSort" type="YSort" parent="Creatures"]
+
 [node name="ByeButton" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
