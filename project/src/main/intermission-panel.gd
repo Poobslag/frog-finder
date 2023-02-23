@@ -10,7 +10,7 @@ signal bye_pressed
 export (NodePath) var hand_path: NodePath
 
 const SHARK_SPAWN_WAIT_TIME := 8.0
-const SHARK_SPAWN_BORDER := 80.0
+const CREATURE_SPAWN_BORDER := 80.0
 
 ## Delay (in seconds) between when each shark appears. The first item in the array corresponds to the number of seconds
 ## until the second shark appears.
@@ -92,7 +92,7 @@ func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
 	$SharkSpawnTimer.start()
 	for _finger in range(biteable_fingers):
 		# spawn one shark per finger
-		_spawn_shark()
+		_spawn_shark(true)
 
 
 func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
@@ -101,7 +101,7 @@ func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 	$FrogSpawnTimer.start()
 	for _finger in range(huggable_fingers):
 		# spawn one frog per finger
-		var frog := _spawn_frog()
+		var frog := _spawn_frog(true)
 		_chase(frog)
 
 
@@ -119,19 +119,26 @@ func start_frog_dance() -> void:
 		_dance(frog)
 
 
-func _spawn_shark() -> void:
+## Spawns a shark outside the edge of the screen.
+##
+## Parameters:
+## 	'away_from_hand': If 'true', the shark will be spawned on the furthest edge from the player's cursor.
+func _spawn_shark(away_from_hand: bool = false) -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
 	
 	var viewport_rect_size := get_viewport_rect().size
 	
 	var spawn_points := [
-		Vector2(rand_range(0, viewport_rect_size.x), -SHARK_SPAWN_BORDER), # top wall
-		Vector2(viewport_rect_size.x + SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
-		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + SHARK_SPAWN_BORDER), # bottom wall
-		Vector2(-SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
+		Vector2(rand_range(0, viewport_rect_size.x), -CREATURE_SPAWN_BORDER), # top wall
+		Vector2(viewport_rect_size.x + CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
+		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
+		Vector2(-CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
 	]
-	spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
+	if away_from_hand:
+		spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
+	else:
+		spawn_points.shuffle()
 	
 	if sharks.size() % 2 == 1:
 		# this shark has a friend
@@ -143,18 +150,25 @@ func _spawn_shark() -> void:
 	shark.chase()
 
 
-func _spawn_frog() -> RunningFrog:
+## Spawns a frog outside the edge of the screen.
+##
+## Parameters:
+## 	'away_from_hand': If 'true', the frog will be spawned on the furthest edge from the player's cursor.
+func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 	var frog: RunningFrog = RunningFrogScene.instance()
 	
 	var viewport_rect_size := get_viewport_rect().size
 	
 	var spawn_points := [
-		Vector2(rand_range(0, viewport_rect_size.x), -SHARK_SPAWN_BORDER), # top wall
-		Vector2(viewport_rect_size.x + SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
-		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + SHARK_SPAWN_BORDER), # bottom wall
-		Vector2(-SHARK_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
+		Vector2(rand_range(0, viewport_rect_size.x), -CREATURE_SPAWN_BORDER), # top wall
+		Vector2(viewport_rect_size.x + CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
+		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
+		Vector2(-CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
 	]
-	spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
+	if away_from_hand:
+		spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
+	else:
+		spawn_points.shuffle()
 	
 	if frogs.size() % 2 == 1:
 		# this frog has a friend
@@ -189,7 +203,7 @@ func _on_SharkSpawnTimer_timeout() -> void:
 	
 	var shark_delay_index := sharks.size() - 1
 	if shark_delay_index < SHARK_DELAYS.size() and hand.biteable_fingers >= 1:
-		_spawn_shark()
+		_spawn_shark(true)
 		$SharkSpawnTimer.start(SHARK_DELAYS[shark_delay_index])
 
 
@@ -202,7 +216,7 @@ func _on_FrogSpawnTimer_timeout() -> void:
 	
 	var frog_delay_index := frogs.size() - 1
 	if frog_delay_index < FROG_DELAYS.size() and frogs.size() < max_frogs:
-		var frog := _spawn_frog()
+		var frog := _spawn_frog(true)
 		_chase(frog)
 		$FrogSpawnTimer.start(FROG_DELAYS[frog_delay_index])
 
