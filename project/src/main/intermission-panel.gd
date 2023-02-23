@@ -65,9 +65,9 @@ func reset() -> void:
 	$SharkSpawnTimer.stop()
 	$FrogSpawnTimer.stop()
 	_bye_button.visible = false
-	for child in $Creatures.get_children():
+	for child in $Creatures/YSort.get_children():
 		child.queue_free()
-		$Creatures.remove_child(child)
+		$Creatures/YSort.remove_child(child)
 	sharks.clear()
 	frogs.clear()
 
@@ -138,7 +138,7 @@ func _spawn_shark() -> void:
 		shark.friend = sharks[sharks.size() - 1]
 	
 	shark.soon_position = spawn_points[0] - $Creatures.rect_global_position
-	$Creatures.add_child(shark)
+	$Creatures/YSort.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
 
@@ -161,7 +161,7 @@ func _spawn_frog() -> RunningFrog:
 		friends_by_frog[frog] = frogs[frogs.size() - 1]
 	
 	frog.soon_position = spawn_points[0] - $Creatures.rect_global_position
-	$Creatures.add_child(frog)
+	$Creatures/YSort.add_child(frog)
 	frogs.append(frog)
 	return frog
 
