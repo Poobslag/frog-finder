@@ -944,15 +944,15 @@ wait_time = 0.1
 [node name="DanceBehavior" type="Node" parent="."]
 script = ExtResource( 4 )
 
+[node name="SyncCheckTimer" type="Timer" parent="DanceBehavior"]
+wait_time = 0.25
+
+[node name="ThinkTimer" type="Timer" parent="DanceBehavior"]
+wait_time = 0.1
+
 [node name="WaitToDanceTimer" type="Timer" parent="DanceBehavior"]
 wait_time = 1.5
 one_shot = true
-
-[node name="RunTimer" type="Timer" parent="DanceBehavior"]
-one_shot = true
-
-[node name="SyncCheckTimer" type="Timer" parent="DanceBehavior"]
-wait_time = 0.25
 
 [node name="DanceAnimations" type="AnimationPlayer" parent="DanceBehavior"]
 anims/RESET = SubResource( 11 )
@@ -1005,6 +1005,6 @@ anims/stand = SubResource( 4 )
 [connection signal="timeout" from="ChaseBehavior/ChaseTimer" to="ChaseBehavior" method="_on_ChaseTimer_timeout"]
 [connection signal="timeout" from="ChaseBehavior/PanicTimer" to="ChaseBehavior" method="_on_PanicTimer_timeout"]
 [connection signal="timeout" from="ChaseBehavior/ThinkTimer" to="ChaseBehavior" method="_on_ThinkTimer_timeout"]
-[connection signal="timeout" from="DanceBehavior/RunTimer" to="DanceBehavior" method="_on_RunTimer_timeout"]
 [connection signal="timeout" from="DanceBehavior/SyncCheckTimer" to="DanceBehavior" method="_on_SyncCheckTimer_timeout"]
+[connection signal="timeout" from="DanceBehavior/ThinkTimer" to="DanceBehavior" method="_on_ThinkTimer_timeout"]
 [connection signal="timeout" from="DanceBehavior/WaitToDanceTimer" to="DanceBehavior" method="_on_WaitToDanceTimer_timeout"]
