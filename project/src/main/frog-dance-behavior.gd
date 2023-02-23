@@ -52,7 +52,7 @@ onready var _dance_animations: DanceAnimations = $DanceAnimations
 ## Strings together a series of dance animations.
 onready var _choreographer := $Choreographer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
 		var close_enough := (_dance_target() - _frog.soon_position).length() <= REACHED_TARGET_DISTANCE
 		var running_away := (_dance_target() - _frog.soon_position).dot(_frog.velocity) <= 0.0
