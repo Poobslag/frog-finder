@@ -15,17 +15,17 @@ const DEFAULT_FROG_POSITIONS := [
 ##
 ## The number increases gradually from one frog to ten frogs, and then resets back to one.
 var FROG_DANCER_COUNTS := [
-	 1,  2,  3,
-	 2,  3,  4,
-	 3,  4,  5,
-	 4,  5,  6,
-	 5,  6,  7,
-	 6,  7,  8,
-	 7,  8,  9,
-	 8,  9, 10,
-	 9, 10, 10,
-	10, 10,  1,
-	10,  1,  2,
+	1,  2,  3,
+	2,  3,  4,
+	3,  4,  5,
+	4,  5,  6,
+	5,  6,  7,
+	6,  7,  8,
+	7,  8,  9,
+	8,  9,  10,
+	9,  10, 10,
+	10, 10, 1,
+	10, 1,  2,
 ]
 
 ## Path to the json file with card arrangements. Can be changed for tests.
