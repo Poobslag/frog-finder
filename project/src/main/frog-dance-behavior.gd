@@ -13,6 +13,9 @@ enum DanceState {
 ## Threshold where the frog adjusts their animation to sync back up with the music.
 const DESYNC_THRESHOLD_MSEC := 100
 
+## Threshold where the frog is considered to have reached the dance target
+const REACHED_TARGET_DISTANCE := 20.0
+
 ## RunningFrog instances participating in the current dance. The first frog is the leader.
 var frogs: Array
 
@@ -34,11 +37,11 @@ var _frog: RunningFrog
 ## value: (bool) true
 var _frogs_running_to_dance := {}
 
-## Locks a frog into their dance target after they run for a little while.
-onready var _run_timer := $RunTimer
-
 ## Checks whether the frog needs to adjust their animation to sync back up with the music.
 onready var _sync_check_timer := $SyncCheckTimer
+
+## Makes decisions every few frames
+onready var _think_timer := $ThinkTimer
 
 ## Makes the frogs dance after a brief delay.
 onready var _wait_to_dance_timer := $WaitToDanceTimer
@@ -49,9 +52,18 @@ onready var _dance_animations: DanceAnimations = $DanceAnimations
 ## Strings together a series of dance animations.
 onready var _choreographer := $Choreographer
 
+func _process(delta: float) -> void:
+	if _dance_state == DanceState.RUN_TO_DANCE:
+		var close_enough := (_dance_target() - _frog.soon_position).length() <= REACHED_TARGET_DISTANCE
+		var running_away := (_dance_target() - _frog.soon_position).dot(_frog.velocity) <= 0.0
+		if close_enough and running_away:
+			set_state(DanceState.WAIT_TO_DANCE)
+
+
 ## Starts a new dance. The frog runs towards their dance target.
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
+	_think_timer.start(rand_range(0, 0.1))
 	
 	if is_lead_frog():
 		for next_frog in frogs:
@@ -67,10 +79,8 @@ func set_state(new_dance_state: int) -> void:
 	match new_dance_state:
 		DanceState.RUN_TO_DANCE:
 			# The frog runs to their dance target
-			var target_distance: Vector2 = _dance_target() - _frog.position
-			_frog.velocity = target_distance.normalized() * _frog.run_speed
+			_adjust_velocity_toward_dance_target()
 			_frog.run()
-			_run_timer.start(target_distance.length() / _frog.run_speed)
 		DanceState.WAIT_TO_DANCE:
 			# The frog waits for other frogs to reach their dance targets
 			_frog.set_soon_position(_dance_target())
@@ -121,7 +131,6 @@ func stop_behavior(_new_frog: Node) -> void:
 	_frog = null
 	_frogs_running_to_dance.clear()
 	
-	_run_timer.stop()
 	_sync_check_timer.stop()
 	_wait_to_dance_timer.stop()
 	_dance_animations.stop()
@@ -185,6 +194,15 @@ func _decide_dance_moves(dance_names: Array) -> String:
 	return PoolStringArray(result).join(" ")
 
 
+## Orient the frog's velocity toward the dance target.
+##
+## This should only need to be called once when the frog starts running, but we call it again just in case the frog
+## overruns their target.
+func _adjust_velocity_toward_dance_target() -> void:
+	var target_distance: Vector2 = _dance_target() - _frog.position
+	_frog.velocity = target_distance.normalized() * _frog.run_speed
+
+
 ## After a frog runs for a little while, they lock themselves into their their dance target.
 func _on_RunTimer_timeout() -> void:
 	set_state(DanceState.WAIT_TO_DANCE)
@@ -231,3 +249,14 @@ func _on_SyncCheckTimer_timeout() -> void:
 	
 	if abs(desync_amount * 1000) > DESYNC_THRESHOLD_MSEC:
 		_choreographer.advance(desync_amount)
+
+
+## Every once in awhile, we check to make sure we're still running to our dance target.
+##
+## It's theoretically possible that we could run past our target and need to turn around.
+func _on_ThinkTimer_timeout() -> void:
+	if _dance_state == DanceState.RUN_TO_DANCE:
+		var close_enough := (_frog.soon_position - _dance_target()).length() <= REACHED_TARGET_DISTANCE
+		if not close_enough:
+			# make sure we're still running to the target
+			_adjust_velocity_toward_dance_target()
