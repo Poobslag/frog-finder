@@ -19,8 +19,7 @@ const REACHED_TARGET_DISTANCE := 20.0
 ## RunningFrog instances participating in the current dance. The first frog is the leader.
 var frogs: Array
 
-## Region where the frog dance takes place.
-var dance_area: Rect2
+var dance_target: Vector2
 
 ## A String like 'nip3 shuffle2 hips2_flip 59 !59 56 58' describing animations and frames for a dance.
 var dance_moves: String
@@ -54,8 +53,8 @@ onready var _choreographer := $Choreographer
 
 func _process(_delta: float) -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
-		var close_enough := (_dance_target() - _frog.soon_position).length() <= REACHED_TARGET_DISTANCE
-		var running_away := (_dance_target() - _frog.soon_position).dot(_frog.velocity) <= 0.0
+		var close_enough := (dance_target - _frog.soon_position).length() <= REACHED_TARGET_DISTANCE
+		var running_away := (dance_target - _frog.soon_position).dot(_frog.velocity) <= 0.0
 		if close_enough and running_away:
 			set_state(DanceState.WAIT_TO_DANCE)
 
@@ -82,8 +81,9 @@ func set_state(new_dance_state: int) -> void:
 			_adjust_velocity_toward_dance_target()
 			_frog.run()
 		DanceState.WAIT_TO_DANCE:
+			var old_position := _frog.position
 			# The frog waits for other frogs to reach their dance targets
-			_frog.set_soon_position(_dance_target())
+			_frog.set_soon_position(dance_target)
 			_frog.velocity = Vector2.ZERO
 			_frog.play_animation("stand")
 			_frog.emit_signal("reached_dance_target")
@@ -100,11 +100,6 @@ func set_state(new_dance_state: int) -> void:
 			_frog.run()
 			_frog.emit_signal("finished_dance")
 			_sync_check_timer.stop()
-
-
-## The position where the frog will do their dance
-func _dance_target() -> Vector2:
-	return dance_area.get_center()
 
 
 ## Returns 'true' if this frog is the one giving out orders to other frogs.
@@ -124,7 +119,7 @@ func stop_behavior(_new_frog: Node) -> void:
 				next_frog.disconnect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target", [next_frog])
 	
 	frogs = []
-	dance_area = Rect2(Vector2.ZERO, Vector2.ZERO)
+	dance_target = Vector2.ZERO
 	dance_moves = ""
 	
 	_dance_state = DanceState.NONE
@@ -199,7 +194,7 @@ func _decide_dance_moves(dance_names: Array) -> String:
 ## This should only need to be called once when the frog starts running, but we call it again just in case the frog
 ## overruns their target.
 func _adjust_velocity_toward_dance_target() -> void:
-	var target_distance: Vector2 = _dance_target() - _frog.position
+	var target_distance: Vector2 = dance_target - _frog.position
 	_frog.velocity = target_distance.normalized() * _frog.run_speed
 
 
@@ -256,7 +251,7 @@ func _on_SyncCheckTimer_timeout() -> void:
 ## It's theoretically possible that we could run past our target and need to turn around.
 func _on_ThinkTimer_timeout() -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
-		var close_enough := (_frog.soon_position - _dance_target()).length() <= REACHED_TARGET_DISTANCE
+		var close_enough := (_frog.soon_position - dance_target).length() <= REACHED_TARGET_DISTANCE
 		if not close_enough:
 			# make sure we're still running to the target
 			_adjust_velocity_toward_dance_target()
