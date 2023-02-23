@@ -160,13 +160,12 @@ func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
 
 
 func _on_GameplayPanel_before_shark_found(_card: CardControl) -> void:
-	if MusicPlayer.is_playing_frog_song():
+	if MusicPlayer.is_playing_frog_song() or MusicPlayer.is_playing_ending_song():
 		MusicPlayer.play_shark_song()
 
 
 func _on_GameplayPanel_before_frog_found(_card: CardControl) -> void:
 	if MusicPlayer.is_playing_shark_song():
-		# we don't play a shark song if there's no current song (music is off)
 		MusicPlayer.play_preferred_song()
 
 

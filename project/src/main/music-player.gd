@@ -38,7 +38,7 @@ onready var _songs_by_world_index := {
 ## List of AudioStreamPlayer instances corresponding to 'frog songs', songs which play by default or when the player
 ## finds a frog
 onready var _frog_songs := [
-	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog, $HugFromAFrog,
+	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
 	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog, $TakeComfortInYourFrog,
 ]
@@ -180,6 +180,10 @@ func is_playing_frog_song() -> bool:
 
 func is_playing_dance_song() -> bool:
 	return _current_song == _dance_song
+
+
+func is_playing_ending_song() -> bool:
+	return _current_song == _ending_song
 
 
 func get_playback_position() -> float:
