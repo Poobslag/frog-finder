@@ -129,7 +129,7 @@ func _on_ThinkTimer_timeout() -> void:
 	
 	var run_target := hand.rect_global_position + HAND_CATCH_OFFSET
 	
-	if ((run_target - global_position).length() < BITE_DISTANCE):
+	if (run_target - global_position).length() < BITE_DISTANCE:
 		# we caught the hand... bite!
 		_animation_player.play("run-fed")
 		velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
