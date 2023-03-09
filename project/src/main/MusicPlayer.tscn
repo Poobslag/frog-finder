@@ -102,5 +102,5 @@ bus = "Music"
 
 [node name="FadeTween" type="Tween" parent="."]
 
-[connection signal="tween_completed" from="FadeTween" to="." method="_on_FadeTween_tween_completed"]
 [connection signal="finished" from="FrogDance" to="." method="_on_FrogDance_finished"]
+[connection signal="tween_completed" from="FadeTween" to="." method="_on_FadeTween_tween_completed"]
