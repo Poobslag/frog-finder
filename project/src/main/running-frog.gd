@@ -42,6 +42,12 @@ func is_hugging() -> bool:
 ## Puts the frog into 'chase mode'.
 ##
 ## In chase mode, the frog runs after the hand and tries to hug it.
+##
+## Parameters:
+## 	'hand': The hand to chase.
+##
+## 	'friend': Another frog which affects this frog's pathfinding. As long as our friend is chasing the hand, we will
+## 		chase our friend instead. This prevents frogs from clustering too tightly.
 func chase(hand: Hand, friend: RunningFrog) -> void:
 	_chase_behavior.hand = hand
 	_chase_behavior.friend = friend
@@ -116,6 +122,10 @@ func _randomize_run_style() -> void:
 		run_animation_name = "run1"
 
 
+## Assigns a new behavior to the frog, such as 'chasing the hand' or 'dancing'.
+##
+## Parameters:
+## 	'new_behavior': The frog's new behavior, such as 'chasing the hand' or 'dancing'.
 func _start_behavior(new_behavior: CreatureBehavior) -> void:
 	behavior = new_behavior
 	new_behavior.start_behavior(self)

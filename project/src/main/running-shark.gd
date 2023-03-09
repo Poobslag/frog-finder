@@ -2,25 +2,45 @@ class_name RunningShark
 extends Sprite
 ## Shark which chases the player's cursor.
 
+## If the shark gets within this distance of the player's hand, they will bite off a finger.
 const BITE_DISTANCE := 70.0
+
+## The duration sharks will pursue the hand for before switching to the 'panic' state.
 const CHASE_DURATION := 6
+
+## The duration sharks will run in a random direction before switching to the 'chase' state.
 const PANIC_DURATION := 1.2
+
 const MIN_RUN_SPEED := 150.0
 const MAX_RUN_SPEED := 1200.0
+
+## How accurately we chase the cursor. Sharks with low agility will run in arbitrary directions more frequently.
 const MAX_AGILITY := 4.0
+
+## When we get within this distance of our target, we will run sideways instead to trap it in a corner.
 const PINCER_DISTANCE := 150.0
 
 ## where the shark has to stand to count as 'catching' the hand
 const HAND_CATCH_OFFSET := Vector2(28, 20)
 
+## the hand to chase
 var hand: Hand
+
+## Another shark which affects this shark's pathfinding. As long as our friend is chasing the hand, we will chase our
+## friend instead. This prevents sharks from clustering too tightly.
 var friend: Sprite
+
 var velocity := Vector2.ZERO
 var run_speed := MIN_RUN_SPEED setget set_run_speed
+
+## How accurately we chase the cursor. Sharks with low agility will run in arbitrary directions more frequently.
 var agility := 1.0
 
 ## sharks move in a jerky way. soon_position stores the location where the frog will blink to after a delay
 var soon_position: Vector2 setget set_soon_position
+
+## Sharks alternate between two states: 'panic' and 'chase'. This variable tracks how many times they've entered the
+## 'chase' state.
 var _chase_count := 0
 
 onready var _animation_player := $AnimationPlayer
@@ -39,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	soon_position.y = clamp(soon_position.y, -200, viewport_rect_size.y + 200)
 
 
+## Makes the shark enter the 'chase state' where they run toward the hand.
 func chase() -> void:
 	_panic_timer.stop()
 	var wait_time := CHASE_DURATION * rand_range(0.8, 1.2)
@@ -49,6 +70,9 @@ func chase() -> void:
 	_chase_count += 1
 
 
+## Makes the shark enter the 'panic state' where they run in a random direction.
+##
+## Sharks periodically panic to prevent them from clustering too tightly.
 func panic() -> void:
 	_chase_timer.stop()
 	_panic_timer.start((PANIC_DURATION / agility) * rand_range(0.8, 1.2))
@@ -70,6 +94,9 @@ func move() -> void:
 	position = soon_position
 
 
+## 'true' if this shark has eaten the player's finger.
+##
+## Fed sharks have a chubby belly and run offscreen instead of chasing the hand.
 func is_fed() -> bool:
 	return _animation_player.current_animation == "run-fed"
 
