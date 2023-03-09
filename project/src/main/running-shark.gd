@@ -90,7 +90,7 @@ func set_run_speed(new_run_speed: float) -> void:
 ##
 ## This is called periodically to result in a jerky movement effect.
 func update_position() -> void:
-	flip_h = true if soon_position > position else false
+	flip_h = true if soon_position < position else false
 	position = soon_position
 
 
