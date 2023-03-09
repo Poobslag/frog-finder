@@ -11,10 +11,6 @@ extends LevelRules
 ## 	5. Do not click any row with an 'R' in the fourth position.
 ##  6. You may click any other cards.
 
-## key: (Vector2) cell position of a card
-## value: (String) letter to reveal when revealing the word the player clicked
-var _cell_pos_to_revealed_letter := {}
-
 var random := RandomNumberGenerator.new()
 
 ## Words which have frogs but aren't 'frog'. These should not have any letters in common with any troll_shark_words,
@@ -67,6 +63,10 @@ var troll_silly_words := [
 	"heehee",
 	"hahaha",
 ]
+
+## key: (Vector2) cell position of a card
+## value: (String) letter to reveal when revealing the word the player clicked
+var _cell_pos_to_revealed_letter := {}
 
 func _ready() -> void:
 	random.randomize()

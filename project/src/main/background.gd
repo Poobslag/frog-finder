@@ -6,6 +6,14 @@ const TWEEN_DURATION := 2.5
 const BACKGROUND_COLOR := Color("3679a5")
 const TEXTURE_COLOR := Color("45a5e6")
 
+## Hue values in the range [0, 1] used for backgrounds. The hue at the front of the list is currently visible.
+var hues := [
+	0.0, 0.05, 0.10, 0.15, 0.20,
+	0.30, 0.40, 0.50, 0.55, 0.60,
+	0.63, 0.66, 0.70, 0.75, 0.80,
+	0.90,
+]
+
 ## TextureRect instances used for backgrounds. The texture at the front of the list is currently visible.
 onready var textures := [
 	$TextureRect1, $TextureRect2, $TextureRect3, $TextureRect4,
@@ -18,14 +26,6 @@ onready var textures := [
 	$TextureRect29, $TextureRect30, $TextureRect31, $TextureRect32,
 	$TextureRect33, $TextureRect34, $TextureRect35, $TextureRect36,
 	$TextureRect37, $TextureRect38, $TextureRect39, $TextureRect40,
-]
-
-## Hue values in the range [0, 1] used for backgrounds. The hue at the front of the list is currently visible.
-var hues := [
-	0.0, 0.05, 0.10, 0.15, 0.20,
-	0.30, 0.40, 0.50, 0.55, 0.60,
-	0.63, 0.66, 0.70, 0.75, 0.80,
-	0.90,
 ]
 
 onready var _color_rect := $ColorRect

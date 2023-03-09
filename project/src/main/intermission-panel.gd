@@ -7,8 +7,6 @@ extends Panel
 
 signal bye_pressed
 
-export (NodePath) var hand_path: NodePath
-
 const SHARK_SPAWN_WAIT_TIME := 8.0
 const CREATURE_SPAWN_BORDER := 80.0
 
@@ -23,6 +21,8 @@ const FROG_DELAYS := [
 	1.5, 1.5, 1.5, 1.5, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0,
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
+
+export (NodePath) var hand_path: NodePath
 
 var cards: Array = []
 var sharks: Array = []

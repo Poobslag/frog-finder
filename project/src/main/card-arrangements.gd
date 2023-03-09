@@ -21,10 +21,6 @@ const DEFAULT_CARD_POSITIONS := [
 ## skip zero, that way the number '5' corresponds to the fifth level. This sequence defines which ones come earlier.
 const ORDERED_CHARS := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-## key: (String) A character used in ASCII pictures.
-## value: (int) A number corresponding to how early the card should appear in the arrangement.
-var _index_by_char := {}
-
 ## Path to the json file with card arrangements. Can be changed for tests.
 var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
 
@@ -38,6 +34,10 @@ var one_frog_cheat: bool = false
 ## 	to the 2nd row and 4th column. These card positions also define how many levels are in the mission, as the mission
 ## 	is complete when all cards are turned over.
 var _card_positions_by_mission_string := {}
+
+## key: (String) A character used in ASCII pictures.
+## value: (int) A number corresponding to how early the card should appear in the arrangement.
+var _index_by_char := {}
 
 func _ready() -> void:
 	for i in range(ORDERED_CHARS.length()):
