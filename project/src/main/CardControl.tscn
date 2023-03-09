@@ -12,31 +12,29 @@ script = ExtResource( 3 )
 game_state_path = NodePath("")
 
 [node name="CardBack" parent="." instance=ExtResource( 2 )]
-scale = Vector2( 0.333, 0.333 )
 
 [node name="CardFront" parent="." instance=ExtResource( 2 )]
 visible = false
-scale = Vector2( 0.333, 0.333 )
-
-[node name="StopDanceTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="SharkFoundTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="FrogFoundTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="CheerTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
-[node name="PopBrustSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -10.0
+[node name="FrogFoundTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SharkFoundTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StopDanceTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CreatureSfx" type="AudioStreamPlayer" parent="."]
 volume_db = -8.0
+
+[node name="PopBrustSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -10.0
 
 [connection signal="timeout" from="CheerTimer" to="." method="_on_CheerTimer_timeout"]
 [connection signal="timeout" from="FrogFoundTimer" to="." method="_on_FrogFoundTimer_timeout"]

@@ -159,8 +159,19 @@ var _shark_sounds := [
 	preload("res://assets/main/sfx/shark-voice-7.wav"),
 ]
 
+var _game_state: GameState
+var _pending_warning := ""
+
 onready var _card_back_sprite := $CardBack
 onready var _card_front_sprite := $CardFront
+
+onready var _cheer_timer := $CheerTimer
+onready var _frog_found_timer := $FrogFoundTimer
+onready var _shark_found_timer := $SharkFoundTimer
+onready var _stop_dance_timer := $StopDanceTimer
+
+onready var _creature_sfx := $CreatureSfx
+onready var _pop_brust_sfx := $PopBrustSfx
 
 onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
 onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
@@ -171,9 +182,6 @@ onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
 onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
 onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
 onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
-onready var _game_state: GameState
-
-var _pending_warning := ""
 
 func _ready() -> void:
 	_refresh_card_textures()
@@ -318,9 +326,9 @@ func reset() -> void:
 	card_front_type = CardType.MYSTERY
 	card_front_details = ""
 	
-	$StopDanceTimer.stop()
-	$FrogFoundTimer.stop()
-	$SharkFoundTimer.stop()
+	_stop_dance_timer.stop()
+	_frog_found_timer.stop()
+	_shark_found_timer.stop()
 	_refresh_card_textures()
 
 
@@ -329,26 +337,26 @@ func is_front_shown() -> bool:
 
 
 func show_front() -> void:
-	if $CardFront.visible:
+	if _card_front_sprite.visible:
 		# already shown
 		return
 	
 	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
-	$CardBack.visible = false
-	$CardFront.visible = true
+	_card_back_sprite.visible = false
+	_card_front_sprite.visible = true
 	
 	# reset the wiggle so the characters don't have one very abbreviated dance frame
-	$CardFront.reset_wiggle()
+	_card_front_sprite.reset_wiggle()
 
 
 func hide_front() -> void:
-	if not $CardFront.visible:
+	if not _card_front_sprite.visible:
 		# already hidden
 		return
 	
 	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
-	$CardBack.visible = true
-	$CardFront.visible = false
+	_card_back_sprite.visible = true
+	_card_front_sprite.visible = false
 
 
 func copy_from(other_card: CardControl) -> void:
@@ -380,8 +388,8 @@ func _flip_card() -> void:
 		# the level hasn't started, or the level has ended
 		return
 	
-	$PopBrustSfx.pitch_scale = rand_range(0.9, 1.10)
-	$PopBrustSfx.play()
+	_pop_brust_sfx.pitch_scale = rand_range(0.9, 1.10)
+	_pop_brust_sfx.play()
 	emit_signal("before_card_flipped")
 	
 	show_front()
@@ -400,7 +408,7 @@ func cheer() -> void:
 	
 	# reset the wiggle so the characters don't have one very abbreviated dance frame
 	_card_front_sprite.reset_wiggle()
-	$StopDanceTimer.start(4.0)
+	_stop_dance_timer.start(4.0)
 
 
 func _on_FlipTimer_timeout() -> void:
@@ -414,8 +422,8 @@ func _on_FlipTimer_timeout() -> void:
 				_game_state.can_interact = false
 			
 			emit_signal("before_frog_found")
-			$CheerTimer.start()
-			$FrogFoundTimer.start(2.0)
+			_cheer_timer.start()
+			_frog_found_timer.start(2.0)
 		CardType.SHARK:
 			if practice:
 				# this shark doesn't count; maybe it was on the main menu
@@ -423,10 +431,10 @@ func _on_FlipTimer_timeout() -> void:
 			else:
 				_game_state.can_interact = false
 			emit_signal("before_shark_found")
-			$SharkFoundTimer.start(3.2)
-			$CreatureSfx.stream = Utils.rand_value(_shark_sounds)
-			$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
-			$CreatureSfx.play()
+			_shark_found_timer.start(3.2)
+			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
+			_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+			_creature_sfx.play()
 
 
 func _on_StopDanceTimer_timeout() -> void:
@@ -446,7 +454,7 @@ func _on_SharkFoundTimer_timeout() -> void:
 
 
 func _on_CheerTimer_timeout() -> void:
-	$CreatureSfx.stream = Utils.rand_value(_frog_sounds)
-	$CreatureSfx.pitch_scale = rand_range(0.8, 1.2)
-	$CreatureSfx.play()
+	_creature_sfx.stream = Utils.rand_value(_frog_sounds)
+	_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+	_creature_sfx.play()
 	cheer()
