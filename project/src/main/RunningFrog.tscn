@@ -746,16 +746,16 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 } ]
 }
 
@@ -805,16 +805,16 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 } ]
 }
 
@@ -846,16 +846,16 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 } ]
 }
 
@@ -887,16 +887,16 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 }, {
 "args": [  ],
-"method": "move"
+"method": "update_position"
 } ]
 }
 
