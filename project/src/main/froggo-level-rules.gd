@@ -11,7 +11,7 @@ extends LevelRules
 ## 	5. Do not click any row with an 'R' in the fourth position.
 ##  6. You may click any other cards.
 
-var random := RandomNumberGenerator.new()
+var _random := RandomNumberGenerator.new()
 
 ## Words which have frogs but aren't 'frog'. These should not have any letters in common with any troll_shark_words,
 ## except for the 'R' in the third position
@@ -69,7 +69,7 @@ var troll_silly_words := [
 var _cell_pos_to_revealed_letter := {}
 
 func _ready() -> void:
-	random.randomize()
+	_random.randomize()
 
 
 func refresh_level_cards_path() -> void:
@@ -95,7 +95,7 @@ func add_cards() -> void:
 			aliaxes = _aliaxes(["frog", "shark"])
 			aliaxes[0] = _reveal_letters(aliaxes[0], 2)
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.8)
-			aliaxes[1] = _reveal_letters(aliaxes[1], random.randi_range(2, 3))
+			aliaxes[1] = _reveal_letters(aliaxes[1], _random.randi_range(2, 3))
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
 		2:
 			aliaxes = _aliaxes(["frog", "shark"])
@@ -107,7 +107,7 @@ func add_cards() -> void:
 			# one troll aliax
 			aliaxes = _aliaxes(["frog", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 1)
-			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.4)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.4)
@@ -121,7 +121,7 @@ func add_cards() -> void:
 			# two troll aliaxes
 			aliaxes = _aliaxes(["frog", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 2)
-			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.2)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
@@ -131,11 +131,11 @@ func add_cards() -> void:
 			# three troll aliaxes
 			aliaxes = _aliaxes(["frog", "shark", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 3)
-			aliaxes[0] = _reveal_letters(aliaxes[0], random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.6)
-			aliaxes[2] = _reveal_letters(aliaxes[2], random.randi_range(1, 2))
+			aliaxes[2] = _reveal_letters(aliaxes[2], _random.randi_range(1, 2))
 			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.6)
 			aliaxes[3] = _reveal_letters(aliaxes[3], 2)
 			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.6)

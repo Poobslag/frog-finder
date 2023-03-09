@@ -61,10 +61,10 @@ onready var _ending_song := $HugFromAFrog
 
 onready var _fade_tween := $FadeTween
 
-var random := RandomNumberGenerator.new()
+var _random := RandomNumberGenerator.new()
 
 func _ready() -> void:
-	random.randomize()
+	_random.randomize()
 	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
 	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
 
@@ -89,7 +89,7 @@ func play_preferred_song() -> void:
 	elif world_songs.size() > 1:
 		if _current_song == world_songs[0]:
 			# playing the main song from this world; switch to a non-main song
-			new_song = world_songs[random.randi_range(1, world_songs.size() - 1)]
+			new_song = world_songs[_random.randi_range(1, world_songs.size() - 1)]
 		elif _current_song == world_songs[1] or _current_song == world_songs[2]:
 			# playing a non-main song from this world; switch to the main song
 			new_song = world_songs[0]

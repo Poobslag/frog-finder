@@ -56,7 +56,7 @@ const INNER_CELLS := [
 	Vector2(4.0, 4.0),
 ]
 
-var random := RandomNumberGenerator.new()
+var _random := RandomNumberGenerator.new()
 
 ## key: (Vector2) cell coordinates of an outer cell which contains a fruit
 ## value: (bool) true
@@ -92,7 +92,7 @@ var _max_shown_card_count := 99
 var _max_fork_count := 1
 
 func _ready() -> void:
-	random.randomize()
+	_random.randomize()
 
 
 func refresh_level_cards_path() -> void:
