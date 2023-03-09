@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=2]
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/icon-sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/icon-sheet.png" type="Texture2D" id=5]
 [ext_resource path="res://src/main/WowSprite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=7]
 
@@ -18,10 +18,10 @@ corner_radius_bottom_left = 20
 [node name="IntermissionPanel" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 
@@ -54,23 +54,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -462.0
-margin_top = -250.0
-margin_right = 462.0
-margin_bottom = 250.0
+offset_left = -462.0
+offset_top = -250.0
+offset_right = 462.0
+offset_bottom = 250.0
 
-[node name="YSort" type="YSort" parent="Creatures"]
+[node name="Node2D" type="Node2D" parent="Creatures"]
 
 [node name="ByeButton" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -100.0
-margin_top = -100.0
-margin_right = -20.0
-margin_bottom = -20.0
-rect_min_size = Vector2( 80, 80 )
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = -20.0
+custom_minimum_size = Vector2( 80, 80 )
 script = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""

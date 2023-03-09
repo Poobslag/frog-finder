@@ -23,11 +23,11 @@ var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 
 func refresh_level_cards_path() -> void:
-	.refresh_level_cards_path()
+	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
-	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
+	level_cards.connect("before_card_flipped",Callable(self,"_on_LevelCards_before_card_flipped"))
+	level_cards.connect("before_shark_found",Callable(self,"_on_LevelCards_before_shark_found"))
 
 
 func add_cards() -> void:

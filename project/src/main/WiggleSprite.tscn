@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/wiggle-sprite.gd" type="Script" id=1]
 [ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=4]
 
-[node name="Sprite" type="Sprite"]
+[node name="Sprite2D" type="Sprite2D"]
 scale = Vector2( 0.333, 0.333 )
 script = ExtResource( 1 )
 

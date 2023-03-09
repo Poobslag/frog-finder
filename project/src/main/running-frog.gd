@@ -1,5 +1,5 @@
 class_name RunningFrog
-extends Sprite
+extends Sprite2D
 ## Frog which performs different activities such as chasing the player's cursor.
 
 # warning-ignore:unused_signal
@@ -11,17 +11,17 @@ signal finished_dance
 const RUN_SPEED := 150.0
 
 ## frogs move in a jerky way. soon_position stores the location where the frog will blink to after a delay
-var soon_position: Vector2 setget set_soon_position
+var soon_position: Vector2 : set = set_soon_position
 
 var run_speed := RUN_SPEED
 var run_animation_name := "run1"
 var velocity := Vector2.ZERO
 
-onready var _animation_player := $AnimationPlayer
-onready var _chase_behavior := $ChaseBehavior
-onready var _dance_behavior := $DanceBehavior
+@onready var _animation_player := $AnimationPlayer
+@onready var _chase_behavior := $ChaseBehavior
+@onready var _dance_behavior := $DanceBehavior
 
-onready var behavior: CreatureBehavior
+@onready var behavior: CreatureBehavior
 
 func _ready() -> void:
 	_randomize_run_style()
@@ -108,7 +108,7 @@ func set_soon_position(new_soon_position: Vector2) -> void:
 
 ## Randomize the frog's running speed and run animation.
 func _randomize_run_style() -> void:
-	run_speed = RUN_SPEED * rand_range(0.8, 1.2)
+	run_speed = RUN_SPEED * randf_range(0.8, 1.2)
 	
 	# some running animations are much more common than others
 	if randf() < 0.8:

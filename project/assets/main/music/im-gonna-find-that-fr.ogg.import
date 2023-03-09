@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/im-gonna-find-that-fr.ogg-d4e85b6611f39816a073b0d6bd5ef74e.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ca2hsh22edvj6"
+path="res://.godot/imported/im-gonna-find-that-fr.ogg-d4e85b6611f39816a073b0d6bd5ef74e.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/im-gonna-find-that-fr.ogg"
-dest_files=[ "res://.import/im-gonna-find-that-fr.ogg-d4e85b6611f39816a073b0d6bd5ef74e.oggstr" ]
+dest_files=["res://.godot/imported/im-gonna-find-that-fr.ogg-d4e85b6611f39816a073b0d6bd5ef74e.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

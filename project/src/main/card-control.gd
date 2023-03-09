@@ -129,13 +129,13 @@ signal frog_found
 signal before_shark_found
 signal shark_found
 
-export (CardType) var card_back_type: int = CardType.MYSTERY setget set_card_back_type
-export (String) var card_back_details: String setget set_card_back_details
-export (CardType) var card_front_type: int = CardType.MYSTERY setget set_card_front_type
-export (String) var card_front_details: String setget set_card_front_details
+@export (CardType) var card_back_type: int = CardType.MYSTERY : set = set_card_back_type
+@export (String) var card_back_details: String : set = set_card_back_details
+@export (CardType) var card_front_type: int = CardType.MYSTERY : set = set_card_front_type
+@export (String) var card_front_details: String : set = set_card_front_details
 
-export (NodePath) var game_state_path := NodePath("../GameState") setget set_game_state_path
-export (bool) var practice := false
+@export (NodePath) var game_state_path := NodePath("../GameState") : set = set_game_state_path
+@export (bool) var practice := false
 
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
@@ -162,26 +162,26 @@ var _shark_sounds := [
 var _game_state: GameState
 var _pending_warning := ""
 
-onready var _card_back_sprite := $CardBack
-onready var _card_front_sprite := $CardFront
+@onready var _card_back_sprite := $CardBack
+@onready var _card_front_sprite := $CardFront
 
-onready var _cheer_timer := $CheerTimer
-onready var _frog_found_timer := $FrogFoundTimer
-onready var _shark_found_timer := $SharkFoundTimer
-onready var _stop_dance_timer := $StopDanceTimer
+@onready var _cheer_timer := $CheerTimer
+@onready var _frog_found_timer := $FrogFoundTimer
+@onready var _shark_found_timer := $SharkFoundTimer
+@onready var _stop_dance_timer := $StopDanceTimer
 
-onready var _creature_sfx := $CreatureSfx
-onready var _pop_brust_sfx := $PopBrustSfx
+@onready var _creature_sfx := $CreatureSfx
+@onready var _pop_brust_sfx := $PopBrustSfx
 
-onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
-onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
-onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
-onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
-onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
-onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
-onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
-onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
-onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
+@onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
+@onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
+@onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
+@onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
+@onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
+@onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
+@onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
+@onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
+@onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
 
 func _ready() -> void:
 	_refresh_card_textures()
@@ -217,7 +217,7 @@ func _refresh_card_textures() -> void:
 	_refresh_card_face(_card_front_sprite, card_front_type, card_front_details)
 
 
-func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: String) -> void:
+func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: String) -> void:
 	_pending_warning = ""
 	match card_type:
 		CardType.FROG:
@@ -294,7 +294,7 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		_flip_card()
 
 
@@ -388,13 +388,13 @@ func _flip_card() -> void:
 		# the level hasn't started, or the level has ended
 		return
 	
-	_pop_brust_sfx.pitch_scale = rand_range(0.9, 1.10)
+	_pop_brust_sfx.pitch_scale = randf_range(0.9, 1.10)
 	_pop_brust_sfx.play()
 	emit_signal("before_card_flipped")
 	
 	show_front()
 	_game_state.flip_timer.start()
-	_game_state.flip_timer.connect("timeout", self, "_on_FlipTimer_timeout")
+	_game_state.flip_timer.connect("timeout",Callable(self,"_on_FlipTimer_timeout"))
 
 
 func cheer() -> void:
@@ -412,7 +412,7 @@ func cheer() -> void:
 
 
 func _on_FlipTimer_timeout() -> void:
-	_game_state.flip_timer.disconnect("timeout", self, "_on_FlipTimer_timeout")
+	_game_state.flip_timer.disconnect("timeout",Callable(self,"_on_FlipTimer_timeout"))
 	match card_front_type:
 		CardType.FROG:
 			if practice:
@@ -433,7 +433,7 @@ func _on_FlipTimer_timeout() -> void:
 			emit_signal("before_shark_found")
 			_shark_found_timer.start(3.2)
 			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
-			_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+			_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 			_creature_sfx.play()
 
 
@@ -455,6 +455,6 @@ func _on_SharkFoundTimer_timeout() -> void:
 
 func _on_CheerTimer_timeout() -> void:
 	_creature_sfx.stream = Utils.rand_value(_frog_sounds)
-	_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+	_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 	_creature_sfx.play()
 	cheer()

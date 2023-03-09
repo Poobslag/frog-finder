@@ -1,26 +1,26 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://assets/main/bg/anhinga-bird-silhouette.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/bg/owl-bird-shape.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/bg/beaver-mammal-animal-shape-1.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/bg/sheep.png" type="Texture" id=4]
-[ext_resource path="res://assets/main/bg/running-dog-silhouette.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/bg/bird-oystercatcher.png" type="Texture" id=6]
-[ext_resource path="res://assets/main/bg/velociraptor-dinosaur-shape.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/bg/giraffe-silhouette.png" type="Texture" id=8]
-[ext_resource path="res://assets/main/bg/kangaroo-shape.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/bg/snail-shape.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/bg/ostrich-bird-shape-running.png" type="Texture" id=11]
-[ext_resource path="res://assets/main/bg/gecko-reptile-shape.png" type="Texture" id=12]
-[ext_resource path="res://assets/main/bg/turtle-silhouette.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/bg/butterfly-insect-animal-shape.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/bg/elephant-side-view.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/bg/ant-eater-shape-1.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/bg/rabbit-shape.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/bg/flamingo.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/bg/anhinga-bird-silhouette.png" type="Texture2D" id=1]
+[ext_resource path="res://assets/main/bg/owl-bird-shape.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/main/bg/beaver-mammal-animal-shape-1.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/main/bg/sheep.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/main/bg/running-dog-silhouette.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/main/bg/bird-oystercatcher.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/main/bg/velociraptor-dinosaur-shape.png" type="Texture2D" id=7]
+[ext_resource path="res://assets/main/bg/giraffe-silhouette.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/main/bg/kangaroo-shape.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/main/bg/snail-shape.png" type="Texture2D" id=10]
+[ext_resource path="res://assets/main/bg/ostrich-bird-shape-running.png" type="Texture2D" id=11]
+[ext_resource path="res://assets/main/bg/gecko-reptile-shape.png" type="Texture2D" id=12]
+[ext_resource path="res://assets/main/bg/turtle-silhouette.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/main/bg/butterfly-insect-animal-shape.png" type="Texture2D" id=14]
+[ext_resource path="res://assets/main/bg/elephant-side-view.png" type="Texture2D" id=15]
+[ext_resource path="res://assets/main/bg/ant-eater-shape-1.png" type="Texture2D" id=16]
+[ext_resource path="res://assets/main/bg/rabbit-shape.png" type="Texture2D" id=17]
+[ext_resource path="res://assets/main/bg/flamingo.png" type="Texture2D" id=18]
 [ext_resource path="res://src/main/background.gd" type="Script" id=19]
-[ext_resource path="res://assets/main/bg/grasshopper.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/bg/bee.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/bg/grasshopper.png" type="Texture2D" id=20]
+[ext_resource path="res://assets/main/bg/bee.png" type="Texture2D" id=21]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -38,43 +38,43 @@ color = Color( 0.211765, 0.47451, 0.647059, 1 )
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
 material = SubResource( 1 )
-margin_left = 96.1666
-margin_top = 7.07104
-margin_right = 896.167
-margin_bottom = 807.071
+offset_left = 96.1666
+offset_top = 7.07104
+offset_right = 896.167
+offset_bottom = 807.071
 texture = ExtResource( 15 )
 expand = true
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 1234.43
-margin_top = -100.38
-margin_right = 2434.43
-margin_bottom = 1099.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 1234.43
+offset_top = -100.38
+offset_right = 2434.43
+offset_bottom = 1099.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 15 )
 expand = true
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 658.43
-margin_top = 23.62
-margin_right = 1258.43
-margin_bottom = 623.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 658.43
+offset_top = 23.62
+offset_right = 1258.43
+offset_bottom = 623.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 expand = true
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 948.43
-margin_top = 31.62
-margin_right = 1748.43
-margin_bottom = 831.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 948.43
+offset_top = 31.62
+offset_right = 1748.43
+offset_bottom = 831.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 expand = true
 flip_h = true
@@ -82,11 +82,11 @@ flip_h = true
 [node name="TextureRect5" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 750.43
-margin_top = -58.38
-margin_right = 1550.43
-margin_bottom = 741.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 750.43
+offset_top = -58.38
+offset_right = 1550.43
+offset_bottom = 741.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 16 )
 expand = true
 flip_h = true
@@ -94,33 +94,33 @@ flip_h = true
 [node name="TextureRect6" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 1586.43
-margin_top = -156.38
-margin_right = 2586.43
-margin_bottom = 843.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 1586.43
+offset_top = -156.38
+offset_right = 2586.43
+offset_bottom = 843.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 16 )
 expand = true
 
 [node name="TextureRect7" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 1352.43
-margin_top = -80.38
-margin_right = 2352.43
-margin_bottom = 919.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 1352.43
+offset_top = -80.38
+offset_right = 2352.43
+offset_bottom = 919.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 expand = true
 
 [node name="TextureRect8" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 916.43
-margin_top = -80.38
-margin_right = 1816.43
-margin_bottom = 819.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 916.43
+offset_top = -80.38
+offset_right = 1816.43
+offset_bottom = 819.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 3 )
 expand = true
 flip_h = true
@@ -128,11 +128,11 @@ flip_h = true
 [node name="TextureRect9" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 878.43
-margin_top = -102.38
-margin_right = 1778.43
-margin_bottom = 797.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 878.43
+offset_top = -102.38
+offset_right = 1778.43
+offset_bottom = 797.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 6 )
 expand = true
 flip_h = true
@@ -140,22 +140,22 @@ flip_h = true
 [node name="TextureRect10" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 1492.43
-margin_top = -404.38
-margin_right = 2792.43
-margin_bottom = 895.62
-rect_scale = Vector2( -1, 1 )
+offset_left = 1492.43
+offset_top = -404.38
+offset_right = 2792.43
+offset_bottom = 895.62
+scale = Vector2( -1, 1 )
 texture = ExtResource( 6 )
 expand = true
 
 [node name="TextureRect11" type="TextureRect" parent="."]
 visible = false
 modulate = Color( 0.270588, 0.647059, 0.901961, 1 )
-margin_left = 1225.73
-margin_top = 42.1156
-margin_right = 1925.73
-margin_bottom = 742.116
-rect_scale = Vector2( -1, 1 )
+offset_left = 1225.73
+offset_top = 42.1156
+offset_right = 1925.73
+offset_bottom = 742.116
+scale = Vector2( -1, 1 )
 texture = ExtResource( 14 )
 expand = true
 
@@ -166,11 +166,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 349.709
-margin_top = -252.61
-margin_right = 1049.71
-margin_bottom = 447.39
-rect_scale = Vector2( -1, 1 )
+offset_left = 349.709
+offset_top = -252.61
+offset_right = 1049.71
+offset_bottom = 447.39
+scale = Vector2( -1, 1 )
 texture = ExtResource( 14 )
 expand = true
 flip_h = true
@@ -182,11 +182,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 234.34
-margin_top = -224.142
-margin_right = 934.34
-margin_bottom = 475.858
-rect_scale = Vector2( -1, 1 )
+offset_left = 234.34
+offset_top = -224.142
+offset_right = 934.34
+offset_bottom = 475.858
+scale = Vector2( -1, 1 )
 texture = ExtResource( 18 )
 expand = true
 flip_h = true
@@ -198,11 +198,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -167.207
-margin_top = -215.152
-margin_right = 332.793
-margin_bottom = 284.848
-rect_scale = Vector2( -1, 1 )
+offset_left = -167.207
+offset_top = -215.152
+offset_right = 332.793
+offset_bottom = 284.848
+scale = Vector2( -1, 1 )
 texture = ExtResource( 18 )
 expand = true
 
@@ -213,11 +213,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 499.54
-margin_top = -168.705
-margin_right = 999.54
-margin_bottom = 331.295
-rect_scale = Vector2( -1, 1 )
+offset_left = 499.54
+offset_top = -168.705
+offset_right = 999.54
+offset_bottom = 331.295
+scale = Vector2( -1, 1 )
 texture = ExtResource( 12 )
 expand = true
 
@@ -228,11 +228,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 222.353
-margin_top = -314.041
-margin_right = 1122.35
-margin_bottom = 585.959
-rect_scale = Vector2( -1, 1 )
+offset_left = 222.353
+offset_top = -314.041
+offset_right = 1122.35
+offset_bottom = 585.959
+scale = Vector2( -1, 1 )
 texture = ExtResource( 12 )
 expand = true
 flip_h = true
@@ -244,11 +244,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 262.808
-margin_top = -275.085
-margin_right = 1162.81
-margin_bottom = 624.915
-rect_scale = Vector2( -1, 1 )
+offset_left = 262.808
+offset_top = -275.085
+offset_right = 1162.81
+offset_bottom = 624.915
+scale = Vector2( -1, 1 )
 texture = ExtResource( 8 )
 expand = true
 flip_h = true
@@ -260,11 +260,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 226.848
-margin_top = -243.62
-margin_right = 826.848
-margin_bottom = 356.38
-rect_scale = Vector2( -1, 1 )
+offset_left = 226.848
+offset_top = -243.62
+offset_right = 826.848
+offset_bottom = 356.38
+scale = Vector2( -1, 1 )
 texture = ExtResource( 8 )
 expand = true
 
@@ -275,11 +275,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 336.225
-margin_top = -233.132
-margin_right = 1036.22
-margin_bottom = 466.868
-rect_scale = Vector2( -1, 1 )
+offset_left = 336.225
+offset_top = -233.132
+offset_right = 1036.22
+offset_bottom = 466.868
+scale = Vector2( -1, 1 )
 texture = ExtResource( 9 )
 expand = true
 
@@ -290,11 +290,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 229.845
-margin_top = -276.583
-margin_right = 789.845
-margin_bottom = 283.417
-rect_scale = Vector2( -1, 1 )
+offset_left = 229.845
+offset_top = -276.583
+offset_right = 789.845
+offset_bottom = 283.417
+scale = Vector2( -1, 1 )
 texture = ExtResource( 9 )
 expand = true
 flip_h = true
@@ -306,11 +306,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -102.78
-margin_top = -240.624
-margin_right = 397.22
-margin_bottom = 259.376
-rect_scale = Vector2( -1, 1 )
+offset_left = -102.78
+offset_top = -240.624
+offset_right = 397.22
+offset_bottom = 259.376
+scale = Vector2( -1, 1 )
 texture = ExtResource( 11 )
 expand = true
 
@@ -321,11 +321,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 433.615
-margin_top = -224.142
-margin_right = 1333.61
-margin_bottom = 675.858
-rect_scale = Vector2( -1, 1 )
+offset_left = 433.615
+offset_top = -224.142
+offset_right = 1333.61
+offset_bottom = 675.858
+scale = Vector2( -1, 1 )
 texture = ExtResource( 11 )
 expand = true
 flip_h = true
@@ -337,11 +337,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 415.635
-margin_top = -278.081
-margin_right = 1315.63
-margin_bottom = 621.919
-rect_scale = Vector2( -1, 1 )
+offset_left = 415.635
+offset_top = -278.081
+offset_right = 1315.63
+offset_bottom = 621.919
+scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 expand = true
 flip_h = true
@@ -353,11 +353,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 490.55
-margin_top = -212.156
-margin_right = 990.55
-margin_bottom = 287.844
-rect_scale = Vector2( -1, 1 )
+offset_left = 490.55
+offset_top = -212.156
+offset_right = 990.55
+offset_bottom = 287.844
+scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 expand = true
 
@@ -368,11 +368,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 931.052
-margin_top = -278.081
-margin_right = 1931.05
-margin_bottom = 721.919
-rect_scale = Vector2( -1, 1 )
+offset_left = 931.052
+offset_top = -278.081
+offset_right = 1931.05
+offset_bottom = 721.919
+scale = Vector2( -1, 1 )
 texture = ExtResource( 17 )
 expand = true
 
@@ -383,11 +383,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 295.77
-margin_top = -266.095
-margin_right = 895.77
-margin_bottom = 333.905
-rect_scale = Vector2( -1, 1 )
+offset_left = 295.77
+offset_top = -266.095
+offset_right = 895.77
+offset_bottom = 333.905
+scale = Vector2( -1, 1 )
 texture = ExtResource( 17 )
 expand = true
 flip_h = true
@@ -399,11 +399,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 162.421
-margin_top = -338.014
-margin_right = 962.421
-margin_bottom = 461.986
-rect_scale = Vector2( -1, 1 )
+offset_left = 162.421
+offset_top = -338.014
+offset_right = 962.421
+offset_bottom = 461.986
+scale = Vector2( -1, 1 )
 texture = ExtResource( 5 )
 expand = true
 flip_h = true
@@ -415,11 +415,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 493.547
-margin_top = -315.539
-margin_right = 893.547
-margin_bottom = 84.4611
-rect_scale = Vector2( -1, 1 )
+offset_left = 493.547
+offset_top = -315.539
+offset_right = 893.547
+offset_bottom = 84.4611
+scale = Vector2( -1, 1 )
 texture = ExtResource( 5 )
 expand = true
 
@@ -430,11 +430,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 82.1842
-margin_top = -325.176
-margin_right = 882.184
-margin_bottom = 474.824
-rect_scale = Vector2( -1, 1 )
+offset_left = 82.1842
+offset_top = -325.176
+offset_right = 882.184
+offset_bottom = 474.824
+scale = Vector2( -1, 1 )
 texture = ExtResource( 4 )
 expand = true
 flip_h = true
@@ -446,11 +446,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 1179.77
-margin_top = -396.448
-margin_right = 2779.77
-margin_bottom = 1203.55
-rect_scale = Vector2( -1, 1 )
+offset_left = 1179.77
+offset_top = -396.448
+offset_right = 2779.77
+offset_bottom = 1203.55
+scale = Vector2( -1, 1 )
 texture = ExtResource( 4 )
 expand = true
 
@@ -461,11 +461,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 418.742
-margin_top = -962.168
-margin_right = 2018.74
-margin_bottom = 637.832
-rect_scale = Vector2( -1, 1 )
+offset_left = 418.742
+offset_top = -962.168
+offset_right = 2018.74
+offset_bottom = 637.832
+scale = Vector2( -1, 1 )
 texture = ExtResource( 10 )
 expand = true
 flip_h = true
@@ -477,11 +477,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 620.785
-margin_top = -266.242
-margin_right = 1420.79
-margin_bottom = 533.758
-rect_scale = Vector2( -1, 1 )
+offset_left = 620.785
+offset_top = -266.242
+offset_right = 1420.79
+offset_bottom = 533.758
+scale = Vector2( -1, 1 )
 texture = ExtResource( 10 )
 expand = true
 
@@ -492,11 +492,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 533.233
-margin_top = -311.141
-margin_right = 1333.23
-margin_bottom = 488.859
-rect_scale = Vector2( -1, 1 )
+offset_left = 533.233
+offset_top = -311.141
+offset_right = 1333.23
+offset_bottom = 488.859
+scale = Vector2( -1, 1 )
 texture = ExtResource( 13 )
 expand = true
 
@@ -507,11 +507,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.4672
-margin_top = -448.081
-margin_right = 558.533
-margin_bottom = 151.919
-rect_scale = Vector2( -1, 1 )
+offset_left = -41.4672
+offset_top = -448.081
+offset_right = 558.533
+offset_bottom = 151.919
+scale = Vector2( -1, 1 )
 texture = ExtResource( 13 )
 expand = true
 flip_h = true
@@ -523,11 +523,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 820.584
-margin_top = -340.324
-margin_right = 1570.58
-margin_bottom = 409.676
-rect_scale = Vector2( -1, 1 )
+offset_left = 820.584
+offset_top = -340.324
+offset_right = 1570.58
+offset_bottom = 409.676
+scale = Vector2( -1, 1 )
 texture = ExtResource( 7 )
 expand = true
 flip_h = true
@@ -539,11 +539,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 140.372
-margin_top = -434.611
-margin_right = 1540.37
-margin_bottom = 965.389
-rect_scale = Vector2( -1, 1 )
+offset_left = 140.372
+offset_top = -434.611
+offset_right = 1540.37
+offset_bottom = 965.389
+scale = Vector2( -1, 1 )
 texture = ExtResource( 7 )
 expand = true
 
@@ -554,11 +554,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 38.9242
-margin_top = -205.019
-margin_right = 1438.92
-margin_bottom = 1194.98
-rect_scale = Vector2( -0.416075, 0.416075 )
+offset_left = 38.9242
+offset_top = -205.019
+offset_right = 1438.92
+offset_bottom = 1194.98
+scale = Vector2( -0.416075, 0.416075 )
 texture = ExtResource( 20 )
 expand = true
 
@@ -569,11 +569,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 821.14
-margin_top = -381.217
-margin_right = 2221.14
-margin_bottom = 1018.78
-rect_scale = Vector2( -0.591391, 0.591391 )
+offset_left = 821.14
+offset_top = -381.217
+offset_right = 2221.14
+offset_bottom = 1018.78
+scale = Vector2( -0.591391, 0.591391 )
 texture = ExtResource( 20 )
 expand = true
 flip_h = true
@@ -585,11 +585,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 97.1403
-margin_top = -261.217
-margin_right = 1497.14
-margin_bottom = 1138.78
-rect_scale = Vector2( -0.366883, 0.366883 )
+offset_left = 97.1403
+offset_top = -261.217
+offset_right = 1497.14
+offset_bottom = 1138.78
+scale = Vector2( -0.366883, 0.366883 )
 texture = ExtResource( 21 )
 expand = true
 flip_h = true
@@ -601,14 +601,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 733.14
-margin_top = -367.217
-margin_right = 2133.14
-margin_bottom = 1032.78
-rect_scale = Vector2( -0.771921, 0.681052 )
+offset_left = 733.14
+offset_top = -367.217
+offset_right = 2133.14
+offset_bottom = 1032.78
+scale = Vector2( -0.771921, 0.681052 )
 texture = ExtResource( 21 )
 expand = true
 
 [node name="ChangeTween" type="Tween" parent="."]
 
-[connection signal="tween_completed" from="ChangeTween" to="." method="_on_ChangeTween_tween_completed"]
+[connection signal="finished" from="ChangeTween" to="." method="_on_ChangeTween_tween_completed"]

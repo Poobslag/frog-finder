@@ -13,9 +13,9 @@ const ALL_RIGHT_WIGGLE_FRAMES := [[1, 3], [5, 7], [9, 11], [13, 15]]
 var _left_wiggle_frames := []
 var _right_wiggle_frames := []
 
-onready var _wiggle_timer := $WiggleTimer
-onready var _left := $Left
-onready var _right := $Right
+@onready var _wiggle_timer := $WiggleTimer
+@onready var _left := $Left
+@onready var _right := $Right
 
 func _ready() -> void:
 	_left_wiggle_frames = Utils.rand_value(ALL_LEFT_WIGGLE_FRAMES)
@@ -28,7 +28,7 @@ func reset_wiggle() -> void:
 		# avoid 'Timer was not added to the SceneTree' warnings
 		return
 	
-	_wiggle_timer.start(rand_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME))
+	_wiggle_timer.start(randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME))
 
 
 ## Updates the sprites' frames to the next 'wiggle frame'.
@@ -42,4 +42,4 @@ func assign_wiggle_frame() -> void:
 
 func _on_WiggleTimer_timeout() -> void:
 	assign_wiggle_frame()
-	_wiggle_timer.wait_time = rand_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME)
+	_wiggle_timer.wait_time = randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME)
