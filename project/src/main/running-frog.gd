@@ -74,7 +74,7 @@ func shimmy(dir: Vector2) -> void:
 ## Updates the frog's position to their soon_position.
 ##
 ## This is called periodically to result in a jerky movement effect.
-func move() -> void:
+func update_position() -> void:
 	flip_h = true if soon_position > position else false
 	position = soon_position
 
