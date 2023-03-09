@@ -134,25 +134,12 @@ func start_frog_dance(frog_count: int) -> void:
 func _spawn_shark(away_from_hand: bool = false) -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
-	
-	var viewport_rect_size := get_viewport_rect().size
-	
-	var spawn_points := [
-		Vector2(rand_range(0, viewport_rect_size.x), -CREATURE_SPAWN_BORDER), # top wall
-		Vector2(viewport_rect_size.x + CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
-		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
-		Vector2(-CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
-	]
-	if away_from_hand:
-		spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
-	else:
-		spawn_points.shuffle()
+	shark.soon_position = _random_spawn_point(away_from_hand)
 	
 	if sharks.size() % 2 == 1:
 		# this shark has a friend
 		shark.friend = sharks[sharks.size() - 1]
 	
-	shark.soon_position = spawn_points[0] - _creatures.rect_global_position
 	_creatures_ysort.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
@@ -164,7 +151,23 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 ## 	'away_from_hand': If 'true', the frog will be spawned on the furthest edge from the player's cursor.
 func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 	var frog: RunningFrog = RunningFrogScene.instance()
+	frog.soon_position = _random_spawn_point(away_from_hand)
 	
+	if frogs.size() % 2 == 1:
+		# this frog has a friend
+		friends_by_frog[frog] = frogs[frogs.size() - 1]
+	
+	_creatures_ysort.add_child(frog)
+	frogs.append(frog)
+	return frog
+
+
+## Calculates a random spawn point around the perimeter of the screen.
+##
+## Parameters:
+## 	'away_from_hand': If 'true', the spawn point is a random point on the edge furthest from the screen. If the
+## 		player's hand is on the left side of the screen, the spawn point will be somewhere on the right and vice-versa.
+func _random_spawn_point(away_from_hand: bool) -> Vector2:
 	var viewport_rect_size := get_viewport_rect().size
 	
 	var spawn_points := [
@@ -173,19 +176,13 @@ func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
 		Vector2(-CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
 	]
+	
 	if away_from_hand:
 		spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
 	else:
 		spawn_points.shuffle()
 	
-	if frogs.size() % 2 == 1:
-		# this frog has a friend
-		friends_by_frog[frog] = frogs[frogs.size() - 1]
-	
-	frog.soon_position = spawn_points[0] - _creatures.rect_global_position
-	_creatures_ysort.add_child(frog)
-	frogs.append(frog)
-	return frog
+	return spawn_points[0] - _creatures.rect_global_position
 
 
 ## Puts a frog into 'chase mode'.
