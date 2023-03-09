@@ -14,12 +14,12 @@ signal before_shark_found(card)
 signal shark_found(card)
 signal menu_shown
 
-onready var _game_state := $TitleGameState
-onready var _level_button_holder := $LevelButtonHolder
+@onready var _game_state := $TitleGameState
+@onready var _level_button_holder := $LevelButtonHolder
 
 ## List of CardControls for cards making up the phrase 'frog finder' on the main menu. Some of these cards are hidden
 ## so they can be clicked.
-onready var _all_cards := [
+@onready var _all_cards := [
 	$Title/Card1F, $Title/Card1R, $Title/Card1O, $Title/Card1G,
 	$Title/Card2F, $Title/Card2I, $Title/Card2N, $Title/Card2D, $Title/Card2E, $Title/Card2R,
 ]
@@ -27,10 +27,10 @@ onready var _all_cards := [
 func _ready() -> void:
 	for card in _all_cards:
 		card.show_front()
-		card.connect("before_frog_found", self, "_on_CardControl_before_frog_found", [card])
-		card.connect("frog_found", self, "_on_CardControl_frog_found", [card])
-		card.connect("before_shark_found", self, "_on_CardControl_before_shark_found", [card])
-		card.connect("shark_found", self, "_on_CardControl_shark_found", [card])
+		card.connect("before_frog_found",Callable(self,"_on_CardControl_before_frog_found").bind(card))
+		card.connect("frog_found",Callable(self,"_on_CardControl_frog_found").bind(card))
+		card.connect("before_shark_found",Callable(self,"_on_CardControl_before_shark_found").bind(card))
+		card.connect("shark_found",Callable(self,"_on_CardControl_shark_found").bind(card))
 	
 	for card in [$Title/Card1O, $Title/Card2I]:
 		card.hide_front()

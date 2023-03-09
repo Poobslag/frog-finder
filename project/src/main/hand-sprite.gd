@@ -1,6 +1,6 @@
 class_name HandSprite
-extends Sprite
-## Sprite which shows the main part of the player's cursor.
+extends Sprite2D
+## Sprite2D which shows the main part of the player's cursor.
 ##
 ## The player's cursor is made up of a main hand sprite, as well as sometimes detached fingers, hearts or even frogs.
 ## This script only handles animating the main hand sprite.
@@ -13,7 +13,7 @@ enum State {
 	NO_FINGERS,
 }
 
-var state: int = State.ONE_FINGER setget set_state
+var state: int = State.ONE_FINGER : set = set_state
 
 ## List of int animation frames which the sprite should alternate between
 var wiggle_frames := []

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/im-just-a-fr.ogg-958aa9b63825b2cde6ff11e4a6555095.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://r637kgg2g4k5"
+path="res://.godot/imported/im-just-a-fr.ogg-958aa9b63825b2cde6ff11e4a6555095.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/im-just-a-fr.ogg"
-dest_files=[ "res://.import/im-just-a-fr.ogg-958aa9b63825b2cde6ff11e4a6555095.oggstr" ]
+dest_files=["res://.godot/imported/im-just-a-fr.ogg-958aa9b63825b2cde6ff11e4a6555095.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

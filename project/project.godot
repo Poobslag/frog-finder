@@ -6,148 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Control",
-"class": "Background",
-"language": "GDScript",
-"path": "res://src/main/background.gd"
-}, {
-"base": "Control",
-"class": "CardControl",
-"language": "GDScript",
-"path": "res://src/main/card-control.gd"
-}, {
-"base": "Node",
-"class": "CheatCodeDetector",
-"language": "GDScript",
-"path": "res://src/main/ui/cheat-code-detector.gd"
-}, {
-"base": "Control",
-"class": "ClickableIcon",
-"language": "GDScript",
-"path": "res://src/main/ui/menu/clickable-icon.gd"
-}, {
-"base": "Node",
-"class": "CreatureBehavior",
-"language": "GDScript",
-"path": "res://src/main/creature-behavior.gd"
-}, {
-"base": "AnimationPlayer",
-"class": "DanceAnimations",
-"language": "GDScript",
-"path": "res://src/main/dance-animations.gd"
-}, {
-"base": "Reference",
-"class": "FileUtils",
-"language": "GDScript",
-"path": "res://src/main/file-utils.gd"
-}, {
-"base": "Node",
-"class": "GameState",
-"language": "GDScript",
-"path": "res://src/main/game-state.gd"
-}, {
-"base": "Panel",
-"class": "GameplayPanel",
-"language": "GDScript",
-"path": "res://src/main/gameplay-panel.gd"
-}, {
-"base": "Reference",
-"class": "GutHookScript",
-"language": "GDScript",
-"path": "res://addons/gut/hook_script.gd"
-}, {
-"base": "Node",
-"class": "GutTest",
-"language": "GDScript",
-"path": "res://addons/gut/test.gd"
-}, {
-"base": "Control",
-"class": "Hand",
-"language": "GDScript",
-"path": "res://src/main/hand.gd"
-}, {
-"base": "Sprite",
-"class": "HandSprite",
-"language": "GDScript",
-"path": "res://src/main/hand-sprite.gd"
-}, {
-"base": "Panel",
-"class": "IntermissionPanel",
-"language": "GDScript",
-"path": "res://src/main/intermission-panel.gd"
-}, {
-"base": "Control",
-"class": "LevelCards",
-"language": "GDScript",
-"path": "res://src/main/level-cards.gd"
-}, {
-"base": "Node",
-"class": "LevelRules",
-"language": "GDScript",
-"path": "res://src/main/level-rules.gd"
-}, {
-"base": "Panel",
-"class": "MainMenuPanel",
-"language": "GDScript",
-"path": "res://src/main/main-menu-panel.gd"
-}, {
-"base": "Sprite",
-"class": "RunningFrog",
-"language": "GDScript",
-"path": "res://src/main/running-frog.gd"
-}, {
-"base": "Sprite",
-"class": "RunningShark",
-"language": "GDScript",
-"path": "res://src/main/running-shark.gd"
-}, {
-"base": "Reference",
-"class": "Utils",
-"language": "GDScript",
-"path": "res://src/main/utils.gd"
-}, {
-"base": "Sprite",
-"class": "WiggleSprite",
-"language": "GDScript",
-"path": "res://src/main/wiggle-sprite.gd"
-}, {
-"base": "Timer",
-"class": "WiggleTimer",
-"language": "GDScript",
-"path": "res://src/main/wiggle-timer.gd"
-} ]
-_global_script_class_icons={
-"Background": "",
-"CardControl": "",
-"CheatCodeDetector": "",
-"ClickableIcon": "",
-"CreatureBehavior": "",
-"DanceAnimations": "",
-"FileUtils": "",
-"GameState": "",
-"GameplayPanel": "",
-"GutHookScript": "",
-"GutTest": "",
-"Hand": "",
-"HandSprite": "",
-"IntermissionPanel": "",
-"LevelCards": "",
-"LevelRules": "",
-"MainMenuPanel": "",
-"RunningFrog": "",
-"RunningShark": "",
-"Utils": "",
-"WiggleSprite": "",
-"WiggleTimer": ""
-}
+config_version=5
 
 [application]
 
 config/name="Frog Finder"
 run/main_scene="res://src/main/MainMenu.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://assets/main/icon.png"
 config/version="1.07"
 
@@ -169,7 +34,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [global]
 

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clm6a25w25nv3"
+path="res://.godot/imported/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/a-well-tempered-fr.ogg"
-dest_files=[ "res://.import/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggstr" ]
+dest_files=["res://.godot/imported/a-well-tempered-fr.ogg-90ae36e036d85aa5fb35d1e666e261ec.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,14 +15,14 @@ signal next_world_pressed
 ## 	'level_index': A number in the range [0, 2] for which button was pressed.
 signal level_pressed(level_index)
 
-onready var next_button: Node = $Next
+@onready var next_button: Node = $Next
 
-onready var _level_buttons := [$Level1, $Level2, $Level3]
+@onready var _level_buttons := [$Level1, $Level2, $Level3]
 
 func _ready() -> void:
 	var main_menu_panels: Array = get_tree().get_nodes_in_group("main_menu_panels")
 	if main_menu_panels.size() == 1:
-		main_menu_panels[0].connect("menu_shown", self, "_on_MainMenuPanel_menu_shown")
+		main_menu_panels[0].connect("menu_shown",Callable(self,"_on_MainMenuPanel_menu_shown"))
 	else:
 		push_warning("Unexpected main menu panel count: %s" % [main_menu_panels.size()])
 

@@ -1,10 +1,10 @@
-tool
+@tool
 class_name WiggleSprite
-extends Sprite
+extends Sprite2D
 ## A sprite which alternates between two animation frames to give a squigglevision effect, emulating the effect of
 ## sketchily hand-drawn animation.
 
-export (Array, int) var wiggle_frames := []
+@export (Array, int) var wiggle_frames := []
 
 func reset_wiggle() -> void:
 	if Engine.is_editor_hint():

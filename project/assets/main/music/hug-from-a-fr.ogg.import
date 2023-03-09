@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/hug-from-a-fr.ogg-aadc4ddb5bc8ab9d7c90cfd870b007ba.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://e0qf4a1knapi"
+path="res://.godot/imported/hug-from-a-fr.ogg-aadc4ddb5bc8ab9d7c90cfd870b007ba.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/hug-from-a-fr.ogg"
-dest_files=[ "res://.import/hug-from-a-fr.ogg-aadc4ddb5bc8ab9d7c90cfd870b007ba.oggstr" ]
+dest_files=["res://.godot/imported/hug-from-a-fr.ogg-aadc4ddb5bc8ab9d7c90cfd870b007ba.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

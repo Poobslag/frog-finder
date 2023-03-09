@@ -7,7 +7,7 @@ extends Node
 ## 	[=/-]: Change the number of biteable fingers
 ## 	[brace keys]: Change the number of hugged fingers
 
-onready var _hand: Hand = $Hand
+@onready var _hand: Hand = $Hand
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

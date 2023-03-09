@@ -1,4 +1,4 @@
-tool
+@tool
 class_name Utils
 ## Contains global utilities.
 
@@ -12,12 +12,12 @@ static func key_num(event: InputEvent) -> int:
 	return NUM_SCANCODES.get(key_scancode(event), -1)
 
 
-## Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
+## Returns the keycode for a keypress event, or -1 if the event is not a keypress event.
 static func key_scancode(event: InputEvent) -> int:
-	var scancode := -1
+	var keycode := -1
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		scancode = event.scancode
-	return scancode
+		keycode = event.keycode
+	return keycode
 
 
 ## Returns a random value from the specified array.
@@ -33,7 +33,7 @@ static func randi_range(from: int, to: int) -> int:
 ## Updates a card sprite's texture, hframes and vframes.
 ##
 ## This method assumes each frame is 240x240, which is used for the small square frog finder cards.
-static func assign_card_texture(sprite: Sprite, texture: Texture) -> void:
+static func assign_card_texture(sprite: Sprite2D, texture: Texture2D) -> void:
 	sprite.texture = texture
 	# warning-ignore:integer_division
 	sprite.hframes = int(ceil(texture.get_width() / 240))

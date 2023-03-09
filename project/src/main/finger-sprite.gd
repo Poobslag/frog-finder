@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 ## Draws a part of the player's hand sprite.
 ##
 ## The hand is usually drawn as a single unit, but sometimes we draw separate parts of it. When a shark bites off a
@@ -21,11 +21,11 @@ const WIGGLE_FRAMES_BY_HUGGED_FINGER := {
 	2: [11, 12],
 }
 
-export (Array, int) var wiggle_frames := []
+@export (Array, int) var wiggle_frames := []
 
-onready var _wiggle_timer := $WiggleTimer
+@onready var _wiggle_timer := $WiggleTimer
 
-onready var _hug_sounds := [
+@onready var _hug_sounds := [
 	preload("res://assets/main/sfx/frog-hug-0.wav"),
 	preload("res://assets/main/sfx/frog-hug-1.wav"),
 	preload("res://assets/main/sfx/frog-hug-2.wav"),
@@ -48,11 +48,11 @@ func bite(finger_index: int) -> void:
 	
 	# the animationplayer assigns the modulate/offset a frame too late.
 	# we set them manually to avoid an ugly blink effect
-	modulate = Color.white
+	modulate = Color.WHITE
 	offset = Vector2(0, 0)
 	$AnimationPlayer.play("bite")
 	
-	$CartoonBiteSfx.pitch_scale = rand_range(0.95, 1.01)
+	$CartoonBiteSfx.pitch_scale = randf_range(0.95, 1.01)
 	$CartoonBiteSfx.play()
 
 
@@ -64,11 +64,11 @@ func hug(finger_index: int) -> void:
 	
 	# the animationplayer assigns the modulate/offset a frame too late.
 	# we set them manually to avoid an ugly blink effect
-	modulate = Color.white
+	modulate = Color.WHITE
 	offset = Vector2(0, 0)
 	
 	$AnimationPlayer.play("hug%s" % [finger_index])
-	$HugSfx.pitch_scale = rand_range(0.8, 1.2)
+	$HugSfx.pitch_scale = randf_range(0.8, 1.2)
 	$HugSfx.stream = Utils.rand_value(_hug_sounds)
 	
 	$HugSfx.play()

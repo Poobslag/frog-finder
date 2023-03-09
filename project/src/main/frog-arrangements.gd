@@ -3,7 +3,7 @@ extends Node
 
 const MAX_FROG_COUNT := 10
 
-## Path to the json file with frog arrangements. Can be changed for tests.
+## Path3D to the json file with frog arrangements. Can be changed for tests.
 const DEFAULT_ARRANGEMENTS_PATH := "res://assets/main/frog-arrangements.json"
 
 ## The card arrangement to use if no arrangement can be found.
@@ -28,8 +28,8 @@ var FROG_DANCER_COUNTS := [
 	10, 1,  2,
 ]
 
-## Path to the json file with card arrangements. Can be changed for tests.
-var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
+## Path3D to the json file with card arrangements. Can be changed for tests.
+var arrangements_path := DEFAULT_ARRANGEMENTS_PATH : set = set_arrangements_path
 
 ## key: (int) Number of frogs in a frog dance
 ## value: (Array, Vector2) Arrangements for the specified frog count, measured in frog widths
@@ -133,7 +133,9 @@ func _load_raw_json_data() -> void:
 	_arrangements_by_frog_count.clear()
 	
 	var arrangements_text := FileUtils.get_file_as_text(arrangements_path)
-	var arrangements_json: Array = parse_json(arrangements_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(arrangements_text)
+	var arrangements_json: Array = test_json_conv.get_data()
 	for picture in arrangements_json:
 		var positions := positions_from_picture(picture)
 		if not _arrangements_by_frog_count.has(positions.size()):

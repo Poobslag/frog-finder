@@ -17,19 +17,19 @@ var _current_song: AudioStreamPlayer
 var _position_by_song := {}
 
 ## List of AudioStreamPlayer instances to play if the world does not define any music.
-onready var _default_songs := [
+@onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
 ## song to play when the frogs dance after a stage
-onready var _dance_song := $FrogDance
+@onready var _dance_song := $FrogDance
 
 ## AudioStreamPlayer instance to play if the world does not define a shark song.
-onready var _default_shark_song := $WeAreTheBaddies
+@onready var _default_shark_song := $WeAreTheBaddies
 
 ## key: (int) world index
 ## value: (Array, AudioStreamPlayer) list of frog songs to play for a world
-onready var _songs_by_world_index := {
+@onready var _songs_by_world_index := {
 	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
 	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
 	2: [$StillCantFindTheFrog, $HalfAFrog, $SneakySneakyFrogInstrumental],
@@ -37,36 +37,36 @@ onready var _songs_by_world_index := {
 
 ## List of AudioStreamPlayer instances corresponding to 'frog songs', songs which play by default or when the player
 ## finds a frog
-onready var _frog_songs := [
+@onready var _frog_songs := [
 	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
 	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog, $TakeComfortInYourFrog,
 ]
 
 ## List of AudioStreamPlayer instances corresponding to 'shark songs', songs which play when the player finds a shark
-onready var _shark_songs := [
+@onready var _shark_songs := [
 	$WereGonnaEatYouUp, $WeAreTheBaddies,
 ]
 
 ## key: (int) world index
 ## value: (Array, AudioStreamPlayer) list of shark songs to play for a world
-onready var _shark_song_by_world_index := {
+@onready var _shark_song_by_world_index := {
 	0: $WeAreTheBaddies,
 	1: $WereGonnaEatYouUp,
 	2: $WereGonnaEatYouUp,
 }
 
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
-onready var _ending_song := $HugFromAFrog
+@onready var _ending_song := $HugFromAFrog
 
-onready var _fade_tween := $FadeTween
+@onready var _fade_tween := $FadeTween
 
 var _random := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	_random.randomize()
-	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
-	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
+	PlayerData.connect("music_preference_changed",Callable(self,"_on_PlayerData_music_preference_changed"))
+	PlayerData.connect("world_index_changed",Callable(self,"_on_PlayerData_world_index_changed"))
 
 
 func play_preferred_song() -> void:
@@ -118,7 +118,7 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 			var from_position: float = _position_by_song.get(_current_song, 0)
 			_current_song.play(from_position)
 			if from_position != 0:
-				# interpolate when playing a song from the middle, to avoid pops and clicks
+				# sample when playing a song from the middle, to avoid pops and clicks
 				_current_song.volume_db = MIN_VOLUME
 				_fade_tween.remove(_current_song, "volume_db")
 				_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, FADE_IN_DURATION)

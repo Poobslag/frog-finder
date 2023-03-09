@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ctj5jssjiw4ij"
+path="res://.godot/imported/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/take-comfort-in-your-fr.ogg"
-dest_files=[ "res://.import/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggstr" ]
+dest_files=["res://.godot/imported/take-comfort-in-your-fr.ogg-a72f2592c98d0828044afabc3d17fcb5.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

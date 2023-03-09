@@ -1,29 +1,29 @@
 extends Node
 ## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
-export (NodePath) var _main_menu_panel_path: NodePath
-export (NodePath) var _gameplay_panel_path: NodePath
-export (NodePath) var _intermission_panel_path: NodePath
-export (NodePath) var _hand_path: NodePath
-export (NodePath) var _background_path: NodePath
+@export (NodePath) var _main_menu_panel_path: NodePath
+@export (NodePath) var _gameplay_panel_path: NodePath
+@export (NodePath) var _intermission_panel_path: NodePath
+@export (NodePath) var _hand_path: NodePath
+@export (NodePath) var _background_path: NodePath
 
-onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
-onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
-onready var _intermission_panel: IntermissionPanel = get_node(_intermission_panel_path)
-onready var _hand: Hand = get_node(_hand_path)
-onready var _background: Background = get_node(_background_path)
+@onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
+@onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
+@onready var _intermission_panel: IntermissionPanel = get_node(_intermission_panel_path)
+@onready var _hand: Hand = get_node(_hand_path)
+@onready var _background: Background = get_node(_background_path)
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from
 ## now, but then the player quits to the main menu and the intermission appears anyway.
-onready var _timers := $Timers
+@onready var _timers := $Timers
 
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_hide_panels()
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	_main_menu_panel.show_menu()
 	
 	MusicPlayer.play_preferred_song()
@@ -51,7 +51,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 		if _intermission_panel.is_full():
 			_play_ending()
 		else:
-			_start_timer(3.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
+			_start_timer(3.0).connect("timeout",Callable(self,"_on_Timer_timeout_end_intermission"))
 
 
 ## Creates and starts a one-shot timer.
@@ -82,7 +82,7 @@ func _add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout", self, "_on_Timer_timeout_queue_free", [timer])
+	timer.connect("timeout",Callable(self,"_on_Timer_timeout_queue_free").bind(timer))
 	_timers.add_child(timer)
 	return timer
 
@@ -183,7 +183,7 @@ func _on_GameplayPanel_frog_found(card: CardControl) -> void:
 
 func _on_Hand_finger_bitten() -> void:
 	if _hand.biteable_fingers == 0:
-		_start_timer(4.0).connect("timeout", self, "_on_Timer_timeout_end_intermission")
+		_start_timer(4.0).connect("timeout",Callable(self,"_on_Timer_timeout_end_intermission"))
 
 
 func _on_MainMenuPanel_frog_found(_card: CardControl) -> void:

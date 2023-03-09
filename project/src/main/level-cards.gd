@@ -10,7 +10,7 @@ signal shark_found(card)
 
 const CELL_SIZE := Vector2(80, 80)
 
-export (NodePath) var game_state_path: NodePath
+@export (NodePath) var game_state_path: NodePath
 
 var CardControlScene: PackedScene = preload("res://src/main/CardControl.tscn")
 
@@ -24,21 +24,21 @@ var cell_positions_by_card := {}
 
 var cell_pos_bounds := Rect2()
 
-onready var _game_state: GameState = get_node(game_state_path)
+@onready var _game_state: GameState = get_node(game_state_path)
 
 func create_card() -> CardControl:
-	var card := CardControlScene.instance() as CardControl
-	card.connect("before_card_flipped", self, "_on_CardControl_before_card_flipped", [card])
-	card.connect("frog_found", self, "_on_CardControl_frog_found", [card])
-	card.connect("shark_found", self, "_on_CardControl_shark_found", [card])
-	card.connect("before_frog_found", self, "_on_CardControl_before_frog_found", [card])
-	card.connect("before_shark_found", self, "_on_CardControl_before_shark_found", [card])
+	var card := CardControlScene.instantiate() as CardControl
+	card.connect("before_card_flipped",Callable(self,"_on_CardControl_before_card_flipped").bind(card))
+	card.connect("frog_found",Callable(self,"_on_CardControl_frog_found").bind(card))
+	card.connect("shark_found",Callable(self,"_on_CardControl_shark_found").bind(card))
+	card.connect("before_frog_found",Callable(self,"_on_CardControl_before_frog_found").bind(card))
+	card.connect("before_shark_found",Callable(self,"_on_CardControl_before_shark_found").bind(card))
 	return card
 
 
 func add_card(card: CardControl, cell_pos: Vector2) -> void:
 	# add the card
-	card.rect_position = cell_pos * CELL_SIZE
+	card.position = cell_pos * CELL_SIZE
 	add_child(card)
 	card.game_state_path = card.get_path_to(_game_state)
 	if not cards_by_cell_pos:
@@ -49,9 +49,9 @@ func add_card(card: CardControl, cell_pos: Vector2) -> void:
 	cell_positions_by_card[card] = cell_pos
 	
 	# resize and center the container
-	rect_position = get_parent().rect_size * 0.5
-	rect_position -= cell_pos_bounds.position * CELL_SIZE
-	rect_position -= (cell_pos_bounds.size + Vector2(1, 1)) * CELL_SIZE * 0.5
+	position = get_parent().size * 0.5
+	position -= cell_pos_bounds.position * CELL_SIZE
+	position -= (cell_pos_bounds.size + Vector2(1, 1)) * CELL_SIZE * 0.5
 
 
 func get_card(cell_pos: Vector2) -> CardControl:
