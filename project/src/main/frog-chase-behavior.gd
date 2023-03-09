@@ -1,16 +1,29 @@
 extends CreatureBehavior
 ## Defines how a frog chases the player's cursor.
 
+## If the frog gets within this distance of the player's hand, they will bite off a finger.
 const HUG_DISTANCE := 40.0
+
+## The duration frogs will pursue the hand for before switching to the 'panic' state.
 const CHASE_DURATION := 6
+
+## The duration frogs will run in a random direction before switching to the 'chase' state.
 const PANIC_DURATION := 1.2
+
+## The duration frogs will run in a random direction if the hand is fully hugged before switching to the 'chase' state.
 const SUPER_PANIC_DURATION := 4.8
+
+## When we get within this distance of our target, we will run sideways instead to trap it in a corner.
 const PINCER_DISTANCE := 150.0
 
 ## where the frog has to stand to count as 'catching' the hand
 const HAND_CATCH_OFFSET := Vector2(28, 57)
 
+## Another frog which affects this frog's pathfinding. As long as our friend is chasing the hand, we will chase our
+## friend instead. This prevents frogs from clustering too tightly.
 var friend: Sprite
+
+## the hand to chase
 var hand: Hand setget set_hand
 
 var _frog: RunningFrog
