@@ -24,7 +24,7 @@ const DIRECTIONS_BY_STRING := {
 var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 
-var random := RandomNumberGenerator.new()
+var _random := RandomNumberGenerator.new()
 
 var _remaining_flip_count := 6
 var _average_path_cells := 3
@@ -57,7 +57,7 @@ var _unblanked_arrow_queue := []
 var _blanked_arrows_to_original := {}
 
 func _ready() -> void:
-	random.randomize()
+	_random.randomize()
 
 
 func refresh_level_cards_path() -> void:
@@ -99,20 +99,20 @@ func add_cards() -> void:
 	
 	match puzzle_difficulty:
 		0:
-			_remaining_flip_count = random.randi_range(0, 15)
+			_remaining_flip_count = _random.randi_range(0, 15)
 			_mistake_luck = 0.9
 		1:
 			_max_loose_end_count = 2
-			_remaining_flip_count = random.randi_range(15, 20)
+			_remaining_flip_count = _random.randi_range(15, 20)
 			_mistake_luck = 0.8
 		2:
-			_remaining_flip_count = random.randi_range(15, 20)
+			_remaining_flip_count = _random.randi_range(15, 20)
 			_mistake_luck = 0.8
 			_max_shown_card_count = 3
 		3:
 			_max_loose_end_count = 2
 			_average_path_cells = 10
-			_remaining_flip_count = random.randi_range(25, 30)
+			_remaining_flip_count = _random.randi_range(25, 30)
 			_mistake_luck = 0.7
 			_include_start_card_in_queue = true
 		4:
@@ -125,20 +125,20 @@ func add_cards() -> void:
 		5:
 			_average_path_cells = 4
 			_max_loose_end_count = 6
-			_remaining_flip_count = random.randi_range(20, 30)
+			_remaining_flip_count = _random.randi_range(20, 30)
 			_mistake_luck = 0.6
 			_max_shown_card_count = 12
 		6:
 			_average_path_cells = 12
 			_max_loose_end_count = 2
-			_remaining_flip_count = random.randi_range(30, 40)
+			_remaining_flip_count = _random.randi_range(30, 40)
 			_mistake_luck = 0.4
 			_max_unblanked_arrow_count = 6
 			_include_start_card_in_queue = true
 		7:
 			_average_path_cells = 2
 			_max_loose_end_count = 6
-			_remaining_flip_count = random.randi_range(40, 50)
+			_remaining_flip_count = _random.randi_range(40, 50)
 			_mistake_luck = 0.2
 			_max_shown_card_count = 8
 			_max_unblanked_arrow_count = 12
@@ -153,13 +153,13 @@ func add_cards() -> void:
 			_max_unblanked_arrow_count = 1
 			_include_start_card_in_queue = true
 	
-	_start_position = Vector2(random.randi_range(2, 6), random.randi_range(2, 3))
+	_start_position = Vector2(_random.randi_range(2, 6), _random.randi_range(2, 3))
 	var start_card := level_cards.get_card(_start_position)
 	var start_directions := ["n", "w", "s", "e"]
-	_remaining_path_cells = random.randi_range(0, _average_path_cells + 1)
+	_remaining_path_cells = _random.randi_range(0, _average_path_cells + 1)
 	if _max_loose_end_count > 1 and randf() < 1.0 / _average_path_cells:
 		start_directions = ["ne", "nw", "se", "sw", "ns", "ew"]
-		_remaining_path_cells = random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
+		_remaining_path_cells = _random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
 	var start_direction: String = Utils.rand_value(start_directions)
 	_arrowify_card(start_card, start_direction)
 	start_card.show_front()
@@ -230,7 +230,7 @@ func _before_loose_end_flipped(card: CardControl) -> void:
 					if fork[0] in adjacent_unflipped_dir_strings and fork[1] in adjacent_unflipped_dir_strings:
 						valid_forks.append(fork)
 			if valid_forks:
-				_remaining_path_cells = random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
+				_remaining_path_cells = _random.randi_range(_average_path_cells - 1, _average_path_cells + 1)
 				valid_forks.shuffle()
 				new_arrow_dir_string = valid_forks[0]
 			else:

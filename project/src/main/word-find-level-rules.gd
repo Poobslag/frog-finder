@@ -9,7 +9,7 @@ extends LevelRules
 const ROW_COUNT := 6
 const COL_COUNT := 8
 
-var random := RandomNumberGenerator.new()
+var _random := RandomNumberGenerator.new()
 var _shark_chance: float = 0.5
 
 ## key: (CardControl) card in the word 'frog' hidden in the word find
@@ -17,7 +17,7 @@ var _shark_chance: float = 0.5
 var _frog_word_cards := {}
 
 func _ready() -> void:
-	random.randomize()
+	_random.randomize()
 
 
 func refresh_level_cards_path() -> void:
@@ -94,27 +94,27 @@ func add_cards() -> void:
 	if randf() < 0.5:
 		# horizontal
 		var word_start := Vector2()
-		word_start.x = random.randi_range(0, COL_COUNT - 4)
-		word_start.y = random.randi_range(0, ROW_COUNT - 1)
+		word_start.x = _random.randi_range(0, COL_COUNT - 4)
+		word_start.y = _random.randi_range(0, ROW_COUNT - 1)
 		var word := "frog" if randf() > _backwards_chance else "gorf"
 		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x + i, word_start.y))
 			frog_word_card.card_front_details = word[i]
 			_frog_word_cards[frog_word_card] = true
-		var frog_card := level_cards.get_card(Vector2(word_start.x + random.randi_range(0, 3), word_start.y))
+		var frog_card := level_cards.get_card(Vector2(word_start.x + _random.randi_range(0, 3), word_start.y))
 		frog_card.hide_front()
 		frog_card.card_front_type = CardControl.CardType.FROG
 	else:
 		# vertical
 		var word_start := Vector2()
-		word_start.x = random.randi_range(0, COL_COUNT - 1)
-		word_start.y = random.randi_range(0, ROW_COUNT - 4)
+		word_start.x = _random.randi_range(0, COL_COUNT - 1)
+		word_start.y = _random.randi_range(0, ROW_COUNT - 4)
 		var word := "frog" if randf() > _backwards_chance else "gorf"
 		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x, word_start.y + i))
 			frog_word_card.card_front_details = word[i]
 			_frog_word_cards[frog_word_card] = true
-		var frog_card := level_cards.get_card(Vector2(word_start.x, word_start.y + random.randi_range(0, 3)))
+		var frog_card := level_cards.get_card(Vector2(word_start.x, word_start.y + _random.randi_range(0, 3)))
 		frog_card.hide_front()
 		frog_card.card_front_type = CardControl.CardType.FROG
 	
