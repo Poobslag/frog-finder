@@ -75,7 +75,7 @@ func shimmy(dir: Vector2) -> void:
 ##
 ## This is called periodically to result in a jerky movement effect.
 func update_position() -> void:
-	flip_h = true if soon_position > position else false
+	flip_h = true if soon_position < position else false
 	position = soon_position
 
 
