@@ -8,7 +8,7 @@ extends Node
 ## 	[S]: Spawn a shark.
 ## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
 
-onready var _intermission_panel := $IntermissionPanel
+@onready var _intermission_panel := $IntermissionPanel
 
 ## The most recently pressed number key.
 var number_event: InputEvent

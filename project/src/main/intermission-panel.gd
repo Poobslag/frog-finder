@@ -22,7 +22,7 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-export (NodePath) var hand_path: NodePath
+@export (NodePath) var hand_path: NodePath
 
 var cards: Array = []
 var sharks: Array = []
@@ -38,17 +38,17 @@ var next_card_index := 0
 var RunningSharkScene := preload("res://src/main/RunningShark.tscn")
 var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
-onready var hand: Hand = get_node(hand_path)
+@onready var hand: Hand = get_node(hand_path)
 
-onready var _bye_button := $ByeButton
-onready var _creatures := $Creatures
-onready var _creatures_ysort := $Creatures/YSort
-onready var _frog_spawn_timer := $FrogSpawnTimer
-onready var _intermission_cards: LevelCards = $IntermissionCards
-onready var _shark_spawn_timer := $SharkSpawnTimer
+@onready var _bye_button := $ByeButton
+@onready var _creatures := $Creatures
+@onready var _creatures_ysort := $Creatures/Node2D
+@onready var _frog_spawn_timer := $FrogSpawnTimer
+@onready var _intermission_cards: LevelCards = $IntermissionCards
+@onready var _shark_spawn_timer := $SharkSpawnTimer
 
 func _ready() -> void:
-	hand.connect("hug_finished", self, "_on_Hand_hug_finished")
+	hand.connect("hug_finished",Callable(self,"_on_Hand_hug_finished"))
 
 
 func is_full() -> bool:
@@ -118,13 +118,13 @@ func start_frog_dance(frog_count: int) -> void:
 		var new_frog := _spawn_frog()
 		dance_frogs.append(new_frog)
 	
-	frogs[0].connect("finished_dance", self, "_on_RunningFrog_finished_dance")
+	frogs[0].connect("finished_dance",Callable(self,"_on_RunningFrog_finished_dance"))
 	
 	var arrangement := FrogArrangements.get_arrangement(frog_count)
 	
 	# frog runs into position, dances and leaves
 	for i in range(frogs.size()):
-		var dance_target := Rect2(Vector2.ZERO, _creatures.rect_size).get_center()
+		var dance_target := Rect2(Vector2.ZERO, _creatures.size).get_center()
 		dance_target += arrangement[i] * Vector2(64, 48)
 		
 		_dance(frogs[i], dance_frogs, dance_target)
@@ -135,7 +135,7 @@ func start_frog_dance(frog_count: int) -> void:
 ## Parameters:
 ## 	'away_from_hand': If 'true', the shark will be spawned on the furthest edge from the player's cursor.
 func _spawn_shark(away_from_hand: bool = false) -> void:
-	var shark: RunningShark = RunningSharkScene.instance()
+	var shark: RunningShark = RunningSharkScene.instantiate()
 	shark.hand = hand
 	shark.soon_position = _random_spawn_point(away_from_hand)
 	shark.update_position()
@@ -154,7 +154,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 ## Parameters:
 ## 	'away_from_hand': If 'true', the frog will be spawned on the furthest edge from the player's cursor.
 func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
-	var frog: RunningFrog = RunningFrogScene.instance()
+	var frog: RunningFrog = RunningFrogScene.instantiate()
 	frog.soon_position = _random_spawn_point(away_from_hand)
 	frog.update_position()
 	
@@ -176,18 +176,18 @@ func _random_spawn_point(away_from_hand: bool) -> Vector2:
 	var viewport_rect_size := get_viewport_rect().size
 	
 	var spawn_points := [
-		Vector2(rand_range(0, viewport_rect_size.x), -CREATURE_SPAWN_BORDER), # top wall
-		Vector2(viewport_rect_size.x + CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # right wall
-		Vector2(rand_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
-		Vector2(-CREATURE_SPAWN_BORDER, rand_range(0, viewport_rect_size.y)), # left wall
+		Vector2(randf_range(0, viewport_rect_size.x), -CREATURE_SPAWN_BORDER), # top wall
+		Vector2(viewport_rect_size.x + CREATURE_SPAWN_BORDER, randf_range(0, viewport_rect_size.y)), # right wall
+		Vector2(randf_range(0, viewport_rect_size.x), viewport_rect_size.y + CREATURE_SPAWN_BORDER), # bottom wall
+		Vector2(-CREATURE_SPAWN_BORDER, randf_range(0, viewport_rect_size.y)), # left wall
 	]
 	
 	if away_from_hand:
-		spawn_points.sort_custom(self, "_sort_by_distance_from_hand")
+		spawn_points.sort_custom(Callable(self,"_sort_by_distance_from_hand"))
 	else:
 		spawn_points.shuffle()
 	
-	return spawn_points[0] - _creatures.rect_global_position
+	return spawn_points[0] - _creatures.global_position
 
 
 ## Puts a frog into 'chase mode'.
@@ -201,7 +201,7 @@ func _dance(frog: RunningFrog, dance_frogs: Array, dance_target: Vector2) -> voi
 
 
 func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
-	return hand.rect_global_position.distance_to(a) > hand.rect_global_position.distance_to(b)
+	return hand.global_position.distance_to(a) > hand.global_position.distance_to(b)
 
 
 func _on_SharkSpawnTimer_timeout() -> void:

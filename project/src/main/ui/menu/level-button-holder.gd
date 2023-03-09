@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	_refresh_world_index()
-	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
+	PlayerData.connect("world_index_changed",Callable(self,"_on_PlayerData_world_index_changed"))
 
 
 ## Ensure exactly one set of world buttons is visible.

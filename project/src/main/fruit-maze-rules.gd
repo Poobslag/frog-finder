@@ -96,11 +96,11 @@ func _ready() -> void:
 
 
 func refresh_level_cards_path() -> void:
-	.refresh_level_cards_path()
+	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
-	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
+	level_cards.connect("before_card_flipped",Callable(self,"_on_LevelCards_before_card_flipped"))
+	level_cards.connect("before_shark_found",Callable(self,"_on_LevelCards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -373,7 +373,7 @@ func _available_fish_forks(card: CardControl, dir_count: int) -> Array:
 
 func _can_forkify(card: CardControl) -> bool:
 	var result := true
-	if _available_fish_forks(card, 2).empty():
+	if _available_fish_forks(card, 2).is_empty():
 		# not enough space for a fork
 		result = false
 	if card.card_front_type != CardControl.CardType.FRUIT:

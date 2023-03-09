@@ -4,11 +4,11 @@
 [ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
 
 [node name="Button" type="Control"]
-margin_left = 342.0
-margin_top = 341.148
-margin_right = 422.0
-margin_bottom = 421.148
-rect_min_size = Vector2( 80, 80 )
+offset_left = 342.0
+offset_top = 341.148
+offset_right = 422.0
+offset_bottom = 421.148
+custom_minimum_size = Vector2( 80, 80 )
 script = ExtResource( 4 )
 
 [node name="IconSprite" parent="." instance=ExtResource( 3 )]

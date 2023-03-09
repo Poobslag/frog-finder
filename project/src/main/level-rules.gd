@@ -4,9 +4,9 @@ extends Node
 ##
 ## Subclasses should extend this script to define how cards are arranged and where to find the frog.
 
-export (NodePath) var level_cards_path: NodePath setget set_level_cards_path
+@export (NodePath) var level_cards_path: NodePath : set = set_level_cards_path
 
-export (int, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
+@export (int, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
 
 var level_cards: LevelCards
 

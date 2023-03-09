@@ -6,7 +6,7 @@ extends Timer
 const MIN_WIGGLE_TIME := 0.35
 const MAX_WIGGLE_TIME := 0.45
 
-onready var _sprite := get_parent()
+@onready var _sprite := get_parent()
 
 func _ready() -> void:
 	reset_wiggle()
@@ -17,7 +17,7 @@ func reset_wiggle() -> void:
 		# avoid 'Timer was not added to the SceneTree' warnings
 		return
 	
-	start(rand_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME))
+	start(randf_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME))
 
 
 ## Updates the sprite's frame to the next 'wiggle frame'.
@@ -35,4 +35,4 @@ func _on_timeout() -> void:
 		return
 	
 	assign_wiggle_frame()
-	wait_time = rand_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME)
+	wait_time = randf_range(MIN_WIGGLE_TIME, MAX_WIGGLE_TIME)

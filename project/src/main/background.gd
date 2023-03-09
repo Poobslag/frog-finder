@@ -15,7 +15,7 @@ var hues := [
 ]
 
 ## TextureRect instances used for backgrounds. The texture at the front of the list is currently visible.
-onready var textures := [
+@onready var textures := [
 	$TextureRect1, $TextureRect2, $TextureRect3, $TextureRect4,
 	$TextureRect5, $TextureRect6, $TextureRect7, $TextureRect8,
 	$TextureRect9, $TextureRect10, $TextureRect11, $TextureRect12,
@@ -28,7 +28,7 @@ onready var textures := [
 	$TextureRect37, $TextureRect38, $TextureRect39, $TextureRect40,
 ]
 
-onready var _color_rect := $ColorRect
+@onready var _color_rect := $ColorRect
 
 func _ready() -> void:
 	change(true)
@@ -44,7 +44,7 @@ func change(immediate: bool = false) -> void:
 	hues.shuffle()
 	hues.push_back(previous_hue)
 	
-	var texture_color := Color().from_hsv(hues[0], rand_range(0.5, 0.8), 0.50)
+	var texture_color := Color().from_hsv(hues[0], randf_range(0.5, 0.8), 0.50)
 	var rect_color := Color().from_hsv(texture_color.h, texture_color.s, 0.25)
 	
 	if randf() < 0.3:
@@ -75,7 +75,7 @@ func _on_ChangeTween_tween_completed(previous_texture: TextureRect) -> void:
 
 ## Returns a transparent version of the specified color.
 ##
-## Tweening from forest green to 'Color.transparent' results in some strange in-between frames which are grey or white.
+## Tweening from forest green to 'Color.TRANSPARENT' results in some strange in-between frames which are grey or white.
 ## It's better to tween to a transparent forest green.
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)

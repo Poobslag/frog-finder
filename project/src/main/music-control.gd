@@ -9,15 +9,15 @@ const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 	PlayerData.MusicPreference.OFF: [14, 15],
 }
 
-onready var _sprite: WiggleSprite = $Sprite
+@onready var _sprite: WiggleSprite = $Sprite2D
 
 func _ready() -> void:
 	_refresh_sprite()
-	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
+	PlayerData.connect("music_preference_changed",Callable(self,"_on_PlayerData_music_preference_changed"))
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		PlayerData.increment_music_preference()
 
 
