@@ -15,6 +15,7 @@ var number_event: InputEvent
 
 func _ready() -> void:
 	_intermission_panel.show_intermission_panel()
+	_intermission_panel.restart("1-1")
 
 
 func _input(event: InputEvent) -> void:
