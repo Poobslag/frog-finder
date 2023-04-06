@@ -5,6 +5,7 @@ project/export_presets.cfg
 project/export
 
 # Godot-specific ignores
+project/.godot/
 project/.import/
 project/logs/
 

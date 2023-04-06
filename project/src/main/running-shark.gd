@@ -103,11 +103,10 @@ func is_fed() -> bool:
 
 func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
-	position = new_soon_position
 
 
 func _refresh_run_speed() -> void:
-	_animation_player.playback_speed = run_speed / 150.0
+	_animation_player.speed_scale = run_speed / 150.0
 
 
 func _on_PanicTimer_timeout() -> void:

@@ -56,8 +56,6 @@ const INNER_CELLS := [
 	Vector2(4.0, 4.0),
 ]
 
-var _random := RandomNumberGenerator.new()
-
 ## key: (Vector2) cell coordinates of an outer cell which contains a fruit
 ## value: (bool) true
 var _outer_fruit_cells := {}
@@ -91,11 +89,6 @@ var _mandatory_hops := 3
 var _max_shown_card_count := 99
 var _max_fork_count := 1
 
-func _ready() -> void:
-	_random.randomize()
-
-
-func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
@@ -226,7 +219,7 @@ func add_cards() -> void:
 	while remaining_fruit_details:
 		var i := int(min(randi() % remaining_fruit_details.size(), randi() % remaining_fruit_details.size()))
 		semi_sorted_fruits.append(remaining_fruit_details[i])
-		remaining_fruit_details.remove(i)
+		remaining_fruit_details.remove_at(i)
 	semi_sorted_fruits = semi_sorted_fruits.slice(0, outer_fruit_count + inner_fruit_count - 2)
 	semi_sorted_fruits.shuffle()
 	

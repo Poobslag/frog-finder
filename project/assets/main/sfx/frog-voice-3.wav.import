@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/frog-voice-3.wav-c95aed14c3e83dcd7f010439fab6e6b3.sample"
+type="AudioStreamWAV"
+uid="uid://ui5o6vtk38xt"
+path="res://.godot/imported/frog-voice-3.wav-c95aed14c3e83dcd7f010439fab6e6b3.sample"
 
 [deps]
 
 source_file="res://assets/main/sfx/frog-voice-3.wav"
-dest_files=[ "res://.import/frog-voice-3.wav-c95aed14c3e83dcd7f010439fab6e6b3.sample" ]
+dest_files=["res://.godot/imported/frog-voice-3.wav-c95aed14c3e83dcd7f010439fab6e6b3.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

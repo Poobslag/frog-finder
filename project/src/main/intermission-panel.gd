@@ -22,7 +22,7 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-@export (NodePath) var hand_path: NodePath
+@export var hand_path: NodePath
 
 var cards: Array = []
 var sharks: Array = []

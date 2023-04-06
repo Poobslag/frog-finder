@@ -16,6 +16,8 @@ var _current_song: AudioStreamPlayer
 ## value: (float) previous playback position
 var _position_by_song := {}
 
+var _fade_tween: Tween
+
 ## List of AudioStreamPlayer instances to play if the world does not define any music.
 @onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
@@ -59,12 +61,7 @@ var _position_by_song := {}
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
 @onready var _ending_song := $HugFromAFrog
 
-@onready var _fade_tween := $FadeTween
-
-var _random := RandomNumberGenerator.new()
-
 func _ready() -> void:
-	_random.randomize()
 	PlayerData.connect("music_preference_changed",Callable(self,"_on_PlayerData_music_preference_changed"))
 	PlayerData.connect("world_index_changed",Callable(self,"_on_PlayerData_world_index_changed"))
 
@@ -89,7 +86,7 @@ func play_preferred_song() -> void:
 	elif world_songs.size() > 1:
 		if _current_song == world_songs[0]:
 			# playing the main song from this world; switch to a non-main song
-			new_song = world_songs[_random.randi_range(1, world_songs.size() - 1)]
+			new_song = world_songs[randi_range(1, world_songs.size() - 1)]
 		elif _current_song == world_songs[1] or _current_song == world_songs[2]:
 			# playing a non-main song from this world; switch to the main song
 			new_song = world_songs[0]
@@ -120,12 +117,12 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 			if from_position != 0:
 				# sample when playing a song from the middle, to avoid pops and clicks
 				_current_song.volume_db = MIN_VOLUME
-				_fade_tween.remove(_current_song, "volume_db")
-				_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, FADE_IN_DURATION)
+				if _fade_tween:
+					_fade_tween.kill()
+				_fade_tween = create_tween()
+				_fade_tween.tween_property(_current_song, "volume_db", MAX_VOLUME, FADE_IN_DURATION)
 			else:
 				_current_song.volume_db = MAX_VOLUME
-		
-		_fade_tween.start()
 
 
 func play_shark_song() -> void:
@@ -144,9 +141,10 @@ func fade_out(duration := FADE_OUT_DURATION) -> void:
 		return
 	
 	_position_by_song[_current_song] = _current_song.get_playback_position()
-	_fade_tween.remove(_current_song, "volume_db")
-	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MIN_VOLUME, duration)
-	_fade_tween.start()
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_current_song, "volume_db", MIN_VOLUME, duration)
 	_current_song = null
 
 
@@ -158,9 +156,10 @@ func fade_in(duration := FADE_OUT_DURATION) -> void:
 		return
 	
 	_current_song.volume_db = MIN_VOLUME
-	_fade_tween.remove(_current_song, "volume_db")
-	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, duration)
-	_fade_tween.start()
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_current_song, "volume_db", MAX_VOLUME, duration)
 
 
 func play_ending_song() -> void:
@@ -194,7 +193,8 @@ func get_playback_position() -> float:
 
 
 func _on_FadeTween_tween_completed(object: Object, key: NodePath) -> void:
-	if key == ":volume_db" and object.volume_db == MIN_VOLUME:
+	print("197: key=%s" % [key.get_concatenated_subnames()])
+	if key.get_concatenated_subnames() == ":volume_db" and object.volume_db == MIN_VOLUME:
 		object.stop()
 
 

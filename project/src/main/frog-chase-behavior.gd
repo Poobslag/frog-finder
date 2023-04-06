@@ -101,6 +101,7 @@ func _on_Hand_hug_finished() -> void:
 	_think_timer.start()
 	_panic()
 	_frog.soon_position += _frog.velocity.normalized() * 40
+	_frog.update_position()
 
 
 func _on_ThinkTimer_timeout() -> void:

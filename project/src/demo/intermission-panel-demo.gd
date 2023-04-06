@@ -70,6 +70,6 @@ func _start_frog_dance() -> void:
 		KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			frog_count = Utils.key_num(number_event)
 		_:
-			frog_count = Utils.randi_range(1, 10)
+			frog_count = randi_range(1, 10)
 	
 	_intermission_panel.start_frog_dance(frog_count)

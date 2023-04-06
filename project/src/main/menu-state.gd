@@ -1,11 +1,11 @@
 extends Node
 ## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
-@export (NodePath) var _main_menu_panel_path: NodePath
-@export (NodePath) var _gameplay_panel_path: NodePath
-@export (NodePath) var _intermission_panel_path: NodePath
-@export (NodePath) var _hand_path: NodePath
-@export (NodePath) var _background_path: NodePath
+@export var _main_menu_panel_path: NodePath
+@export var _gameplay_panel_path: NodePath
+@export var _intermission_panel_path: NodePath
+@export var _hand_path: NodePath
+@export var _background_path: NodePath
 
 @onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 @onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)

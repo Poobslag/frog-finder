@@ -31,7 +31,7 @@ func assign_wiggle_frame() -> void:
 
 
 func _on_timeout() -> void:
-	if not "wiggle_frames" in _sprite or not _sprite.wiggle_frames:
+	if not "wiggle_frames" in _sprite or _sprite.wiggle_frames.is_empty():
 		return
 	
 	assign_wiggle_frame()
