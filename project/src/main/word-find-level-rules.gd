@@ -34,8 +34,8 @@ func add_cards() -> void:
 			var card := level_cards.create_card()
 			card.card_front_type = CardControl.CardType.LETTER
 			card.card_front_details = Utils.rand_value(["a", "d", "e", "h", "i", "k", "n", "s"])
-			card.show_front()
 			level_cards.add_card(card, Vector2(x, y))
+			card.show_front()
 	
 	var _backwards_chance: float = 0.5
 	var _frog_letter_chance: float = 0.5

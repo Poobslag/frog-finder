@@ -345,11 +345,11 @@ func _add_aliax(aliax: String, aliax_cell_pos: Vector2) -> void:
 			_:
 				card.card_front_type = CardControl.CardType.LETTER
 				card.card_front_details = letter.to_lower()
-				if letter == letter.to_upper():
-					card.show_front()
 		if aliax_cell_pos.y == 1:
 			card.card_back_details = "r"
 		level_cards.add_card(card, letter_cell_pos)
+		if card.card_front_type == CardControl.CardType.LETTER and letter == letter.to_upper():
+			card.show_front()
 		_cell_pos_to_revealed_letter[letter_cell_pos] = english_word[i]
 
 
