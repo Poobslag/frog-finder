@@ -27,12 +27,10 @@
 *bug: game scales weird; cards do not grow
 *bug: cards have rough edges; filtering settings changed
 -LevelRulesDemo works
- -frodoku
- -froggo
- -fruit maze
- -maze
-  -unused 'lucky_chance'
-  -unused 'remaining_mistakes'
+ *frodoku
+ *froggo
+ *fruit maze
+ *maze
  -pattern memory
  -secret collect
  -word find
@@ -50,6 +48,7 @@ methods can't call their own static methods; suppress warnings
 replace tweens; it's clunky
 assigning your own fields now calls your setters
 set project's stretch mode to 'canvas_items'
+slice is now exclusive, not inclusive
 
 
 IntermissionCards position: 246, 154

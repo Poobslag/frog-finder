@@ -249,15 +249,7 @@ func _reveal_letters(aliax: String, count: int) -> String:
 		# if count is 0 and the third letter is an "R", it's ambiguous -- so we can reveal it
 		actual_count = 1
 	
-	# One might think 'letter_indexes.slice(actual_count)' would work here,
-	# with the mistaken expectation that the slice function acts like its
-	# counterparts in Python and Javascript. ...However in defiance of any
-	# reasonable expectations, Godot's 'slice' function does something
-	# completely unrelated to array slicing.
-	#
-	# ...Perhaps it is meant for pizza slices?
-	while letter_indexes.size() > actual_count:
-		letter_indexes.pop_back()
+	letter_indexes = letter_indexes.slice(0, actual_count)
 	
 	for i in letter_indexes:
 		var letter: String = card_word[i]
@@ -298,7 +290,7 @@ func _replace_letters(aliax: String, replacement: String, chance: float) -> Stri
 func _trollify_aliaxes(aliaxes: Array, count: int) -> Array:
 	var troll_aliax_indexes := range(aliaxes.size())
 	troll_aliax_indexes.shuffle()
-	troll_aliax_indexes = troll_aliax_indexes.slice(0, count - 1)
+	troll_aliax_indexes = troll_aliax_indexes.slice(0, count)
 	for i in troll_aliax_indexes:
 		if i == 0:
 			aliaxes[i] = _troll_frog_aliax()

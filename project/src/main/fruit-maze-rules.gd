@@ -89,6 +89,8 @@ var _mandatory_hops := 3
 var _max_shown_card_count := 99
 var _max_fork_count := 1
 
+
+func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
@@ -220,7 +222,7 @@ func add_cards() -> void:
 		var i := int(min(randi() % remaining_fruit_details.size(), randi() % remaining_fruit_details.size()))
 		semi_sorted_fruits.append(remaining_fruit_details[i])
 		remaining_fruit_details.remove_at(i)
-	semi_sorted_fruits = semi_sorted_fruits.slice(0, outer_fruit_count + inner_fruit_count - 2)
+	semi_sorted_fruits = semi_sorted_fruits.slice(0, outer_fruit_count + inner_fruit_count - 1)
 	semi_sorted_fruits.shuffle()
 	
 	# reveal outer fruits
@@ -318,7 +320,7 @@ func _hide_outer_fruits() -> void:
 
 
 func _before_premature_frog_flipped(card: CardControl) -> void:
-	if not _wrong_outer_fruit_cells_by_details:
+	if _wrong_outer_fruit_cells_by_details.is_empty():
 		# can't swap the frog out; there's nobody to swap with
 		return
 	

@@ -21,8 +21,6 @@ const DIRECTIONS_BY_STRING := {
 	"w": Vector2.LEFT,
 }
 
-var _random := RandomNumberGenerator.new()
-
 var _remaining_flip_count := 6
 var _average_path_cells := 3
 var _remaining_path_cells := 0

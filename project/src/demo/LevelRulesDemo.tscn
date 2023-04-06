@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="1"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/FrodokuLevelRules.tscn" id="2_0ow26"]
+[ext_resource type="PackedScene" path="res://src/main/PatternMemoryLevelRules.tscn" id="2_0ydm2"]
 [ext_resource type="Script" path="res://src/demo/level-rules-demo.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="4"]
 [ext_resource type="Theme" path="res://src/main/ui/menu/theme/h3.theme" id="7"]
 
 [node name="Demo" type="Node"]
 script = ExtResource("3")
-LevelRulesScene = ExtResource("2_0ow26")
+LevelRulesScene = ExtResource("2_0ydm2")
 
 [node name="GameplayPanel" type="Panel" parent="."]
 anchors_preset = 15
