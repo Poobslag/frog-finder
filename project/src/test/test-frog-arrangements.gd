@@ -49,7 +49,7 @@ func test_no_duplicates() -> void:
 		var arrangement_strings := {}
 		for arrangement_obj in FrogArrangements.get_arrangements(i):
 			var arrangement: Array = arrangement_obj
-			var arrangement_string := String(arrangement)
+			var arrangement_string := str(arrangement)
 			assert_false(arrangement_strings.has(arrangement_string),
 					"Duplicate frog arrangement for size %s: %s" % [i, arrangement_string])
 			arrangement_strings[arrangement_string] = true

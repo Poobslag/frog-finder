@@ -67,9 +67,10 @@ var _start_difficulty := 0
 	"fruit-maze": preload("res://src/main/FruitMazeRules.tscn"),
 }
 
-var level_ids := DEFAULT_LEVEL_IDS
+var level_ids: Array[String]
 
 func _ready() -> void:
+	level_ids.assign(DEFAULT_LEVEL_IDS)
 	_refresh_mission_string()
 
 
@@ -165,7 +166,7 @@ func _refresh_mission_string() -> void:
 			_max_puzzle_difficulty = 7
 			_shark_difficulty_decrease = 2
 	
-	level_ids = LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS)
+	level_ids.assign(LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS))
 
 
 func _on_LevelCards_frog_found(card: CardControl) -> void:

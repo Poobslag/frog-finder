@@ -133,7 +133,7 @@ func _load_raw_json_data() -> void:
 	_arrangements_by_frog_count.clear()
 	
 	var arrangements_text := FileUtils.get_file_as_text(arrangements_path)
-	var test_json_conv = JSON.new()
+	var test_json_conv := JSON.new()
 	test_json_conv.parse(arrangements_text)
 	var arrangements_json: Array = test_json_conv.get_data()
 	for picture in arrangements_json:

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/shark-voice-3.wav-4fee0d38d9488f4488c972ca267829ba.sample"
+type="AudioStreamWAV"
+uid="uid://cjxtmfbu1rgou"
+path="res://.godot/imported/shark-voice-3.wav-4fee0d38d9488f4488c972ca267829ba.sample"
 
 [deps]
 
 source_file="res://assets/main/sfx/shark-voice-3.wav"
-dest_files=[ "res://.import/shark-voice-3.wav-4fee0d38d9488f4488c972ca267829ba.sample" ]
+dest_files=["res://.godot/imported/shark-voice-3.wav-4fee0d38d9488f4488c972ca267829ba.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

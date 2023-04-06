@@ -124,7 +124,7 @@ func _load_raw_json_data() -> void:
 	_card_positions_by_mission_string.clear()
 	
 	var arrangements_text := FileUtils.get_file_as_text(arrangements_path)
-	var test_json_conv = JSON.new()
+	var test_json_conv := JSON.new()
 	test_json_conv.parse(arrangements_text)
 	var arrangements_json: Dictionary = test_json_conv.get_data()
 	for mission_string in arrangements_json:

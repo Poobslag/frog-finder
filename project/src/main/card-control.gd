@@ -129,13 +129,13 @@ signal frog_found
 signal before_shark_found
 signal shark_found
 
-@export (CardType) var card_back_type: int = CardType.MYSTERY : set = set_card_back_type
-@export (String) var card_back_details: String : set = set_card_back_details
-@export (CardType) var card_front_type: int = CardType.MYSTERY : set = set_card_front_type
-@export (String) var card_front_details: String : set = set_card_front_details
+@export var card_back_type: CardType = CardType.MYSTERY : set = set_card_back_type
+@export var card_back_details: String : set = set_card_back_details
+@export var card_front_type: CardType = CardType.MYSTERY : set = set_card_front_type
+@export var card_front_details: String : set = set_card_front_details
 
-@export (NodePath) var game_state_path := NodePath("../GameState") : set = set_game_state_path
-@export (bool) var practice := false
+@export var game_state_path := NodePath("../GameState") : set = set_game_state_path
+@export var practice := false
 
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
@@ -203,7 +203,7 @@ func _refresh_game_state_path() -> void:
 	if not is_inside_tree():
 		return
 	
-	if not game_state_path:
+	if game_state_path.is_empty():
 		return
 	
 	_game_state = get_node(game_state_path)
@@ -223,11 +223,13 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 		CardType.FROG:
 			Utils.assign_card_texture(card_sprite, _frog_sheet)
 			var frog_index := randi() % FROG_COUNT
-			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1] as Array[int]
 		CardType.SHARK:
 			Utils.assign_card_texture(card_sprite, _shark_sheet)
 			var shark_index := randi() % SHARK_COUNT
-			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1] as Array[int]
 		CardType.MYSTERY:
 			Utils.assign_card_texture(card_sprite, _mystery_sheet)
 			var mystery_index: int
@@ -236,7 +238,8 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				mystery_index = Utils.rand_value(mystery_indexes)
 			else:
 				mystery_index = randi() % MYSTERY_COUNT
-			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1] as Array[int]
 		CardType.LETTER:
 			Utils.assign_card_texture(card_sprite, _letter_sheet)
 			var letter_index: int
@@ -247,7 +250,8 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random letters in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized letter: %s" % [card_details]
 				letter_index = randi() % LETTER_COUNT
-			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1] as Array[int]
 		CardType.ARROW:
 			Utils.assign_card_texture(card_sprite, _arrow_sheet)
 			var arrow_index: int
@@ -258,7 +262,8 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized arrow: %s" % [card_details]
 				arrow_index = randi() % ARROW_COUNT
-			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.HEX_ARROW:
 			Utils.assign_card_texture(card_sprite, _hex_arrow_sheet)
 			var arrow_index: int
@@ -269,15 +274,18 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
 				arrow_index = randi() % HEX_ARROW_COUNT
-			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.FISH:
 			Utils.assign_card_texture(card_sprite, _fish_sheet)
 			var fish_index := randi() % FISH_COUNT
-			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1] as Array[int]
 		CardType.LIZARD:
 			Utils.assign_card_texture(card_sprite, _lizard_sheet)
 			var lizard_index := randi() % LIZARD_COUNT
-			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1] as Array[int]
 		CardType.FRUIT:
 			Utils.assign_card_texture(card_sprite, _fruit_sheet)
 			var fruit_index: int
@@ -287,7 +295,8 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized fruit: %s" % [card_details]
 				fruit_index = randi() % FRUIT_COUNT
-			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1] as Array[int]
 	
 	if card_sprite.wiggle_frames:
 		card_sprite.frame = card_sprite.wiggle_frames[0]
@@ -298,12 +307,12 @@ func _gui_input(event: InputEvent) -> void:
 		_flip_card()
 
 
-func set_card_back_type(new_card_back_type: int) -> void:
+func set_card_back_type(new_card_back_type: CardType) -> void:
 	card_back_type = new_card_back_type
 	_refresh_card_textures()
 
 
-func set_card_front_type(new_card_front_type: int) -> void:
+func set_card_front_type(new_card_front_type: CardType) -> void:
 	card_front_type = new_card_front_type
 	_refresh_card_textures()
 
@@ -402,7 +411,8 @@ func cheer() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
 	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
 	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
 	
@@ -442,7 +452,8 @@ func _on_StopDanceTimer_timeout() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
 
 
 func _on_FrogFoundTimer_timeout() -> void:

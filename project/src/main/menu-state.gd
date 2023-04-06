@@ -1,11 +1,11 @@
 extends Node
 ## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
-@export (NodePath) var _main_menu_panel_path: NodePath
-@export (NodePath) var _gameplay_panel_path: NodePath
-@export (NodePath) var _intermission_panel_path: NodePath
-@export (NodePath) var _hand_path: NodePath
-@export (NodePath) var _background_path: NodePath
+@export var _main_menu_panel_path: NodePath
+@export var _gameplay_panel_path: NodePath
+@export var _intermission_panel_path: NodePath
+@export var _hand_path: NodePath
+@export var _background_path: NodePath
 
 @onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
 @onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
@@ -23,7 +23,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_hide_panels()
 	
-	await get_tree().idle_frame
+	await get_tree().process_frame
 	_main_menu_panel.show_menu()
 	
 	MusicPlayer.play_preferred_song()
@@ -134,8 +134,7 @@ func _play_ending() -> void:
 ## After a delay, spawns frogs which hug the cursor.
 func _schedule_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
 	MusicPlayer.fade_out(4.0)
-	_start_timer(3.0).connect("timeout", self,
-			"_on_Timer_timeout_play_frog_hug_ending", [huggable_fingers, new_max_frogs])
+	_start_timer(3.0).connect("timeout", _on_Timer_timeout_play_frog_hug_ending.bind(huggable_fingers, new_max_frogs))
 
 
 ## Spawns frogs which hug the cursor.

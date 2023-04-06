@@ -8,8 +8,8 @@ extends Control
 
 signal pressed
 
-@export (Texture2D) var icon_texture: Texture2D : set = set_icon_texture
-@export (int) var icon_index: int : set = set_icon_index
+@export var icon_texture: Texture2D : set = set_icon_texture
+@export var icon_index: int : set = set_icon_index
 
 @onready var _icon_sprite := $IconSprite
 
@@ -42,5 +42,6 @@ func _refresh_sprite() -> void:
 		return
 	
 	Utils.assign_card_texture(_icon_sprite, icon_texture)
-	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1] as Array[int]
 	_icon_sprite.assign_wiggle_frame()
