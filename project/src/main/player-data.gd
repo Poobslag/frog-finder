@@ -82,13 +82,13 @@ func save_player_data() -> void:
 	new_save_json["frog_dance_count"] = frog_dance_count
 	
 	if new_save_json != save_json:
-		FileUtils.write_file(DATA_FILENAME, JSON.stringify(new_save_json, "  "))
+		FileAccess.open(DATA_FILENAME, FileAccess.WRITE).store_string(JSON.stringify(new_save_json, "  "))
 
 
 func load_player_data() -> void:
-	if not FileUtils.file_exists(DATA_FILENAME):
+	if not FileAccess.file_exists(DATA_FILENAME):
 		return
-	var save_text := FileUtils.get_file_as_text(DATA_FILENAME)
+	var save_text := FileAccess.get_file_as_string(DATA_FILENAME)
 	var test_json_conv := JSON.new()
 	test_json_conv.parse(save_text)
 	save_json = test_json_conv.get_data()
