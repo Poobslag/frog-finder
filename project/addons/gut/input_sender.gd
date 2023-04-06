@@ -99,7 +99,7 @@ class InputQueueItem:
 var _utils = load('res://addons/gut/utils.gd').get_instance()
 var InputFactory = load("res://addons/gut/input_factory.gd")
 
-const INPUT_WARN = 'If using Input as a reciever it will not respond to *_down events until a *_up event is recieved.  Call the appropriate *_up event or use super.hold_for(...) to automatically release after some duration.'
+const INPUT_WARN = 'If using Input as a reciever it will not respond to *_down events until a *_up event is recieved.  Call the appropriate *_up event or use hold_for(...) to automatically release after some duration.'
 
 var _lgr = _utils.get_logger()
 var _receivers = []
@@ -180,7 +180,7 @@ func _on_queue_item_ready(item):
 
 
 func _add_queue_item(item):
-	item.connect("event_ready",Callable(self,"_on_queue_item_ready").bind(item))
+	item.connect("event_ready", _on_queue_item_ready.bind(item))
 	_next_queue_item = item
 	_input_queue.append(item)
 	Engine.get_main_loop().root.add_child(item)
@@ -199,7 +199,7 @@ func get_receivers():
 func wait(t):
 	if(typeof(t) == TYPE_STRING):
 		var suffix = t.substr(t.length() -1, 1)
-		var val = float(t.rstrip('s').rstrip('f'))
+		var val = t.rstrip('s').rstrip('f').to_float()
 
 		if(suffix.to_lower() == 's'):
 			wait_secs(val)
@@ -272,7 +272,7 @@ func mouse_left_button_up(position, global_position=null):
 
 func mouse_double_click(position, global_position=null):
 	var event = InputFactory.mouse_double_click(position, global_position)
-	event.doubleclick = true
+	event.double_click = true
 	_send_or_record_event(event)
 	return self
 
@@ -327,7 +327,7 @@ func release_all():
 	for key in _pressed_mouse_buttons:
 		var event = _pressed_mouse_buttons[key].duplicate()
 		if(event.pressed):
-			event.button_pressed = false
+			event.pressed = false
 			_send_event(event)
 	_pressed_mouse_buttons.clear()
 
@@ -335,7 +335,7 @@ func release_all():
 func hold_for(duration):
 	if(_last_event != null and _last_event.pressed):
 		var next_event = _last_event.duplicate()
-		next_event.button_pressed = false
+		next_event.pressed = false
 		wait(duration)
 		send_event(next_event)
 	return self
