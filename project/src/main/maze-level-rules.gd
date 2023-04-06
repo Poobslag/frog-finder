@@ -21,9 +21,6 @@ const DIRECTIONS_BY_STRING := {
 	"w": Vector2.LEFT,
 }
 
-var _remaining_mistakes := 0
-var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
-
 var _random := RandomNumberGenerator.new()
 
 var _remaining_flip_count := 6
