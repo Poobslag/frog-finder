@@ -8,7 +8,7 @@ extends Node
 @onready var _gameplay_panel := $GameplayPanel
 @onready var _difficulty_label := $DifficultyLabel
 
-@export (PackedScene) var LevelRulesScene: PackedScene
+@export var LevelRulesScene: PackedScene
 
 func _ready() -> void:
 	randomize()

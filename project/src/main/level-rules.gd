@@ -4,9 +4,9 @@ extends Node
 ##
 ## Subclasses should extend this script to define how cards are arranged and where to find the frog.
 
-@export (NodePath) var level_cards_path: NodePath : set = set_level_cards_path
+@export var level_cards_path: NodePath : set = set_level_cards_path
 
-@export (int, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
+@export_range(0, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
 
 var level_cards: LevelCards
 
@@ -24,7 +24,7 @@ func set_level_cards_path(new_level_cards_path: NodePath) -> void:
 
 
 func refresh_level_cards_path() -> void:
-	if not is_inside_tree() or not level_cards_path:
+	if not is_inside_tree() or level_cards_path.is_empty():
 		return
 	
 	level_cards = get_node(level_cards_path) if level_cards_path else null

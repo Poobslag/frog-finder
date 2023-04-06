@@ -7,6 +7,6 @@ extends WiggleSprite
 const WOW_COUNT := 4
 
 func _ready() -> void:
-	var wow_sprite_index := Utils.randi_range(0, WOW_COUNT - 1)
+	var wow_sprite_index := randi_range(0, WOW_COUNT - 1)
 	wiggle_frames = [wow_sprite_index * 2 + 0, wow_sprite_index * 2 + 1]
 	assign_wiggle_frame()

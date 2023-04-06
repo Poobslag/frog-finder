@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/frog-hug-1.wav-3ecf486ce1e58c7e21fd302fe9b6cf6f.sample"
+type="AudioStreamWAV"
+uid="uid://b2q0tvvfm5kau"
+path="res://.godot/imported/frog-hug-1.wav-3ecf486ce1e58c7e21fd302fe9b6cf6f.sample"
 
 [deps]
 
 source_file="res://assets/main/sfx/frog-hug-1.wav"
-dest_files=[ "res://.import/frog-hug-1.wav-3ecf486ce1e58c7e21fd302fe9b6cf6f.sample" ]
+dest_files=["res://.godot/imported/frog-hug-1.wav-3ecf486ce1e58c7e21fd302fe9b6cf6f.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

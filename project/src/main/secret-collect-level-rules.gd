@@ -99,7 +99,7 @@ func add_cards() -> void:
 	var potential_secret_positions := []
 	var potential_fish_positions := remaining_card_positions.duplicate()
 	for _i in range(fish_count):
-		if not potential_fish_positions:
+		if potential_fish_positions.is_empty():
 			# no more fish positions
 			break
 		
@@ -108,13 +108,13 @@ func add_cards() -> void:
 			var adjacent_position: Vector2 = card_position + adjacent_direction
 			var adjacent_position_index := potential_fish_positions.find(adjacent_position)
 			if adjacent_position_index != -1:
-				potential_fish_positions.remove(adjacent_position_index)
+				potential_fish_positions.remove_at(adjacent_position_index)
 				potential_secret_positions.append(adjacent_position)
 	
 	# add secrets
 	potential_secret_positions.shuffle()
 	for i in range(secret_count):
-		if not potential_secret_positions:
+		if potential_secret_positions.is_empty():
 			# no more secret positions
 			break
 		

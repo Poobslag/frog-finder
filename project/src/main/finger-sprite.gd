@@ -21,7 +21,7 @@ const WIGGLE_FRAMES_BY_HUGGED_FINGER := {
 	2: [11, 12],
 }
 
-@export (Array, int) var wiggle_frames := []
+@export var wiggle_frames: Array[int] = []
 
 @onready var _wiggle_timer := $WiggleTimer
 
@@ -43,7 +43,7 @@ func _ready() -> void:
 ## Parameters:
 ## 	'finger_index': 2 = pinky finger, 1 = naughty finger, 0 = pointer finger
 func bite(finger_index: int) -> void:
-	wiggle_frames = WIGGLE_FRAMES_BY_BITTEN_FINGER[finger_index]
+	wiggle_frames.assign(WIGGLE_FRAMES_BY_BITTEN_FINGER[finger_index])
 	_wiggle_timer.assign_wiggle_frame()
 	
 	# the animationplayer assigns the modulate/offset a frame too late.
@@ -59,7 +59,7 @@ func bite(finger_index: int) -> void:
 ## Parameters:
 ## 	'finger_index': 0 = right frog, 2 = left frog, 1 = middle frog
 func hug(finger_index: int) -> void:
-	wiggle_frames = WIGGLE_FRAMES_BY_HUGGED_FINGER[finger_index]
+	wiggle_frames.assign(WIGGLE_FRAMES_BY_HUGGED_FINGER[finger_index])
 	_wiggle_timer.assign_wiggle_frame()
 	
 	# the animationplayer assigns the modulate/offset a frame too late.

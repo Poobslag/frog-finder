@@ -2,10 +2,10 @@ class_name RunningFrog
 extends Sprite2D
 ## Frog which performs different activities such as chasing the player's cursor.
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal reached_dance_target
 
-# warning-ignore:unused_signal
+@warning_ignore("unused_signal")
 signal finished_dance
 
 const RUN_SPEED := 150.0
@@ -93,17 +93,21 @@ func run(animation_name := "") -> void:
 	_animation_player.play(run_animation_name)
 
 
-func play_animation(name: String) -> void:
-	_animation_player.play(name)
+func play_animation(animation_name: String) -> void:
+	_animation_player.play(animation_name)
 
 
 func stop_animation() -> void:
-	_animation_player.stop()
+	if _animation_player.is_playing():
+		_animation_player.stop()
+	else:
+		# Stopping the AnimationPlayer when no animation is playing resets the frog to a specific animation frame. This
+		# results in visual tic which interrupts things like dancing, so we don't do it.
+		pass
 
 
 func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
-	position = new_soon_position
 
 
 ## Randomize the frog's running speed and run animation.
@@ -132,4 +136,4 @@ func _start_behavior(new_behavior: CreatureBehavior) -> void:
 
 
 func _refresh_run_speed() -> void:
-	_animation_player.playback_speed = run_speed / 150.0
+	_animation_player.speed_scale = run_speed / 150.0

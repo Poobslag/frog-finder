@@ -29,7 +29,6 @@ var hues := [
 ]
 
 @onready var _color_rect := $ColorRect
-@onready var _change_tween := $ChangeTween
 
 func _ready() -> void:
 	change(true)
@@ -45,8 +44,8 @@ func change(immediate: bool = false) -> void:
 	hues.shuffle()
 	hues.push_back(previous_hue)
 	
-	var texture_color := Color().from_hsv(hues[0], randf_range(0.5, 0.8), 0.50)
-	var rect_color := Color().from_hsv(texture_color.h, texture_color.s, 0.25)
+	var texture_color := Color.from_hsv(hues[0], randf_range(0.5, 0.8), 0.50)
+	var rect_color := Color.from_hsv(texture_color.h, texture_color.s, 0.25)
 	
 	if randf() < 0.3:
 		var swap := texture_color
@@ -58,20 +57,24 @@ func change(immediate: bool = false) -> void:
 		_color_rect.color = rect_color
 		textures[0].modulate = texture_color
 	else:
+		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		@warning_ignore("static_called_on_instance")
 		textures[0].modulate = to_transparent(texture_color)
 		
-		_change_tween.interpolate_property(_color_rect, "color",
-				_color_rect.color, rect_color, TWEEN_DURATION)
-		_change_tween.interpolate_property(textures[0], "modulate",
-				textures[0].modulate, texture_color, TWEEN_DURATION)
-		_change_tween.interpolate_property(previous_texture, "modulate",
-				previous_texture.modulate, to_transparent(previous_texture.modulate), TWEEN_DURATION)
-		_change_tween.start()
+		var change_tween = create_tween().set_parallel()
+		change_tween.tween_property(_color_rect, "color",
+				rect_color, TWEEN_DURATION)
+		change_tween.tween_property(textures[0], "modulate",
+				texture_color, TWEEN_DURATION)
+		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		@warning_ignore("static_called_on_instance")
+		change_tween.tween_property(previous_texture, "modulate",
+				to_transparent(previous_texture.modulate), TWEEN_DURATION)
+		change_tween.chain().tween_callback(_on_ChangeTween_tween_completed.bind(previous_texture))
 
 
-func _on_ChangeTween_tween_completed(object: Object, key: NodePath) -> void:
-	if key == ":modulate" and object.modulate.a == 0.0:
-		object.visible = false
+func _on_ChangeTween_tween_completed(previous_texture: TextureRect) -> void:
+	previous_texture.visible = false
 
 
 ## Returns a transparent version of the specified color.

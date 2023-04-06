@@ -1,106 +1,103 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=21 format=3 uid="uid://nxfxyvxmb2xs"]
 
-[ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/music/im-just-a-fr.ogg" type="AudioStream" id=2]
-[ext_resource path="res://assets/main/music/rainy-day-fr.ogg" type="AudioStream" id=3]
-[ext_resource path="res://assets/main/music/a-well-tempered-fr.ogg" type="AudioStream" id=4]
-[ext_resource path="res://assets/main/music/we-are-the-baddies.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/main/music/one-frog-two-fr.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/main/music/can-you-find-the-fr.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/main/music/hug-from-a-fr.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/main/music/half-a-fr.ogg" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/music/its-a-wonderful-fr.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/music/still-cant-find-the-fr.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/main/music/im-gonna-find-that-fr.ogg" type="AudioStream" id=12]
-[ext_resource path="res://assets/main/music/sneaky-sneaky-fr.ogg" type="AudioStream" id=13]
-[ext_resource path="res://assets/main/music/lost-in-the-fr.ogg" type="AudioStream" id=14]
-[ext_resource path="res://assets/main/music/a-well-tempered-frog-instrumental.ogg" type="AudioStream" id=15]
-[ext_resource path="res://assets/main/music/sneaky-sneaky-frog-instrumental.ogg" type="AudioStream" id=16]
-[ext_resource path="res://assets/main/music/im-just-a-frog-instrumental.ogg" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/music/were-gonna-eat-you-up.ogg" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/music/take-comfort-in-your-fr.ogg" type="AudioStream" id=19]
-[ext_resource path="res://assets/main/music/frog-dance.ogg" type="AudioStream" id=20]
+[ext_resource type="Script" path="res://src/main/music-player.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://r637kgg2g4k5" path="res://assets/main/music/im-just-a-fr.ogg" id="2"]
+[ext_resource type="AudioStream" uid="uid://by1ddb4k0nx1q" path="res://assets/main/music/rainy-day-fr.ogg" id="3"]
+[ext_resource type="AudioStream" uid="uid://clm6a25w25nv3" path="res://assets/main/music/a-well-tempered-fr.ogg" id="4"]
+[ext_resource type="AudioStream" uid="uid://c44htc6xsxf4e" path="res://assets/main/music/we-are-the-baddies.ogg" id="5"]
+[ext_resource type="AudioStream" uid="uid://b4fc0yyy0jds6" path="res://assets/main/music/one-frog-two-fr.ogg" id="6"]
+[ext_resource type="AudioStream" uid="uid://cr5f1tjqmpnuf" path="res://assets/main/music/can-you-find-the-fr.ogg" id="7"]
+[ext_resource type="AudioStream" uid="uid://e0qf4a1knapi" path="res://assets/main/music/hug-from-a-fr.ogg" id="8"]
+[ext_resource type="AudioStream" uid="uid://b01cmobfsc1cf" path="res://assets/main/music/half-a-fr.ogg" id="9"]
+[ext_resource type="AudioStream" uid="uid://b0om04qh00ot8" path="res://assets/main/music/its-a-wonderful-fr.ogg" id="10"]
+[ext_resource type="AudioStream" uid="uid://duyy7wolx4p8m" path="res://assets/main/music/still-cant-find-the-fr.ogg" id="11"]
+[ext_resource type="AudioStream" uid="uid://ca2hsh22edvj6" path="res://assets/main/music/im-gonna-find-that-fr.ogg" id="12"]
+[ext_resource type="AudioStream" uid="uid://cyg72oqlrq263" path="res://assets/main/music/sneaky-sneaky-fr.ogg" id="13"]
+[ext_resource type="AudioStream" uid="uid://dukjcm0klp3j2" path="res://assets/main/music/lost-in-the-fr.ogg" id="14"]
+[ext_resource type="AudioStream" uid="uid://crdwy7w63kc77" path="res://assets/main/music/a-well-tempered-frog-instrumental.ogg" id="15"]
+[ext_resource type="AudioStream" uid="uid://dtw4748uu3bmc" path="res://assets/main/music/sneaky-sneaky-frog-instrumental.ogg" id="16"]
+[ext_resource type="AudioStream" uid="uid://beonf6irt5th1" path="res://assets/main/music/im-just-a-frog-instrumental.ogg" id="17"]
+[ext_resource type="AudioStream" uid="uid://druv5pfo2uuaq" path="res://assets/main/music/were-gonna-eat-you-up.ogg" id="18"]
+[ext_resource type="AudioStream" uid="uid://ctj5jssjiw4ij" path="res://assets/main/music/take-comfort-in-your-fr.ogg" id="19"]
+[ext_resource type="AudioStream" uid="uid://cl46nx8fremki" path="res://assets/main/music/frog-dance.ogg" id="20"]
 
 [node name="MusicPlayer" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="AWellTemperedFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-bus = "Music"
+stream = ExtResource("4")
+bus = &"Music"
 
 [node name="AWellTemperedFrogInstrumental" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
-bus = "Music"
+stream = ExtResource("15")
+bus = &"Music"
 
 [node name="CanYouFindTheFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-bus = "Music"
+stream = ExtResource("7")
+bus = &"Music"
 
 [node name="FrogDance" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
-bus = "Music"
+stream = ExtResource("20")
+bus = &"Music"
 
 [node name="HalfAFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-bus = "Music"
+stream = ExtResource("9")
+bus = &"Music"
 
 [node name="HugFromAFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-bus = "Music"
+stream = ExtResource("8")
+bus = &"Music"
 
 [node name="ImGonnaFindThatFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-bus = "Music"
+stream = ExtResource("12")
+bus = &"Music"
 
 [node name="ImJustAFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-bus = "Music"
+stream = ExtResource("2")
+bus = &"Music"
 
 [node name="ImJustAFrogInstrumental" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 17 )
-bus = "Music"
+stream = ExtResource("17")
+bus = &"Music"
 
 [node name="ItsAWonderfulFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
-bus = "Music"
+stream = ExtResource("10")
+bus = &"Music"
 
 [node name="LostInTheFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-bus = "Music"
+stream = ExtResource("14")
+bus = &"Music"
 
 [node name="OneFrogTwoFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-bus = "Music"
+stream = ExtResource("6")
+bus = &"Music"
 
 [node name="RainyDayFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-bus = "Music"
+stream = ExtResource("3")
+bus = &"Music"
 
 [node name="SneakySneakyFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-bus = "Music"
+stream = ExtResource("13")
+bus = &"Music"
 
 [node name="SneakySneakyFrogInstrumental" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-bus = "Music"
+stream = ExtResource("16")
+bus = &"Music"
 
 [node name="StillCantFindTheFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-bus = "Music"
+stream = ExtResource("11")
+bus = &"Music"
 
 [node name="TakeComfortInYourFrog" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
-bus = "Music"
+stream = ExtResource("19")
+bus = &"Music"
 
 [node name="WeAreTheBaddies" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-bus = "Music"
+stream = ExtResource("5")
+bus = &"Music"
 
 [node name="WereGonnaEatYouUp" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 18 )
-bus = "Music"
-
-[node name="FadeTween" type="Tween" parent="."]
+stream = ExtResource("18")
+bus = &"Music"
 
 [connection signal="finished" from="FrogDance" to="." method="_on_FrogDance_finished"]
-[connection signal="finished" from="FadeTween" to="." method="_on_FadeTween_tween_completed"]

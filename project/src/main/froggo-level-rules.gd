@@ -11,8 +11,6 @@ extends LevelRules
 ## 	5. Do not click any row with an 'R' in the fourth position.
 ##  6. You may click any other cards.
 
-var _random := RandomNumberGenerator.new()
-
 ## Words which have frogs but aren't 'frog'. These should not have any letters in common with any troll_shark_words,
 ## except for the 'R' in the third position
 var troll_frog_words := [
@@ -68,10 +66,6 @@ var troll_silly_words := [
 ## value: (String) letter to reveal when revealing the word the player clicked
 var _cell_pos_to_revealed_letter := {}
 
-func _ready() -> void:
-	_random.randomize()
-
-
 func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
@@ -95,7 +89,7 @@ func add_cards() -> void:
 			aliaxes = _aliaxes(["frog", "shark"])
 			aliaxes[0] = _reveal_letters(aliaxes[0], 2)
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.8)
-			aliaxes[1] = _reveal_letters(aliaxes[1], _random.randi_range(2, 3))
+			aliaxes[1] = _reveal_letters(aliaxes[1], randi_range(2, 3))
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
 		2:
 			aliaxes = _aliaxes(["frog", "shark"])
@@ -107,7 +101,7 @@ func add_cards() -> void:
 			# one troll aliax
 			aliaxes = _aliaxes(["frog", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 1)
-			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.4)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.4)
@@ -121,7 +115,7 @@ func add_cards() -> void:
 			# two troll aliaxes
 			aliaxes = _aliaxes(["frog", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 2)
-			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.2)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.5)
@@ -131,11 +125,11 @@ func add_cards() -> void:
 			# three troll aliaxes
 			aliaxes = _aliaxes(["frog", "shark", "shark", "shark"])
 			aliaxes = _trollify_aliaxes(aliaxes, 3)
-			aliaxes[0] = _reveal_letters(aliaxes[0], _random.randi_range(1, 2))
+			aliaxes[0] = _reveal_letters(aliaxes[0], randi_range(1, 2))
 			aliaxes[0] = _frogify_letters(aliaxes[0], 0.0)
 			aliaxes[1] = _reveal_letters(aliaxes[1], 1)
 			aliaxes[1] = _sharkify_letters(aliaxes[1], 0.6)
-			aliaxes[2] = _reveal_letters(aliaxes[2], _random.randi_range(1, 2))
+			aliaxes[2] = _reveal_letters(aliaxes[2], randi_range(1, 2))
 			aliaxes[2] = _sharkify_letters(aliaxes[2], 0.6)
 			aliaxes[3] = _reveal_letters(aliaxes[3], 2)
 			aliaxes[3] = _sharkify_letters(aliaxes[3], 0.6)
@@ -192,7 +186,7 @@ func add_cards() -> void:
 	
 	aliaxes.shuffle()
 	for i in range(aliaxes.size()):
-		var aliax_cell_pos := Vector2(Utils.randi_range(0, 2), i)
+		var aliax_cell_pos := Vector2(randi_range(0, 2), i)
 		
 		# shift short aliaxes to the right to keep them centered
 		aliax_cell_pos.x += int(3 - aliaxes[i].length() / 2)
@@ -255,15 +249,7 @@ func _reveal_letters(aliax: String, count: int) -> String:
 		# if count is 0 and the third letter is an "R", it's ambiguous -- so we can reveal it
 		actual_count = 1
 	
-	# One might think 'letter_indexes.slice(actual_count)' would work here,
-	# with the mistaken expectation that the slice function acts like its
-	# counterparts in Python and Javascript. ...However in defiance of any
-	# reasonable expectations, Godot's 'slice' function does something
-	# completely unrelated to array slicing.
-	#
-	# ...Perhaps it is meant for pizza slices?
-	while letter_indexes.size() > actual_count:
-		letter_indexes.pop_back()
+	letter_indexes = letter_indexes.slice(0, actual_count)
 	
 	for i in letter_indexes:
 		var letter: String = card_word[i]
@@ -304,7 +290,7 @@ func _replace_letters(aliax: String, replacement: String, chance: float) -> Stri
 func _trollify_aliaxes(aliaxes: Array, count: int) -> Array:
 	var troll_aliax_indexes := range(aliaxes.size())
 	troll_aliax_indexes.shuffle()
-	troll_aliax_indexes = troll_aliax_indexes.slice(0, count - 1)
+	troll_aliax_indexes = troll_aliax_indexes.slice(0, count)
 	for i in troll_aliax_indexes:
 		if i == 0:
 			aliaxes[i] = _troll_frog_aliax()

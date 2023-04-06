@@ -83,6 +83,7 @@ func set_state(new_dance_state: int) -> void:
 		DanceState.WAIT_TO_DANCE:
 			# The frog waits for other frogs to reach their dance targets
 			_frog.set_soon_position(dance_target)
+			_frog.update_position()
 			_frog.velocity = Vector2.ZERO
 			_frog.play_animation("stand")
 			_frog.emit_signal("reached_dance_target")
@@ -157,9 +158,12 @@ func perform_dance_move(dance_move_index: int) -> void:
 func _decide_dance_names() -> Array:
 	var result := []
 	for _i in range(4):
-		var possible_dance_names := _dance_animations.dance_names
+		var possible_dance_names: Array[String] = _dance_animations.dance_names
 		if not result.is_empty():
-			possible_dance_names = Utils.subtract(possible_dance_names, [result.back()])
+			# workaround for Godot #72627; cannot cast typed arrays using type hints
+			var new_dance_names: Array[String] = []
+			new_dance_names.assign(Utils.subtract(possible_dance_names, [result.back()]))
+			possible_dance_names = new_dance_names
 		result.append(Utils.rand_value(possible_dance_names))
 	return result
 

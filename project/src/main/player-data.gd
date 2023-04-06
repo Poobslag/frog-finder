@@ -86,7 +86,7 @@ func save_player_data() -> void:
 
 
 func load_player_data() -> void:
-	if not FileUtils.file_exists(DATA_FILENAME):
+	if not FileAccess.file_exists(DATA_FILENAME):
 		return
 	var save_text := FileUtils.get_file_as_text(DATA_FILENAME)
 	var test_json_conv = JSON.new()
@@ -108,7 +108,11 @@ func load_player_data() -> void:
 		shark_count = int(save_json["shark_count"])
 	if save_json.has("missions_cleared"):
 		var new_missions_cleared: Dictionary = save_json["missions_cleared"]
+		
+		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		@warning_ignore("static_called_on_instance")
 		_convert_float_values_to_ints(new_missions_cleared)
+		
 		missions_cleared = new_missions_cleared
 	if save_json.has("frog_dance_count"):
 		frog_dance_count = int(save_json["frog_dance_count"])

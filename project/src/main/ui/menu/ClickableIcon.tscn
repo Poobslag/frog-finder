@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c7k50x3n3ahgf"]
 
-[ext_resource path="res://src/main/WiggleSprite.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/menu/clickable-icon.gd" type="Script" id=4]
+[ext_resource type="PackedScene" path="res://src/main/WiggleSprite.tscn" id="3"]
+[ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="4"]
 
 [node name="Button" type="Control"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
 offset_left = 342.0
 offset_top = 341.148
 offset_right = 422.0
 offset_bottom = 421.148
-custom_minimum_size = Vector2( 80, 80 )
-script = ExtResource( 4 )
+script = ExtResource("4")
 
-[node name="IconSprite" parent="." instance=ExtResource( 3 )]
-position = Vector2( 40, 40 )
-wiggle_frames = [ 0, 1 ]
+[node name="IconSprite" parent="." instance=ExtResource("3")]
+position = Vector2(40, 40)
+wiggle_frames = Array[int]([0, 1])

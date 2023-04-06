@@ -1,0 +1,5 @@
+*bug: after shark song, music doesn't go back to normal?
+*bug: sometimes, background fade takes forever
+*bug: spawned frog in upper left corner for a frame before the dance
+*bug: frogs did not appear for hug
+*bug: alternating between 'frog hug' and 'frog dance' in IntermissionPanelDemo causes crash
