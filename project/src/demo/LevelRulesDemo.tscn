@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/game-state.gd" type="Script" id=2]
 [ext_resource path="res://src/demo/level-rules-demo.gd" type="Script" id=3]
 [ext_resource path="res://src/main/level-cards.gd" type="Script" id=4]
-[ext_resource path="res://src/main/FroggoLevelRules.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/MazeLevelRules.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=6]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=7]
 

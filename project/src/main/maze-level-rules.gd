@@ -217,7 +217,7 @@ func _before_loose_end_flipped(card: CardControl) -> void:
 	elif _remaining_path_cells <= 0:
 		# if this path is long enough, it's a dead end or a fork
 		var new_arrow_dir_string: String
-		if _loose_end_positions and randf() > (1.0 / (_loose_end_positions.size() + 1)):
+		if _loose_end_positions and randf() < (float(_loose_end_positions.size()) / (_loose_end_positions.size() + 1)):
 			# there are enough loose ends; this one can be a dead end
 			new_arrow_dir_string = ""
 		else:

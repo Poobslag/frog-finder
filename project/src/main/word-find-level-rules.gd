@@ -96,7 +96,7 @@ func add_cards() -> void:
 		var word_start := Vector2()
 		word_start.x = _random.randi_range(0, COL_COUNT - 4)
 		word_start.y = _random.randi_range(0, ROW_COUNT - 1)
-		var word := "frog" if randf() > _backwards_chance else "gorf"
+		var word := "gorf" if randf() < _backwards_chance else "frog"
 		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x + i, word_start.y))
 			frog_word_card.card_front_details = word[i]
@@ -109,7 +109,7 @@ func add_cards() -> void:
 		var word_start := Vector2()
 		word_start.x = _random.randi_range(0, COL_COUNT - 1)
 		word_start.y = _random.randi_range(0, ROW_COUNT - 4)
-		var word := "frog" if randf() > _backwards_chance else "gorf"
+		var word := "gorf" if randf() < _backwards_chance else "frog"
 		for i in range(4):
 			var frog_word_card := level_cards.get_card(Vector2(word_start.x, word_start.y + i))
 			frog_word_card.card_front_details = word[i]
