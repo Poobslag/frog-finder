@@ -182,7 +182,7 @@ func _hidden_lizard_count() -> int:
 
 
 func _before_fish_flipped(fish_card: CardControl) -> void:
-	if randf() > _shark_chance:
+	if randf() < _shark_chance:
 		var shark_card := _shark_card()
 		fish_card.copy_from(shark_card)
 		shark_card.card_front_type = CardControl.CardType.FISH

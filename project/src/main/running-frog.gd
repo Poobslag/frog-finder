@@ -111,10 +111,10 @@ func _randomize_run_style() -> void:
 	run_speed = RUN_SPEED * rand_range(0.8, 1.2)
 	
 	# some running animations are much more common than others
-	if randf() > 0.2:
+	if randf() < 0.8:
 		# arms straight down, like holding suitcases
 		run_animation_name = "run2"
-	elif randf() > 0.2:
+	elif randf() < 0.8:
 		# arms moving up and down, like an exaggerated jog
 		run_animation_name = "run3"
 	else:
