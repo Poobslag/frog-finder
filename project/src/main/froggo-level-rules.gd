@@ -267,7 +267,7 @@ func _reveal_letters(aliax: String, count: int) -> String:
 	
 	for i in letter_indexes:
 		var letter: String = card_word[i]
-		card_word.erase(i, 1)
+		card_word = Utils.erase(card_word, i, 1)
 		card_word = card_word.insert(i, letter.to_upper())
 	
 	return _aliax(card_word, english_word)
@@ -294,7 +294,7 @@ func _replace_letters(aliax: String, replacement: String, chance: float) -> Stri
 		if card_word[i] == card_word[i].to_lower():
 			if shark_count == 0 or randf() < chance:
 				shark_count += 1
-				card_word.erase(i, 1)
+				card_word = Utils.erase(card_word, i, 1)
 				card_word = card_word.insert(i, replacement)
 	
 	return _aliax(card_word, english_word)

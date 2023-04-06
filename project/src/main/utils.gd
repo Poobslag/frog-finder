@@ -72,3 +72,8 @@ static func subtract(a: Array, b: Array) -> Array:
 		else:
 			result.append(item)
 	return result
+
+
+## Erases 'chars' characters from the string 's' starting from 'position'.
+static func erase(s: String, position: int, chars: int) -> String:
+	return s.left(int(max(position, 0))) + s.substr(position + chars, + s.length() - (position + chars))
