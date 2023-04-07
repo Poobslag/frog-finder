@@ -15,7 +15,6 @@ signal shark_found(card)
 signal menu_shown
 
 onready var _game_state := $TitleGameState
-onready var _level_button_holder := $LevelButtonHolder
 
 ## List of CardControls for cards making up the phrase 'frog finder' on the main menu. Some of these cards are hidden
 ## so they can be clicked.
