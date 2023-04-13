@@ -608,7 +608,3 @@ margin_bottom = 1032.78
 rect_scale = Vector2( -0.771921, 0.681052 )
 texture = ExtResource( 21 )
 expand = true
-
-[node name="ChangeTween" type="Tween" parent="."]
-
-[connection signal="tween_completed" from="ChangeTween" to="." method="_on_ChangeTween_tween_completed"]
