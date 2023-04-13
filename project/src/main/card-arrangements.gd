@@ -5,7 +5,7 @@ extends Node
 ## ASCII pictures which are easy for humans to read. This script converts those pictures into coordinates which are
 ## easy for computers to use.
 
-## Path to the json file with card arrangements. Can be changed for tests.
+## Path3D to the json file with card arrangements. Can be changed for tests.
 const DEFAULT_ARRANGEMENTS_PATH := "res://assets/main/card-arrangements.json"
 
 ## The card arrangement to use if no arrangement can be found.
@@ -21,8 +21,8 @@ const DEFAULT_CARD_POSITIONS := [
 ## skip zero, that way the number '5' corresponds to the fifth level. This sequence defines which ones come earlier.
 const ORDERED_CHARS := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-## Path to the json file with card arrangements. Can be changed for tests.
-var arrangements_path := DEFAULT_ARRANGEMENTS_PATH setget set_arrangements_path
+## Path3D to the json file with card arrangements. Can be changed for tests.
+var arrangements_path := DEFAULT_ARRANGEMENTS_PATH : set = set_arrangements_path
 
 ## If 'true', every mission will only have one level.
 ##
@@ -124,7 +124,9 @@ func _load_raw_json_data() -> void:
 	_card_positions_by_mission_string.clear()
 	
 	var arrangements_text := FileUtils.get_file_as_text(arrangements_path)
-	var arrangements_json: Dictionary = parse_json(arrangements_text)
+	var test_json_conv := JSON.new()
+	test_json_conv.parse(arrangements_text)
+	var arrangements_json: Dictionary = test_json_conv.get_data()
 	for mission_string in arrangements_json:
 		var picture: Array = arrangements_json[mission_string]
 		var positions := positions_from_picture(picture)

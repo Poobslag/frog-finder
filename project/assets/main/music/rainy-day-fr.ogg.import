@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://by1ddb4k0nx1q"
+path="res://.godot/imported/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/rainy-day-fr.ogg"
-dest_files=[ "res://.import/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggstr" ]
+dest_files=["res://.godot/imported/rainy-day-fr.ogg-523d953f0b58c836300a49a06cb54476.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -21,32 +21,32 @@ const HAND_CATCH_OFFSET := Vector2(28, 57)
 
 ## Another frog which affects this frog's pathfinding. As long as our friend is chasing the hand, we will chase our
 ## friend instead. This prevents frogs from clustering too tightly.
-var friend: Sprite
+var friend: Sprite2D
 
 ## the hand to chase
-var hand: Hand setget set_hand
+var hand: Hand : set = set_hand
 
 var _frog: RunningFrog
 var _chase_count := 0
 
-onready var _chase_timer := $ChaseTimer
-onready var _panic_timer := $PanicTimer
-onready var _think_timer := $ThinkTimer
+@onready var _chase_timer := $ChaseTimer
+@onready var _panic_timer := $PanicTimer
+@onready var _think_timer := $ThinkTimer
 
 
 func set_hand(new_hand: Hand) -> void:
 	if hand:
-		hand.disconnect("hug_finished", self, "_on_Hand_hug_finished")
+		hand.disconnect("hug_finished",Callable(self,"_on_Hand_hug_finished"))
 	
 	hand = new_hand
 	
 	if hand:
-		hand.connect("hug_finished", self, "_on_Hand_hug_finished")
+		hand.connect("hug_finished",Callable(self,"_on_Hand_hug_finished"))
 
 
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
-	_think_timer.start(rand_range(0, 0.1))
+	_think_timer.start(randf_range(0, 0.1))
 	_frog.run("chase")
 	_chase()
 
@@ -66,7 +66,7 @@ func stop_behavior(_new_frog: Node) -> void:
 
 func _chase() -> void:
 	_panic_timer.stop()
-	var wait_time := CHASE_DURATION * rand_range(0.8, 1.2)
+	var wait_time := CHASE_DURATION * randf_range(0.8, 1.2)
 	if _chase_count == 0:
 		# the first time we chase, we are more persistent
 		wait_time *= 2
@@ -76,15 +76,15 @@ func _chase() -> void:
 
 func _panic() -> void:
 	_chase_timer.stop()
-	_panic_timer.start(PANIC_DURATION * rand_range(0.8, 1.2))
-	_frog.velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * _frog.run_speed
+	_panic_timer.start(PANIC_DURATION * randf_range(0.8, 1.2))
+	_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 
 
 func _on_PanicTimer_timeout() -> void:
 	if hand.hugged_fingers >= hand.huggable_fingers and randf() < 0.5:
 		# oh no, we can't hug the hand! continue panicking!
-		_panic_timer.start(rand_range(SUPER_PANIC_DURATION, 5.0))
-		_frog.velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * _frog.run_speed
+		_panic_timer.start(randf_range(SUPER_PANIC_DURATION, 5.0))
+		_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 	else:
 		_chase()
 
@@ -101,13 +101,14 @@ func _on_Hand_hug_finished() -> void:
 	_think_timer.start()
 	_panic()
 	_frog.soon_position += _frog.velocity.normalized() * 40
+	_frog.update_position()
 
 
 func _on_ThinkTimer_timeout() -> void:
 	if not hand or hand.huggable_fingers < 1:
 		return
 	
-	var run_target := hand.rect_global_position + HAND_CATCH_OFFSET
+	var run_target := hand.global_position + HAND_CATCH_OFFSET
 
 	if not _chase_timer.is_stopped():
 		if ((run_target - _frog.global_position).length() < HUG_DISTANCE) and hand.resting:

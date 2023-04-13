@@ -1,4 +1,4 @@
-tool
+@tool
 class_name DanceAnimations
 extends AnimationPlayer
 ## Plays simple looped 4-frame dance animations.
@@ -18,18 +18,19 @@ const NON_DANCE_ANIMS := [
 ## Dance names like 'coy' or 'shuffle'.
 ##
 ## Variants like 'coy2' or 'coy1_flip' are all considered the same dance.
-export (Array, String) var dance_names: Array
+@export var dance_names: Array[String]
 
 ## key: (String) Dance name like 'coy'
 ## value: (Array, String) List of animation names like ['coy1', 'coy1_flip'...]
-export (Dictionary) var animation_names_by_dance_name: Dictionary
+@export var animation_names_by_dance_name: Dictionary
 
 ## key: (String) Dance name like 'coy'
 ## value: (Array, int) List of animation frames like [52, 53, 54...]
-export (Dictionary) var frames_by_dance_name: Dictionary
+@export var frames_by_dance_name: Dictionary
 
 ## An editor toggle which creates flipped copies of all animations, and stores dance data
-export (bool) var _update_dances: bool setget update_dances
+@warning_ignore("unused_private_class_variable")
+@export var _update_dances: bool : set = update_dances
 
 ## Creates flipped copies of all animations, and stores dance data.
 ##
@@ -127,7 +128,7 @@ func _flip_animations() -> void:
 			continue
 			
 		if animation_name.ends_with("_flip"):
-			remove_animation(animation_name)
+			remove_animation_library(animation_name)
 	
 	for old_animation_name in get_animation_list():
 		_flip_animation(old_animation_name)
@@ -141,7 +142,7 @@ func _flip_animation(old_animation_name: String) -> void:
 	if old_animation_name in NON_DANCE_ANIMS:
 		return
 	
-	var old_animation: Animation = get_animation(old_animation_name)
+	var old_animation: Animation = get_animation_library("").get_animation(old_animation_name)
 	var new_animation_name := "%s_flip" % [old_animation_name]
 	var new_animation: Animation = old_animation.duplicate()
 	
@@ -150,7 +151,7 @@ func _flip_animation(old_animation_name: String) -> void:
 			Animation.TYPE_VALUE: _flip_value_track(new_animation, track_idx)
 			Animation.TYPE_METHOD: _flip_method_track(new_animation, track_idx)
 	
-	add_animation(new_animation_name, new_animation)
+	get_animation_library("").add_animation(new_animation_name, new_animation)
 
 
 ## Inverts the values of a value track, so that left is right and vice-versa.

@@ -129,13 +129,13 @@ signal frog_found
 signal before_shark_found
 signal shark_found
 
-export (CardType) var card_back_type: int = CardType.MYSTERY setget set_card_back_type
-export (String) var card_back_details: String setget set_card_back_details
-export (CardType) var card_front_type: int = CardType.MYSTERY setget set_card_front_type
-export (String) var card_front_details: String setget set_card_front_details
+@export var card_back_type: CardType = CardType.MYSTERY : set = set_card_back_type
+@export var card_back_details: String : set = set_card_back_details
+@export var card_front_type: CardType = CardType.MYSTERY : set = set_card_front_type
+@export var card_front_details: String : set = set_card_front_details
 
-export (NodePath) var game_state_path := NodePath("../GameState") setget set_game_state_path
-export (bool) var practice := false
+@export var game_state_path := NodePath("../GameState") : set = set_game_state_path
+@export var practice := false
 
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
@@ -162,26 +162,26 @@ var _shark_sounds := [
 var _game_state: GameState
 var _pending_warning := ""
 
-onready var _card_back_sprite := $CardBack
-onready var _card_front_sprite := $CardFront
+@onready var _card_back_sprite := $CardBack
+@onready var _card_front_sprite := $CardFront
 
-onready var _cheer_timer := $CheerTimer
-onready var _frog_found_timer := $FrogFoundTimer
-onready var _shark_found_timer := $SharkFoundTimer
-onready var _stop_dance_timer := $StopDanceTimer
+@onready var _cheer_timer := $CheerTimer
+@onready var _frog_found_timer := $FrogFoundTimer
+@onready var _shark_found_timer := $SharkFoundTimer
+@onready var _stop_dance_timer := $StopDanceTimer
 
-onready var _creature_sfx := $CreatureSfx
-onready var _pop_brust_sfx := $PopBrustSfx
+@onready var _creature_sfx := $CreatureSfx
+@onready var _pop_brust_sfx := $PopBrustSfx
 
-onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
-onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
-onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
-onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
-onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
-onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
-onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
-onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
-onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
+@onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
+@onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
+@onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
+@onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
+@onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
+@onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")
+@onready var _arrow_sheet := preload("res://assets/main/arrow-sheet.png")
+@onready var _hex_arrow_sheet := preload("res://assets/main/hex-arrow-sheet.png")
+@onready var _fruit_sheet := preload("res://assets/main/fruit-sheet.png")
 
 func _ready() -> void:
 	_refresh_card_textures()
@@ -203,7 +203,7 @@ func _refresh_game_state_path() -> void:
 	if not is_inside_tree():
 		return
 	
-	if not game_state_path:
+	if game_state_path.is_empty():
 		return
 	
 	_game_state = get_node(game_state_path)
@@ -217,17 +217,19 @@ func _refresh_card_textures() -> void:
 	_refresh_card_face(_card_front_sprite, card_front_type, card_front_details)
 
 
-func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: String) -> void:
+func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: String) -> void:
 	_pending_warning = ""
 	match card_type:
 		CardType.FROG:
 			Utils.assign_card_texture(card_sprite, _frog_sheet)
 			var frog_index := randi() % FROG_COUNT
-			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1] as Array[int]
 		CardType.SHARK:
 			Utils.assign_card_texture(card_sprite, _shark_sheet)
 			var shark_index := randi() % SHARK_COUNT
-			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1] as Array[int]
 		CardType.MYSTERY:
 			Utils.assign_card_texture(card_sprite, _mystery_sheet)
 			var mystery_index: int
@@ -236,7 +238,8 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				mystery_index = Utils.rand_value(mystery_indexes)
 			else:
 				mystery_index = randi() % MYSTERY_COUNT
-			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1] as Array[int]
 		CardType.LETTER:
 			Utils.assign_card_texture(card_sprite, _letter_sheet)
 			var letter_index: int
@@ -247,7 +250,8 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				# We never want random letters in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized letter: %s" % [card_details]
 				letter_index = randi() % LETTER_COUNT
-			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1] as Array[int]
 		CardType.ARROW:
 			Utils.assign_card_texture(card_sprite, _arrow_sheet)
 			var arrow_index: int
@@ -258,7 +262,8 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized arrow: %s" % [card_details]
 				arrow_index = randi() % ARROW_COUNT
-			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.HEX_ARROW:
 			Utils.assign_card_texture(card_sprite, _hex_arrow_sheet)
 			var arrow_index: int
@@ -269,15 +274,18 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
 				arrow_index = randi() % HEX_ARROW_COUNT
-			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.FISH:
 			Utils.assign_card_texture(card_sprite, _fish_sheet)
 			var fish_index := randi() % FISH_COUNT
-			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1] as Array[int]
 		CardType.LIZARD:
 			Utils.assign_card_texture(card_sprite, _lizard_sheet)
 			var lizard_index := randi() % LIZARD_COUNT
-			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1] as Array[int]
 		CardType.FRUIT:
 			Utils.assign_card_texture(card_sprite, _fruit_sheet)
 			var fruit_index: int
@@ -287,23 +295,24 @@ func _refresh_card_face(card_sprite: Sprite, card_type: int, card_details: Strin
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized fruit: %s" % [card_details]
 				fruit_index = randi() % FRUIT_COUNT
-			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1] as Array[int]
 	
 	if card_sprite.wiggle_frames:
 		card_sprite.frame = card_sprite.wiggle_frames[0]
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		_flip_card()
 
 
-func set_card_back_type(new_card_back_type: int) -> void:
+func set_card_back_type(new_card_back_type: CardType) -> void:
 	card_back_type = new_card_back_type
 	_refresh_card_textures()
 
 
-func set_card_front_type(new_card_front_type: int) -> void:
+func set_card_front_type(new_card_front_type: CardType) -> void:
 	card_front_type = new_card_front_type
 	_refresh_card_textures()
 
@@ -388,13 +397,13 @@ func _flip_card() -> void:
 		# the level hasn't started, or the level has ended
 		return
 	
-	_pop_brust_sfx.pitch_scale = rand_range(0.9, 1.10)
+	_pop_brust_sfx.pitch_scale = randf_range(0.9, 1.10)
 	_pop_brust_sfx.play()
 	emit_signal("before_card_flipped")
 	
 	show_front()
 	_game_state.flip_timer.start()
-	_game_state.flip_timer.connect("timeout", self, "_on_FlipTimer_timeout")
+	_game_state.flip_timer.connect("timeout",Callable(self,"_on_FlipTimer_timeout"))
 
 
 func cheer() -> void:
@@ -402,7 +411,8 @@ func cheer() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
 	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
 	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
 	
@@ -412,7 +422,7 @@ func cheer() -> void:
 
 
 func _on_FlipTimer_timeout() -> void:
-	_game_state.flip_timer.disconnect("timeout", self, "_on_FlipTimer_timeout")
+	_game_state.flip_timer.disconnect("timeout",Callable(self,"_on_FlipTimer_timeout"))
 	match card_front_type:
 		CardType.FROG:
 			if practice:
@@ -433,7 +443,7 @@ func _on_FlipTimer_timeout() -> void:
 			emit_signal("before_shark_found")
 			_shark_found_timer.start(3.2)
 			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
-			_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+			_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 			_creature_sfx.play()
 
 
@@ -442,7 +452,8 @@ func _on_StopDanceTimer_timeout() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
 
 
 func _on_FrogFoundTimer_timeout() -> void:
@@ -455,6 +466,6 @@ func _on_SharkFoundTimer_timeout() -> void:
 
 func _on_CheerTimer_timeout() -> void:
 	_creature_sfx.stream = Utils.rand_value(_frog_sounds)
-	_creature_sfx.pitch_scale = rand_range(0.8, 1.2)
+	_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 	_creature_sfx.play()
 	cheer()

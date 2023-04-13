@@ -17,23 +17,23 @@ var _current_song: AudioStreamPlayer
 var _position_by_song := {}
 
 ## key: (AudioStreamPlayer) song
-## value: (SceneTreeTween) tween adjusting volume
+## value: (Tween) tween adjusting volume
 var _tweens_by_song := {}
 
 ## List of AudioStreamPlayer instances to play if the world does not define any music.
-onready var _default_songs := [
+@onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
 ## song to play when the frogs dance after a stage
-onready var _dance_song := $FrogDance
+@onready var _dance_song := $FrogDance
 
 ## AudioStreamPlayer instance to play if the world does not define a shark song.
-onready var _default_shark_song := $WeAreTheBaddies
+@onready var _default_shark_song := $WeAreTheBaddies
 
 ## key: (int) world index
 ## value: (Array, AudioStreamPlayer) list of frog songs to play for a world
-onready var _songs_by_world_index := {
+@onready var _songs_by_world_index := {
 	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
 	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
 	2: [$StillCantFindTheFrog, $HalfAFrog, $SneakySneakyFrogInstrumental],
@@ -41,34 +41,31 @@ onready var _songs_by_world_index := {
 
 ## List of AudioStreamPlayer instances corresponding to 'frog songs', songs which play by default or when the player
 ## finds a frog
-onready var _frog_songs := [
+@onready var _frog_songs := [
 	$AWellTemperedFrog, $AWellTemperedFrogInstrumental, $CanYouFindTheFrog, $HalfAFrog,
 	$ImGonnaFindThatFrog, $ImJustAFrog, $ImJustAFrogInstrumental, $ItsAWonderfulFrog, $LostInTheFrog, $OneFrogTwoFrog,
 	$RainyDayFrog, $SneakySneakyFrog, $SneakySneakyFrogInstrumental, $StillCantFindTheFrog, $TakeComfortInYourFrog,
 ]
 
 ## List of AudioStreamPlayer instances corresponding to 'shark songs', songs which play when the player finds a shark
-onready var _shark_songs := [
+@onready var _shark_songs := [
 	$WereGonnaEatYouUp, $WeAreTheBaddies,
 ]
 
 ## key: (int) world index
 ## value: (Array, AudioStreamPlayer) list of shark songs to play for a world
-onready var _shark_song_by_world_index := {
+@onready var _shark_song_by_world_index := {
 	0: $WeAreTheBaddies,
 	1: $WereGonnaEatYouUp,
 	2: $WereGonnaEatYouUp,
 }
 
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
-onready var _ending_song := $HugFromAFrog
-
-var _random := RandomNumberGenerator.new()
+@onready var _ending_song := $HugFromAFrog
 
 func _ready() -> void:
-	_random.randomize()
-	PlayerData.connect("music_preference_changed", self, "_on_PlayerData_music_preference_changed")
-	PlayerData.connect("world_index_changed", self, "_on_PlayerData_world_index_changed")
+	PlayerData.connect("music_preference_changed",Callable(self,"_on_PlayerData_music_preference_changed"))
+	PlayerData.connect("world_index_changed",Callable(self,"_on_PlayerData_world_index_changed"))
 
 
 func play_preferred_song() -> void:
@@ -91,7 +88,7 @@ func play_preferred_song() -> void:
 	elif world_songs.size() > 1:
 		if _current_song == world_songs[0]:
 			# playing the main song from this world; switch to a non-main song
-			new_song = world_songs[_random.randi_range(1, world_songs.size() - 1)]
+			new_song = world_songs[randi_range(1, world_songs.size() - 1)]
 		elif _current_song == world_songs[1] or _current_song == world_songs[2]:
 			# playing a non-main song from this world; switch to the main song
 			new_song = world_songs[0]
@@ -118,9 +115,13 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 	if _current_song != previous_song:
 		if _current_song:
 			var from_position: float = _position_by_song.get(_current_song, 0)
+			
+			# This line often triggers a warning because of Godot #75762. There is no known workaround.
+			# https://github.com/godotengine/godot/issues/75762
 			_current_song.play(from_position)
+			
 			if from_position != 0:
-				# interpolate when playing a song from the middle, to avoid pops and clicks
+				# sample when playing a song from the middle, to avoid pops and clicks
 				_current_song.volume_db = MIN_VOLUME
 				_fade(_current_song, MAX_VOLUME, FADE_IN_DURATION)
 			else:
@@ -191,11 +192,11 @@ func get_playback_position() -> float:
 ## Slowly apply a fade in or fade out effect to the specified song.
 ##
 ## Parameters:
-##     'song': The song to fade in or fade out
+## 	'song': The song to fade in or fade out
 ##
-##     'new_volume_db': The volume_db value to fade to
+## 	'new_volume_db': The volume_db value to fade to
 ##
-##     'duration': The duration of the fade effect
+## 	'duration': The duration of the fade effect
 func _fade(song: AudioStreamPlayer, new_volume_db: float, duration: float) -> void:
 	if _tweens_by_song.has(song):
 		_tweens_by_song[song].kill()

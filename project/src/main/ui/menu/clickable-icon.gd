@@ -1,4 +1,4 @@
-tool
+@tool
 class_name ClickableIcon
 extends Control
 ## A clickable menu icon which looks like a card.
@@ -8,10 +8,10 @@ extends Control
 
 signal pressed
 
-export (Texture) var icon_texture: Texture setget set_icon_texture
-export (int) var icon_index: int setget set_icon_index
+@export var icon_texture: Texture2D : set = set_icon_texture
+@export var icon_index: int : set = set_icon_index
 
-onready var _icon_sprite := $IconSprite
+@onready var _icon_sprite := $IconSprite
 
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
@@ -23,11 +23,11 @@ func _ready() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		emit_signal("pressed")
 
 
-func set_icon_texture(new_icon_texture: Texture) -> void:
+func set_icon_texture(new_icon_texture: Texture2D) -> void:
 	icon_texture = new_icon_texture
 	_refresh_sprite()
 
@@ -42,5 +42,6 @@ func _refresh_sprite() -> void:
 		return
 	
 	Utils.assign_card_texture(_icon_sprite, icon_texture)
-	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1]
+	# workaround for Godot #58285; typed arrays don't work with setters
+	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1] as Array[int]
 	_icon_sprite.assign_wiggle_frame()

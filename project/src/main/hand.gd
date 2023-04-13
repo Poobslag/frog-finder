@@ -1,28 +1,28 @@
 class_name Hand
 extends Control
-## Sprite which shows the player's cursor.
+## Sprite2D which shows the player's cursor.
 ##
 ## The player's cursor is made up of a main hand sprite, as well as sometimes detached fingers, hearts or even frogs.
 
 signal finger_bitten
 signal hug_finished
 
-var fingers := 3 setget set_fingers
+var fingers := 3 : set = set_fingers
 
 ## Number of fingers remaining on the player's hand which can be bitten by sharks.
 ##
 ## If this number is 0 or greater, the player is in a chase and the hand shows the number of fingers remaining.
 ##
 ## If this number is -1, then the player is in a puzzle or on the main menu and the hand shows an index finger.
-var biteable_fingers := -1 setget set_biteable_fingers
-var huggable_fingers := 0 setget set_huggable_fingers
+var biteable_fingers := -1 : set = set_biteable_fingers
+var huggable_fingers := 0 : set = set_huggable_fingers
 var hugged_fingers := 0
 
 var _previous_rect_position: Vector2
 var resting := false
 
-onready var _hand_sprite := $HandSprite
-onready var _hug_sprite := $HugSprite
+@onready var _hand_sprite := $HandSprite
+@onready var _hug_sprite := $HugSprite
 
 func _ready() -> void:
 	_refresh_hand_sprite()
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
-		rect_position = event.position
+		position = event.position
 		if hugged_fingers > 0:
 			_finish_hug()
 
@@ -101,12 +101,17 @@ func _refresh_hand_sprite() -> void:
 	
 	if huggable_fingers > 0:
 		match hugged_fingers:
-			0: _hug_sprite.wiggle_frames = [0]
-			1: _hug_sprite.wiggle_frames = [1, 2]
-			2: _hug_sprite.wiggle_frames = [3, 4]
-			3: _hug_sprite.wiggle_frames = [5, 6]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			0: _hug_sprite.wiggle_frames = [0] as Array[int]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			1: _hug_sprite.wiggle_frames = [1, 2] as Array[int]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			2: _hug_sprite.wiggle_frames = [3, 4] as Array[int]
+			# workaround for Godot #58285; typed arrays don't work with setters
+			3: _hug_sprite.wiggle_frames = [5, 6] as Array[int]
 	else:
-		_hug_sprite.wiggle_frames = []
+		# workaround for Godot #58285; typed arrays don't work with setters
+		_hug_sprite.wiggle_frames = [] as Array[int]
 		_hug_sprite.frame = 0
 	
 	if biteable_fingers >= 0:
@@ -121,5 +126,5 @@ func _refresh_hand_sprite() -> void:
 
 
 func _on_RestTimer_timeout() -> void:
-	resting = true if _previous_rect_position == rect_position else false
-	_previous_rect_position = rect_position
+	resting = true if _previous_rect_position == position else false
+	_previous_rect_position = position

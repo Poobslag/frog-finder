@@ -3,18 +3,18 @@
 [ext_resource path="res://src/main/hand-sprite.gd" type="Script" id=1]
 [ext_resource path="res://src/main/hand.gd" type="Script" id=2]
 [ext_resource path="res://src/main/FingerSprite.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/main/hand-sheet.png" type="Texture" id=4]
-[ext_resource path="res://assets/main/hug-sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/hand-sheet.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/main/hug-sheet.png" type="Texture2D" id=5]
 [ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/wiggle-sprite.gd" type="Script" id=7]
 
 [node name="Hand" type="Control"]
-margin_right = 80.0
-margin_bottom = 80.0004
+offset_right = 80.0
+offset_bottom = 80.0004
 mouse_filter = 2
 script = ExtResource( 2 )
 
-[node name="HandSprite" type="Sprite" parent="."]
+[node name="HandSprite" type="Sprite2D" parent="."]
 position = Vector2( 23, 14 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -34,7 +34,7 @@ scale = Vector2( 0.5, 0.5 )
 [node name="FingerSprite2" parent="." instance=ExtResource( 3 )]
 scale = Vector2( 0.5, 0.5 )
 
-[node name="HugSprite" type="Sprite" parent="."]
+[node name="HugSprite" type="Sprite2D" parent="."]
 position = Vector2( 23, 14 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )

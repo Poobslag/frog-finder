@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/we-are-the-baddies.ogg-14e1a7b0081eaba46f59023f29c20141.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c44htc6xsxf4e"
+path="res://.godot/imported/we-are-the-baddies.ogg-14e1a7b0081eaba46f59023f29c20141.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/we-are-the-baddies.ogg"
-dest_files=[ "res://.import/we-are-the-baddies.ogg-14e1a7b0081eaba46f59023f29c20141.oggstr" ]
+dest_files=["res://.godot/imported/we-are-the-baddies.ogg-14e1a7b0081eaba46f59023f29c20141.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

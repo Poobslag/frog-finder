@@ -11,21 +11,15 @@ extends LevelRules
 const ROW_COUNT := 6
 const COL_COUNT := 6
 
-var _random := RandomNumberGenerator.new()
-
 var _remaining_good_moves := 99
 var _remaining_bad_moves := 99
 
-func _ready() -> void:
-	_random.randomize()
-
-
 func refresh_level_cards_path() -> void:
-	.refresh_level_cards_path()
+	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
-	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
+	level_cards.connect("before_card_flipped",Callable(self,"_on_LevelCards_before_card_flipped"))
+	level_cards.connect("before_shark_found",Callable(self,"_on_LevelCards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -42,36 +36,36 @@ func add_cards() -> void:
 			revealed_lizard_count = 1
 			easy_reveal = true
 		1:
-			_remaining_good_moves = _random.randi_range(0, 1)
+			_remaining_good_moves = randi_range(0, 1)
 			_remaining_bad_moves = 3
-			revealed_lizard_count = _random.randi_range(1, 2)
+			revealed_lizard_count = randi_range(1, 2)
 			easy_reveal = true
 		2:
-			_remaining_good_moves = _random.randi_range(1, 2)
+			_remaining_good_moves = randi_range(1, 2)
 			_remaining_bad_moves = 3
 			revealed_lizard_count = 2
 			easy_reveal = true
 		3:
-			_remaining_good_moves = _random.randi_range(2, 3)
+			_remaining_good_moves = randi_range(2, 3)
 			_remaining_bad_moves = 3
 			revealed_lizard_count = 3
 			revealed_bad_move_count = 12
 		4:
-			_remaining_good_moves = _random.randi_range(3, 5)
+			_remaining_good_moves = randi_range(3, 5)
 			_remaining_bad_moves = 3
-			revealed_lizard_count = _random.randi_range(1, 2)
+			revealed_lizard_count = randi_range(1, 2)
 			revealed_bad_move_count = 9
 		5:
-			_remaining_good_moves = _random.randi_range(3, 7)
+			_remaining_good_moves = randi_range(3, 7)
 			_remaining_bad_moves = 2
 			revealed_lizard_count = 1
 			revealed_bad_move_count = 6
 		6:
-			_remaining_good_moves = _random.randi_range(3, 10)
+			_remaining_good_moves = randi_range(3, 10)
 			_remaining_bad_moves = 1
 		7:
-			_remaining_good_moves = _random.randi_range(5, 7)
-			_remaining_bad_moves = _random.randi_range(0, 1)
+			_remaining_good_moves = randi_range(5, 7)
+			_remaining_bad_moves = randi_range(0, 1)
 			revealed_lizard_count = 1
 			revealed_bad_move_count = 3
 		8:
@@ -82,8 +76,7 @@ func add_cards() -> void:
 	
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
-			# warning-ignore:integer_division
-			# warning-ignore:integer_division
+			@warning_ignore("integer_division")
 			var red: bool = int((x % 6) / 3) + int((y % 4) / 2) == 1
 			var card := level_cards.create_card()
 			card.card_back_details = "r" if red else ""

@@ -42,7 +42,7 @@ signal before_frog_found(card)
 signal frog_found(card)
 
 ## a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
-var mission_string := "1-1" setget set_mission_string
+var mission_string := "1-1" : set = set_mission_string
 
 ## difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
 var player_puzzle_difficulty := 0
@@ -52,12 +52,12 @@ var _max_puzzle_difficulty := 0
 var _shark_difficulty_decrease := 0
 var _start_difficulty := 0
 
-onready var _game_state := $GameState
-onready var _level_cards := $LevelCards
+@onready var _game_state := $GameState
+@onready var _level_cards := $LevelCards
 
 ## key: (String) level id
 ## value: (PackedScene) scene with LevelRules for the specified level
-onready var level_rules_scenes_by_id := {
+@onready var level_rules_scenes_by_id := {
 	"secret-collect": preload("res://src/main/SecretCollectLevelRules.tscn"),
 	"froggo": preload("res://src/main/FroggoLevelRules.tscn"),
 	"frodoku": preload("res://src/main/FrodokuLevelRules.tscn"),
@@ -67,9 +67,10 @@ onready var level_rules_scenes_by_id := {
 	"fruit-maze": preload("res://src/main/FruitMazeRules.tscn"),
 }
 
-var level_ids := DEFAULT_LEVEL_IDS
+var level_ids: Array[String]
 
 func _ready() -> void:
+	level_ids.assign(DEFAULT_LEVEL_IDS)
 	_refresh_mission_string()
 
 
@@ -142,7 +143,7 @@ func _level_rules_from_id(level_id: String) -> LevelRules:
 		puzzle_difficulty = int(clamp(puzzle_difficulty - 1, 0, min(_max_puzzle_difficulty, 5)))
 	
 	var next_level_rules_scene: PackedScene = level_rules_scenes_by_id[level_id]
-	var level_rules: LevelRules = next_level_rules_scene.instance()
+	var level_rules: LevelRules = next_level_rules_scene.instantiate()
 	level_rules.puzzle_difficulty = puzzle_difficulty
 	
 	return level_rules
@@ -165,7 +166,7 @@ func _refresh_mission_string() -> void:
 			_max_puzzle_difficulty = 7
 			_shark_difficulty_decrease = 2
 	
-	level_ids = LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS)
+	level_ids.assign(LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS))
 
 
 func _on_LevelCards_frog_found(card: CardControl) -> void:

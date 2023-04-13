@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/its-a-wonderful-fr.ogg-58f05719565d94d8f64c7156641c957c.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0om04qh00ot8"
+path="res://.godot/imported/its-a-wonderful-fr.ogg-58f05719565d94d8f64c7156641c957c.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/main/music/its-a-wonderful-fr.ogg"
-dest_files=[ "res://.import/its-a-wonderful-fr.ogg-58f05719565d94d8f64c7156641c957c.oggstr" ]
+dest_files=["res://.godot/imported/its-a-wonderful-fr.ogg-58f05719565d94d8f64c7156641c957c.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

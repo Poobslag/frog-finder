@@ -8,7 +8,7 @@ extends Node
 ## 	[S]: Spawn a shark.
 ## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
 
-onready var _intermission_panel := $IntermissionPanel
+@onready var _intermission_panel := $IntermissionPanel
 
 ## The most recently pressed number key.
 var number_event: InputEvent
@@ -70,6 +70,6 @@ func _start_frog_dance() -> void:
 		KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			frog_count = Utils.key_num(number_event)
 		_:
-			frog_count = Utils.randi_range(1, 10)
+			frog_count = randi_range(1, 10)
 	
 	_intermission_panel.start_frog_dance(frog_count)

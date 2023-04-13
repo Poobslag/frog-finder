@@ -1,74 +1,93 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://ctg1buedvhl85"]
 
-[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/MenuState.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/MainMenuPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/game-state.gd" type="Script" id=5]
-[ext_resource path="res://src/main/gameplay-panel.gd" type="Script" id=6]
-[ext_resource path="res://src/main/level-cards.gd" type="Script" id=13]
-[ext_resource path="res://src/main/IntermissionPanel.tscn" type="PackedScene" id=15]
-[ext_resource path="res://src/main/Hand.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/main/Background.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/ui/menu/rounded-style-box.tres" type="StyleBox" id=38]
+[ext_resource type="PackedScene" path="res://src/main/ui/CheatCodeDetector.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://src/main/MenuState.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://chis4b4c44mwo" path="res://src/main/MainMenuPanel.tscn" id="4"]
+[ext_resource type="Script" path="res://src/main/game-state.gd" id="5"]
+[ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="6"]
+[ext_resource type="Script" path="res://src/main/level-cards.gd" id="13"]
+[ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/IntermissionPanel.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://src/main/Hand.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="18"]
 
 [node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Content" type="Control" parent="."]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MenuState" parent="Content" instance=ExtResource( 2 )]
+[node name="MenuState" parent="Content" instance=ExtResource("2")]
 _main_menu_panel_path = NodePath("../MainMenuPanel")
 _gameplay_panel_path = NodePath("../GameplayPanel")
 _intermission_panel_path = NodePath("../IntermissionPanel")
 _hand_path = NodePath("../../Hand")
 _background_path = NodePath("../Background")
 
-[node name="Background" parent="Content" instance=ExtResource( 18 )]
+[node name="Background" parent="Content" instance=ExtResource("18")]
+layout_mode = 1
 
-[node name="MainMenuPanel" parent="Content" instance=ExtResource( 4 )]
+[node name="MainMenuPanel" parent="Content" instance=ExtResource("4")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 
 [node name="GameplayPanel" type="Panel" parent="Content"]
 visible = false
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-custom_styles/panel = ExtResource( 38 )
-script = ExtResource( 6 )
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+script = ExtResource("6")
 
 [node name="GameState" type="Node" parent="Content/GameplayPanel"]
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="FlipTimer" type="Timer" parent="Content/GameplayPanel/GameState"]
 wait_time = 0.1
 one_shot = true
 
 [node name="LevelCards" type="Control" parent="Content/GameplayPanel"]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-script = ExtResource( 13 )
+script = ExtResource("13")
 game_state_path = NodePath("../GameState")
 
-[node name="IntermissionPanel" parent="Content" instance=ExtResource( 15 )]
+[node name="IntermissionPanel" parent="Content" instance=ExtResource("15")]
 visible = false
-custom_styles/panel = ExtResource( 38 )
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 hand_path = NodePath("../../Hand")
 
-[node name="Hand" parent="." instance=ExtResource( 17 )]
-margin_left = 52.3251
-margin_top = 49.9467
-margin_right = 132.325
-margin_bottom = 129.947
+[node name="Hand" parent="." instance=ExtResource("17")]
+anchors_preset = 0
+offset_left = 52.3251
+offset_top = 49.9467
+offset_right = 132.325
+offset_bottom = 129.947
 
-[node name="CheatCodeDetector" parent="." instance=ExtResource( 1 )]
-codes = [ "onefrog" ]
+[node name="CheatCodeDetector" parent="." instance=ExtResource("1")]
+codes = Array[String](["onefrog"])
 
 [connection signal="before_frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_shark_found"]

@@ -23,11 +23,11 @@ var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 
 func refresh_level_cards_path() -> void:
-	.refresh_level_cards_path()
+	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", self, "_on_LevelCards_before_card_flipped")
-	level_cards.connect("before_shark_found", self, "_on_LevelCards_before_shark_found")
+	level_cards.connect("before_card_flipped",Callable(self,"_on_LevelCards_before_card_flipped"))
+	level_cards.connect("before_shark_found",Callable(self,"_on_LevelCards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -99,7 +99,7 @@ func add_cards() -> void:
 	var potential_secret_positions := []
 	var potential_fish_positions := remaining_card_positions.duplicate()
 	for _i in range(fish_count):
-		if potential_fish_positions.empty():
+		if potential_fish_positions.is_empty():
 			# no more fish positions
 			break
 		
@@ -108,13 +108,13 @@ func add_cards() -> void:
 			var adjacent_position: Vector2 = card_position + adjacent_direction
 			var adjacent_position_index := potential_fish_positions.find(adjacent_position)
 			if adjacent_position_index != -1:
-				potential_fish_positions.remove(adjacent_position_index)
+				potential_fish_positions.remove_at(adjacent_position_index)
 				potential_secret_positions.append(adjacent_position)
 	
 	# add secrets
 	potential_secret_positions.shuffle()
 	for i in range(secret_count):
-		if potential_secret_positions.empty():
+		if potential_secret_positions.is_empty():
 			# no more secret positions
 			break
 		

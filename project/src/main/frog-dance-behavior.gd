@@ -37,19 +37,19 @@ var _frog: RunningFrog
 var _frogs_running_to_dance := {}
 
 ## Checks whether the frog needs to adjust their animation to sync back up with the music.
-onready var _sync_check_timer := $SyncCheckTimer
+@onready var _sync_check_timer := $SyncCheckTimer
 
 ## Makes decisions every few frames
-onready var _think_timer := $ThinkTimer
+@onready var _think_timer := $ThinkTimer
 
 ## Makes the frogs dance after a brief delay.
-onready var _wait_to_dance_timer := $WaitToDanceTimer
+@onready var _wait_to_dance_timer := $WaitToDanceTimer
 
 ## Stores simple looped 4-frame dance animations.
-onready var _dance_animations: DanceAnimations = $DanceAnimations
+@onready var _dance_animations: DanceAnimations = $DanceAnimations
 
 ## Strings together a series of dance animations.
-onready var _choreographer := $Choreographer
+@onready var _choreographer := $Choreographer
 
 func _process(_delta: float) -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
@@ -62,12 +62,12 @@ func _process(_delta: float) -> void:
 ## Starts a new dance. The frog runs towards their dance target.
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
-	_think_timer.start(rand_range(0, 0.1))
+	_think_timer.start(randf_range(0, 0.1))
 	
 	if is_lead_frog():
 		for next_frog in frogs:
 			_frogs_running_to_dance[next_frog] = true
-			next_frog.connect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target", [next_frog])
+			next_frog.connect("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target").bind(next_frog))
 	
 	set_state(DanceState.RUN_TO_DANCE)
 
@@ -96,7 +96,7 @@ func set_state(new_dance_state: int) -> void:
 			if is_lead_frog():
 				MusicPlayer.play_preferred_song()
 				MusicPlayer.fade_in()
-			_frog.velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * _frog.run_speed
+			_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 			_frog.run()
 			_frog.emit_signal("finished_dance")
 			_sync_check_timer.stop()
@@ -115,7 +115,7 @@ func stop_behavior(_new_frog: Node) -> void:
 	# disconnect signals
 	if is_lead_frog():
 		for next_frog in frogs:
-			if next_frog.is_connected("reached_dance_target", self, "_on_RunningFrog_reached_dance_target"):
+			if next_frog.is_connected("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target")):
 				next_frog.disconnect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target", [next_frog])
 	
 	frogs = []
@@ -158,9 +158,12 @@ func perform_dance_move(dance_move_index: int) -> void:
 func _decide_dance_names() -> Array:
 	var result := []
 	for _i in range(4):
-		var possible_dance_names := _dance_animations.dance_names
-		if not result.empty():
-			possible_dance_names = Utils.subtract(possible_dance_names, [result.back()])
+		var possible_dance_names: Array[String] = _dance_animations.dance_names
+		if not result.is_empty():
+			# workaround for Godot #72627; cannot cast typed arrays using type hints
+			var new_dance_names: Array[String] = []
+			new_dance_names.assign(Utils.subtract(possible_dance_names, [result.back()]))
+			possible_dance_names = new_dance_names
 		result.append(Utils.rand_value(possible_dance_names))
 	return result
 
@@ -186,7 +189,7 @@ func _decide_dance_moves(dance_names: Array) -> String:
 	
 	for final_dance_move in new_dance_moves:
 		result.append("%s%s" % ["!" if final_dance_move < 0 else "", abs(final_dance_move)])
-	return PoolStringArray(result).join(" ")
+	return " ".join(PackedStringArray(result))
 
 
 ## Orient the frog's velocity toward the dance target.
@@ -208,9 +211,9 @@ func _on_RunningFrog_reached_dance_target(other_frog: RunningFrog) -> void:
 	if not is_lead_frog():
 		return
 	
-	other_frog.disconnect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target")
+	other_frog.disconnect("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target"))
 	_frogs_running_to_dance.erase(other_frog)
-	if _frogs_running_to_dance.empty():
+	if _frogs_running_to_dance.is_empty():
 		# all frogs have reached their dance targets, we can start dancing
 		var dance_names := _decide_dance_names()
 		dance_moves = _decide_dance_moves(dance_names)

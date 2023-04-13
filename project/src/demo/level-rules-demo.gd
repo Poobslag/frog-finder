@@ -5,10 +5,10 @@ extends Node
 ## 	[space bar]: Generates a new puzzle.
 ## 	[=/-]: Increases/decreases the puzzle difficulty and generates a new puzzle.
 
-onready var _gameplay_panel := $GameplayPanel
-onready var _difficulty_label := $DifficultyLabel
+@onready var _gameplay_panel := $GameplayPanel
+@onready var _difficulty_label := $DifficultyLabel
 
-export (PackedScene) var LevelRulesScene: PackedScene
+@export var LevelRulesScene: PackedScene
 
 func _ready() -> void:
 	randomize()

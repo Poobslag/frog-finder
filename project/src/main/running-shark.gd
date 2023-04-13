@@ -1,5 +1,5 @@
 class_name RunningShark
-extends Sprite
+extends Sprite2D
 ## Shark which chases the player's cursor.
 
 ## If the shark gets within this distance of the player's hand, they will bite off a finger.
@@ -28,25 +28,25 @@ var hand: Hand
 
 ## Another shark which affects this shark's pathfinding. As long as our friend is chasing the hand, we will chase our
 ## friend instead. This prevents sharks from clustering too tightly.
-var friend: Sprite
+var friend: Sprite2D
 
 var velocity := Vector2.ZERO
-var run_speed := MIN_RUN_SPEED setget set_run_speed
+var run_speed := MIN_RUN_SPEED : set = set_run_speed
 
 ## How accurately we chase the cursor. Sharks with low agility will run in arbitrary directions more frequently.
 var agility := 1.0
 
 ## sharks move in a jerky way. soon_position stores the location where the frog will blink to after a delay
-var soon_position: Vector2 setget set_soon_position
+var soon_position: Vector2 : set = set_soon_position
 
 ## Sharks alternate between two states: 'panic' and 'chase'. This variable tracks how many times they've entered the
 ## 'chase' state.
 var _chase_count := 0
 
-onready var _animation_player := $AnimationPlayer
-onready var _chase_timer := $ChaseTimer
-onready var _panic_timer := $PanicTimer
-onready var _think_timer := $ThinkTimer
+@onready var _animation_player := $AnimationPlayer
+@onready var _chase_timer := $ChaseTimer
+@onready var _panic_timer := $PanicTimer
+@onready var _think_timer := $ThinkTimer
 
 func _ready() -> void:
 	_refresh_run_speed()
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 ## Makes the shark enter the 'chase state' where they run toward the hand.
 func chase() -> void:
 	_panic_timer.stop()
-	var wait_time := CHASE_DURATION * rand_range(0.8, 1.2)
+	var wait_time := CHASE_DURATION * randf_range(0.8, 1.2)
 	if _chase_count == 0:
 		# the first time we chase, we are more persistent
 		wait_time *= 2
@@ -75,8 +75,8 @@ func chase() -> void:
 ## Sharks periodically panic to prevent them from clustering too tightly.
 func panic() -> void:
 	_chase_timer.stop()
-	_panic_timer.start((PANIC_DURATION / agility) * rand_range(0.8, 1.2))
-	velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
+	_panic_timer.start((PANIC_DURATION / agility) * randf_range(0.8, 1.2))
+	velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * run_speed
 
 
 func set_run_speed(new_run_speed: float) -> void:
@@ -106,7 +106,7 @@ func set_soon_position(new_soon_position: Vector2) -> void:
 
 
 func _refresh_run_speed() -> void:
-	_animation_player.playback_speed = run_speed / 150.0
+	_animation_player.speed_scale = run_speed / 150.0
 
 
 func _on_PanicTimer_timeout() -> void:
@@ -126,12 +126,12 @@ func _on_ThinkTimer_timeout() -> void:
 	if is_fed():
 		return
 	
-	var run_target := hand.rect_global_position + HAND_CATCH_OFFSET
+	var run_target := hand.global_position + HAND_CATCH_OFFSET
 	
 	if (run_target - global_position).length() < BITE_DISTANCE:
 		# we caught the hand... bite!
 		_animation_player.play("run-fed")
-		velocity = Vector2.RIGHT.rotated(rand_range(0, PI * 2)) * run_speed
+		velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * run_speed
 		_think_timer.stop()
 		hand.bite()
 	elif not _chase_timer.is_stopped():
