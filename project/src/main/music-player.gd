@@ -16,6 +16,10 @@ var _current_song: AudioStreamPlayer
 ## value: (float) previous playback position
 var _position_by_song := {}
 
+## key: (AudioStreamPlayer) song
+## value: (SceneTreeTween) tween adjusting volume
+var _tweens_by_song := {}
+
 ## List of AudioStreamPlayer instances to play if the world does not define any music.
 onready var _default_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
@@ -58,8 +62,6 @@ onready var _shark_song_by_world_index := {
 
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
 onready var _ending_song := $HugFromAFrog
-
-onready var _fade_tween := $FadeTween
 
 var _random := RandomNumberGenerator.new()
 
@@ -120,12 +122,9 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 			if from_position != 0:
 				# interpolate when playing a song from the middle, to avoid pops and clicks
 				_current_song.volume_db = MIN_VOLUME
-				_fade_tween.remove(_current_song, "volume_db")
-				_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, FADE_IN_DURATION)
+				_fade(_current_song, MAX_VOLUME, FADE_IN_DURATION)
 			else:
 				_current_song.volume_db = MAX_VOLUME
-		
-		_fade_tween.start()
 
 
 func play_shark_song() -> void:
@@ -144,9 +143,7 @@ func fade_out(duration := FADE_OUT_DURATION) -> void:
 		return
 	
 	_position_by_song[_current_song] = _current_song.get_playback_position()
-	_fade_tween.remove(_current_song, "volume_db")
-	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MIN_VOLUME, duration)
-	_fade_tween.start()
+	_fade(_current_song, MIN_VOLUME, duration)
 	_current_song = null
 
 
@@ -158,9 +155,7 @@ func fade_in(duration := FADE_OUT_DURATION) -> void:
 		return
 	
 	_current_song.volume_db = MIN_VOLUME
-	_fade_tween.remove(_current_song, "volume_db")
-	_fade_tween.interpolate_property(_current_song, "volume_db", _current_song.volume_db, MAX_VOLUME, duration)
-	_fade_tween.start()
+	_fade(_current_song, MAX_VOLUME, duration)
 
 
 func play_ending_song() -> void:
@@ -193,9 +188,24 @@ func get_playback_position() -> float:
 	return result
 
 
-func _on_FadeTween_tween_completed(object: Object, key: NodePath) -> void:
-	if key == ":volume_db" and object.volume_db == MIN_VOLUME:
-		object.stop()
+## Slowly apply a fade in or fade out effect to the specified song.
+##
+## Parameters:
+##     'song': The song to fade in or fade out
+##
+##     'new_volume_db': The volume_db value to fade to
+##
+##     'duration': The duration of the fade effect
+func _fade(song: AudioStreamPlayer, new_volume_db: float, duration: float) -> void:
+	if _tweens_by_song.has(song):
+		_tweens_by_song[song].kill()
+	_tweens_by_song[song] = create_tween()
+	var fade_tween: Tween = _tweens_by_song[song]
+	fade_tween.tween_property(song, "volume_db", new_volume_db, duration)
+	
+	if new_volume_db == MIN_VOLUME:
+		## stop playback after music fades out
+		fade_tween.tween_callback(_current_song.stop)
 
 
 func _on_PlayerData_music_preference_changed() -> void:
