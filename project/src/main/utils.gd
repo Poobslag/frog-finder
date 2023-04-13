@@ -43,7 +43,7 @@ static func assign_card_texture(sprite: Sprite, texture: Texture) -> void:
 
 ## Gets the substring after the first occurrence of a separator.
 static func substring_after(s: String, sep: String) -> String:
-	if not sep:
+	if sep.empty():
 		return s
 	var pos := s.find(sep)
 	return "" if pos == -1 else s.substr(pos + sep.length())

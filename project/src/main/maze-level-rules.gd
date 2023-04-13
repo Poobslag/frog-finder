@@ -263,7 +263,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		var old_card: CardControl = _shown_card_queue.pop_front()
 		old_card.hide_front()
 	
-	if card.card_front_type == CardControl.CardType.ARROW and card.card_front_details:
+	if card.card_front_type == CardControl.CardType.ARROW and not card.card_front_details.empty():
 		_unblanked_arrow_queue.append(card)
 	if _unblanked_arrow_queue.size() > _max_unblanked_arrow_count:
 		var old_card: CardControl = _unblanked_arrow_queue.pop_front()

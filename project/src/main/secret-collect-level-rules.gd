@@ -99,7 +99,7 @@ func add_cards() -> void:
 	var potential_secret_positions := []
 	var potential_fish_positions := remaining_card_positions.duplicate()
 	for _i in range(fish_count):
-		if not potential_fish_positions:
+		if potential_fish_positions.empty():
 			# no more fish positions
 			break
 		
@@ -114,7 +114,7 @@ func add_cards() -> void:
 	# add secrets
 	potential_secret_positions.shuffle()
 	for i in range(secret_count):
-		if not potential_secret_positions:
+		if potential_secret_positions.empty():
 			# no more secret positions
 			break
 		

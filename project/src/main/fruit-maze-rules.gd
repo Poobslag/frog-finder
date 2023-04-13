@@ -325,7 +325,7 @@ func _hide_outer_fruits() -> void:
 
 
 func _before_premature_frog_flipped(card: CardControl) -> void:
-	if not _wrong_outer_fruit_cells_by_details:
+	if _wrong_outer_fruit_cells_by_details.empty():
 		# can't swap the frog out; there's nobody to swap with
 		return
 	
