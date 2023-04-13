@@ -111,9 +111,12 @@ func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 
 
 func start_frog_dance(frog_count: int) -> void:
+	var dance_frogs := []
+	
 	# spawn frogs
 	for _i in range(frog_count):
-		_spawn_frog()
+		var new_frog := _spawn_frog()
+		dance_frogs.append(new_frog)
 	
 	frogs[0].connect("finished_dance", self, "_on_RunningFrog_finished_dance")
 	
@@ -124,7 +127,7 @@ func start_frog_dance(frog_count: int) -> void:
 		var dance_target := Rect2(Vector2.ZERO, _creatures.rect_size).get_center()
 		dance_target += arrangement[i] * Vector2(64, 48)
 		
-		_dance(frogs[i], dance_target)
+		_dance(frogs[i], dance_frogs, dance_target)
 
 
 ## Spawns a shark outside the edge of the screen.
@@ -191,8 +194,8 @@ func _chase(frog: RunningFrog) -> void:
 
 
 ## Puts a frog into 'dance mode'.
-func _dance(frog: RunningFrog, dance_target: Vector2) -> void:
-	frog.dance(frogs, dance_target)
+func _dance(frog: RunningFrog, dance_frogs: Array, dance_target: Vector2) -> void:
+	frog.dance(dance_frogs, dance_target)
 
 
 func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
