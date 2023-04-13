@@ -103,7 +103,6 @@ func is_fed() -> bool:
 
 func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
-	position = new_soon_position
 
 
 func _refresh_run_speed() -> void:
