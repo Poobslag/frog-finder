@@ -7,7 +7,7 @@ extends Node
 ## 	[P]: Play a normal level song
 ## 	[S]: Play shark song
 
-func _ready():
+func _ready() -> void:
 	PlayerData.music_preference = PlayerData.MusicPreference.RANDOM
 	PlayerData.world_index = 0
 
