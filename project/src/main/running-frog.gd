@@ -103,7 +103,6 @@ func stop_animation() -> void:
 
 func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
-	position = new_soon_position
 
 
 ## Randomize the frog's running speed and run animation.

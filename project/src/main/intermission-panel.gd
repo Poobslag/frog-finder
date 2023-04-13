@@ -138,6 +138,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 	var shark: RunningShark = RunningSharkScene.instance()
 	shark.hand = hand
 	shark.soon_position = _random_spawn_point(away_from_hand)
+	shark.update_position()
 	
 	if sharks.size() % 2 == 1:
 		# this shark has a friend
@@ -155,6 +156,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 	var frog: RunningFrog = RunningFrogScene.instance()
 	frog.soon_position = _random_spawn_point(away_from_hand)
+	frog.update_position()
 	
 	if frogs.size() % 2 == 1:
 		# this frog has a friend
