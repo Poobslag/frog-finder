@@ -24,7 +24,7 @@ func set_level_cards_path(new_level_cards_path: NodePath) -> void:
 
 
 func refresh_level_cards_path() -> void:
-	if not is_inside_tree() or not level_cards_path:
+	if not is_inside_tree() or level_cards_path.is_empty():
 		return
 	
 	level_cards = get_node(level_cards_path) if level_cards_path else null

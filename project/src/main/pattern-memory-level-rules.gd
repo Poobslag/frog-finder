@@ -161,7 +161,7 @@ func _before_lizard_flipped(lizard_card: CardControl) -> void:
 	if _remaining_cards_without_hiding > 0:
 		_remaining_cards_without_hiding -= 1
 		remaining_cards_to_hide = 0
-	while _unhidden_cards and remaining_cards_to_hide:
+	while not _unhidden_cards.empty() and remaining_cards_to_hide > 0:
 		var card: CardControl = _unhidden_cards.pop_front()
 		card.hide_front()
 		remaining_cards_to_hide -= 1
