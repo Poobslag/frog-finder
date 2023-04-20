@@ -14,7 +14,7 @@ config/name="Frog Finder"
 run/main_scene="res://src/main/MainMenu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://assets/main/icon.png"
-config/version="1.07"
+config/version="1.20"
 
 [autoload]
 
