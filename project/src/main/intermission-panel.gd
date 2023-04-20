@@ -42,7 +42,6 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
 @onready var _bye_button := $ByeButton
 @onready var _creatures := $Creatures
-@onready var _creatures_ysort := $Creatures/Node2D
 @onready var _frog_spawn_timer := $FrogSpawnTimer
 @onready var _intermission_cards: LevelCards = $IntermissionCards
 @onready var _shark_spawn_timer := $SharkSpawnTimer
@@ -70,9 +69,9 @@ func reset() -> void:
 	_shark_spawn_timer.stop()
 	_frog_spawn_timer.stop()
 	_bye_button.visible = false
-	for child in _creatures_ysort.get_children():
+	for child in _creatures.get_children():
 		child.queue_free()
-		_creatures_ysort.remove_child(child)
+		_creatures.remove_child(child)
 	sharks.clear()
 	frogs.clear()
 
@@ -144,7 +143,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 		# this shark has a friend
 		shark.friend = sharks[sharks.size() - 1]
 	
-	_creatures_ysort.add_child(shark)
+	_creatures.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
 
@@ -162,7 +161,7 @@ func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 		# this frog has a friend
 		friends_by_frog[frog] = frogs[frogs.size() - 1]
 	
-	_creatures_ysort.add_child(frog)
+	_creatures.add_child(frog)
 	frogs.append(frog)
 	return frog
 
