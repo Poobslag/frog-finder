@@ -45,6 +45,7 @@ wait_time = 8.0
 one_shot = true
 
 [node name="Creatures" type="Control" parent="."]
+y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,8 +58,6 @@ offset_right = 462.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Node2D" type="Node2D" parent="Creatures"]
 
 [node name="ByeButton" type="Control" parent="."]
 custom_minimum_size = Vector2(80, 80)
