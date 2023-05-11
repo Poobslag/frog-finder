@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dxaf87rwkxm3n"]
 
-[ext_resource path="res://src/main/wiggle-sprite.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/mystery-sheet.png" type="Texture2D" id=2]
-[ext_resource path="res://src/main/WiggleTimer.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://src/main/wiggle-sprite.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://boi8dc4j74mtc" path="res://assets/main/mystery-sheet.png" id="2"]
+[ext_resource type="PackedScene" path="res://src/main/WiggleTimer.tscn" id="3"]
 
 [node name="CardBack" type="Sprite2D"]
-position = Vector2( 40, 40 )
-scale = Vector2( 0.333, 0.333 )
-texture = ExtResource( 2 )
+position = Vector2(40, 40)
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("2")
 hframes = 8
 vframes = 2
-script = ExtResource( 1 )
-wiggle_frames = [ 0, 1 ]
+script = ExtResource("1")
+wiggle_frames = Array[int]([0, 1])
 
-[node name="WiggleTimer" parent="." instance=ExtResource( 3 )]
+[node name="WiggleTimer" parent="." instance=ExtResource("3")]

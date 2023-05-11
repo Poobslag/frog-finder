@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://src/main/WordFindLevelRules.tscn" id="2_xbu18"]
 [ext_resource type="Script" path="res://src/demo/level-rules-demo.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="4"]
-[ext_resource type="Theme" path="res://src/main/ui/menu/theme/h3.theme" id="7"]
+[ext_resource type="Theme" uid="uid://bf6pj7hmxiojs" path="res://src/main/ui/menu/theme/h3.theme" id="7"]
 
 [node name="Demo" type="Node"]
 script = ExtResource("3")

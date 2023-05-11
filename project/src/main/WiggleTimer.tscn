@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://brl5be1hh4mw"]
 
-[ext_resource path="res://src/main/wiggle-timer.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://src/main/wiggle-timer.gd" id="1"]
 
 [node name="WiggleTimer" type="Timer"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [connection signal="timeout" from="." to="." method="_on_timeout"]
