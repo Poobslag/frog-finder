@@ -1,5 +1,7 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://blr3fsts3n8wb"]
 
 [node name="World2Decorations" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
