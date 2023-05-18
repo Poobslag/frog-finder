@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://chis4b4c44mwo"]
 
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/WowSprite.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="3"]
 [ext_resource type="Script" path="res://src/main/main-menu-panel.gd" id="4"]
 [ext_resource type="Script" path="res://src/main/music-control.gd" id="5"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleSprite.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://wstxjhvxs512" path="res://assets/main/music-notes-sheet.png" id="7"]
 [ext_resource type="PackedScene" uid="uid://b4gqbolgkyiwd" path="res://src/main/CardControl.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://dqsc660xqwxyt" path="res://src/main/ui/menu/World2Buttons.tscn" id="9"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c0h2b4udal4qg" path="res://src/main/ui/menu/World1Buttons.tscn" id="19"]
 [ext_resource type="Script" path="res://src/main/ui/menu/level-button-holder.gd" id="20"]
 [ext_resource type="PackedScene" uid="uid://blr3fsts3n8wb" path="res://src/main/World2Decorations.tscn" id="21"]
-[ext_resource type="PackedScene" path="res://src/main/World3Decorations.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://dpdupikkgdltm" path="res://src/main/World3Decorations.tscn" id="22"]
 [ext_resource type="PackedScene" uid="uid://bknjwua3ybkww" path="res://src/main/World1Decorations.tscn" id="23"]
 
 [node name="MainMenuPanel" type="Panel" groups=["main_menu_panels"]]
@@ -45,34 +45,12 @@ mouse_filter = 2
 script = ExtResource("18")
 
 [node name="World1Decorations" parent="WorldDecorationHolder" instance=ExtResource("23")]
-anchors_preset = 0
-
-[node name="Desk3" parent="WorldDecorationHolder/World1Decorations" index="0"]
-position = Vector2(726.869, 184.027)
-
-[node name="Desk4" parent="WorldDecorationHolder/World1Decorations" index="1"]
-position = Vector2(834.012, 249.292)
-
-[node name="Desk1" parent="WorldDecorationHolder/World1Decorations" index="2"]
-position = Vector2(644.869, 239.027)
-
-[node name="Desk2" parent="WorldDecorationHolder/World1Decorations" index="3"]
-position = Vector2(752.012, 304.292)
-
-[node name="Bag" parent="WorldDecorationHolder/World1Decorations" index="4"]
-position = Vector2(574.803, 265.536)
-
-[node name="Globe" parent="WorldDecorationHolder/World1Decorations" index="5"]
-position = Vector2(300.584, 259.331)
-
-[node name="Chalkboard" parent="WorldDecorationHolder/World1Decorations" index="6"]
-position = Vector2(112.301, 217.301)
 
 [node name="World2Decorations" parent="WorldDecorationHolder" instance=ExtResource("21")]
-anchors_preset = 0
+visible = false
 
 [node name="World3Decorations" parent="WorldDecorationHolder" instance=ExtResource("22")]
-anchors_preset = 0
+visible = false
 
 [node name="MusicControl" type="Control" parent="."]
 custom_minimum_size = Vector2(80, 80)
@@ -107,7 +85,6 @@ offset_bottom = 250.0
 mouse_filter = 2
 
 [node name="Card1F" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 300.545
 offset_top = 52.0022
 offset_right = 380.545
@@ -118,7 +95,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1R" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 380.545
 offset_top = 52.0022
 offset_right = 460.545
@@ -129,7 +105,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1O" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 460.545
 offset_top = 52.0022
 offset_right = 540.545
@@ -138,7 +113,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1G" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 540.545
 offset_top = 52.0022
 offset_right = 620.545
@@ -149,7 +123,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2F" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 220.956
 offset_top = 134.523
 offset_right = 300.956
@@ -160,7 +133,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2I" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 300.956
 offset_top = 134.523
 offset_right = 380.956
@@ -169,7 +141,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2N" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 380.956
 offset_top = 134.523
 offset_right = 460.956
@@ -180,7 +151,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2D" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 460.956
 offset_top = 134.523
 offset_right = 540.956
@@ -191,7 +161,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2E" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 540.956
 offset_top = 134.523
 offset_right = 620.956
@@ -202,7 +171,6 @@ game_state_path = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2R" parent="Title" instance=ExtResource("8")]
-anchors_preset = 0
 offset_left = 620.956
 offset_top = 134.523
 offset_right = 700.956
@@ -303,14 +271,20 @@ script = ExtResource("20")
 
 [node name="World1Buttons" parent="LevelButtonHolder" instance=ExtResource("19")]
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="World2Buttons" parent="LevelButtonHolder" instance=ExtResource("9")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="World3Buttons" parent="LevelButtonHolder" instance=ExtResource("17")]
 visible = false
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="TitleGameState" type="Node" parent="."]
 script = ExtResource("2")
@@ -346,5 +320,3 @@ script = ExtResource("15")
 [connection signal="level_pressed" from="LevelButtonHolder/World3Buttons" to="." method="_on_LevelButtons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
 [connection signal="prev_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
-
-[editable path="WorldDecorationHolder/World1Decorations"]
