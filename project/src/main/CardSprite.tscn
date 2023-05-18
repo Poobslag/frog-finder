@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/main/wiggle-sprite.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://boi8dc4j74mtc" path="res://assets/main/mystery-sheet.png" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleTimer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://brl5be1hh4mw" path="res://src/main/WiggleTimer.tscn" id="3"]
 
 [node name="CardBack" type="Sprite2D"]
 position = Vector2(40, 40)
