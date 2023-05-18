@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmvcqntitalsl"]
+
+[ext_resource type="Texture2D" uid="uid://30sy1b2uoepb" path="res://assets/main/card-shadow.png" id="1_rewad"]
+[ext_resource type="Script" path="res://src/main/card-shadow.gd" id="2_qbwb2"]
+
+[node name="CardShadow" type="Sprite2D"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_rewad")
+script = ExtResource("2_qbwb2")

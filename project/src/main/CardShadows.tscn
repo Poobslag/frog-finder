@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsf2oyh5o36hf"]
+
+[ext_resource type="Script" path="res://src/main/card-shadows.gd" id="1_3ac4y"]
+[ext_resource type="PackedScene" uid="uid://bmvcqntitalsl" path="res://src/main/CardShadow.tscn" id="2_1hio3"]
+
+[node name="CardShadows" type="CanvasGroup"]
+modulate = Color(1, 1, 1, 0.627451)
+script = ExtResource("1_3ac4y")
+CardShadowScene = ExtResource("2_1hio3")
