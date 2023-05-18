@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b7nexmwrtjune" path="res://src/main/FingerSprite.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cke64hk8y4kr8" path="res://assets/main/hand-sheet.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ddu0thu3dp057" path="res://assets/main/hug-sheet.png" id="5"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleTimer.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://brl5be1hh4mw" path="res://src/main/WiggleTimer.tscn" id="6"]
 [ext_resource type="Script" path="res://src/main/wiggle-sprite.gd" id="7"]
 
 [node name="Hand" type="Control"]

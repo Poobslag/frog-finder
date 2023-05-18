@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://blr3fsts3n8wb"]
 
-[ext_resource type="Texture2D" uid="uid://bbgx2r1mxd83t" path="res://assets/main/world-2-decorations-hammock.png" id="1_nquif"]
-[ext_resource type="Texture2D" uid="uid://qietcbewj710" path="res://assets/main/world-2-decorations-sandcastle.png" id="2_xee4a"]
-[ext_resource type="Texture2D" uid="uid://b1n5t8uwxg4aw" path="res://assets/main/world-2-decorations-towel1.png" id="3_pgyw8"]
-[ext_resource type="Texture2D" uid="uid://cmfp2i3uokl0x" path="res://assets/main/world-2-decorations-towel2.png" id="4_vlgih"]
-[ext_resource type="Texture2D" uid="uid://cxbb1kfig51c2" path="res://assets/main/world-2-decorations-tree.png" id="5_pnyu5"]
+[ext_resource type="Texture2D" path="res://assets/main/world-2-decorations-hammock.png" id="1_nquif"]
+[ext_resource type="Texture2D" path="res://assets/main/world-2-decorations-sandcastle.png" id="2_xee4a"]
+[ext_resource type="Texture2D" path="res://assets/main/world-2-decorations-towel1.png" id="3_pgyw8"]
+[ext_resource type="Texture2D" path="res://assets/main/world-2-decorations-towel2.png" id="4_vlgih"]
+[ext_resource type="Texture2D" path="res://assets/main/world-2-decorations-tree.png" id="5_pnyu5"]
 
 [node name="World2Decorations" type="Control"]
 layout_mode = 3

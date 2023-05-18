@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="5"]
-[ext_resource type="PackedScene" path="res://src/main/WowSprite.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleSprite.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="7"]
 
 [node name="IntermissionPanel" type="Panel"]
 anchors_preset = 15

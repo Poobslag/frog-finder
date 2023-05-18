@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/IntermissionPanel.tscn" id="1"]
 [ext_resource type="Script" path="res://src/demo/intermission-panel-demo.gd" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/Hand.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c4osspemyuhmd" path="res://src/main/Hand.tscn" id="3"]
 
 [node name="Demo" type="Node"]
 script = ExtResource("2")
@@ -15,5 +15,3 @@ offset_bottom = -50.0
 hand_path = NodePath("../Hand")
 
 [node name="Hand" parent="." instance=ExtResource("3")]
-layout_mode = 3
-anchors_preset = 0

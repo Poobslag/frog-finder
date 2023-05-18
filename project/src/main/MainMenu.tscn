@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ctg1buedvhl85"]
 
 [ext_resource type="PackedScene" uid="uid://dblxk2xi71xu3" path="res://src/main/ui/CheatCodeDetector.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/main/MenuState.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dumlnqf4q370u" path="res://src/main/MenuState.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://chis4b4c44mwo" path="res://src/main/MainMenuPanel.tscn" id="4"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="5"]
 [ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="6"]
@@ -80,7 +80,6 @@ offset_bottom = -50.0
 hand_path = NodePath("../../Hand")
 
 [node name="Hand" parent="." instance=ExtResource("17")]
-anchors_preset = 0
 offset_left = 52.3251
 offset_top = 49.9467
 offset_right = 132.325

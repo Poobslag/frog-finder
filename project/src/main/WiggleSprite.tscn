@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbfwawa4bt7lv"]
 
 [ext_resource type="Script" path="res://src/main/wiggle-sprite.gd" id="1"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleTimer.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://brl5be1hh4mw" path="res://src/main/WiggleTimer.tscn" id="4"]
 
 [node name="Sprite2D" type="Sprite2D"]
 scale = Vector2(0.333, 0.333)

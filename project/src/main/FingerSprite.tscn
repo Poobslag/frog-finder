@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/main/finger-sprite.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c35fgxvqy5peg" path="res://assets/main/finger-sheet.png" id="2"]
-[ext_resource type="PackedScene" path="res://src/main/WiggleTimer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://brl5be1hh4mw" path="res://src/main/WiggleTimer.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://hyk872d5ug6o" path="res://assets/main/sfx/cartoon-bite.wav" id="4"]
 
 [sub_resource type="Animation" id="1"]
