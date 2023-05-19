@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://chis4b4c44mwo"]
+[gd_scene load_steps=24 format=3 uid="uid://chis4b4c44mwo"]
 
+[ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_kndqk"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="3"]
 [ext_resource type="Script" path="res://src/main/main-menu-panel.gd" id="4"]
@@ -29,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_kndqk")
 script = ExtResource("4")
 
 [node name="WorldDecorationHolder" type="Control" parent="."]
@@ -273,18 +275,24 @@ script = ExtResource("20")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="World2Buttons" parent="LevelButtonHolder" instance=ExtResource("9")]
 visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="World3Buttons" parent="LevelButtonHolder" instance=ExtResource("17")]
 visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="TitleGameState" type="Node" parent="."]
 script = ExtResource("2")
