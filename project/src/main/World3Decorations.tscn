@@ -1,7 +1,11 @@
-[gd_scene format=3 uid="uid://dpdupikkgdltm"]
+[gd_scene load_steps=2 format=3 uid="uid://dpdupikkgdltm"]
+
+[ext_resource type="PackedScene" uid="uid://bnfmcycpqtjm7" path="res://src/main/ControlParallaxer.tscn" id="1_oy7wx"]
 
 [node name="World3Decorations" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ControlParallaxer" parent="." instance=ExtResource("1_oy7wx")]
