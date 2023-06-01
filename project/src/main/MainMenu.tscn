@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctg1buedvhl85"]
+[gd_scene load_steps=12 format=3 uid="uid://ctg1buedvhl85"]
 
 [ext_resource type="PackedScene" uid="uid://dblxk2xi71xu3" path="res://src/main/ui/CheatCodeDetector.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dumlnqf4q370u" path="res://src/main/MenuState.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://chis4b4c44mwo" path="res://src/main/MainMenuPanel.tscn" id="4"]
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="4_hain8"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="5"]
+[ext_resource type="PackedScene" path="res://src/main/CardShadows.tscn" id="5_j7f4h"]
 [ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="6"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="13"]
 [ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/IntermissionPanel.tscn" id="15"]
@@ -54,6 +55,9 @@ offset_right = -50.0
 offset_bottom = -50.0
 theme_override_styles/panel = ExtResource("4_hain8")
 script = ExtResource("6")
+
+[node name="CardShadows" parent="Content/GameplayPanel" instance=ExtResource("5_j7f4h")]
+ParentPanelPath = NodePath("..")
 
 [node name="GameState" type="Node" parent="Content/GameplayPanel"]
 script = ExtResource("5")

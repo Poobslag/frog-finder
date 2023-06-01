@@ -18,6 +18,7 @@ config/version="1.20"
 
 [autoload]
 
+Global="*res://src/main/global.gd"
 CardArrangements="*res://src/main/card-arrangements.gd"
 PlayerData="*res://src/main/player-data.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"

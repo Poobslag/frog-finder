@@ -52,6 +52,7 @@ func add_card(card: CardControl, cell_pos: Vector2) -> void:
 	position = get_parent().size * 0.5
 	position -= cell_pos_bounds.position * CELL_SIZE
 	position -= (cell_pos_bounds.size + Vector2(1, 1)) * CELL_SIZE * 0.5
+	Global.card_shadow_caster_added.emit(card)
 
 
 func get_card(cell_pos: Vector2) -> CardControl:

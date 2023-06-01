@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxaf87rwkxm3n" path="res://src/main/CardSprite.tscn" id="2"]
 [ext_resource type="Script" path="res://src/main/card-control.gd" id="3"]
 
-[node name="CardControl" type="Control"]
+[node name="CardControl" type="Control" groups=["card_shadow_casters"]]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 3
 anchors_preset = 0
