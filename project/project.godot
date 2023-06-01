@@ -41,3 +41,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 [global]
 
 mouse=false
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
