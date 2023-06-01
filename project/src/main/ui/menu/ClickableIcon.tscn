@@ -7,10 +7,8 @@
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 342.0
-offset_top = 341.148
-offset_right = 422.0
-offset_bottom = 421.148
+offset_right = 80.0
+offset_bottom = 80.0
 script = ExtResource("4")
 
 [node name="IconSprite" parent="." instance=ExtResource("3")]
