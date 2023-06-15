@@ -35,6 +35,10 @@ var frog_dance_count := 0
 ## value: (int) enum from MissionResult defining the mission result
 var missions_cleared := {}
 
+## key: comic name like 'world-1-intro'
+## value: (bool) true
+var comics_shown := {}
+
 ## key: (String) save data key
 ## key: (?) save data value for the specified key
 var save_json := {}
@@ -80,6 +84,7 @@ func save_player_data() -> void:
 	new_save_json["shark_count"] = shark_count
 	new_save_json["missions_cleared"] = missions_cleared
 	new_save_json["frog_dance_count"] = frog_dance_count
+	new_save_json["comics_shown"] = comics_shown
 	
 	if new_save_json != save_json:
 		FileAccess.open(DATA_FILENAME, FileAccess.WRITE).store_string(JSON.stringify(new_save_json, "  "))
@@ -112,18 +117,10 @@ func load_player_data() -> void:
 		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/9499); calling static function from
 		# within a class generates a warning
 		@warning_ignore("static_called_on_instance")
-		_convert_float_values_to_ints(new_missions_cleared)
+		Utils.convert_dict_floats_to_ints(new_missions_cleared)
 		
 		missions_cleared = new_missions_cleared
 	if save_json.has("frog_dance_count"):
 		frog_dance_count = int(save_json["frog_dance_count"])
-
-
-## Converts the float values in a Dictionary to int values.
-##
-## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
-## (https://github.com/godotengine/godot/issues/9499)
-static func _convert_float_values_to_ints(dict: Dictionary) -> void:
-	for key in dict:
-		if dict[key] is float:
-			dict[key] = int(dict[key])
+	if save_json.has("comics_shown"):
+		comics_shown = save_json["comics_shown"]

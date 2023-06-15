@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctg1buedvhl85"]
+[gd_scene load_steps=10 format=3 uid="uid://ctg1buedvhl85"]
 
 [ext_resource type="PackedScene" uid="uid://dblxk2xi71xu3" path="res://src/main/ui/CheatCodeDetector.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dumlnqf4q370u" path="res://src/main/MenuState.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://chis4b4c44mwo" path="res://src/main/MainMenuPanel.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cvi6cfqfe1xsp" path="res://src/main/GameplayPanel.tscn" id="4_0biuy"]
+[ext_resource type="Script" path="res://src/main/comic-manager.gd" id="6_ova4h"]
+[ext_resource type="PackedScene" uid="uid://slr8c52p2m8u" path="res://src/main/comic/World2ComicPage.tscn" id="6_unf1o"]
 [ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/IntermissionPanel.tscn" id="15"]
 [ext_resource type="PackedScene" uid="uid://c4osspemyuhmd" path="res://src/main/Hand.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="18"]
@@ -54,6 +56,20 @@ offset_right = -50.0
 offset_bottom = -50.0
 hand_path = NodePath("../../Hand")
 
+[node name="ComicManager" type="Control" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_ova4h")
+main_menu_panel_path = NodePath("../MainMenuPanel")
+
+[node name="ComicPage" parent="Content/ComicManager" instance=ExtResource("6_unf1o")]
+layout_mode = 1
+
 [node name="Hand" parent="." instance=ExtResource("17")]
 offset_left = 52.3251
 offset_top = 49.9467
@@ -61,11 +77,12 @@ offset_right = 132.325
 offset_bottom = 129.947
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource("1")]
-codes = Array[String](["onefrog"])
+codes = Array[String](["onefrog", "fromic"])
 
 [connection signal="before_frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_frog_found"]
 [connection signal="before_shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_before_shark_found"]
 [connection signal="frog_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_frog_found"]
+[connection signal="menu_shown" from="Content/MainMenuPanel" to="Content/ComicManager" method="_on_MainMenuPanel_panel_menu_shown"]
 [connection signal="shark_found" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_shark_found"]
 [connection signal="start_pressed" from="Content/MainMenuPanel" to="Content/MenuState" method="_on_MainMenuPanel_start_pressed"]
 [connection signal="before_frog_found" from="Content/GameplayPanel" to="Content/MenuState" method="_on_GameplayPanel_before_frog_found"]
@@ -75,3 +92,4 @@ codes = Array[String](["onefrog"])
 [connection signal="bye_pressed" from="Content/IntermissionPanel" to="Content/MenuState" method="_on_IntermissionPanel_bye_pressed"]
 [connection signal="finger_bitten" from="Hand" to="Content/MenuState" method="_on_Hand_finger_bitten"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Content/MenuState" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Content/ComicManager" method="_on_CheatCodeDetector_cheat_detected"]
