@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Frog Finder"
 run/main_scene="res://src/main/MainMenu.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://assets/main/icon.png"
 config/version="1.20"
 
