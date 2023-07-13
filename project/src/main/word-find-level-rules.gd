@@ -120,7 +120,7 @@ func add_cards() -> void:
 		if card_obj in _frog_word_cards:
 			continue
 		
-		if randf() > _frog_letter_chance:
+		if not randf() < _frog_letter_chance:
 			continue
 		
 		var card: CardControl = card_obj
@@ -141,7 +141,7 @@ func add_cards() -> void:
 		if card_obj in _frog_word_cards:
 			continue
 		
-		if randf() > _fish_letter_chance:
+		if not randf() < _fish_letter_chance:
 			continue
 		
 		var card: CardControl = card_obj

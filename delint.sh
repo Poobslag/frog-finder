@@ -87,6 +87,16 @@ then
   echo "$RESULT"
 fi
 
+# functions missing type hint
+RESULT=$(grep -R -n "func [a-zA-Z0-9_]*([a-zA-Z0-9_]\+[,)]" --include="*.gd" project/src \
+  )
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Functions missing type hint:"
+  echo "$RESULT"
+fi
+
 # temporary files
 RESULT=$(find project/src -name "*.TMP" -o -name "*.gd~")
 if [ -n "$RESULT" ]
@@ -138,6 +148,7 @@ fi
 
 # print statements that got left in by mistake
 RESULT=$(git diff main | grep print\()
+RESULT=$(git diff main | grep print_debug\()
 if [ -n "$RESULT" ]
 then
   echo ""
