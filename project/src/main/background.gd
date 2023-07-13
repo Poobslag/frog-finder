@@ -57,7 +57,8 @@ func change(immediate: bool = false) -> void:
 		_color_rect.color = rect_color
 		textures[0].modulate = texture_color
 	else:
-		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+		# from within a class generates a warning
 		@warning_ignore("static_called_on_instance")
 		textures[0].modulate = to_transparent(texture_color)
 		
@@ -66,7 +67,8 @@ func change(immediate: bool = false) -> void:
 				rect_color, TWEEN_DURATION)
 		change_tween.tween_property(textures[0], "modulate",
 				texture_color, TWEEN_DURATION)
-		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+		# from within a class generates a warning
 		@warning_ignore("static_called_on_instance")
 		change_tween.tween_property(previous_texture, "modulate",
 				to_transparent(previous_texture.modulate), TWEEN_DURATION)

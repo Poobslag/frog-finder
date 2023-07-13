@@ -25,7 +25,8 @@ func _refresh_sprite() -> void:
 	if not is_inside_tree():
 		return
 	
-	# workaround for Godot #58285; typed arrays don't work with setters
+	# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work with
+	# setters
 	_sprite.wiggle_frames.assign(WIGGLE_FRAMES_BY_MUSIC_PREFERENCE[PlayerData.music_preference])
 	_sprite.assign_wiggle_frame()
 
