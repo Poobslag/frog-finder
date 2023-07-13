@@ -197,6 +197,25 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 	return result
 
 
+func compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return pos_1.x == pos_2.x
+
+
+func compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return pos_1.y == pos_2.y
+
+
+func compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
+	return _region(pos_1) == _region(pos_2)
+
+
+func _region(cell_pos: Vector2) -> int:
+	var region: int = 0
+	region += int(cell_pos.x / 3)
+	region += 2 * int(cell_pos.y / 2)
+	return region
+
+
 func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 	if card.card_front_type == CardControl.CardType.LIZARD:
 		# the player found a lizard, they're on the right track
@@ -254,22 +273,3 @@ func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
 					# hide the cards not in the row/column/region
 					card.hide_front()
 			break
-
-
-func compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return pos_1.x == pos_2.x
-
-
-func compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return pos_1.y == pos_2.y
-
-
-func compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return _region(pos_1) == _region(pos_2)
-
-
-func _region(cell_pos: Vector2) -> int:
-	var region: int = 0
-	region += int(cell_pos.x / 3)
-	region += 2 * int(cell_pos.y / 2)
-	return region

@@ -2,6 +2,11 @@ class_name GameplayPanel
 extends Panel
 ## Panel which shows the level the player is currently playing.
 
+signal before_shark_found(card)
+signal shark_found(card)
+signal before_frog_found(card)
+signal frog_found(card)
+
 ## List of level IDs to show if the mission is not found
 const DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 
@@ -36,17 +41,13 @@ const LEVEL_IDS_BY_MISSION_STRING := {
 	"3-3": ["frodoku", "secret-collect", "fruit-maze++", "froggo++", "pattern-memory++"],
 }
 
-signal before_shark_found(card)
-signal shark_found(card)
-signal before_frog_found(card)
-signal frog_found(card)
-
 ## a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
 var mission_string := "1-1" : set = set_mission_string
 
 ## difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
 var player_puzzle_difficulty := 0
 var player_streak := 0
+var level_ids: Array[String]
 var _level_rules: LevelRules
 var _max_puzzle_difficulty := 0
 var _shark_difficulty_decrease := 0
@@ -66,8 +67,6 @@ var _start_difficulty := 0
 	"pattern-memory": preload("res://src/main/PatternMemoryLevelRules.tscn"),
 	"fruit-maze": preload("res://src/main/FruitMazeRules.tscn"),
 }
-
-var level_ids: Array[String]
 
 func _ready() -> void:
 	level_ids.assign(DEFAULT_LEVEL_IDS)

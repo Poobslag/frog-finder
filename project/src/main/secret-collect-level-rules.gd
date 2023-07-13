@@ -224,7 +224,7 @@ func _arrow_placed() -> bool:
 	return result
 
 
-func _on_or_adjacent_to_red_card(card: CardControl) -> bool:
+func _red_or_adjacent_to_red(card: CardControl) -> bool:
 	var result := false
 	if card.card_back_details == "r":
 		result = true
@@ -321,13 +321,13 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 
 func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
 	var adjacent_face_up_cards := _adjacent_face_up_cards(shark_card)
-	if not _on_or_adjacent_to_red_card(shark_card):
+	if not _red_or_adjacent_to_red(shark_card):
 		# if the player doesn't a card that's red, or next to a red card -- we reveal a sea of sharks and fish under the blue
 		# cards.
 		for card in level_cards.get_cards():
 			if card == shark_card:
 				continue
-			if _on_or_adjacent_to_red_card(card):
+			if _red_or_adjacent_to_red(card):
 				continue
 			if card.is_front_shown():
 				continue
