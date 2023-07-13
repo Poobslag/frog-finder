@@ -43,6 +43,8 @@ func _ready() -> void:
 ## Parameters:
 ## 	'finger_index': 2 = pinky finger, 1 = naughty finger, 0 = pointer finger
 func bite(finger_index: int) -> void:
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
 	wiggle_frames.assign(WIGGLE_FRAMES_BY_BITTEN_FINGER[finger_index])
 	_wiggle_timer.assign_wiggle_frame()
 	

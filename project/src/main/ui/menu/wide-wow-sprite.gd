@@ -10,16 +10,20 @@ const ALL_LEFT_WIGGLE_FRAMES := [[0, 2], [4, 6], [8, 10], [12, 14]]
 ## List of potential wiggle frame pairs corresponding to the right half of a 'wow sprite'
 const ALL_RIGHT_WIGGLE_FRAMES := [[1, 3], [5, 7], [9, 11], [13, 15]]
 
-var _left_wiggle_frames := []
-var _right_wiggle_frames := []
+var _left_wiggle_frames: Array[int] = []
+var _right_wiggle_frames: Array[int] = []
 
 @onready var _wiggle_timer := $WiggleTimer
 @onready var _left := $Left
 @onready var _right := $Right
 
 func _ready() -> void:
-	_left_wiggle_frames = Utils.rand_value(ALL_LEFT_WIGGLE_FRAMES)
-	_right_wiggle_frames = Utils.rand_value(ALL_RIGHT_WIGGLE_FRAMES)
+	# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	_left_wiggle_frames.assign(Utils.rand_value(ALL_LEFT_WIGGLE_FRAMES))
+	# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	_right_wiggle_frames.assign(Utils.rand_value(ALL_RIGHT_WIGGLE_FRAMES))
 	reset_wiggle()
 
 
