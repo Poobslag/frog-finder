@@ -101,21 +101,11 @@ func _refresh_hand_sprite() -> void:
 	
 	if huggable_fingers > 0:
 		match hugged_fingers:
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			0: _hug_sprite.wiggle_frames = [0] as Array[int]
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			1: _hug_sprite.wiggle_frames = [1, 2] as Array[int]
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			2: _hug_sprite.wiggle_frames = [3, 4] as Array[int]
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			3: _hug_sprite.wiggle_frames = [5, 6] as Array[int]
 	else:
-		# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-		# with setters
 		_hug_sprite.wiggle_frames = [] as Array[int]
 		_hug_sprite.frame = 0
 	

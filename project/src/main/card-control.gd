@@ -223,14 +223,10 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 		CardType.FROG:
 			Utils.assign_card_texture(card_sprite, _frog_sheet)
 			var frog_index := randi() % FROG_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1] as Array[int]
 		CardType.SHARK:
 			Utils.assign_card_texture(card_sprite, _shark_sheet)
 			var shark_index := randi() % SHARK_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1] as Array[int]
 		CardType.MYSTERY:
 			Utils.assign_card_texture(card_sprite, _mystery_sheet)
@@ -240,8 +236,6 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				mystery_index = Utils.rand_value(mystery_indexes)
 			else:
 				mystery_index = randi() % MYSTERY_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1] as Array[int]
 		CardType.LETTER:
 			Utils.assign_card_texture(card_sprite, _letter_sheet)
@@ -253,8 +247,6 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random letters in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized letter: %s" % [card_details]
 				letter_index = randi() % LETTER_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1] as Array[int]
 		CardType.ARROW:
 			Utils.assign_card_texture(card_sprite, _arrow_sheet)
@@ -266,8 +258,6 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized arrow: %s" % [card_details]
 				arrow_index = randi() % ARROW_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.HEX_ARROW:
 			Utils.assign_card_texture(card_sprite, _hex_arrow_sheet)
@@ -279,20 +269,14 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
 				arrow_index = randi() % HEX_ARROW_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.FISH:
 			Utils.assign_card_texture(card_sprite, _fish_sheet)
 			var fish_index := randi() % FISH_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1] as Array[int]
 		CardType.LIZARD:
 			Utils.assign_card_texture(card_sprite, _lizard_sheet)
 			var lizard_index := randi() % LIZARD_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1] as Array[int]
 		CardType.FRUIT:
 			Utils.assign_card_texture(card_sprite, _fruit_sheet)
@@ -303,8 +287,6 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized fruit: %s" % [card_details]
 				fruit_index = randi() % FRUIT_COUNT
-			# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work
-			# with setters
 			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1] as Array[int]
 	
 	if card_sprite.wiggle_frames:
@@ -420,8 +402,6 @@ func cheer() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work with
-	# setters
 	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
 	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
 	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
