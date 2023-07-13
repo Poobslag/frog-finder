@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvi6cfqfe1xsp"]
+
+[ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_hyfi8"]
+[ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="2_5x0xm"]
+[ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="3_25m06"]
+[ext_resource type="Script" path="res://src/main/game-state.gd" id="4_kg84t"]
+[ext_resource type="Script" path="res://src/main/level-cards.gd" id="5_8swc1"]
+
+[node name="GameplayPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_styles/panel = ExtResource("1_hyfi8")
+script = ExtResource("2_5x0xm")
+
+[node name="CardShadows" parent="." instance=ExtResource("3_25m06")]
+ParentPanelPath = NodePath("..")
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("4_kg84t")
+
+[node name="FlipTimer" type="Timer" parent="GameState"]
+wait_time = 0.1
+one_shot = true
+
+[node name="LevelCards" type="Control" parent="."]
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource("5_8swc1")
+game_state_path = NodePath("../GameState")
+
+[connection signal="before_frog_found" from="LevelCards" to="." method="_on_LevelCards_before_frog_found"]
+[connection signal="before_shark_found" from="LevelCards" to="." method="_on_LevelCards_before_shark_found"]
+[connection signal="frog_found" from="LevelCards" to="." method="_on_LevelCards_frog_found"]
+[connection signal="shark_found" from="LevelCards" to="." method="_on_LevelCards_shark_found"]
