@@ -4,6 +4,9 @@ extends Node
 ## This includes details about their progression through the game such as how many frogs they've found and which levels
 ## they've cleared. It also includes details about their settings such as whether they want music to play.
 
+signal world_index_changed
+signal music_preference_changed
+
 enum MissionResult {
 	NONE, # The player has not finished this mission yet
 	SHARK, # The player finished the mission by getting eaten
@@ -19,9 +22,6 @@ enum MusicPreference {
 }
 
 const DATA_FILENAME := "user://player-data.json"
-
-signal world_index_changed
-signal music_preference_changed
 
 var world_index := 0 : set = set_world_index
 var music_preference: int = MusicPreference.RANDOM : set = set_music_preference

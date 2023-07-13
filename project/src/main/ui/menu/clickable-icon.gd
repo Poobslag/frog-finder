@@ -13,13 +13,13 @@ signal pressed
 
 @onready var _icon_sprite := $IconSprite
 
+func _ready() -> void:
+	_refresh_sprite()
+
+
 ## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_icon_sprite = $IconSprite
-
-
-func _ready() -> void:
-	_refresh_sprite()
 
 
 func _gui_input(event: InputEvent) -> void:

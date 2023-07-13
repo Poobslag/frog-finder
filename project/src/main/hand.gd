@@ -17,9 +17,9 @@ var fingers := 3 : set = set_fingers
 var biteable_fingers := -1 : set = set_biteable_fingers
 var huggable_fingers := 0 : set = set_huggable_fingers
 var hugged_fingers := 0
+var resting := false
 
 var _previous_rect_position: Vector2
-var resting := false
 
 @onready var _hand_sprite := $HandSprite
 @onready var _hug_sprite := $HugSprite

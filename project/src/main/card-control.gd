@@ -2,6 +2,12 @@ class_name CardControl
 extends Control
 ## Shows a card. These cards can turn over to reveal frogs, sharks, fruit, or other surprises.
 
+signal before_card_flipped
+signal before_frog_found
+signal frog_found
+signal before_shark_found
+signal shark_found
+
 enum CardType {
 	NONE,
 	FROG,
@@ -122,12 +128,6 @@ const HEX_ARROW_COUNT := 48
 const FRUIT_COUNT := 12
 const FISH_COUNT := 8
 const LIZARD_COUNT := 32
-
-signal before_card_flipped
-signal before_frog_found
-signal frog_found
-signal before_shark_found
-signal shark_found
 
 @export var card_back_type: CardType = CardType.MYSTERY : set = set_card_back_type
 @export var card_back_details: String : set = set_card_back_details
