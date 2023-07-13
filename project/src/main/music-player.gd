@@ -116,8 +116,8 @@ func _play_song(new_song: AudioStreamPlayer) -> void:
 		if _current_song:
 			var from_position: float = _position_by_song.get(_current_song, 0)
 			
-			# This line often triggers a warning because of Godot #75762. There is no known workaround.
-			# https://github.com/godotengine/godot/issues/75762
+			# This line often triggers a warning because of Godot #75762
+			# (https://github.com/godotengine/godot/issues/75762). There is no known workaround.
 			_current_song.play(from_position)
 			
 			if from_position != 0:

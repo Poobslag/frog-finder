@@ -109,7 +109,8 @@ func load_player_data() -> void:
 	if save_json.has("missions_cleared"):
 		var new_missions_cleared: Dictionary = save_json["missions_cleared"]
 		
-		# Workaround for Godot #69282; calling static function from within a class generates a warning
+		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/9499); calling static function from
+		# within a class generates a warning
 		@warning_ignore("static_called_on_instance")
 		_convert_float_values_to_ints(new_missions_cleared)
 		
@@ -121,7 +122,7 @@ func load_player_data() -> void:
 ## Converts the float values in a Dictionary to int values.
 ##
 ## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
-## https://github.com/godotengine/godot/issues/9499
+## (https://github.com/godotengine/godot/issues/9499)
 static func _convert_float_values_to_ints(dict: Dictionary) -> void:
 	for key in dict:
 		if dict[key] is float:

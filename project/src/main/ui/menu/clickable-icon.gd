@@ -42,6 +42,7 @@ func _refresh_sprite() -> void:
 		return
 	
 	Utils.assign_card_texture(_icon_sprite, icon_texture)
-	# workaround for Godot #58285; typed arrays don't work with setters
+	# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work with
+	# setters
 	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1] as Array[int]
 	_icon_sprite.assign_wiggle_frame()
