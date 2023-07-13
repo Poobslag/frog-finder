@@ -197,15 +197,15 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 	return result
 
 
-func compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
+func _compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return pos_1.x == pos_2.x
 
 
-func compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
+func _compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return pos_1.y == pos_2.y
 
 
-func compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
+func _compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return _region(pos_1) == _region(pos_2)
 
 

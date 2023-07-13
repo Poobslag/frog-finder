@@ -196,6 +196,11 @@ func _ready() -> void:
 	_refresh_shown_face()
 
 
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
+		_flip_card()
+
+
 func _process(_delta: float) -> void:
 	if _pending_warning:
 		push_warning(_pending_warning)
@@ -210,6 +215,82 @@ func set_game_state_path(new_game_state_path: NodePath) -> void:
 func set_shown_face(new_shown_face: CardFace) -> void:
 	shown_face = new_shown_face
 	_refresh_shown_face()
+
+
+func set_card_back_type(new_card_back_type: CardType) -> void:
+	card_back_type = new_card_back_type
+	_refresh_card_textures()
+
+
+func set_card_front_type(new_card_front_type: CardType) -> void:
+	card_front_type = new_card_front_type
+	_refresh_card_textures()
+
+
+func set_card_back_details(new_card_back_details: String) -> void:
+	card_back_details = new_card_back_details
+	_refresh_card_textures()
+
+
+func set_card_front_details(new_card_front_details: String) -> void:
+	card_front_details = new_card_front_details
+	_refresh_card_textures()
+
+
+func reset() -> void:
+	_card_back_sprite.visible = true
+	_card_front_sprite.visible = false
+	card_back_type = CardType.MYSTERY
+	card_back_details = ""
+	card_front_type = CardType.MYSTERY
+	card_front_details = ""
+	
+	_stop_dance_timer.stop()
+	_frog_found_timer.stop()
+	_shark_found_timer.stop()
+	_refresh_card_textures()
+
+
+func is_front_shown() -> bool:
+	return _card_front_sprite.visible
+
+
+func show_front() -> void:
+	shown_face = CardFace.FRONT
+
+
+func hide_front() -> void:
+	shown_face = CardFace.BACK
+
+
+func copy_from(other_card: CardControl) -> void:
+	card_back_type = other_card.card_back_type
+	card_back_details = other_card.card_back_details
+	card_front_type = other_card.card_front_type
+	card_front_details = other_card.card_front_details
+	_refresh_card_textures()
+	
+	_card_front_sprite.frame = other_card._card_front_sprite.frame
+	_card_front_sprite.wiggle_frames = other_card._card_front_sprite.wiggle_frames
+	_card_front_sprite.visible = other_card._card_front_sprite.visible
+	
+	_card_back_sprite.frame = other_card._card_back_sprite.frame
+	_card_back_sprite.wiggle_frames = other_card._card_back_sprite.wiggle_frames
+	_card_back_sprite.visible = other_card._card_back_sprite.visible
+
+
+func cheer() -> void:
+	if card_front_type != CardType.FROG:
+		return
+	
+	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
+	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
+	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
+	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
+	
+	# reset the wiggle so the characters don't have one very abbreviated dance frame
+	_card_front_sprite.reset_wiggle()
+	_stop_dance_timer.start(4.0)
 
 
 func _refresh_shown_face() -> void:
@@ -323,73 +404,6 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 		card_sprite.frame = card_sprite.wiggle_frames[0]
 
 
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
-		_flip_card()
-
-
-func set_card_back_type(new_card_back_type: CardType) -> void:
-	card_back_type = new_card_back_type
-	_refresh_card_textures()
-
-
-func set_card_front_type(new_card_front_type: CardType) -> void:
-	card_front_type = new_card_front_type
-	_refresh_card_textures()
-
-
-func set_card_back_details(new_card_back_details: String) -> void:
-	card_back_details = new_card_back_details
-	_refresh_card_textures()
-
-
-func set_card_front_details(new_card_front_details: String) -> void:
-	card_front_details = new_card_front_details
-	_refresh_card_textures()
-
-
-func reset() -> void:
-	_card_back_sprite.visible = true
-	_card_front_sprite.visible = false
-	card_back_type = CardType.MYSTERY
-	card_back_details = ""
-	card_front_type = CardType.MYSTERY
-	card_front_details = ""
-	
-	_stop_dance_timer.stop()
-	_frog_found_timer.stop()
-	_shark_found_timer.stop()
-	_refresh_card_textures()
-
-
-func is_front_shown() -> bool:
-	return _card_front_sprite.visible
-
-
-func show_front() -> void:
-	shown_face = CardFace.FRONT
-
-
-func hide_front() -> void:
-	shown_face = CardFace.BACK
-
-
-func copy_from(other_card: CardControl) -> void:
-	card_back_type = other_card.card_back_type
-	card_back_details = other_card.card_back_details
-	card_front_type = other_card.card_front_type
-	card_front_details = other_card.card_front_details
-	_refresh_card_textures()
-	
-	_card_front_sprite.frame = other_card._card_front_sprite.frame
-	_card_front_sprite.wiggle_frames = other_card._card_front_sprite.wiggle_frames
-	_card_front_sprite.visible = other_card._card_front_sprite.visible
-	
-	_card_back_sprite.frame = other_card._card_back_sprite.frame
-	_card_back_sprite.wiggle_frames = other_card._card_back_sprite.wiggle_frames
-	_card_back_sprite.visible = other_card._card_back_sprite.visible
-
-
 func _flip_card() -> void:
 	if _card_front_sprite.visible:
 		# card is already flipped
@@ -410,20 +424,6 @@ func _flip_card() -> void:
 	show_front()
 	_game_state.flip_timer.start()
 	_game_state.flip_timer.connect("timeout",Callable(self,"_on_FlipTimer_timeout"))
-
-
-func cheer() -> void:
-	if card_front_type != CardType.FROG:
-		return
-	
-	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
-	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
-	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
-	
-	# reset the wiggle so the characters don't have one very abbreviated dance frame
-	_card_front_sprite.reset_wiggle()
-	_stop_dance_timer.start(4.0)
 
 
 func _on_FlipTimer_timeout() -> void:

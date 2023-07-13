@@ -107,27 +107,6 @@ func play_preferred_song() -> void:
 	_play_song(new_song)
 
 
-func _play_song(new_song: AudioStreamPlayer) -> void:
-	if _current_song and _current_song != new_song:
-		fade_out()
-	var previous_song := _current_song
-	_current_song = new_song
-	if _current_song != previous_song:
-		if _current_song:
-			var from_position: float = _position_by_song.get(_current_song, 0)
-			
-			# This line often triggers a warning because of Godot #75762
-			# (https://github.com/godotengine/godot/issues/75762). There is no known workaround.
-			_current_song.play(from_position)
-			
-			if from_position != 0:
-				# sample when playing a song from the middle, to avoid pops and clicks
-				_current_song.volume_db = MIN_VOLUME
-				_fade(_current_song, MAX_VOLUME, FADE_IN_DURATION)
-			else:
-				_current_song.volume_db = MAX_VOLUME
-
-
 func play_shark_song() -> void:
 	var shark_song: AudioStreamPlayer = _shark_song_by_world_index.get(PlayerData.world_index, _default_shark_song)
 	_play_song(shark_song)
@@ -187,6 +166,27 @@ func get_playback_position() -> float:
 	if _current_song:
 		result = _current_song.get_playback_position()
 	return result
+
+
+func _play_song(new_song: AudioStreamPlayer) -> void:
+	if _current_song and _current_song != new_song:
+		fade_out()
+	var previous_song := _current_song
+	_current_song = new_song
+	if _current_song != previous_song:
+		if _current_song:
+			var from_position: float = _position_by_song.get(_current_song, 0)
+			
+			# This line often triggers a warning because of Godot #75762
+			# (https://github.com/godotengine/godot/issues/75762). There is no known workaround.
+			_current_song.play(from_position)
+			
+			if from_position != 0:
+				# sample when playing a song from the middle, to avoid pops and clicks
+				_current_song.volume_db = MIN_VOLUME
+				_fade(_current_song, MAX_VOLUME, FADE_IN_DURATION)
+			else:
+				_current_song.volume_db = MAX_VOLUME
 
 
 ## Slowly apply a fade in or fade out effect to the specified song.
