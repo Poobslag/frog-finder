@@ -8,6 +8,11 @@ signal frog_found
 signal before_shark_found
 signal shark_found
 
+enum CardFace {
+	BACK,
+	FRONT,
+}
+
 enum CardType {
 	NONE,
 	FROG,
@@ -137,6 +142,8 @@ const LIZARD_COUNT := 32
 @export var game_state_path := NodePath("../GameState") : set = set_game_state_path
 @export var practice := false
 
+@export var shown_face := CardFace.BACK : set = set_shown_face
+
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
 	preload("res://assets/main/sfx/frog-voice-1.wav"),
@@ -186,6 +193,7 @@ var _pending_warning := ""
 func _ready() -> void:
 	_refresh_card_textures()
 	_refresh_game_state_path()
+	_refresh_shown_face()
 
 
 func _process(_delta: float) -> void:
@@ -197,6 +205,28 @@ func _process(_delta: float) -> void:
 func set_game_state_path(new_game_state_path: NodePath) -> void:
 	game_state_path = new_game_state_path
 	_refresh_game_state_path()
+
+
+func set_shown_face(new_shown_face: CardFace) -> void:
+	shown_face = new_shown_face
+	_refresh_shown_face()
+
+
+func _refresh_shown_face() -> void:
+	if not is_inside_tree():
+		return
+	
+	if shown_face == CardFace.BACK and _card_back_sprite.visible \
+			or shown_face == CardFace.FRONT and _card_front_sprite.visible:
+		# appropriate card face is already shown
+		return
+	
+	_card_back_sprite.visible = true if shown_face == CardFace.BACK else false
+	_card_front_sprite.visible = true if shown_face == CardFace.FRONT else false
+	
+	if shown_face == CardFace.FRONT:
+		# reset the wiggle so the characters don't have one very abbreviated dance frame
+		_card_front_sprite.reset_wiggle()
 
 
 func _refresh_game_state_path() -> void:
@@ -337,26 +367,11 @@ func is_front_shown() -> bool:
 
 
 func show_front() -> void:
-	if _card_front_sprite.visible:
-		# already shown
-		return
-	
-	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
-	_card_back_sprite.visible = false
-	_card_front_sprite.visible = true
-	
-	# reset the wiggle so the characters don't have one very abbreviated dance frame
-	_card_front_sprite.reset_wiggle()
+	shown_face = CardFace.FRONT
 
 
 func hide_front() -> void:
-	if not _card_front_sprite.visible:
-		# already hidden
-		return
-	
-	# can't reference _card_back and _card_front fields. show_front() sometimes precedes _ready()
-	_card_back_sprite.visible = true
-	_card_front_sprite.visible = false
+	shown_face = CardFace.BACK
 
 
 func copy_from(other_card: CardControl) -> void:
