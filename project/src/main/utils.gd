@@ -31,9 +31,9 @@ static func rand_value(values: Array):
 static func assign_card_texture(sprite: Sprite2D, texture: Texture2D) -> void:
 	sprite.texture = texture
 	@warning_ignore("integer_division")
-	sprite.hframes = int(ceil(texture.get_width() / 240))
+	sprite.hframes = int(ceil(texture.get_width() / 240)) if texture != null else 1
 	@warning_ignore("integer_division")
-	sprite.vframes = int(ceil(texture.get_height() / 240))
+	sprite.vframes = int(ceil(texture.get_height() / 240)) if texture != null else 1
 
 
 ## Gets the substring after the first occurrence of a separator.

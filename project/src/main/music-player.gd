@@ -204,7 +204,7 @@ func _fade(song: AudioStreamPlayer, new_volume_db: float, duration: float) -> vo
 	var fade_tween: Tween = _tweens_by_song[song]
 	fade_tween.tween_property(song, "volume_db", new_volume_db, duration)
 	
-	if new_volume_db == MIN_VOLUME:
+	if is_equal_approx(new_volume_db, MIN_VOLUME):
 		## stop playback after music fades out
 		fade_tween.tween_callback(_current_song.stop)
 

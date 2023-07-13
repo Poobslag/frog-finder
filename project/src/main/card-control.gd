@@ -442,8 +442,6 @@ func _on_StopDanceTimer_timeout() -> void:
 		return
 	
 	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	# workaround for Godot #58285 (https://github.com/godotengine/godot/issues/58285); typed arrays don't work with
-	# setters
 	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
 
 
