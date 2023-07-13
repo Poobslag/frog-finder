@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="1"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://bvbj13mtdoy4q" path="res://src/main/WordFindLevelRules.tscn" id="2_xbu18"]
+[ext_resource type="PackedScene" uid="uid://bvbj13mtdoy4q" path="res://src/main/levels/WordFindRules.tscn" id="2_xbu18"]
 [ext_resource type="Script" path="res://src/demo/level-rules-demo.gd" id="3"]
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="3_qswrx"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="4"]
