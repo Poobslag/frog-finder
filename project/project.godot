@@ -39,6 +39,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global]
 
 mouse=false
