@@ -41,7 +41,7 @@ const NON_DANCE_ANIMS := [
 ## frames used for each dance.
 func update_dances(value: bool) -> void:
 	if not value:
-		# only autotile in the editor when the 'flip_dances' property is toggled
+		# only update dances in the editor when the '_update_dances' property is toggled
 		return
 	
 	_flip_animations()
