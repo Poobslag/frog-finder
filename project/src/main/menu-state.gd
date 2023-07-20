@@ -1,17 +1,17 @@
 extends Node
 ## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
-@export var _main_menu_panel_path: NodePath
-@export var _gameplay_panel_path: NodePath
-@export var _intermission_panel_path: NodePath
-@export var _hand_path: NodePath
-@export var _background_path: NodePath
+@export var main_menu_panel_path: NodePath
+@export var gameplay_panel_path: NodePath
+@export var intermission_panel_path: NodePath
+@export var hand_path: NodePath
+@export var background_path: NodePath
 
-@onready var _main_menu_panel: MainMenuPanel = get_node(_main_menu_panel_path)
-@onready var _gameplay_panel: GameplayPanel = get_node(_gameplay_panel_path)
-@onready var _intermission_panel: IntermissionPanel = get_node(_intermission_panel_path)
-@onready var _hand: Hand = get_node(_hand_path)
-@onready var _background: Background = get_node(_background_path)
+@onready var _main_menu_panel: MainMenuPanel = get_node(main_menu_panel_path)
+@onready var _gameplay_panel: GameplayPanel = get_node(gameplay_panel_path)
+@onready var _intermission_panel: IntermissionPanel = get_node(intermission_panel_path)
+@onready var _hand: Hand = get_node(hand_path)
+@onready var _background: Background = get_node(background_path)
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from

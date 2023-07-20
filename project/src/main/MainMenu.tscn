@@ -22,11 +22,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MenuState" parent="Content" instance=ExtResource("2")]
-_main_menu_panel_path = NodePath("../MainMenuPanel")
-_gameplay_panel_path = NodePath("../GameplayPanel")
-_intermission_panel_path = NodePath("../IntermissionPanel")
-_hand_path = NodePath("../../Hand")
-_background_path = NodePath("../Background")
+main_menu_panel_path = NodePath("../MainMenuPanel")
+gameplay_panel_path = NodePath("../GameplayPanel")
+intermission_panel_path = NodePath("../IntermissionPanel")
+hand_path = NodePath("../../Hand")
+background_path = NodePath("../Background")
 
 [node name="Background" parent="Content" instance=ExtResource("18")]
 layout_mode = 1
