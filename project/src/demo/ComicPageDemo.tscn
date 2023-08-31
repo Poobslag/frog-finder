@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c58adu5euflje"]
+
+[ext_resource type="Script" path="res://src/demo/comic-page-demo.gd" id="1_ad1qj"]
+[ext_resource type="PackedScene" uid="uid://slr8c52p2m8u" path="res://src/main/comic/World2ComicPage.tscn" id="2_pjwei"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_ad1qj")
+
+[node name="ComicPage" parent="." instance=ExtResource("2_pjwei")]
