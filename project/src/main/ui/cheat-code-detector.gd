@@ -59,9 +59,9 @@ func _input(event: InputEvent) -> void:
 func _key_just_pressed(key_string: String) -> void:
 	_previous_keypresses += key_string
 	# remove the oldest keypresses so the buffer doesn't grow infinitely
-	_previous_keypresses = _previous_keypresses.right(_previous_keypresses.length() - MAX_LENGTH)
+	_previous_keypresses = _previous_keypresses.right(MAX_LENGTH)
 	for code in codes:
-		if code == _previous_keypresses.right(_previous_keypresses.length() - code.length()):
+		if code == _previous_keypresses.right(code.length()):
 			# Clear the keypress buffer, otherwise a keypress could count towards two different cheats
 			_previous_keypresses = ""
 			emit_signal("cheat_detected", code, self)
