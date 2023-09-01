@@ -34,6 +34,7 @@ window/size/viewport_width=1024
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
