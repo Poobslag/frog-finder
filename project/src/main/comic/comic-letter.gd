@@ -59,6 +59,9 @@ func hide_letter() -> void:
 
 
 func set_text(new_text: String) -> void:
+	if text == new_text:
+		return
+	
 	text = new_text
 	_refresh_text()
 
