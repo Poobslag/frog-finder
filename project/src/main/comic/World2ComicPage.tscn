@@ -2961,6 +2961,7 @@ libraries = {
 }
 
 [node name="Title" parent="ComicPanel01/Contents" instance=ExtResource("13_3kfqd")]
+text = "sunshine shoals"
 
 [node name="Frame" type="Sprite2D" parent="ComicPanel01"]
 position = Vector2(720, 212)
