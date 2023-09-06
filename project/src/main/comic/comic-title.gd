@@ -28,9 +28,6 @@ const PER_LETTER_DELAY := 0.07
 ## Gradually makes the title's letters visible.
 var _letter_tween: Tween
 
-## Letter nodes currently stored in BackLetters and FrontLetters.
-var _letter_nodes: Array[ComicLetter] = []
-
 ## Number of letter nodes already stored in BackLetters and FrontLetters.
 var _prev_letter_count := 0
 
@@ -56,6 +53,7 @@ func animate_title(value: bool) -> void:
 ## Titles are never hidden during comics, so this is only used when resetting the letter's state or during demos.
 func hide_title() -> void:
 	_letter_tween = Utils.kill_tween(_letter_tween)
+	var _letter_nodes := _ordered_letter_nodes()
 	for letter_node in _letter_nodes:
 		letter_node.hide_letter()
 
@@ -64,15 +62,27 @@ func hide_title() -> void:
 func show_title() -> void:
 	_letter_tween = Utils.recreate_tween(self, _letter_tween)
 	_letter_tween.set_parallel()
+	var _letter_nodes := _ordered_letter_nodes()
 	for letter_index in range(_letter_nodes.size()):
 		var letter_node := _letter_nodes[letter_index]
 		_letter_tween.tween_callback(letter_node.show_letter).set_delay(letter_index * PER_LETTER_DELAY)
 
 
 func set_text(new_text: String) -> void:
-	text = new_text
+	if text == new_text:
+		return
 	
+	text = new_text
 	_refresh_text()
+
+
+## Returns a list of letter nodes in BackLetters and FrontLetters ordered from left-to-right.
+func _ordered_letter_nodes() -> Array[Node]:
+	var result: Array[Node] = []
+	result.append_array(_back_letters.get_children())
+	for i in range(_front_letters.get_child_count()):
+		result.insert(i * 2 + 1, _front_letters.get_child(i))
+	return result
 
 
 ## Updates our letter nodes to match our text string.
@@ -80,7 +90,6 @@ func _refresh_text() -> void:
 	if not is_inside_tree():
 		return
 	
-	_letter_nodes.clear()
 	for child in _back_letters.get_children():
 		child.queue_free()
 		_back_letters.remove_child(child)
@@ -131,6 +140,5 @@ func _append_letter(letter_string: String, adjacent := true) -> void:
 	letter_parent.add_child(new_letter_node)
 	new_letter_node.set_owner(get_tree().edited_scene_root)
 	
-	_letter_nodes.append(new_letter_node)
 	_prev_letter_node = new_letter_node
 	_prev_letter_count += 1
