@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://d1kdkkkgqhpm" path="res://src/main/comic/ComicLetter.tscn" id="1_ranxm"]
 [ext_resource type="Shader" path="res://src/main/ui/flat-mix.gdshader" id="3_7cn3l"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vdan"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptj1e"]
 resource_local_to_scene = true
 shader = ExtResource("3_7cn3l")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkele"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbdgp"]
 resource_local_to_scene = true
 shader = ExtResource("3_7cn3l")
 shader_parameter/mix_color = Color(1, 1, 1, 0)
@@ -20,10 +20,10 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 script = ExtResource("1_3fo1s")
 
 [node name="Letter1" parent="." instance=ExtResource("1_ranxm")]
-material = SubResource("ShaderMaterial_6vdan")
+material = SubResource("ShaderMaterial_ptj1e")
 position = Vector2(462, 300)
+frame = 15
 
 [node name="Letter2" parent="." instance=ExtResource("1_ranxm")]
-material = SubResource("ShaderMaterial_lkele")
+material = SubResource("ShaderMaterial_cbdgp")
 position = Vector2(562, 300)
-frame = 15
