@@ -1,4 +1,10 @@
 extends Node
+## Demonstrates the comic letter animations.
+##
+## Keys:
+## 	[1,2]: Sets the current letter to the left or right letter
+## 	[A..Z]: Changes the text for the current letter
+## 	[space]: Hides/shows the current letter
 
 const LETTERS_BY_SCANCODE := {
 	KEY_A:"a", KEY_B:"b", KEY_C:"c", KEY_D:"d", KEY_E:"e", KEY_F:"f", KEY_G:"g", KEY_H:"h", KEY_I:"i",
