@@ -239,4 +239,4 @@ func _on_RunningFrog_finished_dance() -> void:
 
 
 func _on_ByeButton_pressed() -> void:
-	emit_signal("bye_pressed")
+	bye_pressed.emit()

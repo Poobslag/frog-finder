@@ -65,4 +65,4 @@ func _key_just_pressed(key_string: String) -> void:
 		if code == _previous_keypresses.right(code.length()):
 			# Clear the keypress buffer, otherwise a keypress could count towards two different cheats
 			_previous_keypresses = ""
-			emit_signal("cheat_detected", code, self)
+			cheat_detected.emit(code, self)

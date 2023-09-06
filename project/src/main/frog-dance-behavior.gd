@@ -86,7 +86,7 @@ func set_state(new_dance_state: int) -> void:
 			_frog.update_position()
 			_frog.velocity = Vector2.ZERO
 			_frog.play_animation("stand")
-			_frog.emit_signal("reached_dance_target")
+			_frog.reached_dance_target.emit()
 		DanceState.DANCE:
 			# The frog does some dance moves
 			_choreographer.play("dance")
@@ -98,7 +98,7 @@ func set_state(new_dance_state: int) -> void:
 				MusicPlayer.fade_in()
 			_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 			_frog.run()
-			_frog.emit_signal("finished_dance")
+			_frog.finished_dance.emit()
 			_sync_check_timer.stop()
 
 

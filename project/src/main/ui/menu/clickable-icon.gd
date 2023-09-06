@@ -24,7 +24,7 @@ func _enter_tree() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
-		emit_signal("pressed")
+		pressed.emit()
 
 
 func set_icon_texture(new_icon_texture: Texture2D) -> void:

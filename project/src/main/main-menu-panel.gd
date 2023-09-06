@@ -44,25 +44,25 @@ func show_menu() -> void:
 	$Title/Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	$Title/Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
 	
-	emit_signal("menu_shown")
+	menu_shown.emit()
 
 
 func _on_CardControl_before_frog_found(card: CardControl) -> void:
-	emit_signal("before_frog_found", card)
+	before_frog_found.emit(card)
 
 
 func _on_CardControl_before_shark_found(card: CardControl) -> void:
-	emit_signal("before_shark_found", card)
+	before_shark_found.emit(card)
 
 
 func _on_CardControl_frog_found(card: CardControl) -> void:
-	emit_signal("frog_found", card)
+	frog_found.emit(card)
 
 
 func _on_CardControl_shark_found(card: CardControl) -> void:
-	emit_signal("shark_found", card)
+	shark_found.emit(card)
 
 
 func _on_LevelButtons_level_pressed(level_index: int) -> void:
 	var mission_string := Utils.mission_string(PlayerData.world_index, level_index)
-	emit_signal("start_pressed", mission_string)
+	start_pressed.emit(mission_string)
