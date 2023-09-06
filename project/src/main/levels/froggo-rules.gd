@@ -70,8 +70,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_frog_found",Callable(self,"_on_LevelCards_before_frog_found"))
-	level_cards.connect("before_shark_found",Callable(self,"_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_frog_found", Callable(self, "_on_LevelCards_before_frog_found"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
 
 
 func add_cards() -> void:

@@ -39,7 +39,7 @@ func reset_wiggle() -> void:
 ##
 ## Defaults to '0' if the current frame isn't a wiggle frame.
 func assign_wiggle_frame() -> void:
-	var wiggle_index:int = (_left_wiggle_frames.find(_left.frame) + 1) % _left_wiggle_frames.size()
+	var wiggle_index: int = (_left_wiggle_frames.find(_left.frame) + 1) % _left_wiggle_frames.size()
 	_left.frame = _left_wiggle_frames[wiggle_index]
 	_right.frame = _right_wiggle_frames[wiggle_index]
 

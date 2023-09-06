@@ -28,11 +28,11 @@ var cell_pos_bounds := Rect2()
 
 func create_card() -> CardControl:
 	var card := CardControlScene.instantiate() as CardControl
-	card.connect("before_card_flipped",Callable(self,"_on_CardControl_before_card_flipped").bind(card))
-	card.connect("frog_found",Callable(self,"_on_CardControl_frog_found").bind(card))
-	card.connect("shark_found",Callable(self,"_on_CardControl_shark_found").bind(card))
-	card.connect("before_frog_found",Callable(self,"_on_CardControl_before_frog_found").bind(card))
-	card.connect("before_shark_found",Callable(self,"_on_CardControl_before_shark_found").bind(card))
+	card.connect("before_card_flipped", Callable(self, "_on_CardControl_before_card_flipped").bind(card))
+	card.connect("frog_found", Callable(self, "_on_CardControl_frog_found").bind(card))
+	card.connect("shark_found", Callable(self, "_on_CardControl_shark_found").bind(card))
+	card.connect("before_frog_found", Callable(self, "_on_CardControl_before_frog_found").bind(card))
+	card.connect("before_shark_found", Callable(self, "_on_CardControl_before_shark_found").bind(card))
 	return card
 
 
