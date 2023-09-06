@@ -168,7 +168,7 @@ func _refresh_mission_string() -> void:
 	level_ids.assign(LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS))
 
 
-func _on_LevelCards_frog_found(card: CardControl) -> void:
+func _on_level_cards_frog_found(card: CardControl) -> void:
 	player_puzzle_difficulty = \
 			int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
 	if player_streak >= 1:
@@ -178,16 +178,16 @@ func _on_LevelCards_frog_found(card: CardControl) -> void:
 	frog_found.emit(card)
 
 
-func _on_LevelCards_shark_found(card: CardControl) -> void:
+func _on_level_cards_shark_found(card: CardControl) -> void:
 	player_puzzle_difficulty = \
 			int(clamp(player_puzzle_difficulty - _shark_difficulty_decrease, 0, _max_puzzle_difficulty))
 	player_streak = 0
 	shark_found.emit(card)
 
 
-func _on_LevelCards_before_frog_found(card: CardControl) -> void:
+func _on_level_cards_before_frog_found(card: CardControl) -> void:
 	before_frog_found.emit(card)
 
 
-func _on_LevelCards_before_shark_found(card: CardControl) -> void:
+func _on_level_cards_before_shark_found(card: CardControl) -> void:
 	before_shark_found.emit(card)

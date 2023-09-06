@@ -36,12 +36,12 @@ var _chase_count := 0
 
 func set_hand(new_hand: Hand) -> void:
 	if hand:
-		hand.disconnect("hug_finished", Callable(self, "_on_Hand_hug_finished"))
+		hand.disconnect("hug_finished", Callable(self, "_on_hand_hug_finished"))
 	
 	hand = new_hand
 	
 	if hand:
-		hand.connect("hug_finished", Callable(self, "_on_Hand_hug_finished"))
+		hand.connect("hug_finished", Callable(self, "_on_hand_hug_finished"))
 
 
 func start_behavior(new_frog: Node) -> void:
@@ -80,7 +80,7 @@ func _panic() -> void:
 	_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 
 
-func _on_PanicTimer_timeout() -> void:
+func _on_panic_timer_timeout() -> void:
 	if hand.hugged_fingers >= hand.huggable_fingers and randf() < 0.5:
 		# oh no, we can't hug the hand! continue panicking!
 		_panic_timer.start(randf_range(SUPER_PANIC_DURATION, 5.0))
@@ -89,11 +89,11 @@ func _on_PanicTimer_timeout() -> void:
 		_chase()
 
 
-func _on_ChaseTimer_timeout() -> void:
+func _on_chase_timer_timeout() -> void:
 	_panic()
 
 
-func _on_Hand_hug_finished() -> void:
+func _on_hand_hug_finished() -> void:
 	if not _frog.is_hugging():
 		return
 	
@@ -104,7 +104,7 @@ func _on_Hand_hug_finished() -> void:
 	_frog.update_position()
 
 
-func _on_ThinkTimer_timeout() -> void:
+func _on_think_timer_timeout() -> void:
 	if not hand or hand.huggable_fingers < 1:
 		return
 	

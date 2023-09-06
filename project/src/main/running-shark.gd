@@ -109,17 +109,17 @@ func _refresh_run_speed() -> void:
 	_animation_player.speed_scale = run_speed / 150.0
 
 
-func _on_PanicTimer_timeout() -> void:
+func _on_panic_timer_timeout() -> void:
 	chase()
 	set_run_speed(lerp(run_speed, MAX_RUN_SPEED, 0.10))
 	agility = lerp(agility, MAX_AGILITY, 0.15)
 
 
-func _on_ChaseTimer_timeout() -> void:
+func _on_chase_timer_timeout() -> void:
 	panic()
 
 
-func _on_ThinkTimer_timeout() -> void:
+func _on_think_timer_timeout() -> void:
 	if not hand or hand.biteable_fingers < 1:
 		return
 	

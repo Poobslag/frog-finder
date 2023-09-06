@@ -423,11 +423,11 @@ func _flip_card() -> void:
 	
 	show_front()
 	_game_state.flip_timer.start()
-	_game_state.flip_timer.connect("timeout", Callable(self, "_on_FlipTimer_timeout"))
+	_game_state.flip_timer.connect("timeout", Callable(self, "_on_flip_timer_timeout"))
 
 
-func _on_FlipTimer_timeout() -> void:
-	_game_state.flip_timer.disconnect("timeout", Callable(self, "_on_FlipTimer_timeout"))
+func _on_flip_timer_timeout() -> void:
+	_game_state.flip_timer.disconnect("timeout", Callable(self, "_on_flip_timer_timeout"))
 	match card_front_type:
 		CardType.FROG:
 			if practice:
@@ -452,7 +452,7 @@ func _on_FlipTimer_timeout() -> void:
 			_creature_sfx.play()
 
 
-func _on_StopDanceTimer_timeout() -> void:
+func _on_stop_dance_timer_timeout() -> void:
 	if card_front_type != CardType.FROG:
 		return
 	
@@ -460,15 +460,15 @@ func _on_StopDanceTimer_timeout() -> void:
 	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
 
 
-func _on_FrogFoundTimer_timeout() -> void:
+func _on_frog_found_timer_timeout() -> void:
 	frog_found.emit()
 
 
-func _on_SharkFoundTimer_timeout() -> void:
+func _on_shark_found_timer_timeout() -> void:
 	shark_found.emit()
 
 
-func _on_CheerTimer_timeout() -> void:
+func _on_cheer_timer_timeout() -> void:
 	_creature_sfx.stream = Utils.rand_value(_frog_sounds)
 	_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 	_creature_sfx.play()

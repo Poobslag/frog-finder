@@ -26,8 +26,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -308,7 +308,7 @@ func _before_fish_flipped(card: CardControl) -> void:
 		card.card_front_type = CardControl.CardType.LIZARD
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	match card.card_front_type:
 		CardControl.CardType.FISH:
 			_before_fish_flipped(card)
@@ -319,7 +319,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 			_unexamined_secret_cell_positions.erase(level_cards.get_cell_pos(card))
 
 
-func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(shark_card: CardControl) -> void:
 	var adjacent_face_up_cards := _adjacent_face_up_cards(shark_card)
 	if not _red_or_adjacent_to_red(shark_card):
 		# if the player doesn't a card that's red, or next to a red card -- we reveal a sea of sharks and fish under the blue

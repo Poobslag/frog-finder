@@ -3854,5 +3854,5 @@ autostart = true
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("59_kp8gg")
 
-[connection signal="pressed" from="SkipButton" to="." method="_on_SkipButton_pressed"]
-[connection signal="timeout" from="Conductor/Timer" to="Conductor" method="_on_Timer_timeout"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="timeout" from="Conductor/Timer" to="Conductor" method="_on_timer_timeout"]

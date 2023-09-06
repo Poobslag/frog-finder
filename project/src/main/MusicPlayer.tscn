@@ -100,4 +100,4 @@ bus = &"Music"
 stream = ExtResource("18")
 bus = &"Music"
 
-[connection signal="finished" from="FrogDance" to="." method="_on_FrogDance_finished"]
+[connection signal="finished" from="FrogDance" to="." method="_on_frog_dance_finished"]

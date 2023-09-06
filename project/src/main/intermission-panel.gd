@@ -47,7 +47,7 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 @onready var _shark_spawn_timer := $SharkSpawnTimer
 
 func _ready() -> void:
-	hand.connect("hug_finished", Callable(self, "_on_Hand_hug_finished"))
+	hand.connect("hug_finished", Callable(self, "_on_hand_hug_finished"))
 
 
 func is_full() -> bool:
@@ -117,7 +117,7 @@ func start_frog_dance(frog_count: int) -> void:
 		var new_frog := _spawn_frog()
 		dance_frogs.append(new_frog)
 	
-	frogs[0].connect("finished_dance", Callable(self, "_on_RunningFrog_finished_dance"))
+	frogs[0].connect("finished_dance", Callable(self, "_on_running_frog_finished_dance"))
 	
 	var arrangement := FrogArrangements.get_arrangement(frog_count)
 	
@@ -203,7 +203,7 @@ func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
 	return hand.global_position.distance_to(a) > hand.global_position.distance_to(b)
 
 
-func _on_SharkSpawnTimer_timeout() -> void:
+func _on_shark_spawn_timer_timeout() -> void:
 	if not visible:
 		# After finishing the game, sometimes an invisible 'ghost frog' keeps chasing the cursor. It's rare, but my
 		# guess is it has to do with a race condition where this timer is triggered when the scene is invisible. I'm
@@ -216,7 +216,7 @@ func _on_SharkSpawnTimer_timeout() -> void:
 		_shark_spawn_timer.start(SHARK_DELAYS[shark_delay_index])
 
 
-func _on_FrogSpawnTimer_timeout() -> void:
+func _on_frog_spawn_timer_timeout() -> void:
 	if not visible:
 		# After finishing the game, sometimes an invisible 'ghost' frog keeps chasing the cursor.
 		# It's rare, but my guess is it has to do with a race condition where this timer is triggered when the scene
@@ -230,13 +230,13 @@ func _on_FrogSpawnTimer_timeout() -> void:
 		_frog_spawn_timer.start(FROG_DELAYS[frog_delay_index])
 
 
-func _on_Hand_hug_finished() -> void:
+func _on_hand_hug_finished() -> void:
 	_bye_button.visible = true
 
 
-func _on_RunningFrog_finished_dance() -> void:
+func _on_running_frog_finished_dance() -> void:
 	_bye_button.visible = true
 
 
-func _on_ByeButton_pressed() -> void:
+func _on_bye_button_pressed() -> void:
 	bye_pressed.emit()

@@ -22,24 +22,24 @@ signal level_pressed(level_index)
 func _ready() -> void:
 	var main_menu_panels: Array = get_tree().get_nodes_in_group("main_menu_panels")
 	if main_menu_panels.size() == 1:
-		main_menu_panels[0].connect("menu_shown", Callable(self, "_on_MainMenuPanel_menu_shown"))
+		main_menu_panels[0].connect("menu_shown", Callable(self, "_on_main_menu_panel_menu_shown"))
 	else:
 		push_warning("Unexpected main menu panel count: %s" % [main_menu_panels.size()])
 
 
-func _on_Prev_pressed() -> void:
+func _on_prev_pressed() -> void:
 	prev_world_pressed.emit()
 
 
-func _on_Next_pressed() -> void:
+func _on_next_pressed() -> void:
 	next_world_pressed.emit()
 
 
-func _on_Level_pressed(level_index: int) -> void:
+func _on_level_pressed(level_index: int) -> void:
 	level_pressed.emit(level_index)
 
 
-func _on_MainMenuPanel_menu_shown() -> void:
+func _on_main_menu_panel_menu_shown() -> void:
 	var world_index := get_index()
 	
 	for level_index in range(_level_buttons.size()):

@@ -120,6 +120,6 @@ func _refresh_hand_sprite() -> void:
 		_hand_sprite.set_state(HandSprite.State.ONE_FINGER)
 
 
-func _on_RestTimer_timeout() -> void:
+func _on_rest_timer_timeout() -> void:
 	resting = true if _previous_rect_position == position else false
 	_previous_rect_position = position

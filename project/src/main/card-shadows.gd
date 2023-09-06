@@ -19,7 +19,7 @@ func _ready() -> void:
 		if _parent_panel.is_ancestor_of(card):
 			create_shadow(card)
 	
-	Global.card_shadow_caster_added.connect(_on_Global_card_shadow_caster_added)
+	Global.card_shadow_caster_added.connect(_on_global_card_shadow_caster_added)
 
 
 ## Creates a shadow for the specified card.
@@ -30,6 +30,6 @@ func create_shadow(card: Node) -> void:
 
 
 ## Create a shadow for the newly generated card if it is a child of our parent panel.
-func _on_Global_card_shadow_caster_added(card: Node) -> void:
+func _on_global_card_shadow_caster_added(card: Node) -> void:
 	if _parent_panel.is_ancestor_of(card):
 		create_shadow(card)

@@ -72,10 +72,10 @@ func change(immediate: bool = false) -> void:
 		@warning_ignore("static_called_on_instance")
 		change_tween.tween_property(previous_texture, "modulate",
 				to_transparent(previous_texture.modulate), TWEEN_DURATION)
-		change_tween.chain().tween_callback(_on_ChangeTween_tween_completed.bind(previous_texture))
+		change_tween.chain().tween_callback(_on_change_tween_tween_completed.bind(previous_texture))
 
 
-func _on_ChangeTween_tween_completed(previous_texture: TextureRect) -> void:
+func _on_change_tween_tween_completed(previous_texture: TextureRect) -> void:
 	previous_texture.visible = false
 
 

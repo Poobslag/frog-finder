@@ -64,8 +64,8 @@ var _tweens_by_song := {}
 @onready var _ending_song := $HugFromAFrog
 
 func _ready() -> void:
-	PlayerData.connect("music_preference_changed", Callable(self, "_on_PlayerData_music_preference_changed"))
-	PlayerData.connect("world_index_changed", Callable(self, "_on_PlayerData_world_index_changed"))
+	PlayerData.connect("music_preference_changed", Callable(self, "_on_player_data_music_preference_changed"))
+	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
 
 
 func play_preferred_song() -> void:
@@ -209,13 +209,13 @@ func _fade(song: AudioStreamPlayer, new_volume_db: float, duration: float) -> vo
 		fade_tween.tween_callback(_current_song.stop)
 
 
-func _on_PlayerData_music_preference_changed() -> void:
+func _on_player_data_music_preference_changed() -> void:
 	play_preferred_song()
 
 
-func _on_PlayerData_world_index_changed() -> void:
+func _on_player_data_world_index_changed() -> void:
 	play_preferred_song()
 
 
-func _on_FrogDance_finished() -> void:
+func _on_frog_dance_finished() -> void:
 	_current_song = null

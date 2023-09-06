@@ -97,5 +97,5 @@ func _stop_in_editor(value: bool) -> void:
 	stop()
 
 
-func _on_SkipButton_pressed() -> void:
+func _on_skip_button_pressed() -> void:
 	fade_out()

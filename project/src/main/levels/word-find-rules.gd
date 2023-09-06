@@ -19,8 +19,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -215,12 +215,12 @@ func _frog_position() -> Vector2:
 	return result
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	if card.card_front_type == CardControl.CardType.FISH and randf() < _shark_chance:
 		card.card_front_type = CardControl.CardType.SHARK
 
 
-func _on_LevelCards_before_shark_found(_shark_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(_shark_card: CardControl) -> void:
 	# hide non-frog letters
 	for card in level_cards.get_cards():
 		if not card.card_front_type == CardControl.CardType.LETTER:

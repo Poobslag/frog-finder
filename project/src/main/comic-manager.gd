@@ -19,7 +19,7 @@ extends Control
 var _main_menu_show_count := 0
 
 func _ready() -> void:
-	PlayerData.connect("world_index_changed", Callable(self, "_on_PlayerData_world_index_changed"))
+	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
 
 
 ## Shows the comic interlude for the current world.
@@ -46,7 +46,7 @@ func show_comic(force: bool = false) -> void:
 
 
 ## When the main menu panel is shown for the first time, we show a comic interlude.
-func _on_MainMenuPanel_panel_menu_shown() -> void:
+func _on_main_menu_panel_panel_menu_shown() -> void:
 	_main_menu_show_count += 1
 	
 	if _main_menu_show_count == 1:
@@ -55,13 +55,13 @@ func _on_MainMenuPanel_panel_menu_shown() -> void:
 
 
 ## When the player navigates to a new world for the first time, we show a comic interlude.
-func _on_PlayerData_world_index_changed() -> void:
+func _on_player_data_world_index_changed() -> void:
 	if _main_menu_panel.visible:
 		# show an intro comic when the player reaches a new chapter
 		show_comic()
 
 
-func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+func _on_cheat_code_detector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "fromic":
 		detector.play_cheat_sound(true)
 		show_comic(true)

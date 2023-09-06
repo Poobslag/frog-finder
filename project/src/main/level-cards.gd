@@ -28,11 +28,11 @@ var cell_pos_bounds := Rect2()
 
 func create_card() -> CardControl:
 	var card := CardControlScene.instantiate() as CardControl
-	card.connect("before_card_flipped", Callable(self, "_on_CardControl_before_card_flipped").bind(card))
-	card.connect("frog_found", Callable(self, "_on_CardControl_frog_found").bind(card))
-	card.connect("shark_found", Callable(self, "_on_CardControl_shark_found").bind(card))
-	card.connect("before_frog_found", Callable(self, "_on_CardControl_before_frog_found").bind(card))
-	card.connect("before_shark_found", Callable(self, "_on_CardControl_before_shark_found").bind(card))
+	card.connect("before_card_flipped", Callable(self, "_on_card_control_before_card_flipped").bind(card))
+	card.connect("frog_found", Callable(self, "_on_card_control_frog_found").bind(card))
+	card.connect("shark_found", Callable(self, "_on_card_control_shark_found").bind(card))
+	card.connect("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card))
+	card.connect("before_shark_found", Callable(self, "_on_card_control_before_shark_found").bind(card))
 	return card
 
 
@@ -83,21 +83,21 @@ func reset() -> void:
 		remove_child(child)
 
 
-func _on_CardControl_frog_found(card: CardControl) -> void:
+func _on_card_control_frog_found(card: CardControl) -> void:
 	frog_found.emit(card)
 
 
-func _on_CardControl_shark_found(card: CardControl) -> void:
+func _on_card_control_shark_found(card: CardControl) -> void:
 	shark_found.emit(card)
 
 
-func _on_CardControl_before_card_flipped(card: CardControl) -> void:
+func _on_card_control_before_card_flipped(card: CardControl) -> void:
 	before_card_flipped.emit(card)
 
 
-func _on_CardControl_before_frog_found(card: CardControl) -> void:
+func _on_card_control_before_frog_found(card: CardControl) -> void:
 	before_frog_found.emit(card)
 
 
-func _on_CardControl_before_shark_found(card: CardControl) -> void:
+func _on_card_control_before_shark_found(card: CardControl) -> void:
 	before_shark_found.emit(card)

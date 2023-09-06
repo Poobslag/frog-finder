@@ -67,7 +67,7 @@ func start_behavior(new_frog: Node) -> void:
 	if is_lead_frog():
 		for next_frog in frogs:
 			_frogs_running_to_dance[next_frog] = true
-			next_frog.connect("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target").bind(next_frog))
+			next_frog.connect("reached_dance_target", Callable(self, "_on_running_frog_reached_dance_target").bind(next_frog))
 	
 	set_state(DanceState.RUN_TO_DANCE)
 
@@ -115,8 +115,8 @@ func stop_behavior(_new_frog: Node) -> void:
 	# disconnect signals
 	if is_lead_frog():
 		for next_frog in frogs:
-			if next_frog.is_connected("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target")):
-				next_frog.disconnect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target", [next_frog])
+			if next_frog.is_connected("reached_dance_target", Callable(self, "_on_running_frog_reached_dance_target")):
+				next_frog.disconnect("reached_dance_target", self, "_on_running_frog_reached_dance_target", [next_frog])
 	
 	frogs = []
 	dance_target = Vector2.ZERO
@@ -203,16 +203,16 @@ func _adjust_velocity_toward_dance_target() -> void:
 
 
 ## After a frog runs for a little while, they lock themselves into their their dance target.
-func _on_RunTimer_timeout() -> void:
+func _on_run_timer_timeout() -> void:
 	set_state(DanceState.WAIT_TO_DANCE)
 
 
 ## When a frog reaches their dance target, the lead frog checks if it's time to start the dance.
-func _on_RunningFrog_reached_dance_target(other_frog: RunningFrog) -> void:
+func _on_running_frog_reached_dance_target(other_frog: RunningFrog) -> void:
 	if not is_lead_frog():
 		return
 	
-	other_frog.disconnect("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target"))
+	other_frog.disconnect("reached_dance_target", Callable(self, "_on_running_frog_reached_dance_target"))
 	_frogs_running_to_dance.erase(other_frog)
 	if _frogs_running_to_dance.is_empty():
 		# all frogs have reached their dance targets, we can start dancing
@@ -226,7 +226,7 @@ func _on_RunningFrog_reached_dance_target(other_frog: RunningFrog) -> void:
 
 
 ## After pausing for a moment, the lead frog tells everyone to dance.
-func _on_WaitToDanceTimer_timeout() -> void:
+func _on_wait_to_dance_timer_timeout() -> void:
 	if not is_lead_frog():
 		return
 	
@@ -240,7 +240,7 @@ func _on_WaitToDanceTimer_timeout() -> void:
 ##
 ## These can fall out of sync if the game runs too slow for some reason. I can force it to happen by dragging the
 ## window around.
-func _on_SyncCheckTimer_timeout() -> void:
+func _on_sync_check_timer_timeout() -> void:
 	if not MusicPlayer.is_playing_dance_song():
 		return
 	
@@ -253,7 +253,7 @@ func _on_SyncCheckTimer_timeout() -> void:
 ## Every once in awhile, we check to make sure we're still running to our dance target.
 ##
 ## It's theoretically possible that we could run past our target and need to turn around.
-func _on_ThinkTimer_timeout() -> void:
+func _on_think_timer_timeout() -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
 		var close_enough := (_frog.soon_position - dance_target).length() <= REACHED_TARGET_DISTANCE
 		if not close_enough:

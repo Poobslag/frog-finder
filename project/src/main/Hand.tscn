@@ -50,4 +50,4 @@ script = ExtResource("7")
 wait_time = 0.1
 autostart = true
 
-[connection signal="timeout" from="RestTimer" to="." method="_on_RestTimer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
