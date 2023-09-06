@@ -28,15 +28,15 @@ func _ready() -> void:
 
 
 func _on_Prev_pressed() -> void:
-	emit_signal("prev_world_pressed")
+	prev_world_pressed.emit()
 
 
 func _on_Next_pressed() -> void:
-	emit_signal("next_world_pressed")
+	next_world_pressed.emit()
 
 
 func _on_Level_pressed(level_index: int) -> void:
-	emit_signal("level_pressed", level_index)
+	level_pressed.emit(level_index)
 
 
 func _on_MainMenuPanel_menu_shown() -> void:

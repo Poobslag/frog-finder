@@ -56,7 +56,7 @@ func bite() -> void:
 		1: $FingerSprite1.bite(1)
 		2: $FingerSprite2.bite(0)
 	
-	emit_signal("finger_bitten")
+	finger_bitten.emit()
 
 
 func hug() -> void:
@@ -92,7 +92,7 @@ func _finish_hug() -> void:
 	hugged_fingers = 0
 	_refresh_hand_sprite()
 	_hug_sprite.assign_wiggle_frame()
-	emit_signal("hug_finished")
+	hug_finished.emit()
 
 
 func _refresh_hand_sprite() -> void:

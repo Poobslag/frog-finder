@@ -64,12 +64,12 @@ func get_mission_cleared(mission_string: String) -> int:
 
 func set_world_index(new_world_index: int) -> void:
 	world_index = new_world_index
-	emit_signal("world_index_changed")
+	world_index_changed.emit()
 
 
 func set_music_preference(new_music_preference: int) -> void:
 	music_preference = new_music_preference
-	emit_signal("music_preference_changed")
+	music_preference_changed.emit()
 
 
 func increment_music_preference() -> void:

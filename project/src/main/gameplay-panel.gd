@@ -175,19 +175,19 @@ func _on_LevelCards_frog_found(card: CardControl) -> void:
 		player_puzzle_difficulty = \
 				int(clamp(player_puzzle_difficulty + 1, 0, _max_puzzle_difficulty))
 	player_streak += 1
-	emit_signal("frog_found", card)
+	frog_found.emit(card)
 
 
 func _on_LevelCards_shark_found(card: CardControl) -> void:
 	player_puzzle_difficulty = \
 			int(clamp(player_puzzle_difficulty - _shark_difficulty_decrease, 0, _max_puzzle_difficulty))
 	player_streak = 0
-	emit_signal("shark_found", card)
+	shark_found.emit(card)
 
 
 func _on_LevelCards_before_frog_found(card: CardControl) -> void:
-	emit_signal("before_frog_found", card)
+	before_frog_found.emit(card)
 
 
 func _on_LevelCards_before_shark_found(card: CardControl) -> void:
-	emit_signal("before_shark_found", card)
+	before_shark_found.emit(card)

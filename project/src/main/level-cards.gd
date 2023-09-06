@@ -84,20 +84,20 @@ func reset() -> void:
 
 
 func _on_CardControl_frog_found(card: CardControl) -> void:
-	emit_signal("frog_found", card)
+	frog_found.emit(card)
 
 
 func _on_CardControl_shark_found(card: CardControl) -> void:
-	emit_signal("shark_found", card)
+	shark_found.emit(card)
 
 
 func _on_CardControl_before_card_flipped(card: CardControl) -> void:
-	emit_signal("before_card_flipped", card)
+	before_card_flipped.emit(card)
 
 
 func _on_CardControl_before_frog_found(card: CardControl) -> void:
-	emit_signal("before_frog_found", card)
+	before_frog_found.emit(card)
 
 
 func _on_CardControl_before_shark_found(card: CardControl) -> void:
-	emit_signal("before_shark_found", card)
+	before_shark_found.emit(card)

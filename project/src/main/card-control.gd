@@ -419,7 +419,7 @@ func _flip_card() -> void:
 	
 	_pop_brust_sfx.pitch_scale = randf_range(0.9, 1.10)
 	_pop_brust_sfx.play()
-	emit_signal("before_card_flipped")
+	before_card_flipped.emit()
 	
 	show_front()
 	_game_state.flip_timer.start()
@@ -436,7 +436,7 @@ func _on_FlipTimer_timeout() -> void:
 			else:
 				_game_state.can_interact = false
 			
-			emit_signal("before_frog_found")
+			before_frog_found.emit()
 			_cheer_timer.start()
 			_frog_found_timer.start(2.0)
 		CardType.SHARK:
@@ -445,7 +445,7 @@ func _on_FlipTimer_timeout() -> void:
 				pass
 			else:
 				_game_state.can_interact = false
-			emit_signal("before_shark_found")
+			before_shark_found.emit()
 			_shark_found_timer.start(3.2)
 			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
 			_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
@@ -461,11 +461,11 @@ func _on_StopDanceTimer_timeout() -> void:
 
 
 func _on_FrogFoundTimer_timeout() -> void:
-	emit_signal("frog_found")
+	frog_found.emit()
 
 
 func _on_SharkFoundTimer_timeout() -> void:
-	emit_signal("shark_found")
+	shark_found.emit()
 
 
 func _on_CheerTimer_timeout() -> void:
