@@ -79,7 +79,10 @@ fi
 
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src \
-  | grep -v " = parse_json(")
+  | grep -v " = parse_json(" \
+  | grep -v "utils\\.gd.*var new_key = key" \
+  | grep -v "utils\\.gd.*var new_value = dict\[key\]" \
+  )
 if [ -n "$RESULT" ]
 then
   echo ""

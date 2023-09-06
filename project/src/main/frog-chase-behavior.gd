@@ -36,12 +36,12 @@ var _chase_count := 0
 
 func set_hand(new_hand: Hand) -> void:
 	if hand:
-		hand.disconnect("hug_finished",Callable(self,"_on_Hand_hug_finished"))
+		hand.disconnect("hug_finished", Callable(self, "_on_Hand_hug_finished"))
 	
 	hand = new_hand
 	
 	if hand:
-		hand.connect("hug_finished",Callable(self,"_on_Hand_hug_finished"))
+		hand.connect("hug_finished", Callable(self, "_on_Hand_hug_finished"))
 
 
 func start_behavior(new_frog: Node) -> void:

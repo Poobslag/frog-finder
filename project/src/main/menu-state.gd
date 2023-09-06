@@ -51,7 +51,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 		if _intermission_panel.is_full():
 			_play_ending()
 		else:
-			_start_timer(3.0).connect("timeout",Callable(self,"_on_Timer_timeout_end_intermission"))
+			_start_timer(3.0).connect("timeout", Callable(self, "_on_Timer_timeout_end_intermission"))
 
 
 ## Creates and starts a one-shot timer.
@@ -82,7 +82,7 @@ func _add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout",Callable(self,"_on_Timer_timeout_queue_free").bind(timer))
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout_queue_free").bind(timer))
 	_timers.add_child(timer)
 	return timer
 
@@ -182,7 +182,7 @@ func _on_GameplayPanel_frog_found(card: CardControl) -> void:
 
 func _on_Hand_finger_bitten() -> void:
 	if _hand.biteable_fingers == 0:
-		_start_timer(4.0).connect("timeout",Callable(self,"_on_Timer_timeout_end_intermission"))
+		_start_timer(4.0).connect("timeout", Callable(self, "_on_Timer_timeout_end_intermission"))
 
 
 func _on_MainMenuPanel_frog_found(_card: CardControl) -> void:

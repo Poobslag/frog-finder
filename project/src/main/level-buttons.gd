@@ -22,7 +22,7 @@ signal level_pressed(level_index)
 func _ready() -> void:
 	var main_menu_panels: Array = get_tree().get_nodes_in_group("main_menu_panels")
 	if main_menu_panels.size() == 1:
-		main_menu_panels[0].connect("menu_shown",Callable(self,"_on_MainMenuPanel_menu_shown"))
+		main_menu_panels[0].connect("menu_shown", Callable(self, "_on_MainMenuPanel_menu_shown"))
 	else:
 		push_warning("Unexpected main menu panel count: %s" % [main_menu_panels.size()])
 

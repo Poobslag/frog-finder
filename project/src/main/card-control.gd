@@ -423,11 +423,11 @@ func _flip_card() -> void:
 	
 	show_front()
 	_game_state.flip_timer.start()
-	_game_state.flip_timer.connect("timeout",Callable(self,"_on_FlipTimer_timeout"))
+	_game_state.flip_timer.connect("timeout", Callable(self, "_on_FlipTimer_timeout"))
 
 
 func _on_FlipTimer_timeout() -> void:
-	_game_state.flip_timer.disconnect("timeout",Callable(self,"_on_FlipTimer_timeout"))
+	_game_state.flip_timer.disconnect("timeout", Callable(self, "_on_FlipTimer_timeout"))
 	match card_front_type:
 		CardType.FROG:
 			if practice:

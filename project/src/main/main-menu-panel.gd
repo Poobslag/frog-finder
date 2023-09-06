@@ -26,10 +26,10 @@ signal menu_shown
 func _ready() -> void:
 	for card in _all_cards:
 		card.show_front()
-		card.connect("before_frog_found",Callable(self,"_on_CardControl_before_frog_found").bind(card))
-		card.connect("frog_found",Callable(self,"_on_CardControl_frog_found").bind(card))
-		card.connect("before_shark_found",Callable(self,"_on_CardControl_before_shark_found").bind(card))
-		card.connect("shark_found",Callable(self,"_on_CardControl_shark_found").bind(card))
+		card.connect("before_frog_found", Callable(self, "_on_CardControl_before_frog_found").bind(card))
+		card.connect("frog_found", Callable(self, "_on_CardControl_frog_found").bind(card))
+		card.connect("before_shark_found", Callable(self, "_on_CardControl_before_shark_found").bind(card))
+		card.connect("shark_found", Callable(self, "_on_CardControl_shark_found").bind(card))
 	
 	for card in [$Title/Card1O, $Title/Card2I]:
 		card.hide_front()

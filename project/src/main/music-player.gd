@@ -64,8 +64,8 @@ var _tweens_by_song := {}
 @onready var _ending_song := $HugFromAFrog
 
 func _ready() -> void:
-	PlayerData.connect("music_preference_changed",Callable(self,"_on_PlayerData_music_preference_changed"))
-	PlayerData.connect("world_index_changed",Callable(self,"_on_PlayerData_world_index_changed"))
+	PlayerData.connect("music_preference_changed", Callable(self, "_on_PlayerData_music_preference_changed"))
+	PlayerData.connect("world_index_changed", Callable(self, "_on_PlayerData_world_index_changed"))
 
 
 func play_preferred_song() -> void:

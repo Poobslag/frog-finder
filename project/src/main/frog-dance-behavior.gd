@@ -67,7 +67,7 @@ func start_behavior(new_frog: Node) -> void:
 	if is_lead_frog():
 		for next_frog in frogs:
 			_frogs_running_to_dance[next_frog] = true
-			next_frog.connect("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target").bind(next_frog))
+			next_frog.connect("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target").bind(next_frog))
 	
 	set_state(DanceState.RUN_TO_DANCE)
 
@@ -115,7 +115,7 @@ func stop_behavior(_new_frog: Node) -> void:
 	# disconnect signals
 	if is_lead_frog():
 		for next_frog in frogs:
-			if next_frog.is_connected("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target")):
+			if next_frog.is_connected("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target")):
 				next_frog.disconnect("reached_dance_target", self, "_on_RunningFrog_reached_dance_target", [next_frog])
 	
 	frogs = []
@@ -212,7 +212,7 @@ func _on_RunningFrog_reached_dance_target(other_frog: RunningFrog) -> void:
 	if not is_lead_frog():
 		return
 	
-	other_frog.disconnect("reached_dance_target",Callable(self,"_on_RunningFrog_reached_dance_target"))
+	other_frog.disconnect("reached_dance_target", Callable(self, "_on_RunningFrog_reached_dance_target"))
 	_frogs_running_to_dance.erase(other_frog)
 	if _frogs_running_to_dance.is_empty():
 		# all frogs have reached their dance targets, we can start dancing
