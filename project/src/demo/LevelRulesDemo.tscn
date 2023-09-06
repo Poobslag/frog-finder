@@ -47,7 +47,7 @@ offset_right = 134.0
 offset_bottom = 30.0
 theme = ExtResource("7")
 
-[connection signal="before_frog_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_LevelCards_before_frog_found"]
-[connection signal="before_shark_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_LevelCards_before_shark_found"]
-[connection signal="frog_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_LevelCards_frog_found"]
-[connection signal="shark_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_LevelCards_shark_found"]
+[connection signal="before_frog_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_level_cards_before_frog_found"]
+[connection signal="before_shark_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_level_cards_before_shark_found"]
+[connection signal="frog_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_level_cards_frog_found"]
+[connection signal="shark_found" from="GameplayPanel/LevelCards" to="GameplayPanel" method="_on_level_cards_shark_found"]

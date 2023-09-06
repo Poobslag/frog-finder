@@ -13,7 +13,7 @@ const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 
 func _ready() -> void:
 	_refresh_sprite()
-	PlayerData.connect("music_preference_changed", Callable(self, "_on_PlayerData_music_preference_changed"))
+	PlayerData.connect("music_preference_changed", Callable(self, "_on_player_data_music_preference_changed"))
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -31,5 +31,5 @@ func _refresh_sprite() -> void:
 	_sprite.assign_wiggle_frame()
 
 
-func _on_PlayerData_music_preference_changed() -> void:
+func _on_player_data_music_preference_changed() -> void:
 	_refresh_sprite()

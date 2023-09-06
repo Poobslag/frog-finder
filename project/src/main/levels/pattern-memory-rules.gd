@@ -25,8 +25,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -182,7 +182,7 @@ func _before_fish_flipped(fish_card: CardControl) -> void:
 		shark_card.card_front_type = CardControl.CardType.FISH
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	match card.card_front_type:
 		CardControl.CardType.LIZARD:
 			_before_lizard_flipped(card)
@@ -190,7 +190,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 			_before_fish_flipped(card)
 
 
-func _on_LevelCards_before_shark_found(_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(_card: CardControl) -> void:
 	for card in level_cards.get_cards():
 		if not card.is_front_shown() and card.card_front_type == CardControl.CardType.FISH:
 			card.show_front()

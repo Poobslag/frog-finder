@@ -70,8 +70,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_frog_found", Callable(self, "_on_LevelCards_before_frog_found"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_frog_found", Callable(self, "_on_level_cards_before_frog_found"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -358,9 +358,9 @@ func _show_aliax(clicked_card: CardControl) -> void:
 		card.show_front()
 
 
-func _on_LevelCards_before_frog_found(card: CardControl) -> void:
+func _on_level_cards_before_frog_found(card: CardControl) -> void:
 	_show_aliax(card)
 
 
-func _on_LevelCards_before_shark_found(card: CardControl) -> void:
+func _on_level_cards_before_shark_found(card: CardControl) -> void:
 	_show_aliax(card)

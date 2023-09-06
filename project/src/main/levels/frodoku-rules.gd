@@ -18,8 +18,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -216,7 +216,7 @@ func _region(cell_pos: Vector2) -> int:
 	return region
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	if card.card_front_type == CardControl.CardType.LIZARD:
 		# the player found a lizard, they're on the right track
 		
@@ -246,7 +246,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 				card.card_front_details = ""
 
 
-func _on_LevelCards_before_shark_found(shark_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(shark_card: CardControl) -> void:
 	var other_cards := level_cards.get_cards()
 	other_cards.shuffle()
 	var new_frog_card: CardControl

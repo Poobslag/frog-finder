@@ -82,9 +82,9 @@ offset_bottom = 421.0
 icon_texture = ExtResource("1")
 icon_index = 7
 
-[connection signal="timeout" from="WideWowSprite/WiggleTimer" to="WideWowSprite" method="_on_WiggleTimer_timeout"]
-[connection signal="pressed" from="Prev" to="." method="_on_Prev_pressed"]
-[connection signal="pressed" from="Level1" to="." method="_on_Level_pressed" binds= [0]]
-[connection signal="pressed" from="Level2" to="." method="_on_Level_pressed" binds= [1]]
-[connection signal="pressed" from="Level3" to="." method="_on_Level_pressed" binds= [2]]
-[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
+[connection signal="timeout" from="WideWowSprite/WiggleTimer" to="WideWowSprite" method="_on_wiggle_timer_timeout"]
+[connection signal="pressed" from="Prev" to="." method="_on_prev_pressed"]
+[connection signal="pressed" from="Level1" to="." method="_on_level_pressed" binds= [0]]
+[connection signal="pressed" from="Level2" to="." method="_on_level_pressed" binds= [1]]
+[connection signal="pressed" from="Level3" to="." method="_on_level_pressed" binds= [2]]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

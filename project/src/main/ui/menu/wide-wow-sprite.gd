@@ -44,6 +44,6 @@ func assign_wiggle_frame() -> void:
 	_right.frame = _right_wiggle_frames[wiggle_index]
 
 
-func _on_WiggleTimer_timeout() -> void:
+func _on_wiggle_timer_timeout() -> void:
 	assign_wiggle_frame()
 	_wiggle_timer.wait_time = randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME)

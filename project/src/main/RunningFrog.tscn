@@ -1023,9 +1023,9 @@ libraries = {
 "": SubResource("AnimationLibrary_1nhyy")
 }
 
-[connection signal="timeout" from="ChaseBehavior/ChaseTimer" to="ChaseBehavior" method="_on_ChaseTimer_timeout"]
-[connection signal="timeout" from="ChaseBehavior/PanicTimer" to="ChaseBehavior" method="_on_PanicTimer_timeout"]
-[connection signal="timeout" from="ChaseBehavior/ThinkTimer" to="ChaseBehavior" method="_on_ThinkTimer_timeout"]
-[connection signal="timeout" from="DanceBehavior/SyncCheckTimer" to="DanceBehavior" method="_on_SyncCheckTimer_timeout"]
-[connection signal="timeout" from="DanceBehavior/ThinkTimer" to="DanceBehavior" method="_on_ThinkTimer_timeout"]
-[connection signal="timeout" from="DanceBehavior/WaitToDanceTimer" to="DanceBehavior" method="_on_WaitToDanceTimer_timeout"]
+[connection signal="timeout" from="ChaseBehavior/ChaseTimer" to="ChaseBehavior" method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="ChaseBehavior/PanicTimer" to="ChaseBehavior" method="_on_panic_timer_timeout"]
+[connection signal="timeout" from="ChaseBehavior/ThinkTimer" to="ChaseBehavior" method="_on_think_timer_timeout"]
+[connection signal="timeout" from="DanceBehavior/SyncCheckTimer" to="DanceBehavior" method="_on_sync_check_timer_timeout"]
+[connection signal="timeout" from="DanceBehavior/ThinkTimer" to="DanceBehavior" method="_on_think_timer_timeout"]
+[connection signal="timeout" from="DanceBehavior/WaitToDanceTimer" to="DanceBehavior" method="_on_wait_to_dance_timer_timeout"]

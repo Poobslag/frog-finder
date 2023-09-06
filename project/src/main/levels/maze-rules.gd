@@ -55,8 +55,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -241,7 +241,7 @@ func _before_mistake_flipped(card: CardControl) -> void:
 		card.card_front_type = CardControl.CardType.SHARK
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	if not card.card_front_type == CardControl.CardType.FISH:
 		# we leave arrows alone. we only mess with fish
 		pass
@@ -266,7 +266,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 		old_card.card_front_details = ""
 
 
-func _on_LevelCards_before_shark_found(_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(_card: CardControl) -> void:
 	# unblank blanked arrows
 	for card in _blanked_arrows_to_original.keys():
 		card.card_front_details = _blanked_arrows_to_original[card]

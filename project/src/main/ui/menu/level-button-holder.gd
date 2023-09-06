@@ -2,7 +2,7 @@ extends Control
 
 func _ready() -> void:
 	_refresh_world_index()
-	PlayerData.connect("world_index_changed", Callable(self, "_on_PlayerData_world_index_changed"))
+	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
 
 
 ## Ensure exactly one set of world buttons is visible.
@@ -30,15 +30,15 @@ func _current_visible_child_index() -> int:
 	return result
 
 
-func _on_LevelButtons_next_world_pressed() -> void:
+func _on_level_buttons_next_world_pressed() -> void:
 	var visible_child_index := _current_visible_child_index()
 	PlayerData.world_index = int(clamp(visible_child_index + 1, 0, get_child_count()))
 
 
-func _on_LevelButtons_prev_world_pressed() -> void:
+func _on_level_buttons_prev_world_pressed() -> void:
 	var visible_child_index := _current_visible_child_index()
 	PlayerData.world_index = int(clamp(visible_child_index - 1, 0, get_child_count()))
 
 
-func _on_PlayerData_world_index_changed() -> void:
+func _on_player_data_world_index_changed() -> void:
 	_refresh_world_index()

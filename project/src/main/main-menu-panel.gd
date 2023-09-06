@@ -26,10 +26,10 @@ signal menu_shown
 func _ready() -> void:
 	for card in _all_cards:
 		card.show_front()
-		card.connect("before_frog_found", Callable(self, "_on_CardControl_before_frog_found").bind(card))
-		card.connect("frog_found", Callable(self, "_on_CardControl_frog_found").bind(card))
-		card.connect("before_shark_found", Callable(self, "_on_CardControl_before_shark_found").bind(card))
-		card.connect("shark_found", Callable(self, "_on_CardControl_shark_found").bind(card))
+		card.connect("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card))
+		card.connect("frog_found", Callable(self, "_on_card_control_frog_found").bind(card))
+		card.connect("before_shark_found", Callable(self, "_on_card_control_before_shark_found").bind(card))
+		card.connect("shark_found", Callable(self, "_on_card_control_shark_found").bind(card))
 	
 	for card in [$Title/Card1O, $Title/Card2I]:
 		card.hide_front()
@@ -47,22 +47,22 @@ func show_menu() -> void:
 	menu_shown.emit()
 
 
-func _on_CardControl_before_frog_found(card: CardControl) -> void:
+func _on_card_control_before_frog_found(card: CardControl) -> void:
 	before_frog_found.emit(card)
 
 
-func _on_CardControl_before_shark_found(card: CardControl) -> void:
+func _on_card_control_before_shark_found(card: CardControl) -> void:
 	before_shark_found.emit(card)
 
 
-func _on_CardControl_frog_found(card: CardControl) -> void:
+func _on_card_control_frog_found(card: CardControl) -> void:
 	frog_found.emit(card)
 
 
-func _on_CardControl_shark_found(card: CardControl) -> void:
+func _on_card_control_shark_found(card: CardControl) -> void:
 	shark_found.emit(card)
 
 
-func _on_LevelButtons_level_pressed(level_index: int) -> void:
+func _on_level_buttons_level_pressed(level_index: int) -> void:
 	var mission_string := Utils.mission_string(PlayerData.world_index, level_index)
 	start_pressed.emit(mission_string)

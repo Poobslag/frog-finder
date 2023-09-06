@@ -51,7 +51,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 		if _intermission_panel.is_full():
 			_play_ending()
 		else:
-			_start_timer(3.0).connect("timeout", Callable(self, "_on_Timer_timeout_end_intermission"))
+			_start_timer(3.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
 
 
 ## Creates and starts a one-shot timer.
@@ -82,7 +82,7 @@ func _add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout", Callable(self, "_on_Timer_timeout_queue_free").bind(timer))
+	timer.connect("timeout", Callable(self, "_on_timer_timeout_queue_free").bind(timer))
 	_timers.add_child(timer)
 	return timer
 
@@ -134,17 +134,17 @@ func _play_ending() -> void:
 ## After a delay, spawns frogs which hug the cursor.
 func _schedule_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
 	MusicPlayer.fade_out(4.0)
-	_start_timer(3.0).connect("timeout", _on_Timer_timeout_play_frog_hug_ending.bind(huggable_fingers, new_max_frogs))
+	_start_timer(3.0).connect("timeout", _on_timer_timeout_play_frog_hug_ending.bind(huggable_fingers, new_max_frogs))
 
 
 ## Spawns frogs which hug the cursor.
-func _on_Timer_timeout_play_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
+func _on_timer_timeout_play_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
 	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
 		MusicPlayer.play_ending_song()
 	_intermission_panel.start_frog_hug_timer(huggable_fingers, new_max_frogs)
 
 
-func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
+func _on_main_menu_panel_start_pressed(mission_string: String) -> void:
 	# save, in case the user changed their music preference
 	PlayerData.save_player_data()
 	
@@ -160,63 +160,63 @@ func _on_MainMenuPanel_start_pressed(mission_string: String) -> void:
 	_gameplay_panel.show_puzzle()
 
 
-func _on_GameplayPanel_before_shark_found(_card: CardControl) -> void:
+func _on_gameplay_panel_before_shark_found(_card: CardControl) -> void:
 	if MusicPlayer.is_playing_frog_song() or MusicPlayer.is_playing_ending_song():
 		MusicPlayer.play_shark_song()
 
 
-func _on_GameplayPanel_before_frog_found(_card: CardControl) -> void:
+func _on_gameplay_panel_before_frog_found(_card: CardControl) -> void:
 	if MusicPlayer.is_playing_shark_song():
 		MusicPlayer.play_preferred_song()
 
 
-func _on_GameplayPanel_shark_found(card: CardControl) -> void:
+func _on_gameplay_panel_shark_found(card: CardControl) -> void:
 	PlayerData.shark_count += 1
 	_show_intermission_panel(card)
 
 
-func _on_GameplayPanel_frog_found(card: CardControl) -> void:
+func _on_gameplay_panel_frog_found(card: CardControl) -> void:
 	PlayerData.frog_count += 1
 	_show_intermission_panel(card)
 
 
-func _on_Hand_finger_bitten() -> void:
+func _on_hand_finger_bitten() -> void:
 	if _hand.biteable_fingers == 0:
-		_start_timer(4.0).connect("timeout", Callable(self, "_on_Timer_timeout_end_intermission"))
+		_start_timer(4.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
 
 
-func _on_MainMenuPanel_frog_found(_card: CardControl) -> void:
+func _on_main_menu_panel_frog_found(_card: CardControl) -> void:
 	PlayerData.frog_count += 1
 
 
-func _on_MainMenuPanel_shark_found(_card: CardControl) -> void:
+func _on_main_menu_panel_shark_found(_card: CardControl) -> void:
 	PlayerData.shark_count += 1
 
 
-func _on_MainMenuPanel_before_shark_found(_card: CardControl) -> void:
+func _on_main_menu_panel_before_shark_found(_card: CardControl) -> void:
 	if MusicPlayer.is_playing_frog_song():
 		# we don't play a shark song if there's no current song (music is off)
 		MusicPlayer.play_shark_song()
 
 
-func _on_MainMenuPanel_before_frog_found(_card: CardControl) -> void:
+func _on_main_menu_panel_before_frog_found(_card: CardControl) -> void:
 	if MusicPlayer.is_playing_shark_song():
 		MusicPlayer.play_preferred_song()
 
 
-func _on_IntermissionPanel_bye_pressed() -> void:
+func _on_intermission_panel_bye_pressed() -> void:
 	_end_intermission()
 
 
-func _on_Timer_timeout_queue_free(timer: Timer) -> void:
+func _on_timer_timeout_queue_free(timer: Timer) -> void:
 	timer.queue_free()
 
 
-func _on_Timer_timeout_end_intermission() -> void:
+func _on_timer_timeout_end_intermission() -> void:
 	_end_intermission()
 
 
-func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+func _on_cheat_code_detector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	match cheat:
 		"onefrog":
 			if _main_menu_panel.visible:

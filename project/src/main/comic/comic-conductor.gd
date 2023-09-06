@@ -91,7 +91,7 @@ func _find_sfx_track(animation: Animation) -> int:
 ##
 ## These can fall out of sync if the game runs too slow for some reason. I can force it to happen by dragging the
 ## window around.
-func _on_Timer_timeout() -> void:
+func _on_timer_timeout() -> void:
 	if not current_animation == "play":
 		return
 	

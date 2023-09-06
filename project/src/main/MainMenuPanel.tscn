@@ -326,12 +326,12 @@ text = "v1.02"
 horizontal_alignment = 2
 script = ExtResource("15")
 
-[connection signal="level_pressed" from="LevelButtonHolder/World1Buttons" to="." method="_on_LevelButtons_level_pressed"]
-[connection signal="next_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
-[connection signal="prev_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
-[connection signal="level_pressed" from="LevelButtonHolder/World2Buttons" to="." method="_on_LevelButtons_level_pressed"]
-[connection signal="next_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
-[connection signal="prev_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
-[connection signal="level_pressed" from="LevelButtonHolder/World3Buttons" to="." method="_on_LevelButtons_level_pressed"]
-[connection signal="next_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_next_world_pressed"]
-[connection signal="prev_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_LevelButtons_prev_world_pressed"]
+[connection signal="level_pressed" from="LevelButtonHolder/World1Buttons" to="." method="_on_level_buttons_level_pressed"]
+[connection signal="next_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_level_buttons_next_world_pressed"]
+[connection signal="prev_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_level_buttons_prev_world_pressed"]
+[connection signal="level_pressed" from="LevelButtonHolder/World2Buttons" to="." method="_on_level_buttons_level_pressed"]
+[connection signal="next_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_level_buttons_next_world_pressed"]
+[connection signal="prev_world_pressed" from="LevelButtonHolder/World2Buttons" to="LevelButtonHolder" method="_on_level_buttons_prev_world_pressed"]
+[connection signal="level_pressed" from="LevelButtonHolder/World3Buttons" to="." method="_on_level_buttons_level_pressed"]
+[connection signal="next_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_level_buttons_next_world_pressed"]
+[connection signal="prev_world_pressed" from="LevelButtonHolder/World3Buttons" to="LevelButtonHolder" method="_on_level_buttons_prev_world_pressed"]

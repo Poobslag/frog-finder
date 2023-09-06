@@ -117,6 +117,6 @@ one_shot = true
 wait_time = 0.1
 autostart = true
 
-[connection signal="timeout" from="ChaseTimer" to="." method="_on_ChaseTimer_timeout"]
-[connection signal="timeout" from="PanicTimer" to="." method="_on_PanicTimer_timeout"]
-[connection signal="timeout" from="ThinkTimer" to="." method="_on_ThinkTimer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="PanicTimer" to="." method="_on_panic_timer_timeout"]
+[connection signal="timeout" from="ThinkTimer" to="." method="_on_think_timer_timeout"]

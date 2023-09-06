@@ -94,8 +94,8 @@ func refresh_level_cards_path() -> void:
 	super.refresh_level_cards_path()
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_LevelCards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_LevelCards_before_shark_found"))
+	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
+	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
 
 
 func add_cards() -> void:
@@ -450,7 +450,7 @@ func _before_fish_flipped(card: CardControl) -> void:
 		card.card_front_type = CardControl.CardType.SHARK
 
 
-func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
+func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	var card_pos := level_cards.get_cell_pos(card)
 	
 	# if the outer fruits are revealed, flip them and turn them into frogs/sharks
@@ -486,7 +486,7 @@ func _on_LevelCards_before_card_flipped(card: CardControl) -> void:
 			_before_fish_flipped(card)
 
 
-func _on_LevelCards_before_shark_found(_shark_card: CardControl) -> void:
+func _on_level_cards_before_shark_found(_shark_card: CardControl) -> void:
 	# reveal the inner matching fruit
 	var inner_fruit_card := _inner_fruit_card(_correct_outer_fruit_detail)
 	inner_fruit_card.show_front()
