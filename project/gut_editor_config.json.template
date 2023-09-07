@@ -6,7 +6,8 @@
   "res://src/test"
  ],
  "disable_colors": false,
- "double_strategy": "partial",
+ "double_strategy": 1,
+ "errors_do_not_cause_failure": false,
  "font_color": "ffcccccc",
  "font_name": "CourierPrime",
  "font_size": 12,
@@ -26,6 +27,8 @@
   "hide_output_text": false,
   "hide_result_tree": false,
   "hide_settings": false,
+  "output_font_name": "CourierPrime",
+  "output_font_size": 12,
   "use_colors": false
  },
  "post_run_script": "",
