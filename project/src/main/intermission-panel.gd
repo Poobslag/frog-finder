@@ -22,8 +22,6 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-@export var hand_path: NodePath
-
 var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
@@ -38,7 +36,7 @@ var next_card_index := 0
 var RunningSharkScene := preload("res://src/main/RunningShark.tscn")
 var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
-@onready var hand: Hand = get_node(hand_path)
+@export var hand: Hand
 
 @onready var _bye_button := $ByeButton
 @onready var _creatures := $Creatures

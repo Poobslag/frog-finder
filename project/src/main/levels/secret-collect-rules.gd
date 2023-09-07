@@ -22,8 +22,7 @@ var _unexamined_secret_cell_positions := {}
 var _remaining_mistakes := 0
 var _lucky_chance := 0.0 # chance of flipping an arrow when placing adjacent to a secret
 
-func refresh_level_cards_path() -> void:
-	super.refresh_level_cards_path()
+func refresh_level_cards() -> void:
 	if not level_cards:
 		return
 	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))

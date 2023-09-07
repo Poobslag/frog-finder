@@ -4,13 +4,11 @@ extends AnimationPlayer
 ## Threshold where the comic adjusts its visuals to sync back up with the sfx.
 const DESYNC_THRESHOLD_MSEC := 100
 
-@export var sfx_player_path: NodePath
-
 ## Plays a sound effect track.
 ##
 ## Comic sound effects are merged into a single track. This avoids copyright concerns from distributing licensed .wav
 ## files, requires less coding, less audio editing, and less disk space.
-@onready var _sfx_player: AudioStreamPlayer = get_node(sfx_player_path)
+@export var sfx_player: AudioStreamPlayer
 
 ## The offset in seconds for the position of the AudioStreamPlayer's sound effect relative to the AnimationPlayer's
 ## animation.
@@ -61,7 +59,7 @@ func _calculate_sfx_offset() -> void:
 ## 	found.
 func _find_sfx_track(animation: Animation) -> int:
 	# Convert a path like '../SfxPlayer' to be relative to the AnimationPlayer root node like 'SfxPlayer'
-	var sfx_player_animation_path := get_node(root_node).get_path_to(_sfx_player)
+	var sfx_player_animation_path := get_node(root_node).get_path_to(sfx_player)
 	
 	# Locate the SfxPlayer animation track
 	var track_index: int = animation.find_track(sfx_player_animation_path, Animation.TYPE_METHOD)
@@ -95,10 +93,10 @@ func _on_timer_timeout() -> void:
 	if not current_animation == "play":
 		return
 	
-	if not _sfx_player.playing:
+	if not sfx_player.playing:
 		return
 	
-	var desync_amount: float = _sfx_player.get_playback_position() - current_animation_position - _sfx_offset
+	var desync_amount: float = sfx_player.get_playback_position() - current_animation_position - _sfx_offset
 	
 	if abs(desync_amount * 1000) > DESYNC_THRESHOLD_MSEC:
 		advance(desync_amount)

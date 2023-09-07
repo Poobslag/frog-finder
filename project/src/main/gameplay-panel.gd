@@ -98,7 +98,7 @@ func reset() -> void:
 	# load the level rules and update the cards
 	_level_rules = _level_rules_from_id(next_level_id)
 	add_child(_level_rules)
-	_level_rules.level_cards_path = _level_rules.get_path_to(_level_cards)
+	_level_rules.level_cards = _level_cards
 	_level_cards.reset()
 
 

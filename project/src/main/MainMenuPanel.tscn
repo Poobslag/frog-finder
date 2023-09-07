@@ -58,8 +58,8 @@ visible = false
 [node name="World3Decorations" parent="WorldDecorationHolder" instance=ExtResource("22")]
 visible = false
 
-[node name="CardShadows" parent="." instance=ExtResource("6_w52qk")]
-ParentPanelPath = NodePath("..")
+[node name="CardShadows" parent="." node_paths=PackedStringArray("parent_panel") instance=ExtResource("6_w52qk")]
+parent_panel = NodePath("..")
 
 [node name="MusicControl" type="Control" parent="."]
 custom_minimum_size = Vector2(80, 80)
@@ -93,14 +93,14 @@ offset_right = 462.0
 offset_bottom = 250.0
 mouse_filter = 2
 
-[node name="Card1F" parent="Title" instance=ExtResource("8")]
+[node name="Card1F" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
 offset_left = 300.545
 offset_top = 52.0022
 offset_right = 380.545
 offset_bottom = 132.002
 card_front_type = 4
 card_front_details = "f1"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1R" parent="Title" instance=ExtResource("8")]
@@ -110,7 +110,7 @@ offset_right = 460.545
 offset_bottom = 132.002
 card_front_type = 4
 card_front_details = "r1"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1O" parent="Title" instance=ExtResource("8")]
@@ -118,7 +118,7 @@ offset_left = 460.545
 offset_top = 52.0022
 offset_right = 540.545
 offset_bottom = 132.002
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card1G" parent="Title" instance=ExtResource("8")]
@@ -128,7 +128,7 @@ offset_right = 620.545
 offset_bottom = 132.002
 card_front_type = 4
 card_front_details = "g"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2F" parent="Title" instance=ExtResource("8")]
@@ -138,7 +138,7 @@ offset_right = 300.956
 offset_bottom = 214.523
 card_front_type = 4
 card_front_details = "f2"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2I" parent="Title" instance=ExtResource("8")]
@@ -146,7 +146,7 @@ offset_left = 300.956
 offset_top = 134.523
 offset_right = 380.956
 offset_bottom = 214.523
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2N" parent="Title" instance=ExtResource("8")]
@@ -156,7 +156,7 @@ offset_right = 460.956
 offset_bottom = 214.523
 card_front_type = 4
 card_front_details = "n"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2D" parent="Title" instance=ExtResource("8")]
@@ -166,7 +166,7 @@ offset_right = 540.956
 offset_bottom = 214.523
 card_front_type = 4
 card_front_details = "d"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2E" parent="Title" instance=ExtResource("8")]
@@ -176,7 +176,7 @@ offset_right = 620.956
 offset_bottom = 214.523
 card_front_type = 4
 card_front_details = "e"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Card2R" parent="Title" instance=ExtResource("8")]
@@ -186,7 +186,7 @@ offset_right = 700.956
 offset_bottom = 214.523
 card_front_type = 4
 card_front_details = "r2"
-game_state_path = NodePath("../../TitleGameState")
+game_state = NodePath("../../TitleGameState")
 practice = true
 
 [node name="Instructions" type="Control" parent="."]

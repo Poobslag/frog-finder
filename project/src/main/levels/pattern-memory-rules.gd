@@ -21,8 +21,7 @@ var _allowed_hidden_lizard_count := 0
 var _shark_chance := 0.5
 var _unhidden_cards := []
 
-func refresh_level_cards_path() -> void:
-	super.refresh_level_cards_path()
+func refresh_level_cards() -> void:
 	if not level_cards:
 		return
 	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))

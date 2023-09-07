@@ -66,8 +66,7 @@ var troll_silly_words := [
 ## value: (String) letter to reveal when revealing the word the player clicked
 var _cell_pos_to_revealed_letter := {}
 
-func refresh_level_cards_path() -> void:
-	super.refresh_level_cards_path()
+func refresh_level_cards() -> void:
 	if not level_cards:
 		return
 	level_cards.connect("before_frog_found", Callable(self, "_on_level_cards_before_frog_found"))

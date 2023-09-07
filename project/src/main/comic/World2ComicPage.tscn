@@ -3581,12 +3581,12 @@ vframes = 3
 frame = 10
 wiggle_frames = Array[int]([10, 11])
 
-[node name="Conductor" type="AnimationPlayer" parent="."]
+[node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
 libraries = {
 "": SubResource("AnimationLibrary_mkq1g")
 }
 script = ExtResource("61_p6166")
-sfx_player_path = NodePath("../SfxPlayer")
+sfx_player = NodePath("../SfxPlayer")
 
 [node name="Timer" type="Timer" parent="Conductor"]
 wait_time = 0.5
