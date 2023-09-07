@@ -17,8 +17,8 @@ offset_bottom = -50.0
 theme_override_styles/panel = ExtResource("1_hyfi8")
 script = ExtResource("2_5x0xm")
 
-[node name="CardShadows" parent="." instance=ExtResource("3_25m06")]
-ParentPanelPath = NodePath("..")
+[node name="CardShadows" parent="." node_paths=PackedStringArray("parent_panel") instance=ExtResource("3_25m06")]
+parent_panel = NodePath("..")
 
 [node name="GameState" type="Node" parent="."]
 script = ExtResource("4_kg84t")
@@ -27,14 +27,14 @@ script = ExtResource("4_kg84t")
 wait_time = 0.1
 one_shot = true
 
-[node name="LevelCards" type="Control" parent="."]
+[node name="LevelCards" type="Control" parent="." node_paths=PackedStringArray("game_state")]
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 script = ExtResource("5_8swc1")
-game_state_path = NodePath("../GameState")
+game_state = NodePath("../GameState")
 
 [connection signal="before_frog_found" from="LevelCards" to="." method="_on_level_cards_before_frog_found"]
 [connection signal="before_shark_found" from="LevelCards" to="." method="_on_level_cards_before_shark_found"]

@@ -1,17 +1,11 @@
 extends Node
 ## Tracks which panel should be shown: The main menu panel, gameplay panel, or intermission panel.
 
-@export var main_menu_panel_path: NodePath
-@export var gameplay_panel_path: NodePath
-@export var intermission_panel_path: NodePath
-@export var hand_path: NodePath
-@export var background_path: NodePath
-
-@onready var _main_menu_panel: MainMenuPanel = get_node(main_menu_panel_path)
-@onready var _gameplay_panel: GameplayPanel = get_node(gameplay_panel_path)
-@onready var _intermission_panel: IntermissionPanel = get_node(intermission_panel_path)
-@onready var _hand: Hand = get_node(hand_path)
-@onready var _background: Background = get_node(background_path)
+@export var main_menu_panel: MainMenuPanel
+@export var gameplay_panel: GameplayPanel
+@export var intermission_panel: IntermissionPanel
+@export var hand: Hand
+@export var background: Background
 
 ## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
 ## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from
@@ -24,31 +18,31 @@ func _ready() -> void:
 	_hide_panels()
 	
 	await get_tree().process_frame
-	_main_menu_panel.show_menu()
+	main_menu_panel.show_menu()
 	
 	MusicPlayer.play_preferred_song()
 
 
 func _hide_panels() -> void:
-	_main_menu_panel.visible = false
-	_gameplay_panel.visible = false
-	_intermission_panel.visible = false
+	main_menu_panel.visible = false
+	gameplay_panel.visible = false
+	intermission_panel.visible = false
 
 
 func _show_intermission_panel(card: CardControl) -> void:
 	_hide_panels()
-	_intermission_panel.add_level_result(card)
-	_intermission_panel.show_intermission_panel()
+	intermission_panel.add_level_result(card)
+	intermission_panel.show_intermission_panel()
 	if card.card_front_type == CardControl.CardType.SHARK:
-		if _intermission_panel.is_full():
+		if intermission_panel.is_full():
 			# 10th shark; lose all our fingers (oh no!)
-			_intermission_panel.start_shark_spawn_timer(_hand.fingers)
+			intermission_panel.start_shark_spawn_timer(hand.fingers)
 		else:
 			# lose one finger
-			_intermission_panel.start_shark_spawn_timer()
+			intermission_panel.start_shark_spawn_timer()
 	else:
 		# yay! we found a frog
-		if _intermission_panel.is_full():
+		if intermission_panel.is_full():
 			_play_ending()
 		else:
 			_start_timer(3.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
@@ -88,38 +82,38 @@ func _add_timer(wait_time: float) -> Timer:
 
 
 func _end_intermission() -> void:
-	if _hand.fingers == 0:
+	if hand.fingers == 0:
 		# we lose; return to the main menu
 		_hide_panels()
-		_hand.reset() # restore any bitten fingers
-		_intermission_panel.reset() # free any sharks/frogs
-		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.SHARK)
+		hand.reset() # restore any bitten fingers
+		intermission_panel.reset() # free any sharks/frogs
+		PlayerData.set_mission_cleared(gameplay_panel.mission_string, PlayerData.MissionResult.SHARK)
 		PlayerData.save_player_data()
-		_main_menu_panel.show_menu()
-	elif _intermission_panel.is_full():
+		main_menu_panel.show_menu()
+	elif intermission_panel.is_full():
 		# we win; return to the main menu
 		_hide_panels()
-		_hand.reset() # restore any bitten fingers
-		_intermission_panel.reset() # free any sharks/frogs
-		PlayerData.set_mission_cleared(_gameplay_panel.mission_string, PlayerData.MissionResult.FROG)
+		hand.reset() # restore any bitten fingers
+		intermission_panel.reset() # free any sharks/frogs
+		PlayerData.set_mission_cleared(gameplay_panel.mission_string, PlayerData.MissionResult.FROG)
 		PlayerData.save_player_data()
-		_main_menu_panel.show_menu()
+		main_menu_panel.show_menu()
 	else:
 		# restore the hand to an index finger
-		_hand.biteable_fingers = -1
+		hand.biteable_fingers = -1
 		
 		# show the next puzzle
 		_hide_panels()
-		_background.change()
-		_gameplay_panel.show_puzzle()
+		background.change()
+		gameplay_panel.show_puzzle()
 
 
 func _play_ending() -> void:
 	# we won!
-	match _gameplay_panel.mission_string:
+	match gameplay_panel.mission_string:
 		"1-1", "1-2", "2-1", "2-2", "3-1", "3-2":
 			var dancer_count := FrogArrangements.get_dancer_count(PlayerData.frog_dance_count)
-			_intermission_panel.start_frog_dance(dancer_count)
+			intermission_panel.start_frog_dance(dancer_count)
 			PlayerData.frog_dance_count += 1
 		"1-3":
 			_schedule_frog_hug_ending(1, 5)
@@ -141,7 +135,7 @@ func _schedule_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> voi
 func _on_timer_timeout_play_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
 	if PlayerData.music_preference != PlayerData.MusicPreference.OFF:
 		MusicPlayer.play_ending_song()
-	_intermission_panel.start_frog_hug_timer(huggable_fingers, new_max_frogs)
+	intermission_panel.start_frog_hug_timer(huggable_fingers, new_max_frogs)
 
 
 func _on_main_menu_panel_start_pressed(mission_string: String) -> void:
@@ -154,10 +148,10 @@ func _on_main_menu_panel_start_pressed(mission_string: String) -> void:
 		MusicPlayer.play_preferred_song()
 	
 	_hide_panels()
-	_hand.reset()
-	_intermission_panel.restart(mission_string)
-	_gameplay_panel.restart(mission_string)
-	_gameplay_panel.show_puzzle()
+	hand.reset()
+	intermission_panel.restart(mission_string)
+	gameplay_panel.restart(mission_string)
+	gameplay_panel.show_puzzle()
 
 
 func _on_gameplay_panel_before_shark_found(_card: CardControl) -> void:
@@ -181,7 +175,7 @@ func _on_gameplay_panel_frog_found(card: CardControl) -> void:
 
 
 func _on_hand_finger_bitten() -> void:
-	if _hand.biteable_fingers == 0:
+	if hand.biteable_fingers == 0:
 		_start_timer(4.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
 
 
@@ -219,6 +213,6 @@ func _on_timer_timeout_end_intermission() -> void:
 func _on_cheat_code_detector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	match cheat:
 		"onefrog":
-			if _main_menu_panel.visible:
+			if main_menu_panel.visible:
 				CardArrangements.one_frog_cheat = !CardArrangements.one_frog_cheat
 				detector.play_cheat_sound(CardArrangements.one_frog_cheat)

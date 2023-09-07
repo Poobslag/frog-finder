@@ -30,14 +30,14 @@ script = ExtResource("2")
 wait_time = 0.1
 one_shot = true
 
-[node name="LevelCards" type="Control" parent="GameplayPanel"]
+[node name="LevelCards" type="Control" parent="GameplayPanel" node_paths=PackedStringArray("game_state")]
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 script = ExtResource("4")
-game_state_path = NodePath("../GameState")
+game_state = NodePath("../GameState")
 
 [node name="DifficultyLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.313726)

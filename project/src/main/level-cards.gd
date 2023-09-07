@@ -10,7 +10,7 @@ signal shark_found(card)
 
 const CELL_SIZE := Vector2(80, 80)
 
-@export var game_state_path: NodePath
+@export var game_state: GameState
 
 var CardControlScene: PackedScene = preload("res://src/main/CardControl.tscn")
 
@@ -23,8 +23,6 @@ var cards_by_cell_pos := {}
 var cell_positions_by_card := {}
 
 var cell_pos_bounds := Rect2()
-
-@onready var _game_state: GameState = get_node(game_state_path)
 
 func create_card() -> CardControl:
 	var card := CardControlScene.instantiate() as CardControl
@@ -40,7 +38,7 @@ func add_card(card: CardControl, cell_pos: Vector2) -> void:
 	# add the card
 	card.position = cell_pos * CELL_SIZE
 	add_child(card)
-	card.game_state_path = card.get_path_to(_game_state)
+	card.game_state = game_state
 	if cards_by_cell_pos.is_empty():
 		cell_pos_bounds = Rect2(cell_pos, Vector2.ZERO)
 	else:

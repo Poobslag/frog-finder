@@ -4,9 +4,7 @@ extends Control
 ## These comic interludes are shown on the main menu when the player launches the game or enters a new world. This node
 ## stores a library of which scenes contain which interludes. It loads the appropriate scenes and plays the animations.
 
-@export var main_menu_panel_path: NodePath
-
-@onready var _main_menu_panel: Panel = get_node(main_menu_panel_path)
+@export var main_menu_panel: Panel
 
 ## key: (String) comic id
 ## value: (PackedScene) comic scene for the specified world
@@ -56,7 +54,7 @@ func _on_main_menu_panel_panel_menu_shown() -> void:
 
 ## When the player navigates to a new world for the first time, we show a comic interlude.
 func _on_player_data_world_index_changed() -> void:
-	if _main_menu_panel.visible:
+	if main_menu_panel.visible:
 		# show an intro comic when the player reaches a new chapter
 		show_comic()
 

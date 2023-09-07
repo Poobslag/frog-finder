@@ -139,7 +139,7 @@ const LIZARD_COUNT := 32
 @export var card_front_type: CardType = CardType.MYSTERY : set = set_card_front_type
 @export var card_front_details: String : set = set_card_front_details
 
-@export var game_state_path := NodePath("../GameState") : set = set_game_state_path
+@export var game_state: GameState
 @export var practice := false
 
 @export var shown_face := CardFace.BACK : set = set_shown_face
@@ -166,7 +166,6 @@ var _shark_sounds := [
 	preload("res://assets/main/sfx/shark-voice-7.wav"),
 ]
 
-var _game_state: GameState
 var _pending_warning := ""
 
 @onready var _card_back_sprite := $CardBack
@@ -192,7 +191,6 @@ var _pending_warning := ""
 
 func _ready() -> void:
 	_refresh_card_textures()
-	_refresh_game_state_path()
 	_refresh_shown_face()
 
 
@@ -205,11 +203,6 @@ func _process(_delta: float) -> void:
 	if _pending_warning:
 		push_warning(_pending_warning)
 		_pending_warning = ""
-
-
-func set_game_state_path(new_game_state_path: NodePath) -> void:
-	game_state_path = new_game_state_path
-	_refresh_game_state_path()
 
 
 func set_shown_face(new_shown_face: CardFace) -> void:
@@ -310,16 +303,6 @@ func _refresh_shown_face() -> void:
 		_card_front_sprite.reset_wiggle()
 
 
-func _refresh_game_state_path() -> void:
-	if not is_inside_tree():
-		return
-	
-	if game_state_path.is_empty():
-		return
-	
-	_game_state = get_node(game_state_path)
-
-
 func _refresh_card_textures() -> void:
 	if not is_inside_tree():
 		return
@@ -409,11 +392,11 @@ func _flip_card() -> void:
 		# card is already flipped
 		return
 	
-	if not _game_state.flip_timer.is_stopped():
+	if not game_state.flip_timer.is_stopped():
 		# player is already flipping a card
 		return
 	
-	if not _game_state.can_interact:
+	if not game_state.can_interact:
 		# the level hasn't started, or the level has ended
 		return
 	
@@ -422,19 +405,19 @@ func _flip_card() -> void:
 	before_card_flipped.emit()
 	
 	show_front()
-	_game_state.flip_timer.start()
-	_game_state.flip_timer.connect("timeout", Callable(self, "_on_flip_timer_timeout"))
+	game_state.flip_timer.start()
+	game_state.flip_timer.connect("timeout", Callable(self, "_on_flip_timer_timeout"))
 
 
 func _on_flip_timer_timeout() -> void:
-	_game_state.flip_timer.disconnect("timeout", Callable(self, "_on_flip_timer_timeout"))
+	game_state.flip_timer.disconnect("timeout", Callable(self, "_on_flip_timer_timeout"))
 	match card_front_type:
 		CardType.FROG:
 			if practice:
 				# this frog doesn't count; maybe it was on the main menu
 				pass
 			else:
-				_game_state.can_interact = false
+				game_state.can_interact = false
 			
 			before_frog_found.emit()
 			_cheer_timer.start()
@@ -444,7 +427,7 @@ func _on_flip_timer_timeout() -> void:
 				# this shark doesn't count; maybe it was on the main menu
 				pass
 			else:
-				_game_state.can_interact = false
+				game_state.can_interact = false
 			before_shark_found.emit()
 			_shark_found_timer.start(3.2)
 			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
