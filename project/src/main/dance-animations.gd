@@ -67,7 +67,7 @@ func _save_dance_names() -> void:
 		
 		dance_set[_dance_name_from_animation_name(animation_name)] = true
 	
-	dance_names = dance_set.keys()
+	dance_names.assign(dance_set.keys())
 
 
 ## Populates animation_names_by_dance_name with animations from our animation list.
@@ -126,10 +126,10 @@ func _flip_animations() -> void:
 	for animation_name in get_animation_list():
 		if animation_name in NON_DANCE_ANIMS:
 			continue
-			
+
 		if animation_name.ends_with("_flip"):
-			remove_animation_library(animation_name)
-	
+			get_animation_library("").remove_animation(animation_name)
+
 	for old_animation_name in get_animation_list():
 		_flip_animation(old_animation_name)
 
