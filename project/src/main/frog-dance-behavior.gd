@@ -18,7 +18,7 @@ enum DanceState {
 ## key: (int) world index
 ## value: (Array, String) intermission dances for the specified world
 const FROG_DANCES_BY_WORLD_INDEX := {
-	1: ["nip", "coy", "shuffle"]
+	1: ["hula", "coy", "shuffle"]
 }
 
 ## Threshold where the frog adjusts their animation to sync back up with the music.
