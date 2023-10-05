@@ -10,6 +10,17 @@ enum DanceState {
 	RUN_FROM_DANCE,
 }
 
+## List of intermission dances for each world index.
+##
+## The first dance in each list is mandatory, and the frogs will always perform it. The other dances are optional, and
+## frogs might randomly perform it or not perform it. Frogs will never perform a dance not in the list.
+##
+## key: (int) world index
+## value: (Array, String) intermission dances for the specified world
+const FROG_DANCES_BY_WORLD_INDEX := {
+	1: ["nip", "coy", "shuffle"]
+}
+
 ## Threshold where the frog adjusts their animation to sync back up with the music.
 const DESYNC_THRESHOLD_MSEC := 100
 
@@ -158,7 +169,14 @@ func perform_dance_move(dance_move_index: int) -> void:
 func _decide_dance_names() -> Array:
 	var result := []
 	for _i in range(4):
-		var possible_dance_names: Array[String] = _dance_animations.dance_names
+		var possible_dance_names: Array[String]
+		if PlayerData.world_index in FROG_DANCES_BY_WORLD_INDEX:
+			# select from one of a few preset dances for the world
+			possible_dance_names.assign(FROG_DANCES_BY_WORLD_INDEX[PlayerData.world_index])
+		else:
+			# select from all available dances
+			possible_dance_names = _dance_animations.dance_names
+		
 		if not result.is_empty():
 			var new_dance_names: Array[String] = []
 			# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
@@ -166,6 +184,16 @@ func _decide_dance_names() -> Array:
 			new_dance_names.assign(Utils.subtract(possible_dance_names, [result.back()]))
 			possible_dance_names = new_dance_names
 		result.append(Utils.rand_value(possible_dance_names))
+	
+	if PlayerData.world_index in FROG_DANCES_BY_WORLD_INDEX:
+		# ensure the mandatory dance is one of the first three dances
+		var mandatory_dance: String = FROG_DANCES_BY_WORLD_INDEX[PlayerData.world_index][0]
+		
+		if result.find(mandatory_dance) == -1 or result.find(mandatory_dance) == 3:
+			# assign it to one of the first two dance slots; it's possible it's the fourth dance, and we don't want
+			# the same dance back-to-back
+			result[randi_range(0, 1)] = mandatory_dance
+	
 	return result
 
 
