@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dad5fk3wa2qde"]
+
+[ext_resource type="Script" path="res://src/main/sfx-deconflicter.gd" id="1_xmras"]
+
+[node name="SfxDeconflicter" type="Node"]
+script = ExtResource("1_xmras")

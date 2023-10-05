@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b53kkkl6dkali"]
+[gd_scene load_steps=7 format=3 uid="uid://b53kkkl6dkali"]
 
 [ext_resource type="Texture2D" uid="uid://c2jwhbp0x3kc8" path="res://assets/main/shark-run-sheet.png" id="1"]
 [ext_resource type="Script" path="res://src/main/running-shark.gd" id="2"]
@@ -120,6 +120,12 @@ one_shot = true
 [node name="ThinkTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_x611c")
 
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
 [connection signal="timeout" from="PanicTimer" to="." method="_on_panic_timer_timeout"]
