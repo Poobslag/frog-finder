@@ -7,6 +7,7 @@ extends Node
 ## 	[M]: Play some music.
 ## 	[S]: Spawn a shark.
 ## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
+## 	[1..0] -> [W]: Sets the world index.
 
 @onready var _intermission_panel := $IntermissionPanel
 
@@ -14,6 +15,8 @@ extends Node
 var number_event: InputEvent
 
 func _ready() -> void:
+	PlayerData.music_preference = PlayerData.MusicPreference.OFF
+	
 	_intermission_panel.show_intermission_panel()
 	_intermission_panel.restart("1-1")
 
@@ -42,6 +45,8 @@ func _input(event: InputEvent) -> void:
 			_intermission_panel.start_shark_spawn_timer(3)
 		KEY_H:
 			_start_frog_hug_timer()
+		KEY_W:
+			_assign_world_index()
 
 
 func _start_frog_hug_timer() -> void:
@@ -73,3 +78,7 @@ func _start_frog_dance() -> void:
 			frog_count = randi_range(1, 10)
 	
 	_intermission_panel.start_frog_dance(frog_count)
+
+
+func _assign_world_index() -> void:
+	PlayerData.world_index = Utils.key_num(number_event)
