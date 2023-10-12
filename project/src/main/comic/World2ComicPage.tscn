@@ -56,7 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://brkjwyvrrsr36" path="res://assets/main/comic/world-2/100-id.png" id="56_qyj5m"]
 [ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-bar-emanata-sheet.png" id="57_e41cd"]
 [ext_resource type="Texture2D" uid="uid://csg3a7t5loppg" path="res://assets/main/comic/world-2/100-frame.png" id="58_4erfg"]
-[ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/comic/world-2/comic-sfx.ogg" id="59_kp8gg"]
+[ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/sfx/world-2-comic-sfx.ogg" id="59_kp8gg"]
 [ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="61_p6166"]
 [ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="62_mu2w5"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="63_ofwxw"]
