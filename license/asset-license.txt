@@ -4,6 +4,7 @@ $ = MAY credit in your credits (you sort of used their stuff, i guess. Or their 
 
 Sounds:
 $$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
+$$ "Hanna-Barbera Sound Effects Library" by Sound Ideas (Sound Ideas license, https://www.sound-ideas.com/Page/Sound-Ideas-End-User-License)
 
 Graphics:
 $ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
@@ -23,6 +24,7 @@ Sounds
 --------------------------------------------------------------------------------
 project/assets/main/sfx/cartoon-bite.wav Cartoon Bite Sound Effect from 'Sound effects for youtubers' https://www.youtube.com/watch?v=RlvRyo4ofvM
 project/assets/main/sfx/pop-brust.wav "2000_Game_SFX_Collection/GameBurp - 2000 Game Sound FX Collection (WAV)/POPS - BURSTS - (26)/POP Brust 02.wav"
+project/assets/main/comic/world-2/comic-sfx.ogg "Hanna-Barbera Sound Effects Library"
 
 Graphics
 --------------------------------------------------------------------------------
