@@ -21,7 +21,7 @@ const MAX_AGILITY := 4.0
 const PINCER_DISTANCE := 150.0
 
 ## where the shark has to stand to count as 'catching' the hand
-const HAND_CATCH_OFFSET := Vector2(28, 20)
+const HAND_CATCH_OFFSET := Vector2(28, 60)
 
 ## the hand to chase
 var hand: Hand

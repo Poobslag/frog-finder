@@ -91,9 +91,13 @@ _data = {
 "run-fed": SubResource("2")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x611c"]
+size = Vector2(120, 60)
+
 [node name="RunningShark" type="Sprite2D"]
 scale = Vector2(0.467, 0.467)
 texture = ExtResource("1")
+offset = Vector2(0, -80)
 hframes = 4
 vframes = 2
 frame = 4
