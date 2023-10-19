@@ -104,7 +104,7 @@ func add_cards() -> void:
 	
 	_reveal_lizards(revealed_lizard_count)
 	if easy_reveal:
-		var method: String = Utils.rand_value(["compare_by_row", "compare_by_column", "compare_by_region"])
+		var method: String = Utils.rand_value(["_compare_by_row", "_compare_by_column", "_compare_by_region"])
 		for card in level_cards.get_cards():
 			if _conflicting_lizard(card, method):
 				card.show_front()
@@ -182,7 +182,7 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 		methods = [method]
 	else:
 		# no comparator method was provided; find a lizard which conflicts in any of three ways
-		methods = ["compare_by_row", "compare_by_column", "compare_by_region"]
+		methods = ["_compare_by_row", "_compare_by_column", "_compare_by_region"]
 	
 	var pos := level_cards.get_cell_pos(card)
 	for lizard_card in _shown_lizard_cards():
@@ -256,7 +256,7 @@ func _on_level_cards_before_shark_found(shark_card: CardControl) -> void:
 	
 	# reveal all cards in the row/column/region
 	var shark_card_pos := level_cards.get_cell_pos(shark_card)
-	for compare_method in ["compare_by_row", "compare_by_column", "compare_by_region"]:
+	for compare_method in ["_compare_by_row", "_compare_by_column", "_compare_by_region"]:
 		if _conflicting_lizard(shark_card, compare_method):
 			for card in level_cards.get_cards():
 				var card_pos := level_cards.get_cell_pos(card)
