@@ -10,7 +10,7 @@ extends AnimationPlayer
 ## editor setting. This will automatically update metadata such as the 'Dance Names' and 'Frames By Dance Name', and
 ## will also generate a flipped version of the dance.
 
-# Animations which do not correspond to dances.
+## Animations which do not correspond to dances.
 const NON_DANCE_ANIMS := [
 	"RESET"
 ]

@@ -26,8 +26,8 @@ var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
 
-# key: (RunningFrog) frog
-# value: (RunningFrog) friend
+## key: (RunningFrog) frog
+## value: (RunningFrog) friend
 var friends_by_frog := {}
 
 var max_frogs := 0
