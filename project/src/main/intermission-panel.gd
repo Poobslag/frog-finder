@@ -22,6 +22,12 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
+## key: (int) world index
+## value: (PackedScene) IntermissionTweak scene which modifies the intermission in some ways
+var _tweak_scenes_by_world_index := {
+	1: preload("res://src/main/BeachBallTweak.tscn"),
+}
+
 var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
@@ -38,8 +44,9 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
 @export var hand: Hand
 
+@onready var creatures: Control = $Creatures
+
 @onready var _bye_button := $ByeButton
-@onready var _creatures := $Creatures
 @onready var _frog_spawn_timer := $FrogSpawnTimer
 @onready var _intermission_cards: LevelCards = $IntermissionCards
 @onready var _shark_spawn_timer := $SharkSpawnTimer
@@ -67,11 +74,15 @@ func reset() -> void:
 	_shark_spawn_timer.stop()
 	_frog_spawn_timer.stop()
 	_bye_button.visible = false
-	for child in _creatures.get_children():
+	for child in creatures.get_children():
 		child.queue_free()
-		_creatures.remove_child(child)
+		creatures.remove_child(child)
 	sharks.clear()
 	frogs.clear()
+	
+	if has_tweak():
+		remove_tweak()
+	add_tweak()
 
 
 func add_level_result(found_card: CardControl) -> void:
@@ -121,10 +132,34 @@ func start_frog_dance(frog_count: int) -> void:
 	
 	# frog runs into position, dances and leaves
 	for i in range(frogs.size()):
-		var dance_target := Rect2(Vector2.ZERO, _creatures.size).get_center()
+		var dance_target := Rect2(Vector2.ZERO, creatures.size).get_center()
 		dance_target += arrangement[i] * Vector2(64, 48)
 		
 		_dance(frogs[i], dance_frogs, dance_target)
+
+
+func has_tweak() -> bool:
+	return has_node("Tweak")
+
+
+func add_tweak() -> void:
+	if has_tweak():
+		return
+	
+	var tweak_scene: PackedScene = _tweak_scenes_by_world_index.get(PlayerData.world_index)
+	if tweak_scene:
+		var tweak := tweak_scene.instantiate()
+		tweak.name = "Tweak"
+		add_child(tweak)
+
+
+func remove_tweak() -> void:
+	if not has_tweak():
+		return
+	
+	var tweak: IntermissionTweak = get_node("Tweak")
+	tweak.queue_free()
+	remove_child(tweak)
 
 
 ## Spawns a shark outside the edge of the screen.
@@ -141,7 +176,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 		# this shark has a friend
 		shark.friend = sharks[sharks.size() - 1]
 	
-	_creatures.add_child(shark)
+	creatures.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
 
@@ -159,7 +194,7 @@ func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 		# this frog has a friend
 		friends_by_frog[frog] = frogs[frogs.size() - 1]
 	
-	_creatures.add_child(frog)
+	creatures.add_child(frog)
 	frogs.append(frog)
 	return frog
 
@@ -184,7 +219,7 @@ func _random_spawn_point(away_from_hand: bool) -> Vector2:
 	else:
 		spawn_points.shuffle()
 	
-	return spawn_points[0] - _creatures.global_position
+	return spawn_points[0] - creatures.global_position
 
 
 ## Puts a frog into 'chase mode'.
@@ -238,3 +273,10 @@ func _on_running_frog_finished_dance() -> void:
 
 func _on_bye_button_pressed() -> void:
 	bye_pressed.emit()
+
+
+func _on_visibility_changed() -> void:
+	if not visible:
+		# When the intermission panel is hidden, we remove the tweak. This prevents things like beach balls from
+		# bouncing and making noise, or prevents the player from clicking invisible parts of the intermission tweak.
+		remove_tweak()

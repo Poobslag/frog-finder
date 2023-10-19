@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv75s36cm72gk"]
+
+[ext_resource type="Script" path="res://src/main/beach-ball-tweak.gd" id="1_ritfc"]
+[ext_resource type="PackedScene" uid="uid://bgy18vnatsxqo" path="res://src/main/BeachBall.tscn" id="2_k076w"]
+
+[node name="Tweak" type="Node"]
+script = ExtResource("1_ritfc")
+BeachBallScene = ExtResource("2_k076w")

@@ -6,6 +6,7 @@ extends Node
 ## 	[F]: Show a frog card.
 ## 	[M]: Play some music.
 ## 	[S]: Spawn a shark.
+## 	[T]: Toggle the intermission tweak
 ## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
 ## 	[1..0] -> [W]: Sets the world index.
 
@@ -45,6 +46,11 @@ func _input(event: InputEvent) -> void:
 			_intermission_panel.start_shark_spawn_timer(3)
 		KEY_H:
 			_start_frog_hug_timer()
+		KEY_T:
+			if _intermission_panel.has_tweak():
+				_intermission_panel.remove_tweak()
+			else:
+				_intermission_panel.add_tweak()
 		KEY_W:
 			_assign_world_index()
 

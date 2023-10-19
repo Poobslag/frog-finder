@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cktr3fhfsg67j"]
+
+[ext_resource type="PackedScene" uid="uid://bgy18vnatsxqo" path="res://src/main/BeachBall.tscn" id="1_0dii3"]
+[ext_resource type="Script" path="res://src/demo/beach-ball-demo.gd" id="1_j633c"]
+[ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="2_vp4l0"]
+
+[node name="Demo" type="Node"]
+script = ExtResource("1_j633c")
+BeachBallScene = ExtResource("1_0dii3")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_styles/panel = ExtResource("2_vp4l0")
+
+[connection signal="resized" from="Panel" to="." method="_on_Panel_resized"]
