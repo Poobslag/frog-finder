@@ -16,6 +16,7 @@ extends Node
 var number_event: InputEvent
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	PlayerData.music_preference = PlayerData.MusicPreference.OFF
 	
 	_intermission_panel.show_intermission_panel()
