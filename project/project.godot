@@ -51,5 +51,4 @@ mouse=false
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.580392, 0.717647, 0.847059, 1)
