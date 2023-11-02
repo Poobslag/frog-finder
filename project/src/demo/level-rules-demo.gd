@@ -2,8 +2,8 @@ extends Node
 ## Demonstrates a level's rules.
 ##
 ## Keys:
-## 	[space bar]: Generates a new puzzle.
-## 	[=/-]: Increases/decreases the puzzle difficulty and generates a new puzzle.
+## 	[space bar]: Generate a new puzzle.
+## 	[=/-]: Increase/decrease the puzzle difficulty and generate a new puzzle.
 
 @onready var _gameplay_panel := $GameplayPanel
 @onready var _difficulty_label := $DifficultyLabel
@@ -20,11 +20,11 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_SPACE:
 			_show_puzzle()
-		KEY_EQUAL:
-			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty + 1, 0, 8))
-			_show_puzzle()
 		KEY_MINUS:
 			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty - 1, 0, 8))
+			_show_puzzle()
+		KEY_EQUAL:
+			_gameplay_panel.player_puzzle_difficulty = int(clamp(_gameplay_panel.player_puzzle_difficulty + 1, 0, 8))
 			_show_puzzle()
 
 

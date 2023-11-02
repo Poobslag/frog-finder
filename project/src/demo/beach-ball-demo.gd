@@ -31,21 +31,21 @@ func _input(event: InputEvent) -> void:
 			_bounce_ball(1)
 		KEY_3:
 			_bounce_ball(2)
-		KEY_EQUAL:
-			if Input.is_key_pressed(KEY_SHIFT):
-				for _i in range(10):
-					_add_ball()
-			else:
-				_add_ball()
+		KEY_SPACE:
+			for i in range(_panel.get_child_count()):
+				_bounce_ball(i)
 		KEY_MINUS:
 			if Input.is_key_pressed(KEY_SHIFT):
 				for _i in range(10):
 					_remove_ball()
 			else:
 				_remove_ball()
-		KEY_SPACE:
-			for i in range(_panel.get_child_count()):
-				_bounce_ball(i)
+		KEY_EQUAL:
+			if Input.is_key_pressed(KEY_SHIFT):
+				for _i in range(10):
+					_add_ball()
+			else:
+				_add_ball()
 
 
 func _add_ball() -> void:
