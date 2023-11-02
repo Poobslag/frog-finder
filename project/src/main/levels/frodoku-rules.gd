@@ -11,6 +11,14 @@ extends LevelRules
 const ROW_COUNT := 6
 const COL_COUNT := 6
 
+## Methods used to check whether two cells conflict. Cells conflict if they are in the same row, the same column, or
+## the same 3x2 region.
+var _compare_methods := [
+		Callable(self, "_compare_by_row"),
+		Callable(self, "_compare_by_column"),
+		Callable(self, "_compare_by_region"),
+	]
+
 ## The number of valid cards the player must click before finding a frog. (The player will always find a frog if five
 ## frogs are revealed.)
 var _remaining_good_moves := 99
@@ -109,7 +117,7 @@ func add_cards() -> void:
 	
 	_reveal_lizards(revealed_lizard_count)
 	if easy_reveal:
-		var method: String = Utils.rand_value(["_compare_by_row", "_compare_by_column", "_compare_by_region"])
+		var method: Callable = Utils.rand_value(_compare_methods)
 		for card in level_cards.get_cards():
 			if _conflicting_lizard(card, method):
 				card.show_front()
@@ -175,14 +183,6 @@ func _hide_bad_moves(count: int) -> void:
 				break
 
 
-func _revealed_lizard_count() -> int:
-	var count := 0
-	for card in level_cards.get_cards():
-		if card.is_front_shown() and card.card_front_type == CardControl.CardType.LIZARD:
-			count += 1
-	return count
-
-
 func _shown_lizard_cards() -> Array:
 	var result := []
 	for card in level_cards.get_cards():
@@ -198,7 +198,7 @@ func _shown_lizard_cards() -> Array:
 ##
 ## 	'method': (Optional) The method used to compare whether two cells conflict. If omitted, the cell will be compared
 ## 		by row, column, and 3x2 region
-func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
+func _conflicting_lizard(card: CardControl, method: Callable = Callable()) -> CardControl:
 	var result: CardControl
 	var methods: Array
 	if method:
@@ -206,13 +206,13 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 		methods = [method]
 	else:
 		# no comparator method was provided; find a lizard which conflicts in any of three ways
-		methods = ["_compare_by_row", "_compare_by_column", "_compare_by_region"]
+		methods = _compare_methods
 	
 	var pos := level_cards.get_cell_pos(card)
 	for lizard_card in _shown_lizard_cards():
 		var lizard_pos := level_cards.get_cell_pos(lizard_card)
 		for current_method in methods:
-			if call(current_method, lizard_pos, pos):
+			if current_method.call(lizard_pos, pos):
 				result = lizard_card
 				break
 		if result:
@@ -258,7 +258,7 @@ func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	if card.card_front_type == CardControl.CardType.LIZARD:
 		# the player found a lizard, they're on the right track
 		
-		if _revealed_lizard_count() == 5:
+		if _shown_lizard_cards().size() == 5:
 			# last lizard; make it a frog
 			card.card_front_type = CardControl.CardType.FROG
 		
@@ -295,14 +295,14 @@ func _on_level_cards_before_shark_found(shark_card: CardControl) -> void:
 	
 	# reveal all cards in the row/column/region
 	var shark_card_pos := level_cards.get_cell_pos(shark_card)
-	for compare_method in ["_compare_by_row", "_compare_by_column", "_compare_by_region"]:
+	for compare_method in _compare_methods:
 		if _conflicting_lizard(shark_card, compare_method):
 			for card in level_cards.get_cards():
 				var card_pos := level_cards.get_cell_pos(card)
 				if card == shark_card:
 					# don't mess with the card they're flipping
 					continue
-				elif call(compare_method, card_pos, shark_card_pos):
+				elif compare_method.call(card_pos, shark_card_pos):
 					# show the hidden cards in the same row/column/region
 					if not card.is_front_shown():
 						card.card_front_type = CardControl.CardType.SHARK
