@@ -18,11 +18,11 @@ config/version="1.21"
 
 [autoload]
 
-Global="*res://src/main/global.gd"
 CardArrangements="*res://src/main/card-arrangements.gd"
-PlayerData="*res://src/main/player-data.gd"
-MusicPlayer="*res://src/main/MusicPlayer.tscn"
 FrogArrangements="*res://src/main/frog-arrangements.gd"
+Global="*res://src/main/global.gd"
+MusicPlayer="*res://src/main/MusicPlayer.tscn"
+PlayerData="*res://src/main/player-data.gd"
 SfxDeconflicter="*res://src/main/SfxDeconflicter.tscn"
 
 [debug]
