@@ -44,7 +44,7 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
 @export var hand: Hand
 
-@onready var creatures: Control = $Creatures
+@onready var obstacles: Control = $Obstacles
 
 @onready var _bye_button := $ByeButton
 @onready var _frog_spawn_timer := $FrogSpawnTimer
@@ -74,9 +74,9 @@ func reset() -> void:
 	_shark_spawn_timer.stop()
 	_frog_spawn_timer.stop()
 	_bye_button.visible = false
-	for child in creatures.get_children():
+	for child in obstacles.get_children():
 		child.queue_free()
-		creatures.remove_child(child)
+		obstacles.remove_child(child)
 	sharks.clear()
 	frogs.clear()
 	
@@ -132,7 +132,7 @@ func start_frog_dance(frog_count: int) -> void:
 	
 	# frog runs into position, dances and leaves
 	for i in range(frogs.size()):
-		var dance_target := Rect2(Vector2.ZERO, creatures.size).get_center()
+		var dance_target := Rect2(Vector2.ZERO, obstacles.size).get_center()
 		dance_target += arrangement[i] * Vector2(64, 48)
 		
 		_dance(frogs[i], dance_frogs, dance_target)
@@ -176,7 +176,7 @@ func _spawn_shark(away_from_hand: bool = false) -> void:
 		# this shark has a friend
 		shark.friend = sharks[sharks.size() - 1]
 	
-	creatures.add_child(shark)
+	obstacles.add_child(shark)
 	sharks.append(shark)
 	shark.chase()
 
@@ -194,7 +194,7 @@ func _spawn_frog(away_from_hand: bool = false) -> RunningFrog:
 		# this frog has a friend
 		friends_by_frog[frog] = frogs[frogs.size() - 1]
 	
-	creatures.add_child(frog)
+	obstacles.add_child(frog)
 	frogs.append(frog)
 	return frog
 
@@ -219,7 +219,7 @@ func _random_spawn_point(away_from_hand: bool) -> Vector2:
 	else:
 		spawn_points.shuffle()
 	
-	return spawn_points[0] - creatures.global_position
+	return spawn_points[0] - obstacles.global_position
 
 
 ## Puts a frog into 'chase mode'.

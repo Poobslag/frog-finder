@@ -26,7 +26,7 @@ func _find_clicked_ball() -> BeachBall:
 	var clicked_ball_distance := 999999
 	
 	# find the ball closest to the mouse
-	var local_mouse_position := panel.creatures.get_local_mouse_position()
+	var local_mouse_position := panel.obstacles.get_local_mouse_position()
 	for next_ball_obj in get_tree().get_nodes_in_group("beach_balls"):
 		var next_ball: BeachBall = next_ball_obj
 		var next_ball_distance := next_ball.get_clickable_position().distance_to(local_mouse_position)
@@ -62,9 +62,9 @@ func _add_ball() -> void:
 		randf_range(ball.bounce_rect.position.x, ball.bounce_rect.end.x),
 		randf_range(ball.bounce_rect.position.y, ball.bounce_rect.end.y)
 	)
-	panel.creatures.add_child(ball)
+	panel.obstacles.add_child(ball)
 
 
 ## Refreshes the boundaries for the specified beach ball.
 func _refresh_bounce_rect(ball: BeachBall) -> void:
-	ball.bounce_rect = Rect2(Vector2.ZERO, panel.creatures.size)
+	ball.bounce_rect = Rect2(Vector2.ZERO, panel.obstacles.size)

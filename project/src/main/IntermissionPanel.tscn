@@ -50,7 +50,7 @@ one_shot = true
 wait_time = 8.0
 one_shot = true
 
-[node name="Creatures" type="Control" parent="."]
+[node name="Obstacles" type="Control" parent="."]
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 8
