@@ -15,15 +15,12 @@
 
 if [ "$1" ]
 then
-  # uncomment 'tool' lines to allow editing
   version="$1"
 else
 # Calculate version string
-  yy=$(date +%Y)
-  mmdd=$(date +%m%d)
-  mmdd=$(echo "$mmdd" | sed 's/^0*//')
-  version=$(((yy - 2020) * 2000 + mmdd))
-  version=$(printf 0.%04d $version)
+  seconds=$(date +%s)
+  version=$((seconds / 2500000 - 658))
+  version=$(printf 1.%02d $version)
 fi
 
 echo "version=$version"
