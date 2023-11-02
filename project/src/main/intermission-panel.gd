@@ -24,8 +24,10 @@ const FROG_DELAYS := [
 
 ## key: (int) world index
 ## value: (PackedScene) IntermissionTweak scene which modifies the intermission in some ways
-var _tweak_scenes_by_world_index := {
-	1: preload("res://src/main/BeachBallTweak.tscn"),
+@onready var _tweak_scenes_by_world_index := {
+	# Workaround for Godot #72453 (https://github.com/godotengine/godot/issues/74253). These resources cannot be
+	# preloaded because they introduce a cyclic reference which causes errors in the editor.
+	1: load("res://src/main/BeachBallTweak.tscn"),
 }
 
 var cards: Array = []
