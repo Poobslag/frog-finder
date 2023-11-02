@@ -5,13 +5,18 @@ extends LevelRules
 ##
 ## 	1. Do not click a card in the same row as a lizard
 ## 	2. Do not click a card in the same column as a lizard
-## 	3. Do not click a card in the same 3x2 rectangle as a lizard. These groups are color-coded, which is why some of
+## 	3. Do not click a card in the same 3x2 region as a lizard. These groups are color-coded, which is why some of
 ## 		the cards are red and others are blue.
 
 const ROW_COUNT := 6
 const COL_COUNT := 6
 
+## The number of valid cards the player must click before finding a frog. (The player will always find a frog if five
+## frogs are revealed.)
 var _remaining_good_moves := 99
+
+## The number of invalid cards the player must click before finding a shark. (The player will always find a shark if
+## they click the last invalid cell.)
 var _remaining_bad_moves := 99
 
 func refresh_level_cards() -> void:
@@ -112,6 +117,10 @@ func add_cards() -> void:
 	_hide_bad_moves(hidden_bad_move_count)
 
 
+## Randomly reveals lizards at the start of a puzzle.
+##
+## Parameters:
+## 	'count': The number of lizards to reveal.
 func _reveal_lizards(count: int) -> void:
 	if count == 0:
 		return
@@ -127,6 +136,10 @@ func _reveal_lizards(count: int) -> void:
 				break
 
 
+## Randomly reveals fish at the start of a puzzle.
+##
+## Parameters:
+## 	'count': The number of fish to reveal.
 func _reveal_bad_moves(count: int) -> void:
 	if count == 0:
 		return
@@ -142,6 +155,10 @@ func _reveal_bad_moves(count: int) -> void:
 				break
 
 
+## Randomly hides shown fish at the start of a puzzle.
+##
+## Parameters:
+## 	'count': The number of fish to hide.
 func _hide_bad_moves(count: int) -> void:
 	if count == 0:
 		return
@@ -174,6 +191,13 @@ func _shown_lizard_cards() -> Array:
 	return result
 
 
+## Returns a shown lizard card in the same row, column, or 3x2 region as the specified card, if one exists.
+##
+## Parameters:
+## 	'card': The card to check for conflicts.
+##
+## 	'method': (Optional) The method used to compare whether two cells conflict. If omitted, the cell will be compared
+## 		by row, column, and 3x2 region
 func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 	var result: CardControl
 	var methods: Array
@@ -196,18 +220,22 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 	return result
 
 
+## Returns 'true' if the two specified cells are in the same column.
 func _compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return pos_1.x == pos_2.x
 
 
+## Returns 'true' if the two specified cells are in the same row.
 func _compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return pos_1.y == pos_2.y
 
 
+## Returns 'true' if the two specified cells are in the same 3x2 region.
 func _compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return _region(pos_1) == _region(pos_2)
 
 
+## Returns an int corresponding to the cell's 3x2 region.
 func _region(cell_pos: Vector2) -> int:
 	var region: int = 0
 	region += int(cell_pos.x / 3)
