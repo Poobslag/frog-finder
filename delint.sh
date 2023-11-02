@@ -77,6 +77,15 @@ then
   echo "$RESULT"
 fi
 
+# malformed block comments
+RESULT=$(grep -R -n "^#[^#]" --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Malformed block comments:"
+  echo "$RESULT"
+fi
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
@@ -116,11 +125,20 @@ then
 fi
 
 # filenames with bad capitalization
-RESULT=$(find project/src -name "[A-Z]*.gd" -o -name "[a-z]*.tscn")
+RESULT=$(find project/src -name "*[A-Z]*.gd" -o -name "[a-z]*.tscn")
 if [ -n "$RESULT" ]
 then
   echo ""
   echo "Filenames with bad capitalization:"
+  echo "$RESULT"
+fi
+
+# filenames with disallowed characters
+RESULT=$(find project/src -name "*_*.gd" -o -name "*[-_]*.tscn")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Filenames with disallowed characters:"
   echo "$RESULT"
 fi
 
