@@ -220,6 +220,17 @@ func _conflicting_lizard(card: CardControl, method: String = "") -> CardControl:
 	return result
 
 
+## Returns the number of invalid cards which the player could click to reveal a fish/shark.
+func _possible_mistake_count() -> int:
+	var result := 0
+	for card in level_cards.get_cards():
+		if card.is_front_shown():
+			continue
+		if _conflicting_lizard(card):
+			result += 1
+	return result
+
+
 ## Returns 'true' if the two specified cells are in the same column.
 func _compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
 	return pos_1.x == pos_2.x
@@ -259,7 +270,7 @@ func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 	elif card.card_front_type == CardControl.CardType.FISH:
 		if _conflicting_lizard(card):
 			# the player found a fish which conflicts with the shown lizards
-			if _remaining_bad_moves <= 0:
+			if _remaining_bad_moves <= 0 or _possible_mistake_count() == 1:
 				card.card_front_type = CardControl.CardType.SHARK
 			else:
 				_remaining_bad_moves -= 1
