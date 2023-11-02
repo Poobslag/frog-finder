@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 ## Returns: The closest ball to the mouse, or 'null' if no balls are close enough to be clicked.
 func _find_clicked_ball() -> BeachBall:
 	var clicked_ball: BeachBall
-	var clicked_ball_distance := 999999
+	var clicked_ball_distance := 999999.0
 	
 	# find the ball closest to the mouse
 	var local_mouse_position := panel.obstacles.get_local_mouse_position()
