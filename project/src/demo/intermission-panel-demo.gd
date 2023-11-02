@@ -4,10 +4,10 @@ extends Node
 ## Keys:
 ## 	[1..0] -> [D]: Launches a random dance sequence with 1-10 frogs.
 ## 	[F]: Show a frog card.
+## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
 ## 	[M]: Play some music.
 ## 	[S]: Spawn a shark.
 ## 	[T]: Toggle the intermission tweak
-## 	[1..3] -> [H]: Spawn some frogs, 1-3 of which will hug your hand.
 ## 	[1..0] -> [W]: Sets the world index.
 
 @onready var _intermission_panel := $IntermissionPanel
@@ -25,8 +25,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			number_event = event
 		KEY_D:
 			_start_frog_dance()
 		KEY_F:
@@ -39,14 +37,14 @@ func _input(event: InputEvent) -> void:
 			
 			card.show_front()
 			_intermission_panel.add_level_result(card)
+		KEY_H:
+			_start_frog_hug_timer()
 		KEY_M:
 			if PlayerData.music_preference == PlayerData.MusicPreference.OFF:
 				PlayerData.music_preference = PlayerData.MusicPreference.RANDOM
 			MusicPlayer.play_preferred_song()
 		KEY_S:
 			_intermission_panel.start_shark_spawn_timer(3)
-		KEY_H:
-			_start_frog_hug_timer()
 		KEY_T:
 			if _intermission_panel.has_tweak():
 				_intermission_panel.remove_tweak()
@@ -54,6 +52,8 @@ func _input(event: InputEvent) -> void:
 				_intermission_panel.add_tweak()
 		KEY_W:
 			_assign_world_index()
+		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
+			number_event = event
 
 
 func _start_frog_hug_timer() -> void:

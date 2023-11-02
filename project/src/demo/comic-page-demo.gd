@@ -3,7 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[P]: Play/stop the comic animation.
-## 	[right brace key]: Advance the comic animation
+## 	[brace keys]: Advance/rewind the comic animation
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
@@ -12,7 +12,7 @@ func _input(event: InputEvent) -> void:
 				$ComicPage.stop()
 			else:
 				$ComicPage.play()
-		KEY_BRACKETRIGHT:
-			$ComicPage.advance(3.0)
 		KEY_BRACKETLEFT:
 			$ComicPage.advance(-3.0)
+		KEY_BRACKETRIGHT:
+			$ComicPage.advance(3.0)
