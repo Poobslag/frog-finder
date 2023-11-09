@@ -1,3 +1,4 @@
+@tool
 class_name CardControl
 extends Control
 ## Shows a card. These cards can turn over to reveal frogs, sharks, fruit, or other surprises.
@@ -140,6 +141,8 @@ const LIZARD_COUNT := 32
 @export var card_front_details: String : set = set_card_front_details
 
 @export var game_state: GameState
+
+## 'true' if the frog/shark doesn't count, maybe because it was on the main menu
 @export var practice := false
 
 @export var shown_face := CardFace.BACK : set = set_shown_face
