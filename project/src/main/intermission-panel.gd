@@ -84,7 +84,8 @@ func reset() -> void:
 	
 	if has_tweak():
 		remove_tweak()
-	add_tweak()
+	if visible:
+		add_tweak()
 
 
 func add_level_result(found_card: CardControl) -> void:
