@@ -15,36 +15,27 @@ signal shark_found(card)
 signal menu_shown
 
 @onready var _game_state := $TitleGameState
-
-## List of CardControls for cards making up the phrase 'frog finder' on the main menu. Some of these cards are hidden
-## so they can be clicked.
-@onready var _all_cards := [
-	$Title/Card1F, $Title/Card1R, $Title/Card1O, $Title/Card1G,
-	$Title/Card2F, $Title/Card2I, $Title/Card2N, $Title/Card2D, $Title/Card2E, $Title/Card2R,
-]
-
-func _ready() -> void:
-	for card in _all_cards:
-		card.show_front()
-		card.connect("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card))
-		card.connect("frog_found", Callable(self, "_on_card_control_frog_found").bind(card))
-		card.connect("before_shark_found", Callable(self, "_on_card_control_before_shark_found").bind(card))
-		card.connect("shark_found", Callable(self, "_on_card_control_shark_found").bind(card))
-	
-	for card in [$Title/Card1O, $Title/Card2I]:
-		card.hide_front()
-
+@onready var _title := $Title
 
 func show_menu() -> void:
 	visible = true
 	_game_state.reset()
-	$Title/Card1O.reset()
-	$Title/Card2I.reset()
-	
-	$Title/Card1O.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
-	$Title/Card2I.card_front_type = CardControl.CardType.SHARK if randf() < 0.15 else CardControl.CardType.FROG
-	
 	menu_shown.emit()
+	_title.randomize_mystery_cards()
+	_connect_title_card_listeners()
+
+
+## Connect 'frog_found', 'shark_found' listeners for new title cards.
+func _connect_title_card_listeners() -> void:
+	for card in _title.get_children():
+		if card.is_connected("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card)):
+			# Avoid connecting redundant listeners for cards which already existed. This happens for mystery cards.
+			continue
+		
+		card.connect("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card))
+		card.connect("frog_found", Callable(self, "_on_card_control_frog_found").bind(card))
+		card.connect("before_shark_found", Callable(self, "_on_card_control_before_shark_found").bind(card))
+		card.connect("shark_found", Callable(self, "_on_card_control_shark_found").bind(card))
 
 
 func _on_card_control_before_frog_found(card: CardControl) -> void:
@@ -66,3 +57,7 @@ func _on_card_control_shark_found(card: CardControl) -> void:
 func _on_level_buttons_level_pressed(level_index: int) -> void:
 	var mission_string := Utils.mission_string(PlayerData.world_index, level_index)
 	start_pressed.emit(mission_string)
+
+
+func _on_title_cards_changed() -> void:
+	_connect_title_card_listeners()

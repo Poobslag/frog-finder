@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://chis4b4c44mwo"]
+[gd_scene load_steps=26 format=3 uid="uid://chis4b4c44mwo"]
 
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_sl5op"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cx8rtammgc8yh" path="res://assets/main/frog-frame-00-sheet.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://blb4vrsohwask" path="res://assets/main/lizard-sheet.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://dx45wefmsfa7f" path="res://assets/main/shark-frame-00-sheet.png" id="12"]
+[ext_resource type="Script" path="res://src/main/main-menu-title.gd" id="12_lnacp"]
 [ext_resource type="Texture2D" uid="uid://bdv15xc6n7sck" path="res://assets/main/fish-sheet.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="14"]
 [ext_resource type="Script" path="res://src/main/version-label.gd" id="15"]
@@ -81,7 +82,7 @@ wiggle_frames = Array[int]([0, 1])
 [node name="WowSprite" parent="MusicControl" instance=ExtResource("3")]
 position = Vector2(40, 40)
 
-[node name="Title" type="Control" parent="."]
+[node name="Title" type="Control" parent="." node_paths=PackedStringArray("game_state")]
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -92,102 +93,116 @@ offset_top = -250.0
 offset_right = 462.0
 offset_bottom = 250.0
 mouse_filter = 2
+script = ExtResource("12_lnacp")
+text = "fr?g f?nder"
+CardControlScene = ExtResource("8")
+game_state = NodePath("../TitleGameState")
 
-[node name="Card1F" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
-offset_left = 300.545
-offset_top = 52.0022
-offset_right = 380.545
-offset_bottom = 132.002
+[node name="Card1" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 300.0
+offset_top = 50.0
+offset_right = 380.0
+offset_bottom = 130.0
 card_front_type = 4
-card_front_details = "f1"
+card_front_details = "f"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
-[node name="Card1R" parent="Title" instance=ExtResource("8")]
-offset_left = 380.545
-offset_top = 52.0022
-offset_right = 460.545
-offset_bottom = 132.002
+[node name="Card2" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 380.0
+offset_top = 50.0
+offset_right = 460.0
+offset_bottom = 130.0
 card_front_type = 4
-card_front_details = "r1"
+card_front_details = "r"
+game_state = NodePath("../../TitleGameState")
+practice = true
+shown_face = 1
+
+[node name="Card3" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 460.0
+offset_top = 50.0
+offset_right = 540.0
+offset_bottom = 130.0
+card_front_type = 1
 game_state = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card1O" parent="Title" instance=ExtResource("8")]
-offset_left = 460.545
-offset_top = 52.0022
-offset_right = 540.545
-offset_bottom = 132.002
-game_state = NodePath("../../TitleGameState")
-practice = true
-
-[node name="Card1G" parent="Title" instance=ExtResource("8")]
-offset_left = 540.545
-offset_top = 52.0022
-offset_right = 620.545
-offset_bottom = 132.002
+[node name="Card4" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 540.0
+offset_top = 50.0
+offset_right = 620.0
+offset_bottom = 130.0
 card_front_type = 4
 card_front_details = "g"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
-[node name="Card2F" parent="Title" instance=ExtResource("8")]
-offset_left = 220.956
-offset_top = 134.523
-offset_right = 300.956
-offset_bottom = 214.523
+[node name="Card5" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 220.0
+offset_top = 130.0
+offset_right = 300.0
+offset_bottom = 210.0
 card_front_type = 4
-card_front_details = "f2"
+card_front_details = "f"
+game_state = NodePath("../../TitleGameState")
+practice = true
+shown_face = 1
+
+[node name="Card6" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 300.0
+offset_top = 130.0
+offset_right = 380.0
+offset_bottom = 210.0
+card_front_type = 1
 game_state = NodePath("../../TitleGameState")
 practice = true
 
-[node name="Card2I" parent="Title" instance=ExtResource("8")]
-offset_left = 300.956
-offset_top = 134.523
-offset_right = 380.956
-offset_bottom = 214.523
-game_state = NodePath("../../TitleGameState")
-practice = true
-
-[node name="Card2N" parent="Title" instance=ExtResource("8")]
-offset_left = 380.956
-offset_top = 134.523
-offset_right = 460.956
-offset_bottom = 214.523
+[node name="Card7" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 380.0
+offset_top = 130.0
+offset_right = 460.0
+offset_bottom = 210.0
 card_front_type = 4
 card_front_details = "n"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
-[node name="Card2D" parent="Title" instance=ExtResource("8")]
-offset_left = 460.956
-offset_top = 134.523
-offset_right = 540.956
-offset_bottom = 214.523
+[node name="Card8" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 460.0
+offset_top = 130.0
+offset_right = 540.0
+offset_bottom = 210.0
 card_front_type = 4
 card_front_details = "d"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
-[node name="Card2E" parent="Title" instance=ExtResource("8")]
-offset_left = 540.956
-offset_top = 134.523
-offset_right = 620.956
-offset_bottom = 214.523
+[node name="Card9" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 540.0
+offset_top = 130.0
+offset_right = 620.0
+offset_bottom = 210.0
 card_front_type = 4
 card_front_details = "e"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
-[node name="Card2R" parent="Title" instance=ExtResource("8")]
-offset_left = 620.956
-offset_top = 134.523
-offset_right = 700.956
-offset_bottom = 214.523
+[node name="Card10" parent="Title" node_paths=PackedStringArray("game_state") instance=ExtResource("8")]
+offset_left = 620.0
+offset_top = 130.0
+offset_right = 700.0
+offset_bottom = 210.0
 card_front_type = 4
-card_front_details = "r2"
+card_front_details = "r"
 game_state = NodePath("../../TitleGameState")
 practice = true
+shown_face = 1
 
 [node name="Instructions" type="Control" parent="."]
 anchors_preset = 0
@@ -326,6 +341,7 @@ text = "v1.02"
 horizontal_alignment = 2
 script = ExtResource("15")
 
+[connection signal="cards_changed" from="Title" to="." method="_on_title_cards_changed"]
 [connection signal="level_pressed" from="LevelButtonHolder/World1Buttons" to="." method="_on_level_buttons_level_pressed"]
 [connection signal="next_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_level_buttons_next_world_pressed"]
 [connection signal="prev_world_pressed" from="LevelButtonHolder/World1Buttons" to="LevelButtonHolder" method="_on_level_buttons_prev_world_pressed"]
