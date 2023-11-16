@@ -102,11 +102,11 @@ func load_player_data() -> void:
 	if save_json.has("music_preference") and int(save_json["music_preference"]) > MusicPreference.OFF:
 		save_json["music_preference"] = MusicPreference.RANDOM
 	
-	if save_json.has("world"):
-		set_world_index(int(save_json["world"]))
 	if save_json.has("music_preference"):
 		# handle old music preference; used to go from 0-7
 		set_music_preference(int(save_json["music_preference"]))
+	if save_json.has("world"):
+		set_world_index(int(save_json["world"]))
 	if save_json.has("frog_count"):
 		frog_count = int(save_json["frog_count"])
 	if save_json.has("shark_count"):
