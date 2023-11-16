@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn8xedg15n2hn"]
+
+[ext_resource type="Script" path="res://src/demo/background-demo-picker-row.gd" id="1_8avel"]
+[ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="2_8m33r"]
+
+[node name="PickerRow" type="HBoxContainer" groups=["picker_rows"]]
+alignment = 1
+script = ExtResource("1_8avel")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("2_8m33r")
+
+[node name="GoButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Go!"
+
+[node name="ShuffleButton" type="Button" parent="."]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "?"
+
+[connection signal="popup_closed" from="ColorPickerButton" to="." method="_on_color_picker_button_popup_closed"]
+[connection signal="pressed" from="GoButton" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="ShuffleButton" to="." method="_on_shuffle_button_pressed"]

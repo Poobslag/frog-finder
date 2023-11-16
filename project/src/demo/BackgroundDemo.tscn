@@ -1,9 +1,115 @@
-[gd_scene load_steps=3 format=3 uid="uid://sn44oyirw2l7"]
+[gd_scene load_steps=6 format=3 uid="uid://sn44oyirw2l7"]
 
 [ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="1"]
-[ext_resource type="Script" path="res://src/demo/background-demo.gd" id="2"]
+[ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="4_ikoou"]
+[ext_resource type="Script" path="res://src/demo/background-demo-custom.gd" id="5_hmbow"]
+[ext_resource type="Script" path="res://src/demo/background-demo-preset.gd" id="5_kqug2"]
+[ext_resource type="PackedScene" uid="uid://cn8xedg15n2hn" path="res://src/demo/BackgroundDemoPickerRow.tscn" id="5_slo66"]
 
 [node name="BackgroundDemo" type="Node"]
-script = ExtResource("2")
 
 [node name="Background" parent="." instance=ExtResource("1")]
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ikoou")
+current_tab = 1
+
+[node name="Custom" type="MarginContainer" parent="TabContainer" node_paths=PackedStringArray("background")]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("5_hmbow")
+PickerRowScene = ExtResource("5_slo66")
+background = NodePath("../../Background")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Custom"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/Custom/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "[\"ffffff\", \"eeeeee\"]"
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Custom/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="TabContainer/Custom/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+"
+
+[node name="RemoveButton" type="Button" parent="TabContainer/Custom/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "-"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Custom/VBoxContainer"]
+layout_mode = 2
+
+[node name="PickerRow" parent="TabContainer/Custom/VBoxContainer" instance=ExtResource("5_slo66")]
+layout_mode = 2
+
+[node name="Preset" type="MarginContainer" parent="TabContainer" node_paths=PackedStringArray("background")]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("5_kqug2")
+background = NodePath("../../Background")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Preset"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("4_ikoou")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Preset/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WorldDownButton" type="Button" parent="TabContainer/Preset/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "<"
+
+[node name="Label" type="Label" parent="TabContainer/Preset/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "World 1"
+horizontal_alignment = 1
+
+[node name="WorldUpButton" type="Button" parent="TabContainer/Preset/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = ">"
+
+[node name="GoButton" type="Button" parent="TabContainer/Preset/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Go!"
+
+[connection signal="text_changed" from="TabContainer/Custom/VBoxContainer/TextEdit" to="TabContainer/Custom" method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="TabContainer/Custom/VBoxContainer/HBoxContainer/AddButton" to="TabContainer/Custom" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/Custom/VBoxContainer/HBoxContainer/RemoveButton" to="TabContainer/Custom" method="_on_remove_button_pressed"]
+[connection signal="pressed" from="TabContainer/Preset/VBoxContainer/HBoxContainer/WorldDownButton" to="TabContainer/Preset" method="_on_world_down_button_pressed"]
+[connection signal="pressed" from="TabContainer/Preset/VBoxContainer/HBoxContainer/WorldUpButton" to="TabContainer/Preset" method="_on_world_up_button_pressed"]
+[connection signal="pressed" from="TabContainer/Preset/VBoxContainer/GoButton" to="TabContainer/Preset" method="_on_go_button_pressed"]
