@@ -33,7 +33,8 @@ var _mystery_cards: Array = []
 func _ready() -> void:
 	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
 	
-	text = titles_by_world_index.get(PlayerData.world_index, DEFAULT_TITLE)
+	if not Engine.is_editor_hint():
+		text = titles_by_world_index.get(PlayerData.world_index, DEFAULT_TITLE)
 
 
 func _exit_tree() -> void:
