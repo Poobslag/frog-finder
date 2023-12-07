@@ -22,9 +22,7 @@ script = ExtResource("1_3fo1s")
 [node name="Letter1" parent="." instance=ExtResource("1_ranxm")]
 material = SubResource("ShaderMaterial_ptj1e")
 position = Vector2(462, 300)
-frame = 14
 
 [node name="Letter2" parent="." instance=ExtResource("1_ranxm")]
 material = SubResource("ShaderMaterial_cbdgp")
 position = Vector2(562, 300)
-frame = 14
