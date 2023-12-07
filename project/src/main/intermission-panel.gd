@@ -141,6 +141,17 @@ func start_frog_dance(frog_count: int) -> void:
 		_dance(frogs[i], dance_frogs, dance_target)
 
 
+func start_frog_ribbon() -> void:
+	_spawn_frog()
+	
+	frogs[0].give_ribbon(hand)
+	
+	if hand.ribbon:
+		_bye_button.visible = true
+	else:
+		frogs[0].connect("finished_give_ribbon", Callable(self, "_on_running_frog_finished_give_ribbon"))
+
+
 func has_tweak() -> bool:
 	return has_node("Tweak")
 
@@ -271,6 +282,10 @@ func _on_hand_hug_finished() -> void:
 
 
 func _on_running_frog_finished_dance() -> void:
+	_bye_button.visible = true
+
+
+func _on_running_frog_finished_give_ribbon() -> void:
 	_bye_button.visible = true
 
 

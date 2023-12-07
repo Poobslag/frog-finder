@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4osspemyuhmd"]
+[gd_scene load_steps=9 format=3 uid="uid://c4osspemyuhmd"]
 
 [ext_resource type="Script" path="res://src/main/hand-sprite.gd" id="1"]
 [ext_resource type="Script" path="res://src/main/hand.gd" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cke64hk8y4kr8" path="res://assets/main/hand-sheet.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://ddu0thu3dp057" path="res://assets/main/hug-sheet.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://brl5be1hh4mw" path="res://src/main/WiggleTimer.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://byyt6vk04dwme" path="res://assets/main/hand-ribbon-1-sheet.png" id="6_yjns1"]
 [ext_resource type="Script" path="res://src/main/wiggle-sprite.gd" id="7"]
 
 [node name="Hand" type="Control"]
@@ -35,6 +36,15 @@ scale = Vector2(0.5, 0.5)
 
 [node name="FingerSprite2" parent="." instance=ExtResource("3")]
 scale = Vector2(0.5, 0.5)
+
+[node name="RibbonSprite" type="Sprite2D" parent="."]
+position = Vector2(23, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_yjns1")
+hframes = 3
+script = ExtResource("7")
+
+[node name="WiggleTimer" parent="RibbonSprite" instance=ExtResource("6")]
 
 [node name="HugSprite" type="Sprite2D" parent="."]
 position = Vector2(23, 14)

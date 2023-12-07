@@ -16,6 +16,7 @@ var fingers := 3 : set = set_fingers
 ## If this number is -1, then the player is in a puzzle or on the main menu and the hand shows an index finger.
 var biteable_fingers := -1 : set = set_biteable_fingers
 var huggable_fingers := 0 : set = set_huggable_fingers
+var ribbon := false : set = set_ribbon
 var hugged_fingers := 0
 var resting := false
 
@@ -23,6 +24,7 @@ var _previous_rect_position: Vector2
 
 @onready var _hand_sprite := $HandSprite
 @onready var _hug_sprite := $HugSprite
+@onready var _ribbon_sprite := $RibbonSprite
 
 func _ready() -> void:
 	_refresh_hand_sprite()
@@ -35,7 +37,7 @@ func _input(event: InputEvent) -> void:
 			_finish_hug()
 
 
-func reset() -> void:
+func reset_fingers() -> void:
 	fingers = 3
 	biteable_fingers = -1
 	huggable_fingers = 0
@@ -49,6 +51,7 @@ func bite() -> void:
 	
 	biteable_fingers -= 1
 	fingers -= 1
+	ribbon = false
 	_refresh_hand_sprite()
 	# play an appropriate animation
 	match(fingers):
@@ -71,6 +74,11 @@ func hug() -> void:
 		1: $FingerSprite0.hug(0)
 		2: $FingerSprite1.hug(2)
 		3: $FingerSprite2.hug(1)
+
+
+func set_ribbon(new_ribbon: bool) -> void:
+	ribbon = new_ribbon
+	_refresh_hand_sprite()
 
 
 func set_fingers(new_fingers: int) -> void:
@@ -118,6 +126,13 @@ func _refresh_hand_sprite() -> void:
 	else:
 		# no fingers can be eaten/bitten; just show the pointer, like a cursor
 		_hand_sprite.set_state(HandSprite.State.ONE_FINGER)
+	
+	if ribbon and hugged_fingers == 0:
+		_ribbon_sprite.wiggle_frames = [1, 2] as Array[int]
+		_ribbon_sprite.assign_wiggle_frame()
+	else:
+		_ribbon_sprite.wiggle_frames = [0] as Array[int]
+		_ribbon_sprite.assign_wiggle_frame()
 
 
 func _on_rest_timer_timeout() -> void:
