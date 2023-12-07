@@ -6,6 +6,14 @@ const TWEEN_DURATION := 2.5
 const BACKGROUND_COLOR := Color("3679a5")
 const TEXTURE_COLOR := Color("45a5e6")
 
+## key: (int) world index
+## value: (Array, Color) background colors for a world
+const BACKGROUND_COLORS_BY_WORLD_INDEX := {
+	0: [],
+	1: [Color("b6925a"), Color("978e39"), Color("57a4a4"), Color("4e9b6c"), Color("be5847")],
+	2: [],
+}
+
 ## Hue values in the range [0, 1] used for backgrounds. The hue at the front of the list is currently visible.
 var hues := [
 	0.0, 0.05, 0.10, 0.15, 0.20,
@@ -13,6 +21,8 @@ var hues := [
 	0.63, 0.66, 0.70, 0.75, 0.80,
 	0.90,
 ]
+
+var texture_color: Color
 
 ## TextureRect instances used for backgrounds. The texture at the front of the list is currently visible.
 @onready var textures := [
@@ -31,42 +41,61 @@ var hues := [
 @onready var _color_rect := $ColorRect
 
 func _ready() -> void:
-	change(true)
+	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
+	
+	var new_texture_color := _random_texture_color_for_world()
+	change_specific(new_texture_color, true)
 
 
-func change(immediate: bool = false) -> void:
+## Changes to a random background color and texture.
+func change() -> void:
+	var new_texture_color := _random_texture_color_for_world()
+	change_specific(new_texture_color)
+
+
+## Returns a random background texture color, using a generic set of preselected hues.
+func random_texture_color() -> Color:
+	var previous_hue: float = hues.pop_front()
+	hues.shuffle()
+	hues.push_back(previous_hue)
+	return Color.from_hsv(hues[0], randf_range(0.5, 0.8), 0.50)
+
+
+## Changes to a specific background color and random texture.
+##
+## Parameters:
+## 	'new_texture_color': The color to change to.
+##
+## 	'immediate': (Optional) If true, skips the smooth color transition.
+func change_specific(new_texture_color: Color, immediate: bool = false) -> void:
+	texture_color = new_texture_color
 	var previous_texture: TextureRect = textures.pop_front()
 	textures.shuffle()
 	textures.push_back(previous_texture)
 	textures[0].visible = true
 	
-	var previous_hue: float = hues.pop_front()
-	hues.shuffle()
-	hues.push_back(previous_hue)
-	
-	var texture_color := Color.from_hsv(hues[0], randf_range(0.5, 0.8), 0.50)
-	var rect_color := Color.from_hsv(texture_color.h, texture_color.s, 0.25)
+	var rect_color := Color.from_hsv(new_texture_color.h, new_texture_color.s, 0.25)
 	
 	if randf() < 0.3:
-		var swap := texture_color
-		texture_color = rect_color
+		var swap := new_texture_color
+		new_texture_color = rect_color
 		rect_color = swap
 	
 	if immediate:
 		previous_texture.visible = false
 		_color_rect.color = rect_color
-		textures[0].modulate = texture_color
+		textures[0].modulate = new_texture_color
 	else:
 		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
 		# from within a class generates a warning
 		@warning_ignore("static_called_on_instance")
-		textures[0].modulate = to_transparent(texture_color)
+		textures[0].modulate = to_transparent(new_texture_color)
 		
 		var change_tween := create_tween().set_parallel()
 		change_tween.tween_property(_color_rect, "color",
 				rect_color, TWEEN_DURATION)
 		change_tween.tween_property(textures[0], "modulate",
-				texture_color, TWEEN_DURATION)
+				new_texture_color, TWEEN_DURATION)
 		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
 		# from within a class generates a warning
 		@warning_ignore("static_called_on_instance")
@@ -75,8 +104,30 @@ func change(immediate: bool = false) -> void:
 		change_tween.chain().tween_callback(_on_change_tween_tween_completed.bind(previous_texture))
 
 
+func _random_texture_color_for_world() -> Color:
+	var result: Color
+	
+	if BACKGROUND_COLORS_BY_WORLD_INDEX.get(PlayerData.world_index):
+		# the world defines colors; return a random one
+		var possible_colors: Array = BACKGROUND_COLORS_BY_WORLD_INDEX.get(PlayerData.world_index).duplicate()
+		if texture_color in possible_colors and possible_colors.size() >= 2:
+			# don't return the same color we're already using
+			possible_colors.remove_at(possible_colors.find(texture_color))
+		
+		result = Utils.rand_value(possible_colors)
+	else:
+		# the world doesn't define colors; use the 'random_texture_color' function
+		result = random_texture_color()
+	
+	return result
+
+
 func _on_change_tween_tween_completed(previous_texture: TextureRect) -> void:
 	previous_texture.visible = false
+
+
+func _on_player_data_world_index_changed() -> void:
+	change()
 
 
 ## Returns a transparent version of the specified color.

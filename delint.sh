@@ -91,6 +91,7 @@ RESULT=$(grep -R -n "var [^:]* = \|const [^:]* = " --include="*.gd" project/src 
   | grep -v " = parse_json(" \
   | grep -v "utils\\.gd.*var new_key = key" \
   | grep -v "utils\\.gd.*var new_value = dict\[key\]" \
+  | grep -v "var result_obj = test_json_conv\\.get_data()" \
   )
 if [ -n "$RESULT" ]
 then
