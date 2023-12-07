@@ -104,10 +104,10 @@ frame = 4
 script = ExtResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "run"
 libraries = {
 "": SubResource("AnimationLibrary_lt08g")
 }
+autoplay = "run"
 
 [node name="ChaseTimer" type="Timer" parent="."]
 wait_time = 8.0
