@@ -1147,10 +1147,10 @@ libraries = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "stand"
 libraries = {
 "": SubResource("AnimationLibrary_1nhyy")
 }
+autoplay = "stand"
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -18,8 +18,6 @@ wiggle_frames = Array[int]([6, 7])
 
 [node name="CardFront" parent="." instance=ExtResource("2")]
 visible = false
-frame = 4
-wiggle_frames = Array[int]([4, 5])
 
 [node name="CheerTimer" type="Timer" parent="."]
 wait_time = 0.5
