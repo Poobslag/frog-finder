@@ -15,7 +15,7 @@ func reset_wiggle() -> void:
 
 func assign_wiggle_frame() -> void:
 	if Engine.is_editor_hint():
-		# avoid randomizing frames in the editor, it causes unnecessary churn in our .tscn files
+		# don't randomize frames in the editor, it causes unnecessary churn in our .tscn files
 		frame = wiggle_frames[0] if wiggle_frames else 0
 		return
 	
