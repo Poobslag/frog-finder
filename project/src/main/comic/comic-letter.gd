@@ -74,7 +74,7 @@ func _refresh_text() -> void:
 	var frame_indexes: Array = FRAME_INDEXES_BY_LETTER.get(text, EMPTY_FRAME_INDEXES)
 	
 	if Engine.is_editor_hint():
-		# avoid randomizing frames in the editor, it causes unnecessary churn in our .tscn files
+		# don't randomize frames in the editor, it causes unnecessary churn in our .tscn files
 		frame = frame_indexes[0]
 	else:
 		frame = Utils.rand_value(frame_indexes)

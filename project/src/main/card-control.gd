@@ -315,65 +315,71 @@ func _refresh_card_textures() -> void:
 
 
 func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: String) -> void:
+	var card_randi := randi()
+	
+	if Engine.is_editor_hint():
+		# don't randomize frames in the editor, it causes unnecessary churn in our .tscn files
+		card_randi = 0
+	
 	_pending_warning = ""
 	match card_type:
 		CardType.FROG:
 			Utils.assign_card_texture(card_sprite, _frog_sheet)
-			var frog_index := randi() % FROG_COUNT
+			var frog_index := card_randi % FROG_COUNT
 			card_sprite.wiggle_frames = [4 * frog_index + 0, 4 * frog_index + 1] as Array[int]
 		CardType.SHARK:
 			Utils.assign_card_texture(card_sprite, _shark_sheet)
-			var shark_index := randi() % SHARK_COUNT
+			var shark_index := card_randi % SHARK_COUNT
 			card_sprite.wiggle_frames = [2 * shark_index + 0, 2 * shark_index + 1] as Array[int]
 		CardType.MYSTERY:
 			Utils.assign_card_texture(card_sprite, _mystery_sheet)
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
 				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
-				mystery_index = Utils.rand_value(mystery_indexes)
+				mystery_index = _mostly_rand_value(mystery_indexes)
 			else:
-				mystery_index = randi() % MYSTERY_COUNT
+				mystery_index = card_randi % MYSTERY_COUNT
 			card_sprite.wiggle_frames = [2 * mystery_index + 0, 2 * mystery_index + 1] as Array[int]
 		CardType.LETTER:
 			Utils.assign_card_texture(card_sprite, _letter_sheet)
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
 				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
-				letter_index = Utils.rand_value(letter_indexes)
+				letter_index = _mostly_rand_value(letter_indexes)
 			else:
 				# We never want random letters in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized letter: %s" % [card_details]
-				letter_index = randi() % LETTER_COUNT
+				letter_index = card_randi % LETTER_COUNT
 			card_sprite.wiggle_frames = [2 * letter_index + 0, 2 * letter_index + 1] as Array[int]
 		CardType.ARROW:
 			Utils.assign_card_texture(card_sprite, _arrow_sheet)
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
-				arrow_index = Utils.rand_value(arrow_indexes)
+				arrow_index = _mostly_rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized arrow: %s" % [card_details]
-				arrow_index = randi() % ARROW_COUNT
+				arrow_index = card_randi % ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.HEX_ARROW:
 			Utils.assign_card_texture(card_sprite, _hex_arrow_sheet)
 			var arrow_index: int
 			if HEX_ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = HEX_ARROW_INDEXES_BY_DETAILS[card_details]
-				arrow_index = Utils.rand_value(arrow_indexes)
+				arrow_index = _mostly_rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized hex arrow: %s" % [card_details]
-				arrow_index = randi() % HEX_ARROW_COUNT
+				arrow_index = card_randi % HEX_ARROW_COUNT
 			card_sprite.wiggle_frames = [2 * arrow_index + 0, 2 * arrow_index + 1] as Array[int]
 		CardType.FISH:
 			Utils.assign_card_texture(card_sprite, _fish_sheet)
-			var fish_index := randi() % FISH_COUNT
+			var fish_index := card_randi % FISH_COUNT
 			card_sprite.wiggle_frames = [2 * fish_index + 0, 2 * fish_index + 1] as Array[int]
 		CardType.LIZARD:
 			Utils.assign_card_texture(card_sprite, _lizard_sheet)
-			var lizard_index := randi() % LIZARD_COUNT
+			var lizard_index := card_randi % LIZARD_COUNT
 			card_sprite.wiggle_frames = [2 * lizard_index + 0, 2 * lizard_index + 1] as Array[int]
 		CardType.FRUIT:
 			Utils.assign_card_texture(card_sprite, _fruit_sheet)
@@ -383,7 +389,7 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
 				_pending_warning = "Unrecognized fruit: %s" % [card_details]
-				fruit_index = randi() % FRUIT_COUNT
+				fruit_index = card_randi % FRUIT_COUNT
 			card_sprite.wiggle_frames = [2 * fruit_index + 0, 2 * fruit_index + 1] as Array[int]
 	
 	if card_sprite.wiggle_frames:
@@ -459,3 +465,10 @@ func _on_cheer_timer_timeout() -> void:
 	_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
 	_creature_sfx.play()
 	cheer()
+
+
+## Returns a random value from the specified array, unless the code is running in the Godot editor.
+##
+## We don't randomize frames in the editor, it causes unnecessary churn in our .tscn files.
+static func _mostly_rand_value(values: Array):
+	return values[0] if Engine.is_editor_hint() else values[randi() % values.size()]
