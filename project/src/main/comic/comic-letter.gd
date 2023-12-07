@@ -72,7 +72,12 @@ func _refresh_text() -> void:
 		return
 	
 	var frame_indexes: Array = FRAME_INDEXES_BY_LETTER.get(text, EMPTY_FRAME_INDEXES)
-	frame = Utils.rand_value(frame_indexes)
+	
+	if Engine.is_editor_hint():
+		# avoid randomizing frames in the editor, it causes unnecessary churn in our .tscn files
+		frame = frame_indexes[0]
+	else:
+		frame = Utils.rand_value(frame_indexes)
 
 
 ## Launches the tween which makes the sprite slowly bob up and down.
