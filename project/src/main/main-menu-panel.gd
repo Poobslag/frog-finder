@@ -27,6 +27,9 @@ func show_menu() -> void:
 
 ## Connect 'frog_found', 'shark_found' listeners for new title cards.
 func _connect_title_card_listeners() -> void:
+	if not is_node_ready():
+		return
+	
 	for card in _title.get_children():
 		if card.is_connected("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card)):
 			# Avoid connecting redundant listeners for cards which already existed. This happens for mystery cards.
