@@ -336,6 +336,9 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
 				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
+				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+				# from within a class generates a warning
+				@warning_ignore("static_called_on_instance")
 				mystery_index = _mostly_rand_value(mystery_indexes)
 			else:
 				mystery_index = card_randi % MYSTERY_COUNT
@@ -345,6 +348,9 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
 				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
+				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+				# from within a class generates a warning
+				@warning_ignore("static_called_on_instance")
 				letter_index = _mostly_rand_value(letter_indexes)
 			else:
 				# We never want random letters in a level. If this is happening, something is wrong.
@@ -356,6 +362,9 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
+				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+				# from within a class generates a warning
+				@warning_ignore("static_called_on_instance")
 				arrow_index = _mostly_rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
@@ -367,6 +376,9 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			var arrow_index: int
 			if HEX_ARROW_INDEXES_BY_DETAILS.has(card_details):
 				var arrow_indexes: Array = HEX_ARROW_INDEXES_BY_DETAILS[card_details]
+				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
+				# from within a class generates a warning
+				@warning_ignore("static_called_on_instance")
 				arrow_index = _mostly_rand_value(arrow_indexes)
 			else:
 				# We never want random arrows in a level. If this is happening, something is wrong.
