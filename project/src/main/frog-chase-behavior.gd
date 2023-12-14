@@ -1,7 +1,7 @@
 extends CreatureBehavior
 ## Defines how a frog chases the player's cursor.
 
-## If the frog gets within this distance of the player's hand, they will bite off a finger.
+## If the frog gets within this distance of the player's hand, they will hug it.
 const HUG_DISTANCE := 40.0
 
 ## The duration frogs will pursue the hand for before switching to the 'panic' state.
