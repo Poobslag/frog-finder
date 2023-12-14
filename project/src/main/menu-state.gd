@@ -85,7 +85,7 @@ func _end_intermission() -> void:
 	if hand.fingers == 0:
 		# we lose; return to the main menu
 		_hide_panels()
-		hand.reset() # restore any bitten fingers
+		hand.reset_fingers() # restore any bitten fingers
 		intermission_panel.reset() # free any sharks/frogs
 		PlayerData.set_mission_cleared(gameplay_panel.mission_string, PlayerData.MissionResult.SHARK)
 		PlayerData.save_player_data()
@@ -93,7 +93,7 @@ func _end_intermission() -> void:
 	elif intermission_panel.is_full():
 		# we win; return to the main menu
 		_hide_panels()
-		hand.reset() # restore any bitten fingers
+		hand.reset_fingers() # restore any bitten fingers
 		intermission_panel.reset() # free any sharks/frogs
 		PlayerData.set_mission_cleared(gameplay_panel.mission_string, PlayerData.MissionResult.FROG)
 		PlayerData.save_player_data()
@@ -111,7 +111,9 @@ func _end_intermission() -> void:
 func _play_ending() -> void:
 	# we won!
 	match gameplay_panel.mission_string:
-		"1-1", "1-2", "2-1", "2-2", "3-1", "3-2":
+		"1-1", "2-1", "3-1":
+			intermission_panel.start_frog_ribbon()
+		"1-2", "2-2", "3-2":
 			var dancer_count := FrogArrangements.get_dancer_count(PlayerData.frog_dance_count)
 			intermission_panel.start_frog_dance(dancer_count)
 			PlayerData.frog_dance_count += 1
@@ -148,7 +150,7 @@ func _on_main_menu_panel_start_pressed(mission_string: String) -> void:
 		MusicPlayer.play_preferred_song()
 	
 	_hide_panels()
-	hand.reset()
+	hand.reset_fingers()
 	intermission_panel.restart(mission_string)
 	gameplay_panel.restart(mission_string)
 	gameplay_panel.show_puzzle()

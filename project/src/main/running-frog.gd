@@ -8,6 +8,9 @@ signal reached_dance_target
 @warning_ignore("unused_signal")
 signal finished_dance
 
+@warning_ignore("unused_signal")
+signal finished_give_ribbon
+
 const RUN_SPEED := 150.0
 
 ## frogs move in a jerky way. soon_position stores the location where the frog will blink to after a delay
@@ -20,6 +23,7 @@ var velocity := Vector2.ZERO
 @onready var _animation_player := $AnimationPlayer
 @onready var _chase_behavior := $ChaseBehavior
 @onready var _dance_behavior := $DanceBehavior
+@onready var _give_ribbon_behavior := $GiveRibbonBehavior
 
 @onready var behavior: CreatureBehavior
 
@@ -61,6 +65,11 @@ func dance(frogs: Array, dance_target: Vector2) -> void:
 	_dance_behavior.frogs = frogs
 	_dance_behavior.dance_target = dance_target
 	_start_behavior(_dance_behavior)
+
+
+func give_ribbon(hand: Hand) -> void:
+	_give_ribbon_behavior.hand = hand
+	_start_behavior(_give_ribbon_behavior)
 
 
 ## Instantly move the frog in the specified direction.
@@ -110,20 +119,28 @@ func set_soon_position(new_soon_position: Vector2) -> void:
 	soon_position = new_soon_position
 
 
-## Randomize the frog's running speed and run animation.
-func _randomize_run_style() -> void:
-	run_speed = RUN_SPEED * randf_range(0.8, 1.2)
+## Returns a random run animation name. Some run animations are more rare than others.
+func random_run_animation_name() -> String:
+	var result: String
 	
 	# some running animations are much more common than others
 	if randf() < 0.8:
 		# arms straight down, like holding suitcases
-		run_animation_name = "run2"
+		result = "run2"
 	elif randf() < 0.8:
 		# arms moving up and down, like an exaggerated jog
-		run_animation_name = "run3"
+		result = "run3"
 	else:
 		# arms forward, like trying to catch something
-		run_animation_name = "run1"
+		result = "run1"
+	
+	return result
+
+
+## Randomize the frog's running speed and run animation.
+func _randomize_run_style() -> void:
+	run_speed = RUN_SPEED * randf_range(0.8, 1.2)
+	run_animation_name = random_run_animation_name()
 
 
 ## Assigns a new behavior to the frog, such as 'chasing the hand' or 'dancing'.

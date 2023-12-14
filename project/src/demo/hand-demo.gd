@@ -3,6 +3,7 @@ extends Node
 ##
 ## Keys:
 ## 	[B]: Bite a finger
+## 	[R]: Toggle ribbon
 ## 	[3]: Restore all three fingers
 ## 	[=/-]: Change the number of biteable fingers
 ## 	[brace keys]: Change the number of hugged fingers
@@ -18,6 +19,8 @@ func _input(event: InputEvent) -> void:
 		KEY_B:
 			_hand.set_biteable_fingers(1)
 			_hand.bite()
+		KEY_R:
+			_hand.ribbon = !_hand.ribbon
 		KEY_3:
 			_hand.set_fingers(3)
 		KEY_MINUS:
