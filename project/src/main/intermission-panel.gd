@@ -54,7 +54,7 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 @onready var _shark_spawn_timer := $SharkSpawnTimer
 
 func _ready() -> void:
-	hand.connect("hug_finished", Callable(self, "_on_hand_hug_finished"))
+	hand.hug_finished.connect(_on_hand_hug_finished)
 
 
 func is_full() -> bool:
@@ -129,7 +129,7 @@ func start_frog_dance(frog_count: int) -> void:
 		var new_frog := _spawn_frog()
 		dance_frogs.append(new_frog)
 	
-	frogs[0].connect("finished_dance", Callable(self, "_on_running_frog_finished_dance"))
+	frogs[0].finished_dance.connect(_on_running_frog_finished_dance)
 	
 	var arrangement := FrogArrangements.get_arrangement(frog_count)
 	
@@ -149,7 +149,7 @@ func start_frog_ribbon() -> void:
 	if hand.ribbon:
 		_bye_button.visible = true
 	else:
-		frogs[0].connect("finished_give_ribbon", Callable(self, "_on_running_frog_finished_give_ribbon"))
+		frogs[0].finished_give_ribbon.connect(_on_running_frog_finished_give_ribbon)
 
 
 func has_tweak() -> bool:

@@ -3,7 +3,7 @@ extends Control
 
 func _ready() -> void:
 	_refresh_world_index()
-	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 
 
 ## Ensure exactly one set of world decorations is visible.

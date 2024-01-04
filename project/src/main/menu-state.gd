@@ -45,7 +45,7 @@ func _show_intermission_panel(card: CardControl) -> void:
 		if intermission_panel.is_full():
 			_play_ending()
 		else:
-			_start_timer(3.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
+			_start_timer(3.0).timeout.connect(_on_timer_timeout_end_intermission)
 
 
 ## Creates and starts a one-shot timer.
@@ -76,7 +76,7 @@ func _add_timer(wait_time: float) -> Timer:
 	var timer := Timer.new()
 	timer.one_shot = true
 	timer.wait_time = wait_time
-	timer.connect("timeout", Callable(self, "_on_timer_timeout_queue_free").bind(timer))
+	timer.timeout.connect(_on_timer_timeout_queue_free.bind(timer))
 	_timers.add_child(timer)
 	return timer
 
@@ -130,7 +130,7 @@ func _play_ending() -> void:
 ## After a delay, spawns frogs which hug the cursor.
 func _schedule_frog_hug_ending(huggable_fingers: int, new_max_frogs: int) -> void:
 	MusicPlayer.fade_out(4.0)
-	_start_timer(3.0).connect("timeout", _on_timer_timeout_play_frog_hug_ending.bind(huggable_fingers, new_max_frogs))
+	_start_timer(3.0).timeout.connect(_on_timer_timeout_play_frog_hug_ending.bind(huggable_fingers, new_max_frogs))
 
 
 ## Spawns frogs which hug the cursor.
@@ -178,7 +178,7 @@ func _on_gameplay_panel_frog_found(card: CardControl) -> void:
 
 func _on_hand_finger_bitten() -> void:
 	if hand.biteable_fingers == 0:
-		_start_timer(4.0).connect("timeout", Callable(self, "_on_timer_timeout_end_intermission"))
+		_start_timer(4.0).timeout.connect(_on_timer_timeout_end_intermission)
 
 
 func _on_main_menu_panel_frog_found(_card: CardControl) -> void:

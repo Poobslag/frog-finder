@@ -41,7 +41,7 @@ var texture_color: Color
 @onready var _color_rect := $ColorRect
 
 func _ready() -> void:
-	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	
 	var new_texture_color := _random_texture_color_for_world()
 	change_specific(new_texture_color, true)

@@ -37,7 +37,7 @@ func set_hand(new_hand: Hand) -> void:
 	hand = new_hand
 	
 	if hand:
-		hand.connect("hug_finished", Callable(self, "_on_hand_hug_finished"))
+		hand.hug_finished.connect(_on_hand_hug_finished)
 
 
 func start_behavior(new_frog: Node) -> void:

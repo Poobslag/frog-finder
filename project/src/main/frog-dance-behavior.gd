@@ -78,7 +78,7 @@ func start_behavior(new_frog: Node) -> void:
 	if is_lead_frog():
 		for next_frog in frogs:
 			_frogs_running_to_dance[next_frog] = true
-			next_frog.connect("reached_dance_target", Callable(self, "_on_running_frog_reached_dance_target").bind(next_frog))
+			next_frog.reached_dance_target.connect(_on_running_frog_reached_dance_target.bind(next_frog))
 	
 	set_state(DanceState.RUN_TO_DANCE)
 

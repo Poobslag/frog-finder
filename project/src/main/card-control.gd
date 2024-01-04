@@ -427,7 +427,7 @@ func _flip_card() -> void:
 	
 	show_front()
 	game_state.flip_timer.start()
-	game_state.flip_timer.connect("timeout", Callable(self, "_on_flip_timer_timeout"))
+	game_state.flip_timer.timeout.connect(_on_flip_timer_timeout)
 
 
 func _on_flip_timer_timeout() -> void:
