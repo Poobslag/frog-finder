@@ -63,11 +63,6 @@ var _tweens_by_song := {}
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
 @onready var _ending_song := $HugFromAFrog
 
-func _ready() -> void:
-	PlayerData.music_preference_changed.connect(_on_player_data_music_preference_changed)
-	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
-
-
 func play_preferred_song() -> void:
 	var world_songs: Array = _songs_by_world_index.get(PlayerData.world_index, _default_songs)
 	match PlayerData.music_preference:
@@ -207,14 +202,6 @@ func _fade(song: AudioStreamPlayer, new_volume_db: float, duration: float) -> vo
 	if is_equal_approx(new_volume_db, MIN_VOLUME):
 		## stop playback after music fades out
 		fade_tween.tween_callback(_current_song.stop)
-
-
-func _on_player_data_music_preference_changed() -> void:
-	play_preferred_song()
-
-
-func _on_player_data_world_index_changed() -> void:
-	play_preferred_song()
 
 
 func _on_frog_dance_finished() -> void:

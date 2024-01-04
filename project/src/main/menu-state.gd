@@ -21,6 +21,8 @@ func _ready() -> void:
 	main_menu_panel.show_menu()
 	
 	MusicPlayer.play_preferred_song()
+	PlayerData.music_preference_changed.connect(_on_player_data_music_preference_changed)
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 
 
 func _hide_panels() -> void:
@@ -218,3 +220,11 @@ func _on_cheat_code_detector_cheat_detected(cheat: String, detector: CheatCodeDe
 			if main_menu_panel.visible:
 				CardArrangements.one_frog_cheat = !CardArrangements.one_frog_cheat
 				detector.play_cheat_sound(CardArrangements.one_frog_cheat)
+
+
+func _on_player_data_music_preference_changed() -> void:
+	MusicPlayer.play_preferred_song()
+
+
+func _on_player_data_world_index_changed() -> void:
+	MusicPlayer.play_preferred_song()
