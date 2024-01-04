@@ -78,7 +78,7 @@ func _panic() -> void:
 func _on_panic_timer_timeout() -> void:
 	if hand.ribbon and randf() < 0.5:
 		# oh no, we can't give away our ribbon! continue panicking!
-		_panic_timer.start(randf_range(SUPER_PANIC_DURATION, 5.0))
+		_panic_timer.start(SUPER_PANIC_DURATION * randf_range(0.8, 1.2))
 		_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 	else:
 		_chase()
