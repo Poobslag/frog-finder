@@ -46,29 +46,6 @@ func randomize_mystery_cards() -> void:
 			_randomize_mystery_card(card)
 
 
-## Updates our letter nodes to match our text string.
-func _refresh_text() -> void:
-	if not is_inside_tree():
-		return
-	
-	for child in get_children():
-		if child in _mystery_cards:
-			# don't free mystery cards; keep them around so the player doesn't keep getting new frogs/sharks by
-			# clicking around the main menu
-			pass
-		else:
-			child.queue_free()
-		remove_child(child)
-	
-	var words := text.split(" ")
-	for word_index in range(words.size()):
-		var word := words[word_index]
-		for letter_index in range(word.length()):
-			_append_letter(words, word_index, letter_index)
-	
-	cards_changed.emit()
-
-
 ## Creates and stores a new letter node.
 ##
 ## Parameters:
@@ -124,6 +101,29 @@ func instantiate_card() -> CardControl:
 	card.name = "Card%s" % [get_child_count() + 1]
 	card.practice = true
 	return card
+
+
+## Updates our letter nodes to match our text string.
+func _refresh_text() -> void:
+	if not is_inside_tree():
+		return
+	
+	for child in get_children():
+		if child in _mystery_cards:
+			# don't free mystery cards; keep them around so the player doesn't keep getting new frogs/sharks by
+			# clicking around the main menu
+			pass
+		else:
+			child.queue_free()
+		remove_child(child)
+	
+	var words := text.split(" ")
+	for word_index in range(words.size()):
+		var word := words[word_index]
+		for letter_index in range(word.length()):
+			_append_letter(words, word_index, letter_index)
+	
+	cards_changed.emit()
 
 
 ## Randomizes a random frog/shark card, flipping it to its back side.
