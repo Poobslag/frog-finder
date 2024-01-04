@@ -10,37 +10,6 @@ signal frog_found(card)
 ## List of level IDs to show if the mission is not found
 const DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 
-## Dictionary of levels for each mission.
-##
-## Each mission is comprised of one or more levels and mission adjustments. Most worlds includes two training missions
-## 'x-1' and 'x-2' which teaches you to play two levels, then a final mission which includes a combination of missions.
-## Each level includes an optional difficulty adjustment suffix between '--' and '++', so that players can be exposed
-## to easier versions of levels while they are learning the rules. The general pattern goes like this:
-##
-## 	x-1: (easy new level A) (old level B)
-## 	x-2: (easy new level C) (old level D)
-## 	x-3: (level A) (level C) (very hard level B) (very hard level D) (very easy level E)
-##
-## To summarize, players are trained on easy versions of levels. Then they're tested on the normal versions of those
-## levels. They are also tested on very hard versions of levels they've played in the past, and they are tested on very
-## easy versions of levels they've never seen before.
-##
-## key: (String) mission string
-## value: (Array, String) level ids with an optional difficulty adjustment. '--' = very easy, '++' = very hard
-const LEVEL_IDS_BY_MISSION_STRING := {
-	"1-1": ["froggo-", "maze-"],
-	"1-2": ["pattern-memory-", "word-find-"],
-	"1-3": ["froggo", "pattern-memory", "maze", "word-find", "secret-collect--"],
-	
-	"2-1": ["secret-collect-", "word-find"],
-	"2-2": ["fruit-maze-", "maze"],
-	"2-3": ["secret-collect", "fruit-maze", "word-find++", "maze++", "frodoku--"],
-	
-	"3-1": ["frodoku-", "fruit-maze"],
-	"3-2": ["secret-collect-", "froggo"],
-	"3-3": ["frodoku", "secret-collect", "fruit-maze++", "froggo++", "pattern-memory++"],
-}
-
 ## a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
 var mission_string := "1-1" : set = set_mission_string
 
@@ -150,6 +119,7 @@ func _level_rules_from_id(level_id: String) -> LevelRules:
 
 ## Assigns the level_ids and difficulty settings based on the current mission string
 func _refresh_mission_string() -> void:
+	var mission_prefix := Utils.substring_before(mission_string, "-")
 	var mission_suffix := Utils.substring_after(mission_string, "-")
 	match mission_suffix:
 		"1":
@@ -165,7 +135,8 @@ func _refresh_mission_string() -> void:
 			_max_puzzle_difficulty = 7
 			_shark_difficulty_decrease = 2
 	
-	level_ids.assign(LEVEL_IDS_BY_MISSION_STRING.get(mission_string, DEFAULT_LEVEL_IDS))
+	var missions := WorldData.worlds[int(mission_prefix) - 1].missions[int(mission_suffix) - 1]
+	level_ids.assign(missions)
 
 
 func _on_level_cards_frog_found(card: CardControl) -> void:

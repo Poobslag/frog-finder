@@ -10,17 +10,6 @@ enum DanceState {
 	RUN_FROM_DANCE,
 }
 
-## List of intermission dances for each world index.
-##
-## The first dance in each list is mandatory, and the frogs will always perform it. The other dances are optional, and
-## frogs might randomly perform it or not perform it. Frogs will never perform a dance not in the list.
-##
-## key: (int) world index
-## value: (Array, String) intermission dances for the specified world
-const FROG_DANCES_BY_WORLD_INDEX := {
-	1: ["hula", "coy", "shuffle"]
-}
-
 ## Threshold where the frog adjusts their animation to sync back up with the music.
 const DESYNC_THRESHOLD_MSEC := 100
 
@@ -170,9 +159,9 @@ func _decide_dance_names() -> Array:
 	var result := []
 	for _i in range(4):
 		var possible_dance_names: Array[String]
-		if PlayerData.world_index in FROG_DANCES_BY_WORLD_INDEX:
+		if PlayerData.get_world().dances:
 			# select from one of a few preset dances for the world
-			possible_dance_names.assign(FROG_DANCES_BY_WORLD_INDEX[PlayerData.world_index])
+			possible_dance_names.assign(PlayerData.get_world().dances)
 		else:
 			# select from all available dances
 			possible_dance_names = _dance_animations.dance_names
@@ -185,9 +174,9 @@ func _decide_dance_names() -> Array:
 			possible_dance_names = new_dance_names
 		result.append(Utils.rand_value(possible_dance_names))
 	
-	if PlayerData.world_index in FROG_DANCES_BY_WORLD_INDEX:
+	if PlayerData.get_world().dances:
 		# ensure the mandatory dance is one of the first three dances
-		var mandatory_dance: String = FROG_DANCES_BY_WORLD_INDEX[PlayerData.world_index][0]
+		var mandatory_dance: String = PlayerData.get_world().dances[0]
 		
 		if result.find(mandatory_dance) == -1 or result.find(mandatory_dance) == 3:
 			# assign it to one of the first two dance slots; it's possible it's the fourth dance, and we don't want

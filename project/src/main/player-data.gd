@@ -62,6 +62,10 @@ func get_mission_cleared(mission_string: String) -> int:
 	return missions_cleared.get(mission_string, MissionResult.NONE)
 
 
+func get_world() -> World:
+	return WorldData.get_world(world_index)
+
+
 func set_world_index(new_world_index: int) -> void:
 	world_index = new_world_index
 	world_index_changed.emit()

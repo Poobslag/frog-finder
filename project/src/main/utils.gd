@@ -78,6 +78,14 @@ static func substring_after(s: String, sep: String) -> String:
 	return "" if pos == -1 else s.substr(pos + sep.length())
 
 
+## Gets the substring after the first occurrence of a separator.
+static func substring_before(s: String, sep: String) -> String:
+	if sep.is_empty():
+		return s
+	var pos := s.find(sep)
+	return s if pos == -1 else s.substr(0, pos)
+
+
 ## Converts level indexes like [3, 0] into a player-friendly mission string like "4-1".
 static func mission_string(world_index: int, level_index: int) -> String:
 	return "%s-%s" % [world_index + 1, level_index + 1]

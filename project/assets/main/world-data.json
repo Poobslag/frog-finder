@@ -1,0 +1,85 @@
+[
+  {
+    "title": "fr?g f?nder",
+    "shark_song": "WeAreTheBaddies",
+    "frog_songs": [
+      "ItsAWonderfulFrog",
+      "CanYouFindTheFrog",
+      "AWellTemperedFrogInstrumental"
+    ],
+    "missions": [
+      [
+        "froggo-",
+        "maze-"
+      ],
+      [
+        "pattern-memory-",
+        "word-find-"
+      ],
+      [
+        "froggo",
+        "pattern-memory",
+        "maze",
+        "word-find",
+        "secret-collect--"
+      ]
+    ]
+  },
+  {
+    "title": "s?nshine shoa?s",
+    "dances": [
+      "hula",
+      "coy",
+      "shuffle"
+    ],
+    "shark_song": "WereGonnaEatYouUp",
+    "frog_songs": [
+      "RainyDayFrog",
+      "ImGonnaFindThatFrog",
+      "ImJustAFrogInstrumental"
+    ],
+    "intermission_tweak": "res://src/main/BeachBallTweak.tscn",
+    "missions": [
+      [
+        "secret-collect-",
+        "word-find"
+      ],
+      [
+        "fruit-maze-",
+        "maze"
+      ],
+      [
+        "secret-collect",
+        "fruit-maze",
+        "word-find++",
+        "maze++",
+        "frodoku--"
+      ]
+    ]
+  },
+  {
+    "shark_song": "WereGonnaEatYouUp",
+    "frog_songs": [
+      "StillCantFindTheFrog",
+      "HalfAFrog",
+      "SneakySneakyFrogInstrumental"
+    ],
+    "missions": [
+      [
+        "frodoku-",
+        "fruit-maze"
+      ],
+      [
+        "secret-collect-",
+        "froggo"
+      ],
+      [
+        "frodoku",
+        "secret-collect",
+        "fruit-maze++",
+        "froggo++",
+        "pattern-memory++"
+      ]
+    ]
+  }
+]

@@ -21,7 +21,7 @@ var _position_by_song := {}
 var _tweens_by_song := {}
 
 ## List of AudioStreamPlayer instances to play if the world does not define any music.
-@onready var _default_songs := [
+@onready var _default_frog_songs := [
 	[$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental]
 ]
 
@@ -30,14 +30,6 @@ var _tweens_by_song := {}
 
 ## AudioStreamPlayer instance to play if the world does not define a shark song.
 @onready var _default_shark_song := $WeAreTheBaddies
-
-## key: (int) world index
-## value: (Array, AudioStreamPlayer) list of frog songs to play for a world
-@onready var _songs_by_world_index := {
-	0: [$ItsAWonderfulFrog, $CanYouFindTheFrog, $AWellTemperedFrogInstrumental],
-	1: [$RainyDayFrog, $ImGonnaFindThatFrog, $ImJustAFrogInstrumental],
-	2: [$StillCantFindTheFrog, $HalfAFrog, $SneakySneakyFrogInstrumental],
-}
 
 ## List of AudioStreamPlayer instances corresponding to 'frog songs', songs which play by default or when the player
 ## finds a frog
@@ -52,19 +44,17 @@ var _tweens_by_song := {}
 	$WereGonnaEatYouUp, $WeAreTheBaddies,
 ]
 
-## key: (int) world index
-## value: (Array, AudioStreamPlayer) list of shark songs to play for a world
-@onready var _shark_song_by_world_index := {
-	0: $WeAreTheBaddies,
-	1: $WereGonnaEatYouUp,
-	2: $WereGonnaEatYouUp,
-}
-
 ## AudioStreamPlayer which plays when the player finds enough frogs to finish a mission.
 @onready var _ending_song := $HugFromAFrog
 
 func play_preferred_song() -> void:
-	var world_songs: Array = _songs_by_world_index.get(PlayerData.world_index, _default_songs)
+	var world_songs: Array[AudioStreamPlayer] = []
+	if PlayerData.get_world().frog_songs:
+		for world_song_name in PlayerData.get_world().frog_songs:
+			world_songs.append(get_node(world_song_name))
+	else:
+		world_songs = _default_frog_songs
+	
 	match PlayerData.music_preference:
 		PlayerData.MusicPreference.MUSIC_1:
 			world_songs = [world_songs[0]]
@@ -89,10 +79,11 @@ func play_preferred_song() -> void:
 			new_song = world_songs[0]
 		else:
 			var song_index := -1
-			for other_world_songs in _songs_by_world_index.values():
-				song_index = other_world_songs.find(_current_song)
-				if song_index != -1:
-					break
+			if _current_song:
+				for other_world in WorldData.worlds:
+					song_index = other_world.frog_songs.find(_current_song.name)
+					if song_index != -1:
+						break
 			
 			if song_index == -1:
 				# playing no song, or a shark song, or something unusual
@@ -103,7 +94,11 @@ func play_preferred_song() -> void:
 
 
 func play_shark_song() -> void:
-	var shark_song: AudioStreamPlayer = _shark_song_by_world_index.get(PlayerData.world_index, _default_shark_song)
+	var shark_song: AudioStreamPlayer
+	if PlayerData.get_world().shark_song:
+		shark_song = get_node(PlayerData.get_world().shark_song)
+	else:
+		shark_song = _default_shark_song
 	_play_song(shark_song)
 
 
