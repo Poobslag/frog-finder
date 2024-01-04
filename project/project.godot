@@ -24,6 +24,7 @@ Global="*res://src/main/global.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"
 PlayerData="*res://src/main/player-data.gd"
 SfxDeconflicter="*res://src/main/SfxDeconflicter.tscn"
+WorldData="*res://src/main/world-data.gd"
 
 [debug]
 

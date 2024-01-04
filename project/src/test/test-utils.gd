@@ -28,3 +28,12 @@ func test_convert_dict_floats_to_ints() -> void:
 		"crowded": 4632,
 		3438: 1103,
 	}, input)
+
+
+func test_substring_before() -> void:
+	assert_eq(Utils.substring_before("b", ""), "b")
+	assert_eq(Utils.substring_before("", "b"), "")
+	assert_eq(Utils.substring_before("abc", "a"), "")
+	assert_eq(Utils.substring_before("abcba", "b"), "a")
+	assert_eq(Utils.substring_before("abc", "c"), "ab")
+	assert_eq(Utils.substring_before("abc", "d"), "abc")

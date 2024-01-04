@@ -22,14 +22,6 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-## key: (int) world index
-## value: (PackedScene) IntermissionTweak scene which modifies the intermission in some ways
-@onready var _tweak_scenes_by_world_index := {
-	# Workaround for Godot #72453 (https://github.com/godotengine/godot/issues/74253). These resources cannot be
-	# preloaded because they introduce a cyclic reference which causes errors in the editor.
-	1: load("res://src/main/BeachBallTweak.tscn"),
-}
-
 var cards: Array = []
 var sharks: Array = []
 var frogs: Array = []
@@ -160,9 +152,8 @@ func add_tweak() -> void:
 	if has_tweak():
 		return
 	
-	var tweak_scene: PackedScene = _tweak_scenes_by_world_index.get(PlayerData.world_index)
-	if tweak_scene:
-		var tweak := tweak_scene.instantiate()
+	if PlayerData.get_world().intermission_tweak_scene:
+		var tweak := PlayerData.get_world().intermission_tweak_scene.instantiate()
 		tweak.name = "Tweak"
 		add_child(tweak)
 

@@ -13,18 +13,6 @@ signal cards_changed
 
 const DEFAULT_TITLE := "fr?g f?nder"
 
-## Titles to show for each world index. Each title should have exactly question marks, otherwise players will be
-## incentivized to scroll around to the world with the most question marks to find an extra frog.
-##
-## Only certain letters are allowed in titles. Illegal letters will log a warning and show up as a blank space.
-##
-## key: (int) world index
-## value: (String) title to show for a world
-var titles_by_world_index := {
-	0: "fr?g f?nder",
-	1: "s?nshine shoa?s"
-}
-
 ## List of CardControl instances for frogs/sharks. These are cached so that when navigating the main menu, we don't
 ## give the player infinite opportunities to find new sharks. This would let the player find infinite frogs without
 ## ever playing the game!
@@ -34,7 +22,7 @@ func _ready() -> void:
 	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	
 	if not Engine.is_editor_hint():
-		text = titles_by_world_index.get(PlayerData.world_index, DEFAULT_TITLE)
+		text = _world_title()
 
 
 func _exit_tree() -> void:
@@ -144,6 +132,14 @@ func _randomize_mystery_card(card: CardControl) -> void:
 	card.hide_front()
 
 
+func _world_title() -> String:
+	var new_title: String = PlayerData.get_world().title
+	if not new_title:
+		new_title = DEFAULT_TITLE
+	return new_title
+
+
+
 ## When the player switches to a new world, we update the title text.
 func _on_player_data_world_index_changed() -> void:
-	text = titles_by_world_index.get(PlayerData.world_index, DEFAULT_TITLE)
+	text = _world_title()
