@@ -9,7 +9,12 @@ extends Control
 ## This is useful when editing the comic. We need the panels visible to make changes, but want them invisible when we
 ## save.
 @warning_ignore("unused_private_class_variable")
-@export var _stop: bool : set = _stop_in_editor
+@export var _stop: bool:
+	set(value):
+		if not value:
+			# only reset the animation in the editor when the '_reset_animation' property is toggled
+			return
+		stop()
 
 @onready var _conductor := $Conductor
 @onready var _sfx_player := $SfxPlayer
@@ -87,14 +92,6 @@ func fade_out() -> void:
 	_fade_tween = Utils.recreate_tween(self, _fade_tween)
 	_fade_tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)
 	_fade_tween.tween_callback(stop)
-
-
-func _stop_in_editor(value: bool) -> void:
-	if not value:
-		# only reset the animation in the editor when the '_reset_animation' property is toggled
-		return
-	
-	stop()
 
 
 func _on_skip_button_pressed() -> void:

@@ -22,7 +22,10 @@ const DEFAULT_CARD_POSITIONS := [
 const ORDERED_CHARS := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 ## Path3D to the json file with card arrangements. Can be changed for tests.
-var arrangements_path := DEFAULT_ARRANGEMENTS_PATH : set = set_arrangements_path
+var arrangements_path := DEFAULT_ARRANGEMENTS_PATH:
+	set(new_arrangements_path):
+		arrangements_path = new_arrangements_path
+		_load_raw_json_data()
 
 ## If 'true', every mission will only have one level.
 ##
@@ -43,11 +46,6 @@ func _ready() -> void:
 	for i in range(ORDERED_CHARS.length()):
 		_index_by_char[ORDERED_CHARS[i]] = i
 	
-	_load_raw_json_data()
-
-
-func set_arrangements_path(new_arrangements_path: String) -> void:
-	arrangements_path = new_arrangements_path
 	_load_raw_json_data()
 
 

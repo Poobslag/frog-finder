@@ -8,7 +8,13 @@ extends Control
 ## Time in seconds between each of the title's letters appearing.
 const PER_LETTER_DELAY := 0.07
 
-@export var text: String : set = set_text
+@export var text: String:
+	set(new_text):
+		if text == new_text:
+			return
+		text = new_text
+		_refresh_text()
+
 @export var ComicLetterScene: PackedScene
 
 ## An editor toggle which launches the title animation.
@@ -17,7 +23,13 @@ const PER_LETTER_DELAY := 0.07
 ## title with a call method track, but call method tracks are not called in the Godot editor. This property provides an
 ## alternate way of previewing the title animation.
 @warning_ignore("unused_private_class_variable")
-@export var _animate_title: bool : set = animate_title
+@export var _animate_title: bool:
+	set(value):
+		if not value:
+			# only animate the title in the editor when the '_animate_title' property is toggled
+			return
+		hide_title()
+		show_title()
 
 ## Container node containing the back row of letters.
 @onready var _back_letters := $BackLetters
@@ -38,16 +50,6 @@ func _ready() -> void:
 	_refresh_text()
 
 
-## An editor toggle which launches the title animation.
-func animate_title(value: bool) -> void:
-	if not value:
-		# only animate the title in the editor when the '_animate_title' property is toggled
-		return
-	
-	hide_title()
-	show_title()
-
-
 ## Immediately hides the letters in the title.
 ##
 ## Titles are never hidden during comics, so this is only used when resetting the letter's state or during demos.
@@ -66,14 +68,6 @@ func show_title() -> void:
 	for letter_index in range(_letter_nodes.size()):
 		var letter_node := _letter_nodes[letter_index]
 		_letter_tween.tween_callback(letter_node.show_letter).set_delay(letter_index * PER_LETTER_DELAY)
-
-
-func set_text(new_text: String) -> void:
-	if text == new_text:
-		return
-	
-	text = new_text
-	_refresh_text()
 
 
 ## Returns a list of letter nodes in BackLetters and FrontLetters ordered from left-to-right.

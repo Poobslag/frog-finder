@@ -9,7 +9,10 @@ extends Control
 @onready var _contents := $Contents
 
 ## The modulate property to apply to both the border and inner contents of the comic panel.
-@export var panel_modulate: Color = Color.WHITE : set = set_panel_modulate
+@export var panel_modulate: Color = Color.WHITE:
+	set(new_panel_modulate):
+		panel_modulate = new_panel_modulate
+		_refresh_panel_modulate()
 
 func _ready() -> void:
 	_refresh_panel_modulate()
@@ -19,11 +22,6 @@ func _ready() -> void:
 func _enter_tree() -> void:
 	_frame = $Frame
 	_contents = $Contents
-
-
-func set_panel_modulate(new_panel_modulate: Color) -> void:
-	panel_modulate = new_panel_modulate
-	_refresh_panel_modulate()
 
 
 ## Applies our 'panel_modulate' property to the border and inner contents of the comic panel.

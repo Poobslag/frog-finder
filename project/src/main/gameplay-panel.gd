@@ -11,7 +11,10 @@ signal frog_found(card)
 const DEFAULT_LEVEL_IDS := ["froggo", "maze"]
 
 ## a string like '2-3' for the current set of levels, like Super Mario Bros. '1-1' is the first set.
-var mission_string := "1-1" : set = set_mission_string
+var mission_string := "1-1":
+	set(new_mission_string):
+		mission_string = new_mission_string
+		_refresh_mission_string()
 
 ## difficulty ranging 0-8 for the current puzzle. 0 == very easy, 8 == very hard
 var player_puzzle_difficulty := 0
@@ -42,11 +45,6 @@ func _ready() -> void:
 	_refresh_mission_string()
 
 
-func set_mission_string(new_mission_string: String) -> void:
-	mission_string = new_mission_string
-	_refresh_mission_string()
-
-
 func show_puzzle() -> void:
 	visible = true
 	reset()
@@ -72,7 +70,7 @@ func reset() -> void:
 
 
 func restart(new_mission_string: String) -> void:
-	set_mission_string(new_mission_string)
+	mission_string = new_mission_string
 	player_puzzle_difficulty = _start_difficulty
 	player_streak = 0
 

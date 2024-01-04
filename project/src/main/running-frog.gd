@@ -14,7 +14,7 @@ signal finished_give_ribbon
 const RUN_SPEED := 150.0
 
 ## frogs move in a jerky way. soon_position stores the location where the frog will blink to after a delay
-var soon_position: Vector2 : set = set_soon_position
+var soon_position: Vector2
 
 var run_speed := RUN_SPEED
 var run_animation_name := "run1"
@@ -113,10 +113,6 @@ func stop_animation() -> void:
 		# Stopping the AnimationPlayer when no animation is playing resets the frog to a specific animation frame. This
 		# results in visual tic which interrupts things like dancing, so we don't do it.
 		pass
-
-
-func set_soon_position(new_soon_position: Vector2) -> void:
-	soon_position = new_soon_position
 
 
 ## Returns a random run animation name. Some run animations are more rare than others.

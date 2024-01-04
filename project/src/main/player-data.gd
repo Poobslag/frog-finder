@@ -23,8 +23,16 @@ enum MusicPreference {
 
 const DATA_FILENAME := "user://player-data.json"
 
-var world_index := 0 : set = set_world_index
-var music_preference: int = MusicPreference.RANDOM : set = set_music_preference
+var world_index := 0:
+	set(new_world_index):
+		world_index = new_world_index
+		world_index_changed.emit()
+
+var music_preference: int = MusicPreference.RANDOM:
+	set(new_music_preference):
+		music_preference = new_music_preference
+		music_preference_changed.emit()
+
 var frog_count := 0
 var shark_count := 0
 
@@ -66,18 +74,8 @@ func get_world() -> World:
 	return WorldData.get_world(world_index)
 
 
-func set_world_index(new_world_index: int) -> void:
-	world_index = new_world_index
-	world_index_changed.emit()
-
-
-func set_music_preference(new_music_preference: int) -> void:
-	music_preference = new_music_preference
-	music_preference_changed.emit()
-
-
 func increment_music_preference() -> void:
-	set_music_preference((music_preference + 1) % MusicPreference.size())
+	music_preference = (music_preference + 1) % MusicPreference.size()
 
 
 func save_player_data() -> void:
@@ -108,9 +106,9 @@ func load_player_data() -> void:
 	
 	if save_json.has("music_preference"):
 		# handle old music preference; used to go from 0-7
-		set_music_preference(int(save_json["music_preference"]))
+		music_preference = int(save_json["music_preference"])
 	if save_json.has("world"):
-		set_world_index(int(save_json["world"]))
+		world_index = int(save_json["world"])
 	if save_json.has("frog_count"):
 		frog_count = int(save_json["frog_count"])
 	if save_json.has("shark_count"):

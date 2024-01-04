@@ -31,13 +31,17 @@ var hand: Hand
 var friend: Sprite2D
 
 var velocity := Vector2.ZERO
-var run_speed := MIN_RUN_SPEED : set = set_run_speed
+var run_speed := MIN_RUN_SPEED:
+	set(new_run_speed):
+		if not is_inside_tree():
+			return
+		_refresh_run_speed()
 
 ## How accurately we chase the cursor. Sharks with low agility will run in arbitrary directions more frequently.
 var agility := 1.0
 
 ## sharks move in a jerky way. soon_position stores the location where the frog will blink to after a delay
-var soon_position: Vector2 : set = set_soon_position
+var soon_position: Vector2
 
 ## Sharks alternate between two states: 'panic' and 'chase'. This variable tracks how many times they've entered the
 ## 'chase' state.
@@ -79,13 +83,6 @@ func panic() -> void:
 	velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * run_speed
 
 
-func set_run_speed(new_run_speed: float) -> void:
-	run_speed = new_run_speed
-	if not is_inside_tree():
-		return
-	_refresh_run_speed()
-
-
 ## Updates the shark's position to their soon_position.
 ##
 ## This is called periodically to result in a jerky movement effect.
@@ -101,17 +98,13 @@ func is_fed() -> bool:
 	return _animation_player.current_animation == "run-fed"
 
 
-func set_soon_position(new_soon_position: Vector2) -> void:
-	soon_position = new_soon_position
-
-
 func _refresh_run_speed() -> void:
 	_animation_player.speed_scale = run_speed / 150.0
 
 
 func _on_panic_timer_timeout() -> void:
 	chase()
-	set_run_speed(lerp(run_speed, MAX_RUN_SPEED, 0.10))
+	run_speed = lerp(run_speed, MAX_RUN_SPEED, 0.10)
 	agility = lerp(agility, MAX_AGILITY, 0.15)
 
 

@@ -4,7 +4,13 @@ extends Control
 ##
 ## The main menu shows a title like "Sunshine Shoals" with some of the letters replaced with frogs/sharks.
 
-@export var text: String : set = set_text
+@export var text: String:
+	set(new_text):
+		if text == new_text:
+			return
+		text = new_text
+		_refresh_text()
+
 @export var CardControlScene: PackedScene
 @export var game_state: GameState
 
@@ -29,14 +35,6 @@ func _exit_tree() -> void:
 	# We have to free our cached mystery cards manually, as they are not necessarily in the scene tree.
 	for card in _mystery_cards:
 		card.free()
-
-
-func set_text(new_text: String) -> void:
-	if text == new_text:
-		return
-	
-	text = new_text
-	_refresh_text()
 
 
 ## Randomizes our random frog/shark cards, flipping them to their back side.
