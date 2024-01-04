@@ -35,10 +35,10 @@ func _connect_title_card_listeners() -> void:
 			# Avoid connecting redundant listeners for cards which already existed. This happens for mystery cards.
 			continue
 		
-		card.connect("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card))
-		card.connect("frog_found", Callable(self, "_on_card_control_frog_found").bind(card))
-		card.connect("before_shark_found", Callable(self, "_on_card_control_before_shark_found").bind(card))
-		card.connect("shark_found", Callable(self, "_on_card_control_shark_found").bind(card))
+		card.before_frog_found.connect(_on_card_control_before_frog_found.bind(card))
+		card.frog_found.connect(_on_card_control_frog_found.bind(card))
+		card.before_shark_found.connect(_on_card_control_before_shark_found.bind(card))
+		card.shark_found.connect(_on_card_control_shark_found.bind(card))
 
 
 func _on_card_control_before_frog_found(card: CardControl) -> void:

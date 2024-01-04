@@ -69,8 +69,8 @@ var _cell_pos_to_revealed_letter := {}
 func refresh_level_cards() -> void:
 	if not level_cards:
 		return
-	level_cards.connect("before_frog_found", Callable(self, "_on_level_cards_before_frog_found"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
+	level_cards.before_frog_found.connect(_on_level_cards_before_frog_found)
+	level_cards.before_shark_found.connect(_on_level_cards_before_shark_found)
 
 
 func add_cards() -> void:

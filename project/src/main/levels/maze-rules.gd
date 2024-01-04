@@ -54,8 +54,8 @@ var _blanked_arrows_to_original := {}
 func refresh_level_cards() -> void:
 	if not level_cards:
 		return
-	level_cards.connect("before_card_flipped", Callable(self, "_on_level_cards_before_card_flipped"))
-	level_cards.connect("before_shark_found", Callable(self, "_on_level_cards_before_shark_found"))
+	level_cards.before_card_flipped.connect(_on_level_cards_before_card_flipped)
+	level_cards.before_shark_found.connect(_on_level_cards_before_shark_found)
 
 
 func add_cards() -> void:

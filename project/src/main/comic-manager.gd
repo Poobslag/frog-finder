@@ -17,7 +17,7 @@ extends Control
 var _main_menu_show_count := 0
 
 func _ready() -> void:
-	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 
 
 ## Shows the comic interlude for the current world.

@@ -10,7 +10,7 @@ const MAX_WORLD_INDEX := 99
 @onready var _label := $VBoxContainer/HBoxContainer/Label
 
 func _ready() -> void:
-	PlayerData.connect("world_index_changed", Callable(self, "_on_player_data_world_index_changed"))
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	_refresh_label_text()
 
 
