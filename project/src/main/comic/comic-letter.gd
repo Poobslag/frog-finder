@@ -27,7 +27,12 @@ const FRAME_INDEXES_BY_LETTER := {
 }
 
 ## The string text displayed by this comic letter. This should be 0-1 characters like 'o' or ''.
-@export var text := "" : set = set_text
+@export var text := "":
+	set(new_text):
+		if text == new_text:
+			return
+		text = new_text
+		_refresh_text()
 
 @onready var _animation_player := $AnimationPlayer
 
@@ -56,14 +61,6 @@ func show_letter() -> void:
 func hide_letter() -> void:
 	_animation_player.stop()
 	hide()
-
-
-func set_text(new_text: String) -> void:
-	if text == new_text:
-		return
-	
-	text = new_text
-	_refresh_text()
 
 
 ## Updates our sprite frame to match our text.

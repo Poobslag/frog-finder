@@ -8,8 +8,15 @@ extends Control
 
 signal pressed
 
-@export var icon_texture: Texture2D : set = set_icon_texture
-@export var icon_index: int : set = set_icon_index
+@export var icon_texture: Texture2D:
+	set(new_icon_texture):
+		icon_texture = new_icon_texture
+		_refresh_sprite()
+
+@export var icon_index: int:
+	set(new_icon_index):
+		icon_index = new_icon_index
+		_refresh_sprite()
 
 @onready var _icon_sprite := $IconSprite
 
@@ -25,16 +32,6 @@ func _enter_tree() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_mask & MOUSE_BUTTON_LEFT:
 		pressed.emit()
-
-
-func set_icon_texture(new_icon_texture: Texture2D) -> void:
-	icon_texture = new_icon_texture
-	_refresh_sprite()
-
-
-func set_icon_index(new_icon_index: int) -> void:
-	icon_index = new_icon_index
-	_refresh_sprite()
 
 
 func _refresh_sprite() -> void:

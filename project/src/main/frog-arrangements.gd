@@ -29,7 +29,10 @@ var FROG_DANCER_COUNTS := [
 ]
 
 ## Path3D to the json file with card arrangements. Can be changed for tests.
-var arrangements_path := DEFAULT_ARRANGEMENTS_PATH : set = set_arrangements_path
+var arrangements_path := DEFAULT_ARRANGEMENTS_PATH:
+	set(new_arrangements_path):
+		arrangements_path = new_arrangements_path
+		_load_raw_json_data()
 
 ## key: (int) Number of frogs in a frog dance
 ## value: (Array, Vector2) Arrangements for the specified frog count, measured in frog widths
@@ -37,11 +40,6 @@ var _arrangements_by_frog_count := {
 }
 
 func _ready() -> void:
-	_load_raw_json_data()
-
-
-func set_arrangements_path(new_arrangements_path: String) -> void:
-	arrangements_path = new_arrangements_path
 	_load_raw_json_data()
 
 

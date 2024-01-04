@@ -20,7 +20,13 @@ const PINCER_DISTANCE := 150.0
 const HAND_CATCH_OFFSET := Vector2(28, 57)
 
 ## the hand to chase
-var hand: Hand : set = set_hand
+var hand: Hand:
+	set(new_hand):
+		if hand:
+			hand.disconnect("hug_finished", Callable(self, "_on_hand_hug_finished"))
+		hand = new_hand
+		if hand:
+			hand.hug_finished.connect(_on_hand_hug_finished)
 
 var _frog: RunningFrog
 var _chase_count := 0
@@ -29,15 +35,6 @@ var _chase_count := 0
 @onready var _panic_timer := $PanicTimer
 @onready var _think_timer := $ThinkTimer
 @onready var _ribbon_sfx := $RibbonSfx
-
-func set_hand(new_hand: Hand) -> void:
-	if hand:
-		hand.disconnect("hug_finished", Callable(self, "_on_hand_hug_finished"))
-	
-	hand = new_hand
-	
-	if hand:
-		hand.hug_finished.connect(_on_hand_hug_finished)
 
 
 func start_behavior(new_frog: Node) -> void:
@@ -50,7 +47,7 @@ func start_behavior(new_frog: Node) -> void:
 ## Stops any timers and resets any transient data for this behavior.
 func stop_behavior(_new_frog: Node) -> void:
 	# disconnect signals
-	set_hand(null)
+	hand = null
 	_frog = null
 	_chase_count = 0
 	

@@ -135,18 +135,36 @@ const FRUIT_COUNT := 12
 const FISH_COUNT := 8
 const LIZARD_COUNT := 32
 
-@export var card_back_type: CardType = CardType.MYSTERY : set = set_card_back_type
-@export var card_back_details: String : set = set_card_back_details
-@export var card_front_type: CardType = CardType.MYSTERY : set = set_card_front_type
-@export var card_front_details: String : set = set_card_front_details
+@export var card_back_type: CardType = CardType.MYSTERY:
+	set(new_card_back_type):
+		card_back_type = new_card_back_type
+		_refresh_card_textures()
+
+@export var card_back_details: String:
+	set(new_card_back_details):
+		card_back_details = new_card_back_details
+		_refresh_card_textures()
+
+@export var card_front_type: CardType = CardType.MYSTERY:
+	set(new_card_front_type):
+		card_front_type = new_card_front_type
+		_refresh_card_textures()
+
+@export var card_front_details: String:
+	set(new_card_front_details):
+		card_front_details = new_card_front_details
+		_refresh_card_textures()
 
 @export var game_state: GameState
 
 ## 'true' if the frog/shark doesn't count, maybe because it was on the main menu
 @export var practice := false
 
-@export var shown_face := CardFace.BACK : set = set_shown_face
-
+@export var shown_face := CardFace.BACK:
+	set(new_shown_face):
+		shown_face = new_shown_face
+		_refresh_shown_face()
+	
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
 	preload("res://assets/main/sfx/frog-voice-1.wav"),
@@ -206,31 +224,6 @@ func _process(_delta: float) -> void:
 	if _pending_warning:
 		push_warning(_pending_warning)
 		_pending_warning = ""
-
-
-func set_shown_face(new_shown_face: CardFace) -> void:
-	shown_face = new_shown_face
-	_refresh_shown_face()
-
-
-func set_card_back_type(new_card_back_type: CardType) -> void:
-	card_back_type = new_card_back_type
-	_refresh_card_textures()
-
-
-func set_card_front_type(new_card_front_type: CardType) -> void:
-	card_front_type = new_card_front_type
-	_refresh_card_textures()
-
-
-func set_card_back_details(new_card_back_details: String) -> void:
-	card_back_details = new_card_back_details
-	_refresh_card_textures()
-
-
-func set_card_front_details(new_card_front_details: String) -> void:
-	card_front_details = new_card_front_details
-	_refresh_card_textures()
 
 
 func reset() -> void:

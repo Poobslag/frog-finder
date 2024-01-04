@@ -4,18 +4,15 @@ extends Node
 ##
 ## Subclasses should extend this script to define how cards are arranged and where to find the frog.
 
-@export var level_cards: LevelCards : set = set_level_cards
+@export var level_cards: LevelCards:
+	set(new_level_cards):
+		level_cards = new_level_cards
+		refresh_level_cards()
 
 @export_range(0, 8) var puzzle_difficulty: int = 0 # 0 == very easy, 8 == very hard
 
 func add_cards() -> void:
 	pass
-
-
-func set_level_cards(new_level_cards: LevelCards) -> void:
-	level_cards = new_level_cards
-	
-	refresh_level_cards()
 
 
 func refresh_level_cards() -> void:

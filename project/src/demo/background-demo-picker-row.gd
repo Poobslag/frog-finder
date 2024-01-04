@@ -6,16 +6,13 @@ signal go_button_pressed(color: Color)
 signal color_picked(color: Color)
 signal shuffle_button_pressed
 
-var color: Color : set = set_color, get = get_color
+var color: Color:
+	set(new_color):
+		_color_picker_button.color = new_color
+	get:
+		return _color_picker_button.color
 
 @onready var _color_picker_button := $ColorPickerButton
-
-func set_color(new_color: Color) -> void:
-	_color_picker_button.color = new_color
-
-
-func get_color() -> Color:
-	return _color_picker_button.color
 
 
 func _on_color_picker_button_popup_closed() -> void:

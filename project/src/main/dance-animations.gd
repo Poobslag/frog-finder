@@ -29,24 +29,21 @@ const NON_DANCE_ANIMS := [
 @export var frames_by_dance_name: Dictionary
 
 ## An editor toggle which creates flipped copies of all animations, and stores dance data
-@warning_ignore("unused_private_class_variable")
-@export var _update_dances: bool : set = update_dances
-
-## Creates flipped copies of all animations, and stores dance data.
 ##
 ## This takes all animations like 'coy1' and creates new animations like 'coy1_flip' with all of the values flipped.
 ## These flipped dances orient the frog in the other direction, facing left instead of right or vice-versa.
 ##
 ## Also updates our dance metadata from the AnimationPlayer's dance animations. This includes the dance names, and
 ## frames used for each dance.
-func update_dances(value: bool) -> void:
-	if not value:
-		# only update dances in the editor when the '_update_dances' property is toggled
-		return
-	
-	_flip_animations()
-	_save_dances()
-
+@warning_ignore("unused_private_class_variable")
+@export var _update_dances: bool:
+	set(value):
+		if not value:
+			# only update dances in the editor when the '_update_dances' property is toggled
+			return
+		
+		_flip_animations()
+		_save_dances()
 
 ## Updates our dance metadata from the AnimationPlayer's dance animations.
 ##
