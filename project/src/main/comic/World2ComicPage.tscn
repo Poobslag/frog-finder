@@ -65,7 +65,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
 shader = ExtResource("2_4pi3n")
 shader_parameter/texture_scale = Vector2(0.4, 0.4)
-shader_parameter/scroll_velocity = Vector2(-0.4, 0.4)
+shader_parameter/scroll_velocity = Vector2(-0.4, -0.4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6up80"]
 corner_radius_top_left = 20
