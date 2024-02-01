@@ -1,4 +1,5 @@
 @tool
+class_name ComicPage
 extends Control
 ## Shows and animates several comic panels which tell a story.
 ##
@@ -15,6 +16,17 @@ extends Control
 			# only reset the animation in the editor when the '_reset_animation' property is toggled
 			return
 		stop()
+
+## This 'show_all' property can be toggled in the Godot editor to make all panels visible.
+##
+## This is useful when editing the comic. We need the panels visible to make changes.
+@warning_ignore("unused_private_class_variable")
+@export var _show_all: bool:
+	set(value):
+		if not value:
+			# only reset the animation in the editor when the '_reset_animation' property is toggled
+			return
+		show_all()
 
 @onready var _conductor := $Conductor
 @onready var _sfx_player := $SfxPlayer
@@ -52,6 +64,15 @@ func stop() -> void:
 	for frame_animation_player in get_tree().get_nodes_in_group("frame_animation_players"):
 		frame_animation_player.play("RESET")
 	_sfx_player.stop()
+
+
+## Immediately makes the comic page and all panels visible.
+func show_all() -> void:
+	visible = true
+	for child in get_children():
+		if child.name.begins_with("ComicPanel"):
+			child.visible = true
+			child.modulate = Color.WHITE
 
 
 ## Skips the comic forward or backward.
