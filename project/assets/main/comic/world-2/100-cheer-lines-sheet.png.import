@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kl2fobd2fqkf"
-path="res://.godot/imported/030-bar-emanata-sheet.png-b5e2331ea3fb8ab5f745c9eba23f8f30.ctex"
+uid="uid://5m10f8b13uh0"
+path="res://.godot/imported/100-cheer-lines-sheet.png-2c0093f0a96856e98281da6d816e57c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/comic/world-2/030-bar-emanata-sheet.png"
-dest_files=["res://.godot/imported/030-bar-emanata-sheet.png-b5e2331ea3fb8ab5f745c9eba23f8f30.ctex"]
+source_file="res://assets/main/comic/world-2/100-cheer-lines-sheet.png"
+dest_files=["res://.godot/imported/100-cheer-lines-sheet.png-2c0093f0a96856e98281da6d816e57c4.ctex"]
 
 [params]
 

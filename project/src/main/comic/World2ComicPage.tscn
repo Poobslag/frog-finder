@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dsrptcvjbhf46" path="res://assets/main/comic/world-2/010-sand.png" id="9_2vv74"]
 [ext_resource type="Texture2D" uid="uid://d2ixixef8npht" path="res://assets/main/comic/world-2/010-umbrella.png" id="10_po3te"]
 [ext_resource type="Texture2D" uid="uid://0xnfdv6e7gj" path="res://assets/main/comic/world-2/010-frog.png" id="11_xn06s"]
-[ext_resource type="Texture2D" uid="uid://dyiy8rg0oprwd" path="res://assets/main/comic/world-2/010-bar-emanata-sheet.png" id="12_t4l21"]
+[ext_resource type="Texture2D" uid="uid://dyiy8rg0oprwd" path="res://assets/main/comic/world-2/010-cheer-lines-sheet.png" id="12_t4l21"]
 [ext_resource type="PackedScene" uid="uid://bxarbw5254db" path="res://src/main/comic/ComicTitle.tscn" id="13_3kfqd"]
 [ext_resource type="Texture2D" uid="uid://drgqh1avgwss8" path="res://assets/main/comic/world-2/010-frame.png" id="16_qdxet"]
 [ext_resource type="Texture2D" uid="uid://jy47yn3sqsl" path="res://assets/main/comic/world-2/020-clouds.png" id="17_b86dk"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://b1cnfu4tqlnqw" path="res://assets/main/comic/world-2/020-frog.png" id="20_kepb1"]
 [ext_resource type="Texture2D" uid="uid://bpq03nqolsqv0" path="res://assets/main/comic/world-2/020-frame.png" id="21_f3hvg"]
 [ext_resource type="Texture2D" uid="uid://bsilqd4jy5lw5" path="res://assets/main/comic/world-2/030-sun.png" id="22_5lu1f"]
-[ext_resource type="Texture2D" uid="uid://kl2fobd2fqkf" path="res://assets/main/comic/world-2/030-bar-emanata-sheet.png" id="23_jnhlq"]
+[ext_resource type="Texture2D" uid="uid://kl2fobd2fqkf" path="res://assets/main/comic/world-2/030-cheer-lines-sheet.png" id="23_jnhlq"]
 [ext_resource type="Texture2D" uid="uid://dimtog50hbn8x" path="res://assets/main/comic/world-2/030-ellipsis-sheet.png" id="24_6dvpl"]
 [ext_resource type="Texture2D" uid="uid://cdpbpoao2vyg1" path="res://assets/main/comic/world-2/030-frame.png" id="25_l00h5"]
 [ext_resource type="Texture2D" uid="uid://dd41psr3dtccf" path="res://assets/main/comic/world-2/040-frog.png" id="26_7jw3o"]
@@ -54,7 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://6sdltlsef2dk" path="res://assets/main/comic/world-2/100-sweat-sheet.png" id="54_ydtlq"]
 [ext_resource type="Texture2D" uid="uid://y4f6qkrlwi3n" path="res://assets/main/comic/world-2/100-fn.png" id="55_thu2i"]
 [ext_resource type="Texture2D" uid="uid://brkjwyvrrsr36" path="res://assets/main/comic/world-2/100-id.png" id="56_qyj5m"]
-[ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-bar-emanata-sheet.png" id="57_e41cd"]
+[ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-cheer-lines-sheet.png" id="57_e41cd"]
 [ext_resource type="Texture2D" uid="uid://csg3a7t5loppg" path="res://assets/main/comic/world-2/100-frame.png" id="58_4erfg"]
 [ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/sfx/world-2-comic-sfx.ogg" id="59_kp8gg"]
 [ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="61_p6166"]
@@ -191,7 +191,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Contents/BarEmanata:position")
+tracks/6/path = NodePath("Contents/CheerLines:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -316,7 +316,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Contents/BarEmanata:position")
+tracks/6/path = NodePath("Contents/CheerLines:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -369,7 +369,7 @@ tracks/9/keys = {
 tracks/10/type = "animation"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Contents/BarEmanata/AnimationPlayer")
+tracks/10/path = NodePath("Contents/CheerLines/AnimationPlayer")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -806,7 +806,7 @@ tracks/7/keys = {
 tracks/8/type = "animation"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Contents/BarEmanata/AnimationPlayer")
+tracks/8/path = NodePath("Contents/CheerLines/AnimationPlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -2420,7 +2420,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Contents/BarEmanata:visible")
+tracks/15/path = NodePath("Contents/CheerLines:visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -2432,7 +2432,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Contents/BarEmanata:position")
+tracks/16/path = NodePath("Contents/CheerLines:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -2649,7 +2649,7 @@ tracks/16/keys = {
 tracks/17/type = "animation"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Contents/BarEmanata/AnimationPlayer")
+tracks/17/path = NodePath("Contents/CheerLines/AnimationPlayer")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -2659,7 +2659,7 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Contents/BarEmanata:visible")
+tracks/18/path = NodePath("Contents/CheerLines:visible")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -2671,7 +2671,7 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Contents/BarEmanata:position")
+tracks/19/path = NodePath("Contents/CheerLines:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -2950,12 +2950,12 @@ texture = ExtResource("10_po3te")
 position = Vector2(1074.5, 327.5)
 texture = ExtResource("11_xn06s")
 
-[node name="BarEmanata" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel01/Contents"]
 position = Vector2(1214.5, 295)
 texture = ExtResource("12_t4l21")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel01/Contents/BarEmanata"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel01/Contents/CheerLines"]
 libraries = {
 "": SubResource("AnimationLibrary_5xvjn")
 }
@@ -3073,12 +3073,12 @@ texture = ExtResource("19_yr3sl")
 position = Vector2(365, 390)
 texture = ExtResource("20_kepb1")
 
-[node name="BarEmanata" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel03/Contents"]
 position = Vector2(39.9998, 102.5)
 texture = ExtResource("23_jnhlq")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/BarEmanata"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/CheerLines"]
 libraries = {
 "": SubResource("AnimationLibrary_41ww3")
 }
@@ -3534,13 +3534,13 @@ libraries = {
 "": SubResource("AnimationLibrary_7bxj8")
 }
 
-[node name="BarEmanata" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel10/Contents"]
 visible = false
 position = Vector2(200, 175)
 texture = ExtResource("57_e41cd")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/BarEmanata"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/CheerLines"]
 libraries = {
 "": SubResource("AnimationLibrary_xhl3s")
 }
