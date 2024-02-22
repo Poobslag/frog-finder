@@ -25,7 +25,8 @@ const DEFAULT_TITLE := "fr?g f?nder"
 var _mystery_cards: Array = []
 
 func _ready() -> void:
-	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
+	if not Engine.is_editor_hint():
+		PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	
 	if not Engine.is_editor_hint():
 		text = _world_title()
