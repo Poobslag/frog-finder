@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyiy8rg0oprwd"
-path="res://.godot/imported/010-cheer-lines-sheet.png-a95033d3fac41227a4b67a92bab04832.ctex"
+path="res://.godot/imported/010-cheer-lines-sheet.png-c278128265f93a98b2818849ac4bc0b5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/main/comic/world-2/010-cheer-lines-sheet.png"
-dest_files=["res://.godot/imported/010-cheer-lines-sheet.png-a95033d3fac41227a4b67a92bab04832.ctex"]
+dest_files=["res://.godot/imported/010-cheer-lines-sheet.png-c278128265f93a98b2818849ac4bc0b5.ctex"]
 
 [params]
 
