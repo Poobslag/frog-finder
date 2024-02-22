@@ -1,9 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://c58adu5euflje"]
 
 [ext_resource type="Script" path="res://src/demo/comic-page-demo.gd" id="1_ad1qj"]
-[ext_resource type="PackedScene" uid="uid://slr8c52p2m8u" path="res://src/main/comic/World2ComicPage.tscn" id="2_pjwei"]
+[ext_resource type="Theme" uid="uid://bf6pj7hmxiojs" path="res://src/main/ui/menu/theme/h3.theme" id="2_5m6sk"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_ad1qj")
 
-[node name="ComicPage" parent="." instance=ExtResource("2_pjwei")]
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource("2_5m6sk")

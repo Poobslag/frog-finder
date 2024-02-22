@@ -9,6 +9,7 @@ extends Control
 ## key: (String) comic id
 ## value: (PackedScene) comic scene for the specified world
 @onready var comic_scenes_by_id := {
+	"world-1-intro": preload("res://src/main/comic/World1ComicPage.tscn"),
 	"world-2-intro": preload("res://src/main/comic/World2ComicPage.tscn"),
 }
 
