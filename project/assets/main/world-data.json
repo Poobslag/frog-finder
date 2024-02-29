@@ -1,6 +1,11 @@
 [
   {
     "title": "fr?g f?nder",
+    "dances": [
+      "shark",
+      "jump",
+      "hips"
+    ],
     "shark_song": "WeAreTheBaddies",
     "frog_songs": [
       "ItsAWonderfulFrog",
