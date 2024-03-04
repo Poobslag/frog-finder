@@ -2,6 +2,7 @@ extends Node
 ## Demonstrates the comic animation.
 ##
 ## Keys:
+## 	[0-9]: Select the comic scene to play.
 ## 	[P]: Play/stop the comic animation.
 ## 	[brace keys]: Advance/rewind the comic animation
 
