@@ -13,10 +13,6 @@ const ALL_RIGHT_WIGGLE_FRAMES := [[1, 3], [5, 7], [9, 11], [13, 15]]
 var _left_wiggle_frames: Array[int] = []
 var _right_wiggle_frames: Array[int] = []
 
-@onready var _wiggle_timer := $WiggleTimer
-@onready var _left := $Left
-@onready var _right := $Right
-
 func _ready() -> void:
 	# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
 	# type hints
@@ -32,18 +28,18 @@ func reset_wiggle() -> void:
 		# avoid 'Timer was not added to the SceneTree' warnings
 		return
 	
-	_wiggle_timer.start(randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME))
+	%WiggleTimer.start(randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME))
 
 
 ## Updates the sprites' frames to the next 'wiggle frame'.
 ##
 ## Defaults to '0' if the current frame isn't a wiggle frame.
 func assign_wiggle_frame() -> void:
-	var wiggle_index: int = (_left_wiggle_frames.find(_left.frame) + 1) % _left_wiggle_frames.size()
-	_left.frame = _left_wiggle_frames[wiggle_index]
-	_right.frame = _right_wiggle_frames[wiggle_index]
+	var wiggle_index: int = (_left_wiggle_frames.find(%Left.frame) + 1) % _left_wiggle_frames.size()
+	%Left.frame = _left_wiggle_frames[wiggle_index]
+	$Right.frame = _right_wiggle_frames[wiggle_index]
 
 
 func _on_wiggle_timer_timeout() -> void:
 	assign_wiggle_frame()
-	_wiggle_timer.wait_time = randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME)
+	%WiggleTimer.wait_time = randf_range(WiggleTimer.MIN_WIGGLE_TIME, WiggleTimer.MAX_WIGGLE_TIME)

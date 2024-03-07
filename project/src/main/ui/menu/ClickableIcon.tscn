@@ -12,5 +12,6 @@ offset_bottom = 80.0
 script = ExtResource("4")
 
 [node name="IconSprite" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
 position = Vector2(40, 40)
 wiggle_frames = Array[int]([0, 1])

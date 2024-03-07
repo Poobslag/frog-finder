@@ -2747,6 +2747,7 @@ icon_texture = ExtResource("58_6ljnr")
 icon_index = 5
 
 [node name="IconSprite" parent="SkipButton" instance=ExtResource("59_jkonc")]
+unique_name_in_owner = true
 position = Vector2(40, 40)
 texture = ExtResource("58_6ljnr")
 hframes = 4
@@ -2755,6 +2756,7 @@ frame = 10
 wiggle_frames = Array[int]([10, 11])
 
 [node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_mkq1g")
 }
@@ -2766,6 +2768,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("41_8413d")
 
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

@@ -80,6 +80,7 @@ script = ExtResource("4")
 icon_texture = ExtResource("5")
 
 [node name="IconSprite" parent="ByeButton" instance=ExtResource("7")]
+unique_name_in_owner = true
 position = Vector2(40, 40)
 texture = ExtResource("5")
 hframes = 4

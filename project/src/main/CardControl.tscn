@@ -11,29 +11,43 @@ anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
 script = ExtResource("3")
+card_back_type = 3
+card_back_details = ""
+card_front_type = 3
+card_front_details = ""
+practice = false
+shown_face = 0
 
 [node name="CardBack" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
 
 [node name="CardFront" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
 visible = false
 
 [node name="CheerTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
 [node name="FrogFoundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="SharkFoundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="StopDanceTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="CreatureSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 volume_db = -8.0
 
 [node name="PopBrustSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("1")
 volume_db = -10.0
 

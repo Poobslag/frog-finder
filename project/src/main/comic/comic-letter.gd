@@ -34,8 +34,6 @@ const FRAME_INDEXES_BY_LETTER := {
 		text = new_text
 		_refresh_text()
 
-@onready var _animation_player := $AnimationPlayer
-
 ## Animates the letter bobbing up and down.
 var _bob_tween: Tween
 
@@ -49,8 +47,8 @@ func show_letter() -> void:
 	offset = Vector2(0, -6)
 	_launch_bob_tween()
 	
-	_animation_player.stop()
-	_animation_player.play("show")
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("show")
 	await get_tree().process_frame
 	show()
 
@@ -59,7 +57,7 @@ func show_letter() -> void:
 ##
 ## Titles are never hidden during comics, so this is only used when resetting the letter's state or during demos.
 func hide_letter() -> void:
-	_animation_player.stop()
+	%AnimationPlayer.stop()
 	hide()
 
 

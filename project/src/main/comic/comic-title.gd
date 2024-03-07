@@ -31,12 +31,6 @@ const PER_LETTER_DELAY := 0.07
 		hide_title()
 		show_title()
 
-## Container node containing the back row of letters.
-@onready var _back_letters := $BackLetters
-
-## Container node containing the front row of letters.
-@onready var _front_letters := $FrontLetters
-
 ## Gradually makes the title's letters visible.
 var _letter_tween: Tween
 
@@ -73,9 +67,9 @@ func show_title() -> void:
 ## Returns a list of letter nodes in BackLetters and FrontLetters ordered from left-to-right.
 func _ordered_letter_nodes() -> Array[Node]:
 	var result: Array[Node] = []
-	result.append_array(_back_letters.get_children())
-	for i in range(_front_letters.get_child_count()):
-		result.insert(i * 2 + 1, _front_letters.get_child(i))
+	result.append_array(%BackLetters.get_children())
+	for i in range(%FrontLetters.get_child_count()):
+		result.insert(i * 2 + 1, %FrontLetters.get_child(i))
 	return result
 
 
@@ -84,12 +78,12 @@ func _refresh_text() -> void:
 	if not is_inside_tree():
 		return
 	
-	for child in _back_letters.get_children():
+	for child in %BackLetters.get_children():
 		child.queue_free()
-		_back_letters.remove_child(child)
-	for child in _front_letters.get_children():
+		%BackLetters.remove_child(child)
+	for child in %FrontLetters.get_children():
 		child.queue_free()
-		_front_letters.remove_child(child)
+		%FrontLetters.remove_child(child)
 	_prev_letter_node = null
 	_prev_letter_count = 0
 	
@@ -114,10 +108,10 @@ func _append_letter(letter_string: String, adjacent := true) -> void:
 	
 	# determine whether the letter goes in the front/back row
 	var letter_parent: Control
-	if adjacent and _prev_letter_node and _prev_letter_node.get_parent() == _back_letters:
-		letter_parent = _front_letters
+	if adjacent and _prev_letter_node and _prev_letter_node.get_parent() == %BackLetters:
+		letter_parent = %FrontLetters
 	else:
-		letter_parent = _back_letters
+		letter_parent = %BackLetters
 	
 	new_letter_node.text = letter_string
 	
