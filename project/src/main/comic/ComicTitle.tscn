@@ -14,10 +14,14 @@ script = ExtResource("1_1stxg")
 ComicLetterScene = ExtResource("2_7jhcl")
 
 [node name="BackLetters" type="Control" parent="."]
+unique_name_in_owner = true
+editor_description = "Container node containing the back row of letters."
 layout_mode = 3
 anchors_preset = 0
 
 [node name="FrontLetters" type="Control" parent="."]
+unique_name_in_owner = true
+editor_description = "Container node containing the front row of letters."
 layout_mode = 3
 anchors_preset = 0
 offset_top = 25.0

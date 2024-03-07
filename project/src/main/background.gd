@@ -38,8 +38,6 @@ var texture_color: Color
 	$TextureRect37, $TextureRect38, $TextureRect39, $TextureRect40,
 ]
 
-@onready var _color_rect := $ColorRect
-
 func _ready() -> void:
 	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	
@@ -83,7 +81,7 @@ func change_specific(new_texture_color: Color, immediate: bool = false) -> void:
 	
 	if immediate:
 		previous_texture.visible = false
-		_color_rect.color = rect_color
+		%ColorRect.color = rect_color
 		textures[0].modulate = new_texture_color
 	else:
 		# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
@@ -92,7 +90,7 @@ func change_specific(new_texture_color: Color, immediate: bool = false) -> void:
 		textures[0].modulate = to_transparent(new_texture_color)
 		
 		var change_tween := create_tween().set_parallel()
-		change_tween.tween_property(_color_rect, "color",
+		change_tween.tween_property(%ColorRect, "color",
 				rect_color, TWEEN_DURATION)
 		change_tween.tween_property(textures[0], "modulate",
 				new_texture_color, TWEEN_DURATION)

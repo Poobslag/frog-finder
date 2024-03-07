@@ -26,21 +26,12 @@ const GROUND_DAMP := 1.6
 ## The XY boundaries which the ball will bounce off of.
 @export var bounce_rect: Rect2
 
-## The sound effect played when the ball is bounced by being clicked on, bumped into, or hitting a wall or floor.
-@onready var _bounce_sfx := $BounceSfx
-
-@onready var _redraw_timer := $RedrawTimer
-@onready var _sprite := $SpriteElevator/Sprite
-
-## Applies the 'Z' physics coordinate to the beach ball, moving it vertically.
-@onready var _sprite_elevator := $SpriteElevator
-
 ## The ball's position. This value smoothly updates every frame, and the visuals are periodically snapped to match.
 var physics_position := Vector3.ZERO
 var physics_velocity := Vector3.ZERO
 
 func _ready() -> void:
-	_redraw_timer.start(MAX_REDRAW_SECONDS)
+	%RedrawTimer.start(MAX_REDRAW_SECONDS)
 	physics_position = _node_position()
 	_randomize_texture(true)
 
@@ -52,12 +43,12 @@ func _process(delta: float) -> void:
 	if (physics_position - _node_position()).length() > MAX_REDRAW_DISTANCE:
 		# The ball is moving quickly. Refresh the visuals based on the ball's new position.
 		_refresh_visuals()
-		_redraw_timer.start()
+		%RedrawTimer.start()
 
 
 ## Returns the center of the ball's visuals.
 func get_clickable_position() -> Vector2:
-	return position + to_local(_sprite.to_global(Vector2.ZERO))
+	return position + to_local(%Sprite.to_global(Vector2.ZERO))
 
 
 ## Bounces the ball into the air.
@@ -86,7 +77,7 @@ func bounce(bounce_factor := 0.0) -> void:
 
 ## Calculates the 3D 'physics position' corresponding to the sprite's current position.
 func _node_position() -> Vector3:
-	return Vector3(position.x, position.y, -_sprite_elevator.position.y)
+	return Vector3(position.x, position.y, -%SpriteElevator.position.y)
 
 
 ## Updates the node positions and randomizes the sprite's texture.
@@ -95,7 +86,7 @@ func _refresh_visuals() -> void:
 	
 	# Move the sprite.
 	position = Vector2(physics_position.x, physics_position.y)
-	_sprite_elevator.position.y = -physics_position.z
+	%SpriteElevator.position.y = -physics_position.z
 	
 	# Update the sprite's texture.
 	var new_node_position := _node_position()
@@ -105,18 +96,18 @@ func _refresh_visuals() -> void:
 
 ## Randomizes the sprite's texture, changing its frame, rotation and flip values.
 func _randomize_texture(avoid_similar_frames: bool = true) -> void:
-	_sprite.flip_h = randf() < 0.5
-	_sprite.flip_v = randf() < 0.5
-	_sprite.rotation = randi_range(0, 3) * PI / 2
+	%Sprite.flip_h = randf() < 0.5
+	%Sprite.flip_v = randf() < 0.5
+	%Sprite.rotation = randi_range(0, 3) * PI / 2
 	
 	if avoid_similar_frames:
 		# Avoid picking similar frames back-to-back.
 		#
 		# Frames 2 and 6 are just recolors of each other, for example. To avoid picking them back-to-back, we randomly
 		# increment by 1, 2 or 3 frames.
-		_sprite.frame = (_sprite.frame + 1 + randi_range(0, 3)) % 7
+		%Sprite.frame = (%Sprite.frame + 1 + randi_range(0, 3)) % 7
 	else:
-		_sprite.frame = randi_range(0, 7)
+		%Sprite.frame = randi_range(0, 7)
 
 
 ## Returns 'true' if the physics position is on or below the ground.
@@ -177,9 +168,9 @@ func _play_bounce_sfx(velocity_differential: float = 1000.0) -> void:
 		sfx_volume = -999.0
 	
 	if sfx_volume > -50:
-		_bounce_sfx.volume_db = sfx_volume
-		_bounce_sfx.pitch_scale = randf_range(0.95, 1.05)
-		SfxDeconflicter.play(_bounce_sfx)
+		%BounceSfx.volume_db = sfx_volume
+		%BounceSfx.pitch_scale = randf_range(0.95, 1.05)
+		SfxDeconflicter.play(%BounceSfx)
 
 
 ## When our redraw timer times out, we refresh the visuals based on the ball's position.

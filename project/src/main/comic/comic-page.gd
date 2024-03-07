@@ -28,9 +28,6 @@ extends Control
 			return
 		show_all()
 
-@onready var _conductor := $Conductor
-@onready var _sfx_player := $SfxPlayer
-
 ## Gradually fades the comic visible or invisible.
 var _fade_tween: Tween
 
@@ -45,11 +42,11 @@ func play() -> void:
 	# reset the animation first, to avoid scenarios where some panels are visible when the animation starts
 	stop()
 	
-	_conductor.play("play")
+	%Conductor.play("play")
 
 
 func is_playing() -> bool:
-	return _conductor.is_playing()
+	return %Conductor.is_playing()
 
 
 ## Immediately stops the comic and makes the comic page invisible.
@@ -60,10 +57,10 @@ func stop() -> void:
 	# hide; avoid blocking input
 	visible = false
 	
-	_conductor.play("RESET")
+	%Conductor.play("RESET")
 	for frame_animation_player in get_tree().get_nodes_in_group("frame_animation_players"):
 		frame_animation_player.play("RESET")
-	_sfx_player.stop()
+	%SfxPlayer.stop()
 
 
 ## Immediately makes the comic page and all panels visible.
@@ -81,12 +78,12 @@ func show_all() -> void:
 ## 	'delta': The number of seconds to skip. If this number is positive, the comic will skip forward. If negative, the
 ## 		comic will skip backward.
 func advance(delta: float) -> void:
-	_conductor.advance(delta)
-	var new_playback_position: float = _sfx_player.get_playback_position() + delta
-	if new_playback_position > _sfx_player.stream.get_length():
-		_sfx_player.stop()
+	%Conductor.advance(delta)
+	var new_playback_position: float = %SfxPlayer.get_playback_position() + delta
+	if new_playback_position > %SfxPlayer.stream.get_length():
+		%SfxPlayer.stop()
 	else:
-		_sfx_player.seek(new_playback_position)
+		%SfxPlayer.seek(new_playback_position)
 
 
 ## Gradually fades the comic into view.

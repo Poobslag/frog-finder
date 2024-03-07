@@ -26,6 +26,7 @@ offset_bottom = 421.0
 script = ExtResource("2")
 
 [node name="Left" type="Sprite2D" parent="WideWowSprite"]
+unique_name_in_owner = true
 position = Vector2(40, 40)
 scale = Vector2(0.333, 0.333)
 texture = ExtResource("6")
@@ -33,6 +34,7 @@ hframes = 8
 vframes = 2
 
 [node name="Right" type="Sprite2D" parent="WideWowSprite"]
+unique_name_in_owner = true
 position = Vector2(420, 40)
 scale = Vector2(0.333, 0.333)
 texture = ExtResource("6")
@@ -41,6 +43,7 @@ vframes = 2
 frame = 1
 
 [node name="WiggleTimer" type="Timer" parent="WideWowSprite"]
+unique_name_in_owner = true
 
 [node name="Prev" parent="." instance=ExtResource("4")]
 visible = false

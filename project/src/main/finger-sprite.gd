@@ -23,8 +23,6 @@ const WIGGLE_FRAMES_BY_HUGGED_FINGER := {
 
 @export var wiggle_frames: Array[int] = []
 
-@onready var _wiggle_timer := $WiggleTimer
-
 @onready var _hug_sounds := [
 	preload("res://assets/main/sfx/frog-hug-0.wav"),
 	preload("res://assets/main/sfx/frog-hug-1.wav"),
@@ -37,7 +35,7 @@ const WIGGLE_FRAMES_BY_HUGGED_FINGER := {
 ]
 
 func _ready() -> void:
-	$AnimationPlayer.play("reset")
+	%AnimationPlayer.play("reset")
 
 
 ## Parameters:
@@ -46,31 +44,31 @@ func bite(finger_index: int) -> void:
 	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
 	# type hints
 	wiggle_frames.assign(WIGGLE_FRAMES_BY_BITTEN_FINGER[finger_index])
-	_wiggle_timer.assign_wiggle_frame()
+	%WiggleTimer.assign_wiggle_frame()
 	
 	# the animationplayer assigns the modulate/offset a frame too late.
 	# we set them manually to avoid an ugly blink effect
 	modulate = Color.WHITE
 	offset = Vector2(0, 0)
-	$AnimationPlayer.play("bite")
+	%AnimationPlayer.play("bite")
 	
-	$CartoonBiteSfx.pitch_scale = randf_range(0.95, 1.01)
-	$CartoonBiteSfx.play()
+	%CartoonBiteSfx.pitch_scale = randf_range(0.95, 1.01)
+	%CartoonBiteSfx.play()
 
 
 ## Parameters:
 ## 	'finger_index': 0 = right frog, 2 = left frog, 1 = middle frog
 func hug(finger_index: int) -> void:
 	wiggle_frames.assign(WIGGLE_FRAMES_BY_HUGGED_FINGER[finger_index])
-	_wiggle_timer.assign_wiggle_frame()
+	%WiggleTimer.assign_wiggle_frame()
 	
 	# the animationplayer assigns the modulate/offset a frame too late.
 	# we set them manually to avoid an ugly blink effect
 	modulate = Color.WHITE
 	offset = Vector2(0, 0)
 	
-	$AnimationPlayer.play("hug%s" % [finger_index])
-	$HugSfx.pitch_scale = randf_range(0.8, 1.2)
-	$HugSfx.stream = Utils.rand_value(_hug_sounds)
+	%AnimationPlayer.play("hug%s" % [finger_index])
+	%HugSfx.pitch_scale = randf_range(0.8, 1.2)
+	%HugSfx.stream = Utils.rand_value(_hug_sounds)
 	
-	$HugSfx.play()
+	%HugSfx.play()

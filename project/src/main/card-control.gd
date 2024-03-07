@@ -189,17 +189,6 @@ var _shark_sounds := [
 
 var _pending_warning := ""
 
-@onready var _card_back_sprite := $CardBack
-@onready var _card_front_sprite := $CardFront
-
-@onready var _cheer_timer := $CheerTimer
-@onready var _frog_found_timer := $FrogFoundTimer
-@onready var _shark_found_timer := $SharkFoundTimer
-@onready var _stop_dance_timer := $StopDanceTimer
-
-@onready var _creature_sfx := $CreatureSfx
-@onready var _pop_brust_sfx := $PopBrustSfx
-
 @onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
 @onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
 @onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
@@ -227,21 +216,21 @@ func _process(_delta: float) -> void:
 
 
 func reset() -> void:
-	_card_back_sprite.visible = true
-	_card_front_sprite.visible = false
+	%CardBack.visible = true
+	%CardFront.visible = false
 	card_back_type = CardType.MYSTERY
 	card_back_details = ""
 	card_front_type = CardType.MYSTERY
 	card_front_details = ""
 	
-	_stop_dance_timer.stop()
-	_frog_found_timer.stop()
-	_shark_found_timer.stop()
+	%StopDanceTimer.stop()
+	%FrogFoundTimer.stop()
+	%SharkFoundTimer.stop()
 	_refresh_card_textures()
 
 
 func is_front_shown() -> bool:
-	return _card_front_sprite.visible
+	return %CardFront.visible
 
 
 func show_front() -> void:
@@ -259,52 +248,52 @@ func copy_from(other_card: CardControl) -> void:
 	card_front_details = other_card.card_front_details
 	_refresh_card_textures()
 	
-	_card_front_sprite.frame = other_card._card_front_sprite.frame
-	_card_front_sprite.wiggle_frames = other_card._card_front_sprite.wiggle_frames
-	_card_front_sprite.visible = other_card._card_front_sprite.visible
+	%CardFront.frame = other_card.get_node("%CardFront").frame
+	%CardFront.wiggle_frames = other_card.get_node("%CardFront").wiggle_frames
+	%CardFront.visible = other_card.get_node("%CardFront").visible
 	
-	_card_back_sprite.frame = other_card._card_back_sprite.frame
-	_card_back_sprite.wiggle_frames = other_card._card_back_sprite.wiggle_frames
-	_card_back_sprite.visible = other_card._card_back_sprite.visible
+	%CardBack.frame = other_card.get_node("%CardBack").frame
+	%CardBack.wiggle_frames = other_card.get_node("%CardBack").wiggle_frames
+	%CardBack.visible = other_card.get_node("%CardBack").visible
 
 
 func cheer() -> void:
 	if card_front_type != CardType.FROG:
 		return
 	
-	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
-	var wiggle_index: int = _card_front_sprite.frame % _card_front_sprite.wiggle_frames.size()
-	_card_front_sprite.frame = _card_front_sprite.wiggle_frames[wiggle_index]
+	var frog_index := int(%CardFront.wiggle_frames[0] / 4)
+	%CardFront.wiggle_frames = [frog_index * 4 + 2, frog_index * 4 + 3] as Array[int]
+	var wiggle_index: int = %CardFront.frame % %CardFront.wiggle_frames.size()
+	%CardFront.frame = %CardFront.wiggle_frames[wiggle_index]
 	
 	# reset the wiggle so the characters don't have one very abbreviated dance frame
-	_card_front_sprite.reset_wiggle()
-	_stop_dance_timer.start(4.0)
+	%CardFront.reset_wiggle()
+	%StopDanceTimer.start(4.0)
 
 
 func _refresh_shown_face() -> void:
 	if not is_inside_tree():
 		return
 	
-	if shown_face == CardFace.BACK and _card_back_sprite.visible \
-			or shown_face == CardFace.FRONT and _card_front_sprite.visible:
+	if shown_face == CardFace.BACK and %CardBack.visible \
+			or shown_face == CardFace.FRONT and %CardFront.visible:
 		# appropriate card face is already shown
 		return
 	
-	_card_back_sprite.visible = true if shown_face == CardFace.BACK else false
-	_card_front_sprite.visible = true if shown_face == CardFace.FRONT else false
+	%CardBack.visible = true if shown_face == CardFace.BACK else false
+	%CardFront.visible = true if shown_face == CardFace.FRONT else false
 	
 	if shown_face == CardFace.FRONT:
 		# reset the wiggle so the characters don't have one very abbreviated dance frame
-		_card_front_sprite.reset_wiggle()
+		%CardFront.reset_wiggle()
 
 
 func _refresh_card_textures() -> void:
 	if not is_inside_tree():
 		return
 	
-	_refresh_card_face(_card_back_sprite, card_back_type, card_back_details)
-	_refresh_card_face(_card_front_sprite, card_front_type, card_front_details)
+	_refresh_card_face(%CardBack, card_back_type, card_back_details)
+	_refresh_card_face(%CardFront, card_front_type, card_front_details)
 
 
 func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: String) -> void:
@@ -402,7 +391,7 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 
 
 func _flip_card() -> void:
-	if _card_front_sprite.visible:
+	if %CardFront.visible:
 		# card is already flipped
 		return
 	
@@ -414,8 +403,8 @@ func _flip_card() -> void:
 		# the level hasn't started, or the level has ended
 		return
 	
-	_pop_brust_sfx.pitch_scale = randf_range(0.9, 1.10)
-	_pop_brust_sfx.play()
+	%PopBrustSfx.pitch_scale = randf_range(0.9, 1.10)
+	%PopBrustSfx.play()
 	before_card_flipped.emit()
 	
 	show_front()
@@ -434,8 +423,8 @@ func _on_flip_timer_timeout() -> void:
 				game_state.can_interact = false
 			
 			before_frog_found.emit()
-			_cheer_timer.start()
-			_frog_found_timer.start(2.0)
+			%CheerTimer.start()
+			%FrogFoundTimer.start(2.0)
 		CardType.SHARK:
 			if practice:
 				# this shark doesn't count; maybe it was on the main menu
@@ -443,18 +432,18 @@ func _on_flip_timer_timeout() -> void:
 			else:
 				game_state.can_interact = false
 			before_shark_found.emit()
-			_shark_found_timer.start(3.2)
-			_creature_sfx.stream = Utils.rand_value(_shark_sounds)
-			_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
-			_creature_sfx.play()
+			%SharkFoundTimer.start(3.2)
+			%CreatureSfx.stream = Utils.rand_value(_shark_sounds)
+			%CreatureSfx.pitch_scale = randf_range(0.8, 1.2)
+			%CreatureSfx.play()
 
 
 func _on_stop_dance_timer_timeout() -> void:
 	if card_front_type != CardType.FROG:
 		return
 	
-	var frog_index := int(_card_front_sprite.wiggle_frames[0] / 4)
-	_card_front_sprite.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
+	var frog_index := int(%CardFront.wiggle_frames[0] / 4)
+	%CardFront.wiggle_frames = [frog_index * 4 + 0, frog_index * 4 + 1] as Array[int]
 
 
 func _on_frog_found_timer_timeout() -> void:
@@ -466,9 +455,9 @@ func _on_shark_found_timer_timeout() -> void:
 
 
 func _on_cheer_timer_timeout() -> void:
-	_creature_sfx.stream = Utils.rand_value(_frog_sounds)
-	_creature_sfx.pitch_scale = randf_range(0.8, 1.2)
-	_creature_sfx.play()
+	%CreatureSfx.stream = Utils.rand_value(_frog_sounds)
+	%CreatureSfx.pitch_scale = randf_range(0.8, 1.2)
+	%CreatureSfx.play()
 	cheer()
 
 

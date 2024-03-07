@@ -11,10 +11,12 @@ size = Vector2(80, 40)
 script = ExtResource("1_i2eh7")
 
 [node name="SpriteElevator" type="Node2D" parent="."]
-editor_description = "Holds the aerial coordinate of the child sprite."
+unique_name_in_owner = true
+editor_description = "Applies the 'Z' physics coordinate to the beach ball, moving it vertically."
 scale = Vector2(0.467, 0.467)
 
 [node name="Sprite" type="Sprite2D" parent="SpriteElevator"]
+unique_name_in_owner = true
 position = Vector2(0, -33)
 texture = ExtResource("1_hp1e7")
 hframes = 4
@@ -28,8 +30,11 @@ position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_hdnlp")
 
 [node name="RedrawTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="BounceSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+editor_description = "The sound effect played when the ball is bounced by being clicked on, bumped into, or hitting a wall or floor."
 stream = ExtResource("3_lowhv")
 bus = &"Sfx"
 

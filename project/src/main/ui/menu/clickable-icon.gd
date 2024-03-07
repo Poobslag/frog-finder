@@ -18,15 +18,8 @@ signal pressed
 		icon_index = new_icon_index
 		_refresh_sprite()
 
-@onready var _icon_sprite := $IconSprite
-
 func _ready() -> void:
 	_refresh_sprite()
-
-
-## Preemptively initializes onready variables to avoid null references.
-func _enter_tree() -> void:
-	_icon_sprite = $IconSprite
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -38,6 +31,6 @@ func _refresh_sprite() -> void:
 	if not is_inside_tree():
 		return
 	
-	Utils.assign_card_texture(_icon_sprite, icon_texture)
-	_icon_sprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1] as Array[int]
-	_icon_sprite.assign_wiggle_frame()
+	Utils.assign_card_texture(%IconSprite, icon_texture)
+	%IconSprite.wiggle_frames = [2 * icon_index + 0, 2 * icon_index + 1] as Array[int]
+	%IconSprite.assign_wiggle_frame()
