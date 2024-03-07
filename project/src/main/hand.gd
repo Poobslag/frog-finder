@@ -82,9 +82,9 @@ func hug() -> void:
 	%HugSprite.assign_wiggle_frame()
 	
 	match(hugged_fingers):
-		1: $FingerSprite0.hug(0)
-		2: $FingerSprite1.hug(2)
-		3: $FingerSprite2.hug(1)
+		1: %FingerSprite0.hug(0)
+		2: %FingerSprite1.hug(2)
+		3: %FingerSprite2.hug(1)
 
 
 func _finish_hug() -> void:

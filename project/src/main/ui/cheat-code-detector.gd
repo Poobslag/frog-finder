@@ -40,7 +40,7 @@ var _previous_keypresses := ""
 
 ## Plays the sound effect for enabling/disabling a cheat.
 func play_cheat_sound(enabled: bool) -> void:
-	var cheat_sound := $CheatEnableSound if enabled else $CheatDisableSound
+	var cheat_sound := %CheatEnableSound if enabled else %CheatDisableSound
 	cheat_sound.play()
 
 

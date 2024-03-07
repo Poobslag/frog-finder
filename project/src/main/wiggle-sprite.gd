@@ -10,7 +10,7 @@ func reset_wiggle() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	$WiggleTimer.reset_wiggle()
+	%WiggleTimer.reset_wiggle()
 
 
 func assign_wiggle_frame() -> void:
@@ -19,4 +19,4 @@ func assign_wiggle_frame() -> void:
 		frame = wiggle_frames[0] if wiggle_frames else 0
 		return
 	
-	$WiggleTimer.assign_wiggle_frame()
+	%WiggleTimer.assign_wiggle_frame()
