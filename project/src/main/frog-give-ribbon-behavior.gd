@@ -23,7 +23,7 @@ const HAND_CATCH_OFFSET := Vector2(28, 57)
 var hand: Hand:
 	set(new_hand):
 		if hand:
-			hand.disconnect("hug_finished", Callable(self, "_on_hand_hug_finished"))
+			hand.hug_finished.disconnect(_on_hand_hug_finished)
 		hand = new_hand
 		if hand:
 			hand.hug_finished.connect(_on_hand_hug_finished)

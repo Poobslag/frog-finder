@@ -14,9 +14,15 @@ const COL_COUNT := 6
 ## Methods used to check whether two cells conflict. Cells conflict if they are in the same row, the same column, or
 ## the same 3x2 region.
 var _compare_methods := [
-		Callable(self, "_compare_by_row"),
-		Callable(self, "_compare_by_column"),
-		Callable(self, "_compare_by_region"),
+		## Returns 'true' if the two specified cells are in the same row.
+		func(pos_1: Vector2, pos_2: Vector2) -> bool:
+			return pos_1.y == pos_2.y,
+		## Returns 'true' if the two specified cells are in the same column.
+		func(pos_1: Vector2, pos_2: Vector2) -> bool:
+			return pos_1.x == pos_2.x,
+		## Returns 'true' if the two specified cells are in the same 3x2 region.
+		func(pos_1: Vector2, pos_2: Vector2) -> bool:
+			return _region(pos_1) == _region(pos_2),
 	]
 
 ## The number of valid cards the player must click before finding a frog. (The player will always find a frog if five
@@ -229,21 +235,6 @@ func _possible_mistake_count() -> int:
 		if _conflicting_lizard(card):
 			result += 1
 	return result
-
-
-## Returns 'true' if the two specified cells are in the same column.
-func _compare_by_column(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return pos_1.x == pos_2.x
-
-
-## Returns 'true' if the two specified cells are in the same row.
-func _compare_by_row(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return pos_1.y == pos_2.y
-
-
-## Returns 'true' if the two specified cells are in the same 3x2 region.
-func _compare_by_region(pos_1: Vector2, pos_2: Vector2) -> bool:
-	return _region(pos_1) == _region(pos_2)
 
 
 ## Returns an int corresponding to the cell's 3x2 region.

@@ -31,7 +31,7 @@ func _connect_title_card_listeners() -> void:
 		return
 	
 	for card in _title.get_children():
-		if card.is_connected("before_frog_found", Callable(self, "_on_card_control_before_frog_found").bind(card)):
+		if card.before_frog_found.is_connected(_on_card_control_before_frog_found):
 			# Avoid connecting redundant listeners for cards which already existed. This happens for mystery cards.
 			continue
 		

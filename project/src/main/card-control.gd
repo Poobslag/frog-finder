@@ -424,7 +424,7 @@ func _flip_card() -> void:
 
 
 func _on_flip_timer_timeout() -> void:
-	game_state.flip_timer.disconnect("timeout", Callable(self, "_on_flip_timer_timeout"))
+	game_state.flip_timer.timeout.disconnect(_on_flip_timer_timeout)
 	match card_front_type:
 		CardType.FROG:
 			if practice:

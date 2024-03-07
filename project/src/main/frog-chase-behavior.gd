@@ -27,7 +27,7 @@ var friend: Sprite2D
 var hand: Hand:
 	set(new_hand):
 		if hand:
-			hand.disconnect("hug_finished", Callable(self, "_on_hand_hug_finished"))
+			hand.hug_finished.disconnect(_on_hand_hug_finished)
 		hand = new_hand
 		if hand:
 			hand.hug_finished.connect(_on_hand_hug_finished)
