@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://b4w5rklhoajo0" path="res://assets/main/comic/world-1/080-shark-sheet.png" id="31_8f2rg"]
 [ext_resource type="Texture2D" uid="uid://cn665yi1hatgv" path="res://assets/main/comic/world-1/080-teacher.png" id="32_hfjj4"]
 [ext_resource type="Texture2D" uid="uid://bv25x6beggdk6" path="res://assets/main/comic/world-1/080-vanish-sheet.png" id="33_sjp7u"]
-[ext_resource type="AudioStream" path="res://assets/main/sfx/world-1-comic-sfx.ogg" id="41_8413d"]
+[ext_resource type="AudioStream" uid="uid://ck7au7sepaf6n" path="res://assets/main/sfx/world-1-comic-sfx.ogg" id="41_8413d"]
 [ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="57_1j0rf"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="58_6ljnr"]
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="59_jkonc"]
@@ -1895,6 +1895,7 @@ _data = {
 }
 
 [node name="ComicPage" type="Control"]
+visible = false
 clip_children = 1
 layout_mode = 3
 anchors_preset = 15
@@ -1934,11 +1935,18 @@ stretch_mode = 1
 
 [node name="ComicPanel01" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 126.0
-offset_top = 14.0
-offset_right = 1566.0
-offset_bottom = 438.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -236.0
+offset_right = 1104.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2002,11 +2010,18 @@ libraries = {
 
 [node name="ComicPanel02" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 644.0
-offset_top = 15.0
-offset_right = 1087.0
-offset_bottom = 434.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 182.0
+offset_top = -235.0
+offset_right = 625.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2113,11 +2128,18 @@ libraries = {
 
 [node name="ComicPanel03" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 127.0
-offset_top = 175.0
-offset_right = 1067.0
-offset_bottom = 611.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -75.0
+offset_right = 605.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2154,11 +2176,18 @@ libraries = {
 
 [node name="ComicPanel04" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 471.0
-offset_top = 175.0
-offset_right = 924.0
-offset_bottom = 612.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -75.0
+offset_right = 462.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2233,11 +2262,18 @@ libraries = {
 
 [node name="ComicPanel05" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 644.0
-offset_top = 175.0
-offset_right = 1087.0
-offset_bottom = 612.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 182.0
+offset_top = -75.0
+offset_right = 625.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2337,11 +2373,18 @@ libraries = {
 
 [node name="ComicPanel06" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 127.0
-offset_top = 341.0
-offset_right = 578.0
-offset_bottom = 755.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = 91.0
+offset_right = 116.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2457,11 +2500,18 @@ libraries = {
 
 [node name="ComicPanel07" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 300.0
-offset_top = 341.0
-offset_right = 746.0
-offset_bottom = 755.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = 91.0
+offset_right = 284.0
+offset_bottom = 505.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
@@ -2595,11 +2645,18 @@ libraries = {
 
 [node name="ComicPanel08" type="Control" parent="."]
 visible = false
-anchors_preset = 0
-offset_left = 470.0
-offset_top = 341.0
-offset_right = 1409.0
-offset_bottom = 756.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = 91.0
+offset_right = 947.0
+offset_bottom = 506.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 script = ExtResource("4_msqbo")
 
