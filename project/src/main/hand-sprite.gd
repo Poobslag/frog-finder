@@ -6,11 +6,11 @@ extends Sprite2D
 ## This script only handles animating the main hand sprite.
 
 enum State {
-	NONE,
-	THREE_FINGERS,
-	TWO_FINGERS,
-	ONE_FINGER,
-	NO_FINGERS,
+	NONE, ## The hand is not visible
+	THREE_FINGERS, ## The hand has three fingers left
+	TWO_FINGERS, ## The hand has two fingers left
+	ONE_FINGER, ## The hand has one finger left
+	NO_FINGERS, ## The hand has no fingers left
 }
 
 var state: int = State.ONE_FINGER : set = set_state

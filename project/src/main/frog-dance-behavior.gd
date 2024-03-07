@@ -3,11 +3,11 @@ extends CreatureBehavior
 
 ## The different states a frog progresses through before and after a dance.
 enum DanceState {
-	NONE,
-	RUN_TO_DANCE,
-	WAIT_TO_DANCE,
-	DANCE,
-	RUN_FROM_DANCE,
+	NONE, ## The frog is not dancing or running.
+	RUN_TO_DANCE, ## The frog is running to the dance target.
+	WAIT_TO_DANCE, ## The frog is waiting at the dance target.
+	DANCE, ## The frog is dancing.
+	RUN_FROM_DANCE, ## The frog is running from the dance target.
 }
 
 ## Threshold where the frog adjusts their animation to sync back up with the music.

@@ -8,17 +8,17 @@ signal world_index_changed
 signal music_preference_changed
 
 enum MissionResult {
-	NONE, # The player has not finished this mission yet
-	SHARK, # The player finished the mission by getting eaten
-	FROG, # The player finished the mission by finding enough frogs
+	NONE, ## The player has not finished this mission yet
+	SHARK, ## The player finished the mission by getting eaten
+	FROG, ## The player finished the mission by finding enough frogs
 }
 
 enum MusicPreference {
-	RANDOM,
-	MUSIC_1, # first song in each area; 'long song'
-	MUSIC_2, # second song in each area; 'short song'
-	MUSIC_3, # third song in each area; 'instrumental song'
-	OFF,
+	RANDOM, ## Random song from each area
+	MUSIC_1, ## First song in each area; 'long song'
+	MUSIC_2, ## Second song in each area; 'short song'
+	MUSIC_3, ## Third song in each area; 'instrumental song'
+	OFF, ## No music
 }
 
 const DATA_FILENAME := "user://player-data.json"

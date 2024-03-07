@@ -164,7 +164,7 @@ const LIZARD_COUNT := 32
 	set(new_shown_face):
 		shown_face = new_shown_face
 		_refresh_shown_face()
-	
+
 var _frog_sounds := [
 	preload("res://assets/main/sfx/frog-voice-0.wav"),
 	preload("res://assets/main/sfx/frog-voice-1.wav"),
