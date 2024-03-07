@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyeu5qh2rbb5t"]
+
+[ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_vv4ag"]
+[ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_ddnaq"]
+[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="36_i2bh0"]
+[ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="37_7jecq"]
+[ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="38_76lyf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
+shader = ExtResource("2_ddnaq")
+shader_parameter/texture_scale = Vector2(0.4, 0.4)
+shader_parameter/scroll_velocity = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6up80"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Animation" id="Animation_dxbjf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3qj25"]
+resource_name = "play"
+length = 28.75
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SfxPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 37.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"fade_in"
+}, {
+"args": [],
+"method": &"fade_out"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkq1g"]
+_data = {
+"RESET": SubResource("Animation_dxbjf"),
+"play": SubResource("Animation_3qj25")
+}
+
+[node name="ComicPage" type="Control"]
+visible = false
+clip_children = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vv4ag")
+
+[node name="Bg" type="Panel" parent="."]
+clip_children = 2
+material = SubResource("ShaderMaterial_qo41j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_6up80")
+
+[node name="Texture" type="TextureRect" parent="Bg"]
+material = SubResource("ShaderMaterial_qo41j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 1
+
+[node name="SkipButton" parent="." instance=ExtResource("36_i2bh0")]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+icon_texture = ExtResource("37_7jecq")
+icon_index = 5
+
+[node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_mkq1g")
+}
+script = ExtResource("38_76lyf")
+sfx_player = NodePath("../SfxPlayer")
+
+[node name="Timer" type="Timer" parent="Conductor"]
+wait_time = 0.5
+autostart = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Sfx"
+
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="timeout" from="Conductor/Timer" to="Conductor" method="_on_timer_timeout"]

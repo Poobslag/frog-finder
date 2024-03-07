@@ -1,68 +1,65 @@
-[gd_scene load_steps=120 format=3 uid="uid://slr8c52p2m8u"]
+[gd_scene load_steps=117 format=3 uid="uid://bwpec88s1ecq4"]
 
-[ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_sb5of"]
-[ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_4pi3n"]
-[ext_resource type="Texture2D" uid="uid://b1gnil6ers6mn" path="res://assets/main/comic/world-2/bg.png" id="3_6q2dl"]
-[ext_resource type="Script" path="res://src/main/comic/comic-panel.gd" id="4_ruepq"]
-[ext_resource type="Texture2D" uid="uid://dinbi4d4fi3x6" path="res://assets/main/comic/world-2/010-sky.png" id="5_30kp5"]
-[ext_resource type="Texture2D" uid="uid://bg2rdr7371uje" path="res://assets/main/comic/world-2/010-sunshine.png" id="6_om8rk"]
-[ext_resource type="Texture2D" uid="uid://b5bhuc4awiq00" path="res://assets/main/comic/world-2/010-sun.png" id="7_1qcnp"]
-[ext_resource type="Texture2D" uid="uid://c0nwmi8epfppu" path="res://assets/main/comic/world-2/010-clouds.png" id="8_qpmvp"]
-[ext_resource type="Texture2D" uid="uid://dsrptcvjbhf46" path="res://assets/main/comic/world-2/010-sand.png" id="9_2vv74"]
-[ext_resource type="Texture2D" uid="uid://d2ixixef8npht" path="res://assets/main/comic/world-2/010-umbrella.png" id="10_po3te"]
-[ext_resource type="Texture2D" uid="uid://0xnfdv6e7gj" path="res://assets/main/comic/world-2/010-frog.png" id="11_xn06s"]
-[ext_resource type="Texture2D" uid="uid://dyiy8rg0oprwd" path="res://assets/main/comic/world-2/010-cheer-lines-sheet.png" id="12_t4l21"]
-[ext_resource type="PackedScene" uid="uid://bxarbw5254db" path="res://src/main/comic/ComicTitle.tscn" id="13_3kfqd"]
-[ext_resource type="Texture2D" uid="uid://drgqh1avgwss8" path="res://assets/main/comic/world-2/010-frame.png" id="16_qdxet"]
-[ext_resource type="Texture2D" uid="uid://jy47yn3sqsl" path="res://assets/main/comic/world-2/020-clouds.png" id="17_b86dk"]
-[ext_resource type="Texture2D" uid="uid://ed88a03y6y6x" path="res://assets/main/comic/world-2/020-sun.png" id="18_87iq3"]
-[ext_resource type="Texture2D" uid="uid://c71jbycmvycl6" path="res://assets/main/comic/world-2/020-umbrella.png" id="19_yr3sl"]
-[ext_resource type="Texture2D" uid="uid://b1cnfu4tqlnqw" path="res://assets/main/comic/world-2/020-frog.png" id="20_kepb1"]
-[ext_resource type="Texture2D" uid="uid://bpq03nqolsqv0" path="res://assets/main/comic/world-2/020-frame.png" id="21_f3hvg"]
-[ext_resource type="Texture2D" uid="uid://bsilqd4jy5lw5" path="res://assets/main/comic/world-2/030-sun.png" id="22_5lu1f"]
-[ext_resource type="Texture2D" uid="uid://kl2fobd2fqkf" path="res://assets/main/comic/world-2/030-cheer-lines-sheet.png" id="23_jnhlq"]
-[ext_resource type="Texture2D" uid="uid://dimtog50hbn8x" path="res://assets/main/comic/world-2/030-ellipsis-sheet.png" id="24_6dvpl"]
-[ext_resource type="Texture2D" uid="uid://cdpbpoao2vyg1" path="res://assets/main/comic/world-2/030-frame.png" id="25_l00h5"]
-[ext_resource type="Texture2D" uid="uid://dd41psr3dtccf" path="res://assets/main/comic/world-2/040-frog.png" id="26_7jw3o"]
-[ext_resource type="Texture2D" uid="uid://bban4rxsbxs5m" path="res://assets/main/comic/world-2/040-umbrella.png" id="27_lsrns"]
-[ext_resource type="Texture2D" uid="uid://bnila1jj4sm4i" path="res://assets/main/comic/world-2/040-frame.png" id="28_ump21"]
-[ext_resource type="Texture2D" uid="uid://dnbn6b7orev7t" path="res://assets/main/comic/world-2/050-frame.png" id="29_lw1pe"]
-[ext_resource type="Texture2D" uid="uid://b1p1d0trbumgd" path="res://assets/main/comic/world-2/060-sun.png" id="30_w05gj"]
-[ext_resource type="Texture2D" uid="uid://cji44yvbsefk3" path="res://assets/main/comic/world-2/060-sun-hands.png" id="31_j1n1u"]
-[ext_resource type="Texture2D" uid="uid://b17jcwymxac1q" path="res://assets/main/comic/world-2/060-frustration-cloud-sheet.png" id="32_wtm4u"]
-[ext_resource type="Texture2D" uid="uid://u73rwq1a57x7" path="res://assets/main/comic/world-2/060-frame.png" id="33_otrit"]
-[ext_resource type="Texture2D" uid="uid://bj3trxq7xmmfi" path="res://assets/main/comic/world-2/070-umbrella.png" id="34_wjuet"]
-[ext_resource type="Texture2D" uid="uid://byyp06vmtf7f8" path="res://assets/main/comic/world-2/070-frog.png" id="35_dg3ix"]
-[ext_resource type="Texture2D" uid="uid://coxg2ghdjgtdi" path="res://assets/main/comic/world-2/070-umbrella-pole.png" id="36_70183"]
-[ext_resource type="Texture2D" uid="uid://j7glsv1a4ruj" path="res://assets/main/comic/world-2/070-umbrella-shake-sheet.png" id="37_6vutb"]
-[ext_resource type="Texture2D" uid="uid://dlpxjvfyy1wvc" path="res://assets/main/comic/world-2/070-shunk.png" id="38_rp1y3"]
-[ext_resource type="Texture2D" uid="uid://bxa037e8up32j" path="res://assets/main/comic/world-2/070-frame.png" id="39_68fpe"]
-[ext_resource type="Texture2D" uid="uid://22i7puq8ouoo" path="res://assets/main/comic/world-2/080-umbrella.png" id="40_1g4vs"]
-[ext_resource type="Texture2D" uid="uid://bjli5550gf4df" path="res://assets/main/comic/world-2/080-feet.png" id="41_06ax3"]
-[ext_resource type="Texture2D" uid="uid://3ernysvwlju2" path="res://assets/main/comic/world-2/080-umbrella-shake.png" id="42_hmnbm"]
-[ext_resource type="Texture2D" uid="uid://7pcqn07uipg8" path="res://assets/main/comic/world-2/080-thwip.png" id="43_bu5ii"]
-[ext_resource type="Texture2D" uid="uid://dptnqpjm1ts2g" path="res://assets/main/comic/world-2/080-frame.png" id="44_mkjhj"]
-[ext_resource type="Texture2D" uid="uid://cmy8a4u32xr3r" path="res://assets/main/comic/world-2/090-question-sheet.png" id="45_ugtae"]
-[ext_resource type="Texture2D" uid="uid://c473wk84glr27" path="res://assets/main/comic/world-2/090-sun.png" id="46_bd24q"]
-[ext_resource type="Texture2D" uid="uid://yujhmpv0hqr5" path="res://assets/main/comic/world-2/090-frame.png" id="47_ljwld"]
-[ext_resource type="Texture2D" uid="uid://blldfeg8lp2hu" path="res://assets/main/comic/world-2/100-bg.png" id="48_5p7ig"]
-[ext_resource type="Texture2D" uid="uid://bughws2br5asx" path="res://assets/main/comic/world-2/100-clouds.png" id="49_fy82f"]
-[ext_resource type="Texture2D" uid="uid://uy3aro0wqa6i" path="res://assets/main/comic/world-2/100-umbrella-shake.png" id="50_sgok8"]
-[ext_resource type="Texture2D" uid="uid://d38yfltqpwuh3" path="res://assets/main/comic/world-2/100-umbrella.png" id="51_k82cm"]
-[ext_resource type="Texture2D" uid="uid://blik6wx77hnup" path="res://assets/main/comic/world-2/100-frog.png" id="52_eg8nr"]
-[ext_resource type="Texture2D" uid="uid://c8w0fcw0gty82" path="res://assets/main/comic/world-2/100-sun.png" id="53_b6gbr"]
-[ext_resource type="Texture2D" uid="uid://6sdltlsef2dk" path="res://assets/main/comic/world-2/100-sweat-sheet.png" id="54_ydtlq"]
-[ext_resource type="Texture2D" uid="uid://y4f6qkrlwi3n" path="res://assets/main/comic/world-2/100-fn.png" id="55_thu2i"]
-[ext_resource type="Texture2D" uid="uid://brkjwyvrrsr36" path="res://assets/main/comic/world-2/100-id.png" id="56_qyj5m"]
-[ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-cheer-lines-sheet.png" id="57_e41cd"]
-[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="57_qi0g6"]
-[ext_resource type="Texture2D" uid="uid://csg3a7t5loppg" path="res://assets/main/comic/world-2/100-frame.png" id="58_4erfg"]
-[ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/sfx/world-2-comic-sfx.ogg" id="59_kp8gg"]
-[ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="61_p6166"]
-[ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="63_ofwxw"]
+[ext_resource type="PackedScene" uid="uid://dyeu5qh2rbb5t" path="res://src/main/comic/ComicPage.tscn" id="1_6w7nc"]
+[ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_v5cn3"]
+[ext_resource type="Texture2D" uid="uid://b1gnil6ers6mn" path="res://assets/main/comic/world-2/bg.png" id="3_3n265"]
+[ext_resource type="PackedScene" uid="uid://d2m7wha5f6kuj" path="res://src/main/comic/ComicPanel.tscn" id="4_ynhcm"]
+[ext_resource type="Texture2D" uid="uid://dinbi4d4fi3x6" path="res://assets/main/comic/world-2/010-sky.png" id="5_skvsn"]
+[ext_resource type="Texture2D" uid="uid://bg2rdr7371uje" path="res://assets/main/comic/world-2/010-sunshine.png" id="6_g5228"]
+[ext_resource type="Texture2D" uid="uid://b5bhuc4awiq00" path="res://assets/main/comic/world-2/010-sun.png" id="7_qdrhv"]
+[ext_resource type="Texture2D" uid="uid://c0nwmi8epfppu" path="res://assets/main/comic/world-2/010-clouds.png" id="8_d0k0b"]
+[ext_resource type="Texture2D" uid="uid://dsrptcvjbhf46" path="res://assets/main/comic/world-2/010-sand.png" id="9_458yx"]
+[ext_resource type="Texture2D" uid="uid://d2ixixef8npht" path="res://assets/main/comic/world-2/010-umbrella.png" id="10_qpafn"]
+[ext_resource type="Texture2D" uid="uid://0xnfdv6e7gj" path="res://assets/main/comic/world-2/010-frog.png" id="11_loxks"]
+[ext_resource type="Texture2D" uid="uid://dyiy8rg0oprwd" path="res://assets/main/comic/world-2/010-cheer-lines-sheet.png" id="12_vpio7"]
+[ext_resource type="PackedScene" uid="uid://bxarbw5254db" path="res://src/main/comic/ComicTitle.tscn" id="13_apvlx"]
+[ext_resource type="Texture2D" uid="uid://drgqh1avgwss8" path="res://assets/main/comic/world-2/010-frame.png" id="14_dsgow"]
+[ext_resource type="Texture2D" uid="uid://jy47yn3sqsl" path="res://assets/main/comic/world-2/020-clouds.png" id="15_ptnhd"]
+[ext_resource type="Texture2D" uid="uid://ed88a03y6y6x" path="res://assets/main/comic/world-2/020-sun.png" id="16_3wwxw"]
+[ext_resource type="Texture2D" uid="uid://c71jbycmvycl6" path="res://assets/main/comic/world-2/020-umbrella.png" id="17_pp3mw"]
+[ext_resource type="Texture2D" uid="uid://b1cnfu4tqlnqw" path="res://assets/main/comic/world-2/020-frog.png" id="18_ssnld"]
+[ext_resource type="Texture2D" uid="uid://bpq03nqolsqv0" path="res://assets/main/comic/world-2/020-frame.png" id="19_jekdn"]
+[ext_resource type="Texture2D" uid="uid://bsilqd4jy5lw5" path="res://assets/main/comic/world-2/030-sun.png" id="20_qd6a2"]
+[ext_resource type="Texture2D" uid="uid://kl2fobd2fqkf" path="res://assets/main/comic/world-2/030-cheer-lines-sheet.png" id="21_f1fn0"]
+[ext_resource type="Texture2D" uid="uid://dimtog50hbn8x" path="res://assets/main/comic/world-2/030-ellipsis-sheet.png" id="22_ca855"]
+[ext_resource type="Texture2D" uid="uid://cdpbpoao2vyg1" path="res://assets/main/comic/world-2/030-frame.png" id="23_1yti7"]
+[ext_resource type="Texture2D" uid="uid://dd41psr3dtccf" path="res://assets/main/comic/world-2/040-frog.png" id="24_2y80u"]
+[ext_resource type="Texture2D" uid="uid://bban4rxsbxs5m" path="res://assets/main/comic/world-2/040-umbrella.png" id="25_3e7e6"]
+[ext_resource type="Texture2D" uid="uid://bnila1jj4sm4i" path="res://assets/main/comic/world-2/040-frame.png" id="26_pi05w"]
+[ext_resource type="Texture2D" uid="uid://dnbn6b7orev7t" path="res://assets/main/comic/world-2/050-frame.png" id="27_0sm2r"]
+[ext_resource type="Texture2D" uid="uid://b1p1d0trbumgd" path="res://assets/main/comic/world-2/060-sun.png" id="28_0s1mp"]
+[ext_resource type="Texture2D" uid="uid://cji44yvbsefk3" path="res://assets/main/comic/world-2/060-sun-hands.png" id="29_kukh7"]
+[ext_resource type="Texture2D" uid="uid://b17jcwymxac1q" path="res://assets/main/comic/world-2/060-frustration-cloud-sheet.png" id="30_vkumd"]
+[ext_resource type="Texture2D" uid="uid://u73rwq1a57x7" path="res://assets/main/comic/world-2/060-frame.png" id="31_31fbv"]
+[ext_resource type="Texture2D" uid="uid://bj3trxq7xmmfi" path="res://assets/main/comic/world-2/070-umbrella.png" id="32_opqma"]
+[ext_resource type="Texture2D" uid="uid://byyp06vmtf7f8" path="res://assets/main/comic/world-2/070-frog.png" id="33_spo27"]
+[ext_resource type="Texture2D" uid="uid://coxg2ghdjgtdi" path="res://assets/main/comic/world-2/070-umbrella-pole.png" id="34_fij6f"]
+[ext_resource type="Texture2D" uid="uid://j7glsv1a4ruj" path="res://assets/main/comic/world-2/070-umbrella-shake-sheet.png" id="35_010hs"]
+[ext_resource type="Texture2D" uid="uid://dlpxjvfyy1wvc" path="res://assets/main/comic/world-2/070-shunk.png" id="36_0a370"]
+[ext_resource type="Texture2D" uid="uid://bxa037e8up32j" path="res://assets/main/comic/world-2/070-frame.png" id="37_vyb16"]
+[ext_resource type="Texture2D" uid="uid://22i7puq8ouoo" path="res://assets/main/comic/world-2/080-umbrella.png" id="38_cxk1e"]
+[ext_resource type="Texture2D" uid="uid://bjli5550gf4df" path="res://assets/main/comic/world-2/080-feet.png" id="39_3hd06"]
+[ext_resource type="Texture2D" uid="uid://3ernysvwlju2" path="res://assets/main/comic/world-2/080-umbrella-shake.png" id="40_ahbm3"]
+[ext_resource type="Texture2D" uid="uid://7pcqn07uipg8" path="res://assets/main/comic/world-2/080-thwip.png" id="41_umgo0"]
+[ext_resource type="Texture2D" uid="uid://dptnqpjm1ts2g" path="res://assets/main/comic/world-2/080-frame.png" id="42_7x1ie"]
+[ext_resource type="Texture2D" uid="uid://cmy8a4u32xr3r" path="res://assets/main/comic/world-2/090-question-sheet.png" id="43_af7wg"]
+[ext_resource type="Texture2D" uid="uid://c473wk84glr27" path="res://assets/main/comic/world-2/090-sun.png" id="44_w4da6"]
+[ext_resource type="Texture2D" uid="uid://yujhmpv0hqr5" path="res://assets/main/comic/world-2/090-frame.png" id="45_tdogv"]
+[ext_resource type="Texture2D" uid="uid://blldfeg8lp2hu" path="res://assets/main/comic/world-2/100-bg.png" id="46_uivi4"]
+[ext_resource type="Texture2D" uid="uid://bughws2br5asx" path="res://assets/main/comic/world-2/100-clouds.png" id="47_vvd8t"]
+[ext_resource type="Texture2D" uid="uid://uy3aro0wqa6i" path="res://assets/main/comic/world-2/100-umbrella-shake.png" id="48_ewimx"]
+[ext_resource type="Texture2D" uid="uid://d38yfltqpwuh3" path="res://assets/main/comic/world-2/100-umbrella.png" id="49_lxpjd"]
+[ext_resource type="Texture2D" uid="uid://blik6wx77hnup" path="res://assets/main/comic/world-2/100-frog.png" id="50_oimbm"]
+[ext_resource type="Texture2D" uid="uid://c8w0fcw0gty82" path="res://assets/main/comic/world-2/100-sun.png" id="51_a73t7"]
+[ext_resource type="Texture2D" uid="uid://6sdltlsef2dk" path="res://assets/main/comic/world-2/100-sweat-sheet.png" id="52_tppuy"]
+[ext_resource type="Texture2D" uid="uid://y4f6qkrlwi3n" path="res://assets/main/comic/world-2/100-fn.png" id="53_wtttd"]
+[ext_resource type="Texture2D" uid="uid://brkjwyvrrsr36" path="res://assets/main/comic/world-2/100-id.png" id="54_1oujj"]
+[ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-cheer-lines-sheet.png" id="55_a53of"]
+[ext_resource type="Texture2D" uid="uid://csg3a7t5loppg" path="res://assets/main/comic/world-2/100-frame.png" id="56_n8eyl"]
+[ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/sfx/world-2-comic-sfx.ogg" id="57_2oiet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
-shader = ExtResource("2_4pi3n")
+shader = ExtResource("2_v5cn3")
 shader_parameter/texture_scale = Vector2(0.4, 0.4)
 shader_parameter/scroll_velocity = Vector2(-0.4, -0.4)
 
@@ -2855,733 +2852,546 @@ _data = {
 "play": SubResource("Animation_3qj25")
 }
 
-[node name="ComicPage" type="Control"]
-visible = false
-clip_children = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_sb5of")
+[node name="ComicPage" instance=ExtResource("1_6w7nc")]
 
-[node name="Bg" type="Panel" parent="."]
-clip_children = 2
+[node name="Bg" parent="." index="0"]
 material = SubResource("ShaderMaterial_qo41j")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_6up80")
 
-[node name="Texture" type="TextureRect" parent="Bg"]
+[node name="Texture" parent="Bg" index="0"]
 material = SubResource("ShaderMaterial_qo41j")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_6q2dl")
-expand_mode = 1
-stretch_mode = 1
+texture = ExtResource("3_3n265")
 
-[node name="ComicPanel01" type="Control" parent="."]
-visible = false
+[node name="ComicPanel01" parent="." index="2" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -336.0
 offset_top = -236.0
 offset_right = 1104.0
 offset_bottom = 188.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel01"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Contents" parent="ComicPanel01" index="0"]
+editor_description = ""
 color = Color(0.605469, 0.820313, 0.996094, 1)
 
-[node name="Sky" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Sky" type="Sprite2D" parent="ComicPanel01/Contents" index="0"]
 position = Vector2(714.5, 210)
-texture = ExtResource("5_30kp5")
+texture = ExtResource("5_skvsn")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel01/Contents" index="1"]
 position = Vector2(580, 80)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel01/Contents" index="2"]
 position = Vector2(632, 210)
-texture = ExtResource("7_1qcnp")
+texture = ExtResource("7_qdrhv")
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel01/Contents" index="3"]
 position = Vector2(437, 37.5)
-texture = ExtResource("8_qpmvp")
+texture = ExtResource("8_d0k0b")
 
-[node name="Sand" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Sand" type="Sprite2D" parent="ComicPanel01/Contents" index="4"]
 position = Vector2(519.5, 200)
-texture = ExtResource("9_2vv74")
+texture = ExtResource("9_458yx")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel01/Contents" index="5"]
 position = Vector2(984.5, 260)
-texture = ExtResource("10_po3te")
+texture = ExtResource("10_qpafn")
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel01/Contents" index="6"]
 position = Vector2(1074.5, 327.5)
-texture = ExtResource("11_xn06s")
+texture = ExtResource("11_loxks")
 
-[node name="CheerLines" type="Sprite2D" parent="ComicPanel01/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel01/Contents" index="7"]
 position = Vector2(1214.5, 295)
-texture = ExtResource("12_t4l21")
+texture = ExtResource("12_vpio7")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel01/Contents/CheerLines"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel01/Contents/CheerLines" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_5xvjn")
 }
 
-[node name="Title" parent="ComicPanel01/Contents" instance=ExtResource("13_3kfqd")]
+[node name="Title" parent="ComicPanel01/Contents" index="8" instance=ExtResource("13_apvlx")]
 text = "sunshine shoals"
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel01"]
-position = Vector2(720, 212)
-texture = ExtResource("16_qdxet")
+[node name="Frame" parent="ComicPanel01" index="1"]
+editor_description = ""
+texture = ExtResource("14_dsgow")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel01" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel01" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_tcqoh")
 }
 
-[node name="ComicPanel02" type="Control" parent="."]
-visible = false
+[node name="ComicPanel02" parent="." index="3" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 182.0
 offset_top = -235.0
 offset_right = 626.0
 offset_bottom = 186.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel02"]
+[node name="Contents" parent="ComicPanel02" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel02/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel02/Contents" index="0"]
 position = Vector2(247.5, 212.5)
-texture = ExtResource("17_b86dk")
+texture = ExtResource("15_ptnhd")
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel02/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel02/Contents" index="1"]
 position = Vector2(110, 171.667)
-texture = ExtResource("18_87iq3")
+texture = ExtResource("16_3wwxw")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel02/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel02/Contents" index="2"]
 position = Vector2(295, 330)
-texture = ExtResource("19_yr3sl")
+texture = ExtResource("17_pp3mw")
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel02/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel02/Contents" index="3"]
 position = Vector2(175, 375)
-texture = ExtResource("20_kepb1")
+texture = ExtResource("18_ssnld")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel02"]
+[node name="Frame" parent="ComicPanel02" index="1"]
+editor_description = ""
 position = Vector2(220, 210)
-texture = ExtResource("21_f3hvg")
+texture = ExtResource("19_jekdn")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel02" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel02" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_j65xc")
 }
 
-[node name="ComicPanel03" type="Control" parent="."]
-visible = false
+[node name="ComicPanel03" parent="." index="4" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -335.0
 offset_top = -75.0
 offset_right = 116.0
 offset_bottom = 362.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel03"]
+[node name="Contents" parent="ComicPanel03" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel03/Contents" index="0"]
 position = Vector2(340, 205)
-texture = ExtResource("17_b86dk")
+texture = ExtResource("15_ptnhd")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel03/Contents" index="1"]
 position = Vector2(185, 92.5)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel03/Contents" index="2"]
 position = Vector2(162.5, 106)
-texture = ExtResource("22_5lu1f")
+texture = ExtResource("20_qd6a2")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel03/Contents" index="3"]
 position = Vector2(395, 315)
-texture = ExtResource("19_yr3sl")
+texture = ExtResource("17_pp3mw")
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel03/Contents" index="4"]
 position = Vector2(365, 390)
-texture = ExtResource("20_kepb1")
+texture = ExtResource("18_ssnld")
 
-[node name="CheerLines" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel03/Contents" index="5"]
 position = Vector2(39.9998, 102.5)
-texture = ExtResource("23_jnhlq")
+texture = ExtResource("21_f1fn0")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/CheerLines"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/CheerLines" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_41ww3")
 }
 
-[node name="Ellipsis" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Ellipsis" type="Sprite2D" parent="ComicPanel03/Contents" index="6"]
 position = Vector2(215, 367.5)
-texture = ExtResource("24_6dvpl")
+texture = ExtResource("22_ca855")
 hframes = 2
 vframes = 2
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel03"]
+[node name="Frame" parent="ComicPanel03" index="1"]
+editor_description = ""
 position = Vector2(225, 217.5)
-texture = ExtResource("25_l00h5")
+texture = ExtResource("23_1yti7")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel03" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel03" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_prpkw")
 }
 
-[node name="ComicPanel04" type="Control" parent="."]
-visible = false
+[node name="ComicPanel04" parent="." index="5" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -161.0
 offset_top = -75.0
 offset_right = 284.0
 offset_bottom = 362.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel04"]
+[node name="Contents" parent="ComicPanel04" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.784314, 0.760784, 0.286275, 1)
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel04/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel04/Contents" index="0"]
 position = Vector2(255, 342)
-texture = ExtResource("26_7jw3o")
+texture = ExtResource("24_2y80u")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel04/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel04/Contents" index="1"]
 position = Vector2(172.5, 160)
-texture = ExtResource("27_lsrns")
+texture = ExtResource("25_3e7e6")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel04/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel04/Contents" index="2"]
 position = Vector2(-35, -30.0001)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel04"]
+[node name="Frame" parent="ComicPanel04" index="1"]
+editor_description = ""
 position = Vector2(220, 217.5)
-texture = ExtResource("28_ump21")
+texture = ExtResource("26_pi05w")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel04" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel04" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_myvv4")
 }
 
-[node name="ComicPanel05" type="Control" parent="."]
-visible = false
+[node name="ComicPanel05" parent="." index="6" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 9.0
 offset_top = -75.0
 offset_right = 461.0
 offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel05"]
+[node name="Contents" parent="ComicPanel05" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel05/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel05/Contents" index="0"]
 position = Vector2(285, 225)
-texture = ExtResource("17_b86dk")
+texture = ExtResource("15_ptnhd")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel05/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel05/Contents" index="1"]
 position = Vector2(125, 317.5)
-texture = ExtResource("19_yr3sl")
+texture = ExtResource("17_pp3mw")
 flip_h = true
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel05/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel05/Contents" index="2"]
 position = Vector2(292.5, 387.5)
-texture = ExtResource("20_kepb1")
+texture = ExtResource("18_ssnld")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel05"]
+[node name="Frame" parent="ComicPanel05" index="1"]
+editor_description = ""
 position = Vector2(225.714, 217.143)
-texture = ExtResource("29_lw1pe")
+texture = ExtResource("27_0sm2r")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel05" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel05" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_str5n")
 }
 
-[node name="ComicPanel06" type="Control" parent="."]
-visible = false
+[node name="ComicPanel06" parent="." index="7" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 182.0
 offset_top = -75.0
 offset_right = 627.0
 offset_bottom = 362.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel06"]
+[node name="Contents" parent="ComicPanel06" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel06/Contents" index="0"]
 position = Vector2(191.428, 214.286)
-texture = ExtResource("17_b86dk")
+texture = ExtResource("15_ptnhd")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel06/Contents" index="1"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(347.5, 115)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel06/Contents" index="2"]
 position = Vector2(317.5, 127.5)
-texture = ExtResource("30_w05gj")
+texture = ExtResource("28_0s1mp")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel06/Contents" index="3"]
 position = Vector2(48.4999, 319.5)
-texture = ExtResource("19_yr3sl")
+texture = ExtResource("17_pp3mw")
 flip_h = true
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel06/Contents" index="4"]
 position = Vector2(212.5, 387.5)
-texture = ExtResource("20_kepb1")
+texture = ExtResource("18_ssnld")
 
-[node name="SunHands" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="SunHands" type="Sprite2D" parent="ComicPanel06/Contents" index="5"]
 position = Vector2(282.5, 150)
-texture = ExtResource("31_j1n1u")
+texture = ExtResource("29_kukh7")
 
-[node name="FrustrationCloud" type="Sprite2D" parent="ComicPanel06/Contents"]
+[node name="FrustrationCloud" type="Sprite2D" parent="ComicPanel06/Contents" index="6"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(90, 367.5)
-texture = ExtResource("32_wtm4u")
+texture = ExtResource("30_vkumd")
 vframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel06/Contents/FrustrationCloud"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel06/Contents/FrustrationCloud" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_6e3va")
 }
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel06"]
+[node name="Frame" parent="ComicPanel06" index="1"]
+editor_description = ""
 position = Vector2(222.5, 215)
-texture = ExtResource("33_otrit")
+texture = ExtResource("31_31fbv")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel06" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel06" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_k6c58")
 }
 
-[node name="ComicPanel07" type="Control" parent="."]
-visible = false
+[node name="ComicPanel07" parent="." index="8" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -335.0
 offset_top = 90.0
 offset_right = 115.0
 offset_bottom = 505.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel07"]
+[node name="Contents" parent="ComicPanel07" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.78125, 0.757813, 0.285156, 1)
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel07/Contents" index="0"]
 position = Vector2(227.5, 67.5)
-texture = ExtResource("34_wjuet")
+texture = ExtResource("32_opqma")
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel07/Contents" index="1"]
 position = Vector2(290, 282.5)
-texture = ExtResource("35_dg3ix")
+texture = ExtResource("33_spo27")
 
-[node name="UmbrellaPole" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="UmbrellaPole" type="Sprite2D" parent="ComicPanel07/Contents" index="2"]
 position = Vector2(157.5, 207.5)
-texture = ExtResource("36_70183")
+texture = ExtResource("34_fij6f")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel07/Contents" index="3"]
 position = Vector2(-57.5, -40)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel07/Contents" index="4"]
 visible = false
 position = Vector2(227.5, 80)
-texture = ExtResource("37_6vutb")
+texture = ExtResource("35_010hs")
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel07/Contents/UmbrellaShake"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel07/Contents/UmbrellaShake" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_8g0xp")
 }
 
-[node name="Shunk" type="Sprite2D" parent="ComicPanel07/Contents"]
+[node name="Shunk" type="Sprite2D" parent="ComicPanel07/Contents" index="5"]
 visible = false
 position = Vector2(102.5, 135)
-texture = ExtResource("38_rp1y3")
+texture = ExtResource("36_0a370")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel07"]
+[node name="Frame" parent="ComicPanel07" index="1"]
+editor_description = ""
 position = Vector2(225, 207.5)
-texture = ExtResource("39_68fpe")
+texture = ExtResource("37_vyb16")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel07" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel07" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_k5q1i")
 }
 
-[node name="ComicPanel08" type="Control" parent="."]
-visible = false
+[node name="ComicPanel08" parent="." index="9" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -162.0
 offset_top = 90.0
 offset_right = 283.0
 offset_bottom = 504.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel08"]
+[node name="Contents" parent="ComicPanel08" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.996094, 0.996094, 0.332031, 1)
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel08/Contents" index="0"]
 position = Vector2(230, 195)
-texture = ExtResource("40_1g4vs")
+texture = ExtResource("38_cxk1e")
 
-[node name="Feet" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Feet" type="Sprite2D" parent="ComicPanel08/Contents" index="1"]
 position = Vector2(170, 327.5)
-texture = ExtResource("41_06ax3")
+texture = ExtResource("39_3hd06")
 
-[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel08/Contents" index="2"]
 visible = false
 position = Vector2(217.5, 95)
-texture = ExtResource("42_hmnbm")
+texture = ExtResource("40_ahbm3")
 
-[node name="Thwip" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Thwip" type="Sprite2D" parent="ComicPanel08/Contents" index="3"]
 visible = false
 position = Vector2(330, 247.5)
-texture = ExtResource("43_bu5ii")
+texture = ExtResource("41_umgo0")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel08"]
+[node name="Frame" parent="ComicPanel08" index="1"]
+editor_description = ""
 position = Vector2(230, 207.5)
-texture = ExtResource("44_mkjhj")
+texture = ExtResource("42_7x1ie")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel08" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel08" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_7dyje")
 }
 
-[node name="ComicPanel09" type="Control" parent="."]
-visible = false
+[node name="ComicPanel09" parent="." index="10" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 8.5
 offset_top = 90.0
 offset_right = 461.5
 offset_bottom = 505.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel09"]
+[node name="Contents" parent="ComicPanel09" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.996094, 0.996094, 0.332031, 1)
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel09/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel09/Contents" index="0"]
 position = Vector2(110, 218)
-texture = ExtResource("40_1g4vs")
+texture = ExtResource("38_cxk1e")
 
-[node name="Feet" type="Sprite2D" parent="ComicPanel09/Contents"]
+[node name="Feet" type="Sprite2D" parent="ComicPanel09/Contents" index="1"]
 position = Vector2(50, 350.5)
-texture = ExtResource("41_06ax3")
+texture = ExtResource("39_3hd06")
 
-[node name="Question" type="Sprite2D" parent="ComicPanel09/Contents"]
+[node name="Question" type="Sprite2D" parent="ComicPanel09/Contents" index="2"]
 visible = false
 position = Vector2(227.5, 65)
-texture = ExtResource("45_ugtae")
+texture = ExtResource("43_af7wg")
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel09/Contents/Question"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel09/Contents/Question" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_174bk")
 }
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel09/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel09/Contents" index="3"]
 position = Vector2(300, 245)
-texture = ExtResource("46_bd24q")
+texture = ExtResource("44_w4da6")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel09"]
+[node name="Frame" parent="ComicPanel09" index="1"]
+editor_description = ""
 position = Vector2(227, 207.5)
-texture = ExtResource("47_ljwld")
+texture = ExtResource("45_tdogv")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel09" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel09" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_opnef")
 }
 
-[node name="ComicPanel10" type="Control" parent="."]
-visible = false
+[node name="ComicPanel10" parent="." index="11" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 183.0
 offset_top = 90.5
 offset_right = 625.0
 offset_bottom = 505.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_ruepq")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel10"]
+[node name="Contents" parent="ComicPanel10" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Bg" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Bg" type="Sprite2D" parent="ComicPanel10/Contents" index="0"]
 position = Vector2(255, 205)
-texture = ExtResource("48_5p7ig")
+texture = ExtResource("46_uivi4")
 
-[node name="Clouds" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Clouds" type="Sprite2D" parent="ComicPanel10/Contents" index="1"]
 position = Vector2(240, 57.5)
-texture = ExtResource("49_fy82f")
+texture = ExtResource("47_vvd8t")
 
-[node name="Sunshine" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Sunshine" type="Sprite2D" parent="ComicPanel10/Contents" index="2"]
 position = Vector2(332.5, 235)
 rotation = 0.872665
 scale = Vector2(0.999999, 0.999999)
-texture = ExtResource("6_om8rk")
+texture = ExtResource("6_g5228")
 
-[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="UmbrellaShake" type="Sprite2D" parent="ComicPanel10/Contents" index="3"]
 position = Vector2(122.5, 132.5)
-texture = ExtResource("50_sgok8")
+texture = ExtResource("48_ewimx")
 
-[node name="Umbrella" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Umbrella" type="Sprite2D" parent="ComicPanel10/Contents" index="4"]
 position = Vector2(82.5001, 150)
-texture = ExtResource("51_k82cm")
+texture = ExtResource("49_lxpjd")
 
-[node name="Frog" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Frog" type="Sprite2D" parent="ComicPanel10/Contents" index="5"]
 position = Vector2(97.5, 307.5)
-texture = ExtResource("52_eg8nr")
+texture = ExtResource("50_oimbm")
 
-[node name="Sun" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Sun" type="Sprite2D" parent="ComicPanel10/Contents" index="6"]
 position = Vector2(320, 235)
-texture = ExtResource("53_b6gbr")
+texture = ExtResource("51_a73t7")
 
-[node name="Sweat" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="Sweat" type="Sprite2D" parent="ComicPanel10/Contents" index="7"]
 visible = false
 position = Vector2(90.0001, 242.5)
-texture = ExtResource("54_ydtlq")
+texture = ExtResource("52_tppuy")
 vframes = 2
 
-[node name="LettersFn" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="LettersFn" type="Sprite2D" parent="ComicPanel10/Contents" index="8"]
 visible = false
 position = Vector2(275, 75)
-texture = ExtResource("55_thu2i")
+texture = ExtResource("53_wtttd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/LettersFn"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/LettersFn" index="0"]
 root_node = NodePath("../../../../..")
 libraries = {
 "": SubResource("AnimationLibrary_dho3d")
 }
 
-[node name="LettersId" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="LettersId" type="Sprite2D" parent="ComicPanel10/Contents" index="9"]
 visible = false
 position = Vector2(310, 62.5)
-texture = ExtResource("56_qyj5m")
+texture = ExtResource("54_1oujj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/LettersId"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/LettersId" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_7bxj8")
 }
 
-[node name="CheerLines" type="Sprite2D" parent="ComicPanel10/Contents"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel10/Contents" index="10"]
 visible = false
 position = Vector2(200, 175)
-texture = ExtResource("57_e41cd")
+texture = ExtResource("55_a53of")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/CheerLines"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/CheerLines" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_xhl3s")
 }
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel10"]
+[node name="Frame" parent="ComicPanel10" index="1"]
+editor_description = ""
 position = Vector2(220, 202.5)
-texture = ExtResource("58_4erfg")
+texture = ExtResource("56_n8eyl")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel10" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel10" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_2tuyx")
 }
 
-[node name="SkipButton" parent="." instance=ExtResource("57_qi0g6")]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-icon_texture = ExtResource("63_ofwxw")
-icon_index = 5
-
-[node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
-unique_name_in_owner = true
+[node name="Conductor" parent="." index="12"]
 libraries = {
 "": SubResource("AnimationLibrary_mkq1g")
 }
-script = ExtResource("61_p6166")
-sfx_player = NodePath("../SfxPlayer")
 
-[node name="Timer" type="Timer" parent="Conductor"]
-wait_time = 0.5
-autostart = true
+[node name="SfxPlayer" parent="." index="13"]
+stream = ExtResource("57_2oiet")
+bus = &"Master"
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("59_kp8gg")
-
-[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
-[connection signal="timeout" from="Conductor/Timer" to="Conductor" method="_on_timer_timeout"]
+[editable path="ComicPanel01"]
+[editable path="ComicPanel02"]
+[editable path="ComicPanel03"]
+[editable path="ComicPanel04"]
+[editable path="ComicPanel05"]
+[editable path="ComicPanel06"]
+[editable path="ComicPanel07"]
+[editable path="ComicPanel08"]
+[editable path="ComicPanel09"]
+[editable path="ComicPanel10"]
