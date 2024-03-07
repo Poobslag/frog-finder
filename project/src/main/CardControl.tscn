@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4gqbolgkyiwd"]
 
 [ext_resource type="AudioStream" uid="uid://dx7kwgym7i72s" path="res://assets/main/sfx/pop-brust.wav" id="1"]
-[ext_resource type="PackedScene" uid="uid://dxaf87rwkxm3n" path="res://src/main/CardSprite.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b2mw4epapu7lq" path="res://src/main/CardSprite.tscn" id="2"]
 [ext_resource type="Script" path="res://src/main/card-control.gd" id="3"]
 
 [node name="CardControl" type="Control" groups=["card_shadow_casters"]]
@@ -11,12 +11,6 @@ anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
 script = ExtResource("3")
-card_back_type = 3
-card_back_details = ""
-card_front_type = 3
-card_front_details = ""
-practice = false
-shown_face = 0
 
 [node name="CardBack" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
