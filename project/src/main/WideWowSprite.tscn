@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk510glt84fg5"]
+
+[ext_resource type="Script" path="res://src/main/ui/menu/wide-wow-sprite.gd" id="1_mg3io"]
+[ext_resource type="Texture2D" uid="uid://vth8c8qj7unh" path="res://assets/main/wow-sheet.png" id="2_qme8i"]
+
+[node name="WideWowSprite" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 232.0
+offset_top = 341.0
+offset_right = 692.0
+offset_bottom = 421.0
+script = ExtResource("1_mg3io")
+
+[node name="Left" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(40, 40)
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("2_qme8i")
+hframes = 8
+vframes = 2
+
+[node name="Right" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(420, 40)
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("2_qme8i")
+hframes = 8
+vframes = 2
+frame = 1
+
+[node name="WiggleTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="WiggleTimer" to="." method="_on_wiggle_timer_timeout"]
