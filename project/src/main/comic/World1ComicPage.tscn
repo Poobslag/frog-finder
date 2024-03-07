@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://b8i0xkv3iiuua"]
+[gd_scene load_steps=90 format=3 uid="uid://b8i0xkv3iiuua"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_pkd4e"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_6jncs"]
@@ -35,10 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://b4w5rklhoajo0" path="res://assets/main/comic/world-1/080-shark-sheet.png" id="31_8f2rg"]
 [ext_resource type="Texture2D" uid="uid://cn665yi1hatgv" path="res://assets/main/comic/world-1/080-teacher.png" id="32_hfjj4"]
 [ext_resource type="Texture2D" uid="uid://bv25x6beggdk6" path="res://assets/main/comic/world-1/080-vanish-sheet.png" id="33_sjp7u"]
+[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="36_i7rcc"]
 [ext_resource type="AudioStream" uid="uid://ck7au7sepaf6n" path="res://assets/main/sfx/world-1-comic-sfx.ogg" id="41_8413d"]
-[ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="57_1j0rf"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="58_6ljnr"]
-[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="59_jkonc"]
 [ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="60_7timk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
@@ -2727,9 +2726,8 @@ libraries = {
 "": SubResource("AnimationLibrary_qujjj")
 }
 
-[node name="SkipButton" type="Control" parent="."]
+[node name="SkipButton" parent="." instance=ExtResource("36_i7rcc")]
 visible = false
-custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -2742,18 +2740,8 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("57_1j0rf")
 icon_texture = ExtResource("58_6ljnr")
 icon_index = 5
-
-[node name="IconSprite" parent="SkipButton" instance=ExtResource("59_jkonc")]
-unique_name_in_owner = true
-position = Vector2(40, 40)
-texture = ExtResource("58_6ljnr")
-hframes = 4
-vframes = 3
-frame = 10
-wiggle_frames = Array[int]([10, 11])
 
 [node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://slr8c52p2m8u"]
+[gd_scene load_steps=120 format=3 uid="uid://slr8c52p2m8u"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_sb5of"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_4pi3n"]
@@ -55,12 +55,11 @@
 [ext_resource type="Texture2D" uid="uid://y4f6qkrlwi3n" path="res://assets/main/comic/world-2/100-fn.png" id="55_thu2i"]
 [ext_resource type="Texture2D" uid="uid://brkjwyvrrsr36" path="res://assets/main/comic/world-2/100-id.png" id="56_qyj5m"]
 [ext_resource type="Texture2D" uid="uid://5m10f8b13uh0" path="res://assets/main/comic/world-2/100-cheer-lines-sheet.png" id="57_e41cd"]
+[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="57_qi0g6"]
 [ext_resource type="Texture2D" uid="uid://csg3a7t5loppg" path="res://assets/main/comic/world-2/100-frame.png" id="58_4erfg"]
 [ext_resource type="AudioStream" uid="uid://c0wq2w0ggk2lm" path="res://assets/main/sfx/world-2-comic-sfx.ogg" id="59_kp8gg"]
 [ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="61_p6166"]
-[ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="62_mu2w5"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="63_ofwxw"]
-[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="64_4qhxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
 shader = ExtResource("2_4pi3n")
@@ -3551,9 +3550,8 @@ libraries = {
 "": SubResource("AnimationLibrary_2tuyx")
 }
 
-[node name="SkipButton" type="Control" parent="."]
+[node name="SkipButton" parent="." instance=ExtResource("57_qi0g6")]
 visible = false
-custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -3566,18 +3564,8 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
-script = ExtResource("62_mu2w5")
 icon_texture = ExtResource("63_ofwxw")
 icon_index = 5
-
-[node name="IconSprite" parent="SkipButton" instance=ExtResource("64_4qhxj")]
-unique_name_in_owner = true
-position = Vector2(40, 40)
-texture = ExtResource("63_ofwxw")
-hframes = 4
-vframes = 3
-frame = 10
-wiggle_frames = Array[int]([10, 11])
 
 [node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
 unique_name_in_owner = true

@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ppmbm3tpkrj0"]
+[gd_scene load_steps=9 format=3 uid="uid://ppmbm3tpkrj0"]
 
 [ext_resource type="Script" path="res://src/main/intermission-panel.gd" id="1"]
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_ygcmr"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="2_3o2pr"]
-[ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="4_t3el2"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="6_sagco"]
 
 [node name="IntermissionPanel" type="Panel"]
 anchors_preset = 15
@@ -64,10 +63,10 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ByeButton" type="Control" parent="."]
+[node name="ByeButton" parent="." instance=ExtResource("6_sagco")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 80)
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -76,16 +75,12 @@ offset_left = -100.0
 offset_top = -100.0
 offset_right = -20.0
 offset_bottom = -20.0
-script = ExtResource("4")
 icon_texture = ExtResource("5")
 
-[node name="IconSprite" parent="ByeButton" instance=ExtResource("7")]
-unique_name_in_owner = true
-position = Vector2(40, 40)
+[node name="IconSprite" parent="ByeButton" index="0"]
 texture = ExtResource("5")
 hframes = 4
 vframes = 3
-wiggle_frames = Array[int]([0, 1])
 
 [node name="WowSprite" parent="ByeButton" instance=ExtResource("6")]
 position = Vector2(40, 40)
@@ -94,3 +89,5 @@ position = Vector2(40, 40)
 [connection signal="timeout" from="SharkSpawnTimer" to="." method="_on_shark_spawn_timer_timeout"]
 [connection signal="timeout" from="FrogSpawnTimer" to="." method="_on_frog_spawn_timer_timeout"]
 [connection signal="pressed" from="ByeButton" to="." method="_on_bye_button_pressed"]
+
+[editable path="ByeButton"]
