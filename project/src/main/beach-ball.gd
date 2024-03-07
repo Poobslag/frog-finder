@@ -185,12 +185,12 @@ func _play_bounce_sfx(velocity_differential: float = 1000.0) -> void:
 ## When our redraw timer times out, we refresh the visuals based on the ball's position.
 ##
 ## This will happen if the ball is moving slowly or not at all.
-func _on_RedrawTimer_timeout() -> void:
+func _on_redraw_timer_timeout() -> void:
 	_refresh_visuals()
 
 
 ## When a frog or shark enters our collision area, we bounce into the air.
-func _on_Area2D_area_entered(_area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if physics_position.z < 50:
 		# Don't do a full bounce, more of a half bounce.
 		bounce(randf_range(0.65, 0.75))

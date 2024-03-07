@@ -19,4 +19,4 @@ offset_right = -50.0
 offset_bottom = -50.0
 theme_override_styles/panel = ExtResource("2_vp4l0")
 
-[connection signal="resized" from="Panel" to="." method="_on_Panel_resized"]
+[connection signal="resized" from="Panel" to="." method="_on_panel_resized"]

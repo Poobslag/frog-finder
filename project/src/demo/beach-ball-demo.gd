@@ -73,5 +73,5 @@ func _refresh_bounce_rect() -> void:
 		ball.bounce_rect = Rect2(Vector2.ZERO, _panel.size)
 
 
-func _on_Panel_resized() -> void:
+func _on_panel_resized() -> void:
 	_refresh_bounce_rect()

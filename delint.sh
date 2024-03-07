@@ -110,6 +110,16 @@ then
   echo "$RESULT"
 fi
 
+# signal functions with bad capitalization
+RESULT=$(grep -R -n "func _on_[A-Z]" --include="*.gd" project/src \
+  )
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Signal functions with bad capitalization:"
+  echo "$RESULT"
+fi
+
 # temporary files
 RESULT=$(find project -name "*.TMP" -o -name "*.gd~" -o -name "*.tmp")
 if [ -n "$RESULT" ]
