@@ -1,14 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://chis4b4c44mwo"]
+[gd_scene load_steps=24 format=3 uid="uid://chis4b4c44mwo"]
 
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_sl5op"]
 [ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="3"]
 [ext_resource type="Script" path="res://src/main/main-menu-panel.gd" id="4"]
-[ext_resource type="Script" path="res://src/main/music-control.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="6_w52qk"]
-[ext_resource type="Texture2D" uid="uid://wstxjhvxs512" path="res://assets/main/music-notes-sheet.png" id="7"]
 [ext_resource type="PackedScene" uid="uid://b4gqbolgkyiwd" path="res://src/main/CardControl.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://b6uvslmn4v51t" path="res://src/main/MusicControl.tscn" id="8_limnq"]
 [ext_resource type="PackedScene" uid="uid://dqsc660xqwxyt" path="res://src/main/ui/menu/World2Buttons.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://cx8rtammgc8yh" path="res://assets/main/frog-frame-00-sheet.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://blb4vrsohwask" path="res://assets/main/lizard-sheet.png" id="11"]
@@ -62,27 +60,10 @@ visible = false
 [node name="CardShadows" parent="." node_paths=PackedStringArray("parent_panel") instance=ExtResource("6_w52qk")]
 parent_panel = NodePath("..")
 
-[node name="MusicControl" type="Control" parent="."]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
-anchors_preset = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 105.0
-offset_bottom = 105.0
-script = ExtResource("5")
-
-[node name="Sprite2D" parent="MusicControl" groups=["card_shadow_casters"] instance=ExtResource("6")]
-position = Vector2(40, 40)
-texture = ExtResource("7")
-hframes = 4
-vframes = 4
-wiggle_frames = Array[int]([0, 1])
-
-[node name="WowSprite" parent="MusicControl" instance=ExtResource("3")]
-position = Vector2(40, 40)
+[node name="MusicControl" parent="." instance=ExtResource("8_limnq")]
 
 [node name="Title" type="Control" parent="." node_paths=PackedStringArray("game_state")]
+unique_name_in_owner = true
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -317,9 +298,11 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="TitleGameState" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2")
 
 [node name="FlipTimer" type="Timer" parent="TitleGameState"]
+unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 

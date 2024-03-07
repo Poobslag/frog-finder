@@ -6,3 +6,5 @@
 script = ExtResource("1")
 
 [node name="Timers" type="Node" parent="."]
+unique_name_in_owner = true
+editor_description = "Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from now, but then the player quits to the main menu and the intermission appears anyway."

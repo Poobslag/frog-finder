@@ -47,11 +47,6 @@ var soon_position: Vector2
 ## 'chase' state.
 var _chase_count := 0
 
-@onready var _animation_player := $AnimationPlayer
-@onready var _chase_timer := $ChaseTimer
-@onready var _panic_timer := $PanicTimer
-@onready var _think_timer := $ThinkTimer
-
 func _ready() -> void:
 	_refresh_run_speed()
 
@@ -65,12 +60,12 @@ func _physics_process(delta: float) -> void:
 
 ## Makes the shark enter the 'chase state' where they run toward the hand.
 func chase() -> void:
-	_panic_timer.stop()
+	%PanicTimer.stop()
 	var wait_time := CHASE_DURATION * randf_range(0.8, 1.2)
 	if _chase_count == 0:
 		# the first time we chase, we are more persistent
 		wait_time *= 2
-	_chase_timer.start(wait_time)
+	%ChaseTimer.start(wait_time)
 	_chase_count += 1
 
 
@@ -78,8 +73,8 @@ func chase() -> void:
 ##
 ## Sharks periodically panic to prevent them from clustering too tightly.
 func panic() -> void:
-	_chase_timer.stop()
-	_panic_timer.start((PANIC_DURATION / agility) * randf_range(0.8, 1.2))
+	%ChaseTimer.stop()
+	%PanicTimer.start((PANIC_DURATION / agility) * randf_range(0.8, 1.2))
 	velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * run_speed
 
 
@@ -95,11 +90,11 @@ func update_position() -> void:
 ##
 ## Fed sharks have a chubby belly and run offscreen instead of chasing the hand.
 func is_fed() -> bool:
-	return _animation_player.current_animation == "run-fed"
+	return %AnimationPlayer.current_animation == "run-fed"
 
 
 func _refresh_run_speed() -> void:
-	_animation_player.speed_scale = run_speed / 150.0
+	%AnimationPlayer.speed_scale = run_speed / 150.0
 
 
 func _on_panic_timer_timeout() -> void:
@@ -123,11 +118,11 @@ func _on_think_timer_timeout() -> void:
 	
 	if (run_target - global_position).length() < BITE_DISTANCE:
 		# we caught the hand... bite!
-		_animation_player.play("run-fed")
+		%AnimationPlayer.play("run-fed")
 		velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * run_speed
-		_think_timer.stop()
+		%ThinkTimer.stop()
 		hand.bite()
-	elif not _chase_timer.is_stopped():
+	elif not %ChaseTimer.is_stopped():
 		if friend and not friend.is_fed() and (run_target - global_position).length() > PINCER_DISTANCE:
 			# our friend will help us; don't run towards the hand, run behind our friend
 			run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
@@ -136,6 +131,6 @@ func _on_think_timer_timeout() -> void:
 			pass
 		
 		velocity = (run_target - global_position).normalized() * run_speed
-	elif not _panic_timer.is_stopped():
+	elif not %PanicTimer.is_stopped():
 		# if we're panicking, we continue running in our randomly chosen direction
 		pass

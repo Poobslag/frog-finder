@@ -20,11 +20,6 @@ var run_speed := RUN_SPEED
 var run_animation_name := "run1"
 var velocity := Vector2.ZERO
 
-@onready var _animation_player := $AnimationPlayer
-@onready var _chase_behavior := $ChaseBehavior
-@onready var _dance_behavior := $DanceBehavior
-@onready var _give_ribbon_behavior := $GiveRibbonBehavior
-
 @onready var behavior: CreatureBehavior
 
 func _ready() -> void:
@@ -40,7 +35,7 @@ func _physics_process(delta: float) -> void:
 
 
 func is_hugging() -> bool:
-	return _animation_player.current_animation == "hug"
+	return %AnimationPlayer.current_animation == "hug"
 
 
 ## Puts the frog into 'chase mode'.
@@ -53,23 +48,23 @@ func is_hugging() -> bool:
 ## 	'friend': Another frog which affects this frog's pathfinding. As long as our friend is chasing the hand, we will
 ## 		chase our friend instead. This prevents frogs from clustering too tightly.
 func chase(hand: Hand, friend: RunningFrog) -> void:
-	_chase_behavior.hand = hand
-	_chase_behavior.friend = friend
-	_start_behavior(_chase_behavior)
+	%ChaseBehavior.hand = hand
+	%ChaseBehavior.friend = friend
+	_start_behavior(%ChaseBehavior)
 
 
 ## Puts the frog into 'dance mode'.
 ##
 ## In dance mode, the frog runs to the middle of the screen, does a little dance and then runs away.
 func dance(frogs: Array, dance_target: Vector2) -> void:
-	_dance_behavior.frogs = frogs
-	_dance_behavior.dance_target = dance_target
-	_start_behavior(_dance_behavior)
+	%DanceBehavior.frogs = frogs
+	%DanceBehavior.dance_target = dance_target
+	_start_behavior(%DanceBehavior)
 
 
 func give_ribbon(hand: Hand) -> void:
-	_give_ribbon_behavior.hand = hand
-	_start_behavior(_give_ribbon_behavior)
+	%GiveRibbonBehavior.hand = hand
+	_start_behavior(%GiveRibbonBehavior)
 
 
 ## Instantly move the frog in the specified direction.
@@ -99,16 +94,16 @@ func update_position() -> void:
 func run(animation_name := "") -> void:
 	if animation_name:
 		run_animation_name = animation_name
-	_animation_player.play(run_animation_name)
+	%AnimationPlayer.play(run_animation_name)
 
 
 func play_animation(animation_name: String) -> void:
-	_animation_player.play(animation_name)
+	%AnimationPlayer.play(animation_name)
 
 
 func stop_animation() -> void:
-	if _animation_player.is_playing():
-		_animation_player.stop()
+	if %AnimationPlayer.is_playing():
+		%AnimationPlayer.stop()
 	else:
 		# Stopping the AnimationPlayer when no animation is playing resets the frog to a specific animation frame. This
 		# results in visual tic which interrupts things like dancing, so we don't do it.
@@ -149,4 +144,4 @@ func _start_behavior(new_behavior: CreatureBehavior) -> void:
 
 
 func _refresh_run_speed() -> void:
-	_animation_player.speed_scale = run_speed / 150.0
+	%AnimationPlayer.speed_scale = run_speed / 150.0

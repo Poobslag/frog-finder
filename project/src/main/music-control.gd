@@ -9,8 +9,6 @@ const WIGGLE_FRAMES_BY_MUSIC_PREFERENCE := {
 	PlayerData.MusicPreference.OFF: [14, 15],
 }
 
-@onready var _sprite: WiggleSprite = $Sprite2D
-
 func _ready() -> void:
 	_refresh_sprite()
 	PlayerData.music_preference_changed.connect(_on_player_data_music_preference_changed)
@@ -27,8 +25,8 @@ func _refresh_sprite() -> void:
 	
 	# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
 	# type hints
-	_sprite.wiggle_frames.assign(WIGGLE_FRAMES_BY_MUSIC_PREFERENCE[PlayerData.music_preference])
-	_sprite.assign_wiggle_frame()
+	%IconSprite.wiggle_frames.assign(WIGGLE_FRAMES_BY_MUSIC_PREFERENCE[PlayerData.music_preference])
+	%IconSprite.assign_wiggle_frame()
 
 
 func _on_player_data_music_preference_changed() -> void:

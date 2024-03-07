@@ -36,21 +36,6 @@ var _frog: RunningFrog
 ## value: (bool) true
 var _frogs_running_to_dance := {}
 
-## Checks whether the frog needs to adjust their animation to sync back up with the music.
-@onready var _sync_check_timer := $SyncCheckTimer
-
-## Makes decisions every few frames
-@onready var _think_timer := $ThinkTimer
-
-## Makes the frogs dance after a brief delay.
-@onready var _wait_to_dance_timer := $WaitToDanceTimer
-
-## Stores simple looped 4-frame dance animations.
-@onready var _dance_animations: DanceAnimations = $DanceAnimations
-
-## Strings together a series of dance animations.
-@onready var _choreographer := $Choreographer
-
 func _process(_delta: float) -> void:
 	if _dance_state == DanceState.RUN_TO_DANCE:
 		var close_enough := (dance_target - _frog.soon_position).length() <= REACHED_TARGET_DISTANCE
@@ -62,7 +47,7 @@ func _process(_delta: float) -> void:
 ## Starts a new dance. The frog runs towards their dance target.
 func start_behavior(new_frog: Node) -> void:
 	_frog = new_frog
-	_think_timer.start(randf_range(0, 0.1))
+	%ThinkTimer.start(randf_range(0, 0.1))
 	
 	if is_lead_frog():
 		for next_frog in frogs:
@@ -89,8 +74,8 @@ func set_state(new_dance_state: int) -> void:
 			_frog.reached_dance_target.emit()
 		DanceState.DANCE:
 			# The frog does some dance moves
-			_choreographer.play("dance")
-			_sync_check_timer.start()
+			%Choreographer.play("dance")
+			%SyncCheckTimer.start()
 		DanceState.RUN_FROM_DANCE:
 			# After the dance, the frog runs toward the edge of the screen
 			if is_lead_frog():
@@ -99,7 +84,7 @@ func set_state(new_dance_state: int) -> void:
 			_frog.velocity = Vector2.RIGHT.rotated(randf_range(0, PI * 2)) * _frog.run_speed
 			_frog.run()
 			_frog.finished_dance.emit()
-			_sync_check_timer.stop()
+			%SyncCheckTimer.stop()
 
 
 ## Returns 'true' if this frog is the one giving out orders to other frogs.
@@ -126,10 +111,10 @@ func stop_behavior(_new_frog: Node) -> void:
 	_frog = null
 	_frogs_running_to_dance.clear()
 	
-	_sync_check_timer.stop()
-	_wait_to_dance_timer.stop()
-	_dance_animations.stop()
-	_choreographer.stop()
+	%SyncCheckTimer.stop()
+	%WaitToDanceTimer.stop()
+	%DanceAnimations.stop()
+	%Choreographer.stop()
 
 
 ## Performs the specified move from our dance moves string.
@@ -144,10 +129,10 @@ func perform_dance_move(dance_move_index: int) -> void:
 	if dance_move_index < 0 or dance_move_index > dance_moves_array.size():
 		push_error("Invalid dance move index: %s (dance_moves='%s')" % [dance_move_index, dance_moves])
 	var dance_move := dance_moves_array[dance_move_index]
-	if dance_move in _dance_animations.get_animation_list():
-		_dance_animations.play(dance_move)
+	if dance_move in %DanceAnimations.get_animation_list():
+		%DanceAnimations.play(dance_move)
 	else:
-		_dance_animations.stop()
+		%DanceAnimations.stop()
 		_frog.flip_h = dance_move.begins_with("!")
 		_frog.frame = int(dance_move.lstrip("!"))
 
@@ -164,7 +149,7 @@ func _decide_dance_names() -> Array:
 			possible_dance_names.assign(PlayerData.get_world().dances)
 		else:
 			# select from all available dances
-			possible_dance_names = _dance_animations.dance_names
+			possible_dance_names = %DanceAnimations.dance_names
 		
 		if not result.is_empty():
 			var new_dance_names: Array[String] = []
@@ -194,11 +179,11 @@ func _decide_dance_moves(dance_names: Array) -> String:
 	var result := []
 	## determine the animation names for the first three dances
 	for i in range(3):
-		var possible_animation_names: Array = _dance_animations.animation_names_by_dance_name[dance_names[i]]
+		var possible_animation_names: Array = %DanceAnimations.animation_names_by_dance_name[dance_names[i]]
 		result.append(Utils.rand_value(possible_animation_names))
 	
 	## determine the animation frames for the four final poses of the fourth dance
-	var all_pose_frames: Array = _dance_animations.frames_by_dance_name[dance_names[3]]
+	var all_pose_frames: Array = %DanceAnimations.frames_by_dance_name[dance_names[3]]
 	var new_dance_moves := []
 	for i in range(4):
 		new_dance_moves.append(Utils.rand_value(all_pose_frames) * Utils.rand_value([-1, 1]))
@@ -238,8 +223,8 @@ func _on_running_frog_reached_dance_target(other_frog: RunningFrog) -> void:
 		for frog in frogs:
 			frog.behavior.dance_moves = dance_moves
 		
-		_wait_to_dance_timer.start()
-		MusicPlayer.fade_out(_wait_to_dance_timer.wait_time * 0.5)
+		%WaitToDanceTimer.start()
+		MusicPlayer.fade_out(%WaitToDanceTimer.wait_time * 0.5)
 
 
 ## After pausing for a moment, the lead frog tells everyone to dance.
@@ -261,10 +246,10 @@ func _on_sync_check_timer_timeout() -> void:
 	if not MusicPlayer.is_playing_dance_song():
 		return
 	
-	var desync_amount: float = MusicPlayer.get_playback_position() - _choreographer.current_animation_position
+	var desync_amount: float = MusicPlayer.get_playback_position() - %Choreographer.current_animation_position
 	
 	if abs(desync_amount * 1000) > DESYNC_THRESHOLD_MSEC:
-		_choreographer.advance(desync_amount)
+		%Choreographer.advance(desync_amount)
 
 
 ## Every once in awhile, we check to make sure we're still running to our dance target.

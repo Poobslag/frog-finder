@@ -21,13 +21,16 @@ script = ExtResource("2_5x0xm")
 parent_panel = NodePath("..")
 
 [node name="GameState" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("4_kg84t")
 
 [node name="FlipTimer" type="Timer" parent="GameState"]
+unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
 [node name="LevelCards" type="Control" parent="." node_paths=PackedStringArray("game_state")]
+unique_name_in_owner = true
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5

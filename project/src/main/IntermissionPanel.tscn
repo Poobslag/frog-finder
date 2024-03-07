@@ -27,10 +27,12 @@ script = ExtResource("3")
 can_interact = false
 
 [node name="FlipTimer" type="Timer" parent="IntermissionState"]
+unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
 [node name="IntermissionCards" type="Control" parent="." node_paths=PackedStringArray("game_state")]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,14 +45,17 @@ script = ExtResource("2")
 game_state = NodePath("../IntermissionState")
 
 [node name="SharkSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 8.0
 one_shot = true
 
 [node name="FrogSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 8.0
 one_shot = true
 
 [node name="Obstacles" type="Control" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 8
@@ -66,6 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ByeButton" type="Control" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 80)
 anchors_preset = 0
 anchor_left = 1.0
