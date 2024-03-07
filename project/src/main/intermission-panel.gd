@@ -220,7 +220,8 @@ func _random_spawn_point(away_from_hand: bool) -> Vector2:
 	]
 	
 	if away_from_hand:
-		spawn_points.sort_custom(Callable(self, "_sort_by_distance_from_hand"))
+		spawn_points.sort_custom(func(a: Vector2, b: Vector2) -> bool:
+			return hand.global_position.distance_to(a) > hand.global_position.distance_to(b))
 	else:
 		spawn_points.shuffle()
 	
@@ -235,10 +236,6 @@ func _chase(frog: RunningFrog) -> void:
 ## Puts a frog into 'dance mode'.
 func _dance(frog: RunningFrog, dance_frogs: Array, dance_target: Vector2) -> void:
 	frog.dance(dance_frogs, dance_target)
-
-
-func _sort_by_distance_from_hand(a: Vector2, b: Vector2) -> bool:
-	return hand.global_position.distance_to(a) > hand.global_position.distance_to(b)
 
 
 func _on_shark_spawn_timer_timeout() -> void:
