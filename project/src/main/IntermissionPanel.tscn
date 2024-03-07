@@ -4,8 +4,8 @@
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_ygcmr"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="2_3o2pr"]
-[ext_resource type="Script" path="res://src/main/game-state.gd" id="3"]
 [ext_resource type="Script" path="res://src/main/ui/menu/clickable-icon.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="4_t3el2"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="7"]
@@ -22,14 +22,8 @@ script = ExtResource("1")
 [node name="CardShadows" parent="." node_paths=PackedStringArray("parent_panel") instance=ExtResource("2_3o2pr")]
 parent_panel = NodePath("..")
 
-[node name="IntermissionState" type="Node" parent="."]
-script = ExtResource("3")
-can_interact = false
-
-[node name="FlipTimer" type="Timer" parent="IntermissionState"]
+[node name="IntermissionState" parent="." instance=ExtResource("4_t3el2")]
 unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
 
 [node name="IntermissionCards" type="Control" parent="." node_paths=PackedStringArray("game_state")]
 unique_name_in_owner = true

@@ -1,7 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://chis4b4c44mwo"]
 
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_sl5op"]
-[ext_resource type="Script" path="res://src/main/game-state.gd" id="2"]
 [ext_resource type="Script" path="res://src/main/main-menu-panel.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="6_w52qk"]
@@ -21,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c0h2b4udal4qg" path="res://src/main/ui/menu/World1Buttons.tscn" id="19"]
 [ext_resource type="Script" path="res://src/main/ui/menu/level-button-holder.gd" id="20"]
 [ext_resource type="PackedScene" uid="uid://blr3fsts3n8wb" path="res://src/main/World2Decorations.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="21_b4key"]
 [ext_resource type="PackedScene" uid="uid://dpdupikkgdltm" path="res://src/main/World3Decorations.tscn" id="22"]
 [ext_resource type="PackedScene" uid="uid://bknjwua3ybkww" path="res://src/main/World1Decorations.tscn" id="23"]
 
@@ -297,14 +297,8 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="TitleGameState" type="Node" parent="."]
+[node name="TitleGameState" parent="." instance=ExtResource("21_b4key")]
 unique_name_in_owner = true
-script = ExtResource("2")
-
-[node name="FlipTimer" type="Timer" parent="TitleGameState"]
-unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
 
 [node name="VersionLabelHolder" type="Node" parent="."]
 
