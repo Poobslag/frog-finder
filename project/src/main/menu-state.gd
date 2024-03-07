@@ -7,11 +7,6 @@ extends Node
 @export var hand: Hand
 @export var background: Background
 
-## Holds all temporary timers. These timers are not created by get_tree().create_timer() because we need to clean them
-## up if the game is interrupted. Otherwise for example, we might schedule an intermission to appear 3 seconds from
-## now, but then the player quits to the main menu and the intermission appears anyway.
-@onready var _timers := $Timers
-
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -79,7 +74,7 @@ func _add_timer(wait_time: float) -> Timer:
 	timer.one_shot = true
 	timer.wait_time = wait_time
 	timer.timeout.connect(_on_timer_timeout_queue_free.bind(timer))
-	_timers.add_child(timer)
+	%Timers.add_child(timer)
 	return timer
 
 

@@ -25,9 +25,6 @@ var _max_puzzle_difficulty := 0
 var _shark_difficulty_decrease := 0
 var _start_difficulty := 0
 
-@onready var _game_state := $GameState
-@onready var _level_cards := $LevelCards
-
 ## key: (String) level id
 ## value: (PackedScene) scene with LevelRules for the specified level
 @onready var level_rules_scenes_by_id := {
@@ -52,7 +49,7 @@ func show_puzzle() -> void:
 
 
 func reset() -> void:
-	_game_state.reset()
+	%GameState.reset()
 	
 	if _level_rules:
 		_level_rules.queue_free()
@@ -65,8 +62,8 @@ func reset() -> void:
 	# load the level rules and update the cards
 	_level_rules = _level_rules_from_id(next_level_id)
 	add_child(_level_rules)
-	_level_rules.level_cards = _level_cards
-	_level_cards.reset()
+	_level_rules.level_cards = %LevelCards
+	%LevelCards.reset()
 
 
 func restart(new_mission_string: String) -> void:

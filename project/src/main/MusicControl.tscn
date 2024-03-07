@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6uvslmn4v51t"]
+
+[ext_resource type="Script" path="res://src/main/music-control.gd" id="1_sg3ni"]
+[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="2_wd3ao"]
+[ext_resource type="Texture2D" uid="uid://wstxjhvxs512" path="res://assets/main/music-notes-sheet.png" id="3_5b7lx"]
+[ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="4_vulso"]
+
+[node name="MusicControl" type="Control"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 105.0
+offset_bottom = 105.0
+script = ExtResource("1_sg3ni")
+
+[node name="IconSprite" parent="." groups=["card_shadow_casters"] instance=ExtResource("2_wd3ao")]
+unique_name_in_owner = true
+position = Vector2(40, 40)
+texture = ExtResource("3_5b7lx")
+hframes = 4
+vframes = 4
+wiggle_frames = Array[int]([0, 1])
+
+[node name="WowSprite" parent="." instance=ExtResource("4_vulso")]
+position = Vector2(40, 40)

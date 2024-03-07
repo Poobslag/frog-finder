@@ -15,9 +15,7 @@ signal next_world_pressed
 ## 	'level_index': A number in the range [0, 2] for which button was pressed.
 signal level_pressed(level_index)
 
-@onready var next_button: Node = $Next
-
-@onready var _level_buttons := [$Level1, $Level2, $Level3]
+@onready var _level_buttons := [%Level1, %Level2, %Level3]
 
 func _ready() -> void:
 	var main_menu_panels: Array = get_tree().get_nodes_in_group("main_menu_panels")
@@ -56,6 +54,6 @@ func _on_main_menu_panel_menu_shown() -> void:
 	var boss_mission := Utils.mission_string(world_index, 2)
 	if PlayerData.get_mission_cleared(boss_mission) != PlayerData.MissionResult.NONE \
 			and get_index() < get_parent().get_child_count() - 1:
-		next_button.visible = true
+		%Next.visible = true
 	else:
-		next_button.visible = false
+		%Next.visible = false

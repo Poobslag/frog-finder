@@ -38,12 +38,9 @@ var RunningFrogScene := preload("res://src/main/RunningFrog.tscn")
 
 @export var hand: Hand
 
-@onready var obstacles: Control = $Obstacles
+@onready var obstacles: Control = %Obstacles
 
-@onready var _bye_button := $ByeButton
-@onready var _frog_spawn_timer := $FrogSpawnTimer
-@onready var _intermission_cards: LevelCards = $IntermissionCards
-@onready var _shark_spawn_timer := $SharkSpawnTimer
+@onready var _intermission_cards: LevelCards = %IntermissionCards
 
 func _ready() -> void:
 	hand.hug_finished.connect(_on_hand_hug_finished)
@@ -65,9 +62,9 @@ func restart(mission_string: String) -> void:
 
 
 func reset() -> void:
-	_shark_spawn_timer.stop()
-	_frog_spawn_timer.stop()
-	_bye_button.visible = false
+	%SharkSpawnTimer.stop()
+	%FrogSpawnTimer.stop()
+	%ByeButton.visible = false
 	for child in obstacles.get_children():
 		child.queue_free()
 		obstacles.remove_child(child)
@@ -97,7 +94,7 @@ func show_intermission_panel() -> void:
 
 func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
 	hand.biteable_fingers = biteable_fingers
-	_shark_spawn_timer.start()
+	%SharkSpawnTimer.start()
 	for _finger in range(biteable_fingers):
 		# spawn one shark per finger
 		_spawn_shark(true)
@@ -106,7 +103,7 @@ func start_shark_spawn_timer(biteable_fingers: int = 1) -> void:
 func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 	max_frogs = new_max_frogs
 	hand.huggable_fingers = huggable_fingers
-	_frog_spawn_timer.start()
+	%FrogSpawnTimer.start()
 	for _finger in range(huggable_fingers):
 		# spawn one frog per finger
 		var frog := _spawn_frog(true)
@@ -139,7 +136,7 @@ func start_frog_ribbon() -> void:
 	frogs[0].give_ribbon(hand)
 	
 	if hand.ribbon:
-		_bye_button.visible = true
+		%ByeButton.visible = true
 	else:
 		frogs[0].finished_give_ribbon.connect(_on_running_frog_finished_give_ribbon)
 
@@ -248,7 +245,7 @@ func _on_shark_spawn_timer_timeout() -> void:
 	var shark_delay_index := sharks.size() - 1
 	if shark_delay_index < SHARK_DELAYS.size() and hand.biteable_fingers >= 1:
 		_spawn_shark(true)
-		_shark_spawn_timer.start(SHARK_DELAYS[shark_delay_index])
+		%SharkSpawnTimer.start(SHARK_DELAYS[shark_delay_index])
 
 
 func _on_frog_spawn_timer_timeout() -> void:
@@ -262,19 +259,19 @@ func _on_frog_spawn_timer_timeout() -> void:
 	if frog_delay_index < FROG_DELAYS.size() and frogs.size() < max_frogs:
 		var frog := _spawn_frog(true)
 		_chase(frog)
-		_frog_spawn_timer.start(FROG_DELAYS[frog_delay_index])
+		%FrogSpawnTimer.start(FROG_DELAYS[frog_delay_index])
 
 
 func _on_hand_hug_finished() -> void:
-	_bye_button.visible = true
+	%ByeButton.visible = true
 
 
 func _on_running_frog_finished_dance() -> void:
-	_bye_button.visible = true
+	%ByeButton.visible = true
 
 
 func _on_running_frog_finished_give_ribbon() -> void:
-	_bye_button.visible = true
+	%ByeButton.visible = true
 
 
 func _on_bye_button_pressed() -> void:

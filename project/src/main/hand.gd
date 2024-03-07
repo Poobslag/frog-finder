@@ -37,10 +37,6 @@ var resting := false
 
 var _previous_rect_position: Vector2
 
-@onready var _hand_sprite := $HandSprite
-@onready var _hug_sprite := $HugSprite
-@onready var _ribbon_sprite := $RibbonSprite
-
 func _ready() -> void:
 	_refresh_hand_sprite()
 
@@ -70,9 +66,9 @@ func bite() -> void:
 	_refresh_hand_sprite()
 	# play an appropriate animation
 	match(fingers):
-		0: $FingerSprite0.bite(2)
-		1: $FingerSprite1.bite(1)
-		2: $FingerSprite2.bite(0)
+		0: %FingerSprite0.bite(2)
+		1: %FingerSprite1.bite(1)
+		2: %FingerSprite2.bite(0)
 	
 	finger_bitten.emit()
 
@@ -83,7 +79,7 @@ func hug() -> void:
 	
 	hugged_fingers = int(clamp(hugged_fingers + 1, 0, 3))
 	_refresh_hand_sprite()
-	_hug_sprite.assign_wiggle_frame()
+	%HugSprite.assign_wiggle_frame()
 	
 	match(hugged_fingers):
 		1: $FingerSprite0.hug(0)
@@ -94,7 +90,7 @@ func hug() -> void:
 func _finish_hug() -> void:
 	hugged_fingers = 0
 	_refresh_hand_sprite()
-	_hug_sprite.assign_wiggle_frame()
+	%HugSprite.assign_wiggle_frame()
 	hug_finished.emit()
 
 
@@ -104,30 +100,30 @@ func _refresh_hand_sprite() -> void:
 	
 	if huggable_fingers > 0:
 		match hugged_fingers:
-			0: _hug_sprite.wiggle_frames = [0] as Array[int]
-			1: _hug_sprite.wiggle_frames = [1, 2] as Array[int]
-			2: _hug_sprite.wiggle_frames = [3, 4] as Array[int]
-			3: _hug_sprite.wiggle_frames = [5, 6] as Array[int]
+			0: %HugSprite.wiggle_frames = [0] as Array[int]
+			1: %HugSprite.wiggle_frames = [1, 2] as Array[int]
+			2: %HugSprite.wiggle_frames = [3, 4] as Array[int]
+			3: %HugSprite.wiggle_frames = [5, 6] as Array[int]
 	else:
-		_hug_sprite.wiggle_frames = [] as Array[int]
-		_hug_sprite.frame = 0
+		%HugSprite.wiggle_frames = [] as Array[int]
+		%HugSprite.frame = 0
 	
 	if biteable_fingers >= 0:
 		match fingers:
-			3: _hand_sprite.set_state(HandSprite.State.THREE_FINGERS)
-			2: _hand_sprite.set_state(HandSprite.State.TWO_FINGERS)
-			1: _hand_sprite.set_state(HandSprite.State.ONE_FINGER)
-			0: _hand_sprite.set_state(HandSprite.State.NO_FINGERS)
+			3: %HandSprite.set_state(HandSprite.State.THREE_FINGERS)
+			2: %HandSprite.set_state(HandSprite.State.TWO_FINGERS)
+			1: %HandSprite.set_state(HandSprite.State.ONE_FINGER)
+			0: %HandSprite.set_state(HandSprite.State.NO_FINGERS)
 	else:
 		# no fingers can be eaten/bitten; just show the pointer, like a cursor
-		_hand_sprite.set_state(HandSprite.State.ONE_FINGER)
+		%HandSprite.set_state(HandSprite.State.ONE_FINGER)
 	
 	if ribbon and hugged_fingers == 0:
-		_ribbon_sprite.wiggle_frames = [1, 2] as Array[int]
-		_ribbon_sprite.assign_wiggle_frame()
+		%RibbonSprite.wiggle_frames = [1, 2] as Array[int]
+		%RibbonSprite.assign_wiggle_frame()
 	else:
-		_ribbon_sprite.wiggle_frames = [0] as Array[int]
-		_ribbon_sprite.assign_wiggle_frame()
+		%RibbonSprite.wiggle_frames = [0] as Array[int]
+		%RibbonSprite.assign_wiggle_frame()
 
 
 func _on_rest_timer_timeout() -> void:

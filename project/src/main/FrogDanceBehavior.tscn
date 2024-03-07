@@ -1,0 +1,1333 @@
+[gd_scene load_steps=43 format=3 uid="uid://d2owesorfjclk"]
+
+[ext_resource type="Script" path="res://src/main/frog-dance-behavior.gd" id="1_y2qnt"]
+[ext_resource type="Script" path="res://src/main/dance-animations.gd" id="2_lv1wa"]
+
+[sub_resource type="Animation" id="11"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="15"]
+resource_name = "coy1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [61, 60, 61, 60]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_6ikqv"]
+resource_name = "coy1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [61, 60, 61, 60]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+
+[sub_resource type="Animation" id="16"]
+resource_name = "coy2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [62, 63, 60, 63]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_inyva"]
+resource_name = "coy2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [62, 63, 60, 63]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+
+[sub_resource type="Animation" id="8"]
+resource_name = "hips1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [51, 49, 51, 48]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_b876y"]
+resource_name = "hips1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [51, 49, 51, 48]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "hips2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [50, 48, 50, 49]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_wa5uc"]
+resource_name = "hips2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [50, 48, 50, 49]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7mab4"]
+resource_name = "hula1"
+length = 1.65602
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207001, 0.413997, 0.621, 0.828003, 1.035, 1.242, 1.44901),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 46, 44, 45, 46, 46]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ry3ve"]
+resource_name = "hula1"
+length = 1.65602
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207001, 0.413997, 0.621, 0.828003, 1.035, 1.242, 1.44901),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 46, 44, 45, 46, 46]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, false, false, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ri7au"]
+resource_name = "hula2"
+length = 1.65602
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [45, 46, 47, 45, 46, 47, 46, 44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, false, false, false, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_vt26i"]
+resource_name = "hula2"
+length = 1.65602
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [45, 46, 47, 45, 46, 47, 46, 44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_hm2jr"]
+resource_name = "jump1"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 39, 36, 37, 36, 39, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false, false, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_82no0"]
+resource_name = "jump1"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 39, 36, 37, 36, 39, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, true, false, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_y4qy3"]
+resource_name = "jump2"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 37, 38, 39, 36, 39, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false, true, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_1mt4e"]
+resource_name = "jump2"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 36, 37, 38, 39, 36, 39, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, true, false, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cwsxq"]
+resource_name = "jump3"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [39, 37, 36, 38, 39, 37, 36, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, true, false, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_qvjrr"]
+resource_name = "jump3"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [39, 37, 36, 38, 39, 37, 36, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, false, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_feb1u"]
+resource_name = "jump4"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 37, 36, 38, 39, 39, 36, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, true, false, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_w2pxj"]
+resource_name = "jump4"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 37, 36, 38, 39, 39, 36, 38]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, false, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_ed17m"]
+resource_name = "jump5"
+length = 3.312
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449, 1.656, 1.863, 2.07, 2.277, 2.484, 2.691, 2.898, 3.105),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 38, 37, 39, 37, 39, 37, 36, 36, 38, 37, 39, 37, 39, 37, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449, 1.656, 1.863, 2.07, 2.277, 2.484, 2.691, 2.898, 3.105),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_eubsa"]
+resource_name = "jump5"
+length = 3.312
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449, 1.656, 1.863, 2.07, 2.277, 2.484, 2.691, 2.898, 3.105),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 38, 37, 39, 37, 39, 37, 36, 36, 38, 37, 39, 37, 39, 37, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449, 1.656, 1.863, 2.07, 2.277, 2.484, 2.691, 2.898, 3.105),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false]
+}
+
+[sub_resource type="Animation" id="17"]
+resource_name = "nip1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [52, 55, 52, 55]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_eq0e5"]
+resource_name = "nip1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [52, 55, 52, 55]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="18"]
+resource_name = "nip2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [53, 55, 55, 53]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_uybm4"]
+resource_name = "nip2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [53, 55, 55, 53]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="Animation" id="19"]
+resource_name = "nip3"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [54, 55, 52, 55, 54, 55, 52, 55]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_k2n6p"]
+resource_name = "nip3"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [54, 55, 52, 55, 54, 55, 52, 55]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l2heh"]
+resource_name = "shark1"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 41, 42, 43, 40, 41, 40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, false, false, false, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_0f6ef"]
+resource_name = "shark1"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 41, 42, 43, 40, 41, 40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_kop4y"]
+resource_name = "shark2"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 42, 43, 41, 40, 42, 43, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hx5e0"]
+resource_name = "shark2"
+length = 1.656
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 42, 43, 41, 40, 42, 43, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621, 0.828, 1.035, 1.242, 1.449),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, false, false, false, false, true]
+}
+
+[sub_resource type="Animation" id="13"]
+resource_name = "shuffle1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [59, 56, 57, 56]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.621),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j6xea"]
+resource_name = "shuffle1"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [59, 56, 57, 56]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.621),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}]
+}
+
+[sub_resource type="Animation" id="14"]
+resource_name = "shuffle2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [57, 58, 57, 56]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.621),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(15, 0)],
+"method": &"shimmy"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vm7ka"]
+resource_name = "shuffle2"
+length = 0.828
+loop_mode = 1
+step = 0.207
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [57, 58, 57, 56]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.621),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.207, 0.414, 0.621),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}, {
+"args": [Vector2(-15, 0)],
+"method": &"shimmy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sg7s0"]
+_data = {
+"RESET": SubResource("11"),
+"coy1": SubResource("15"),
+"coy1_flip": SubResource("Animation_6ikqv"),
+"coy2": SubResource("16"),
+"coy2_flip": SubResource("Animation_inyva"),
+"hips1": SubResource("8"),
+"hips1_flip": SubResource("Animation_b876y"),
+"hips2": SubResource("12"),
+"hips2_flip": SubResource("Animation_wa5uc"),
+"hula1": SubResource("Animation_7mab4"),
+"hula1_flip": SubResource("Animation_ry3ve"),
+"hula2": SubResource("Animation_ri7au"),
+"hula2_flip": SubResource("Animation_vt26i"),
+"jump1": SubResource("Animation_hm2jr"),
+"jump1_flip": SubResource("Animation_82no0"),
+"jump2": SubResource("Animation_y4qy3"),
+"jump2_flip": SubResource("Animation_1mt4e"),
+"jump3": SubResource("Animation_cwsxq"),
+"jump3_flip": SubResource("Animation_qvjrr"),
+"jump4": SubResource("Animation_feb1u"),
+"jump4_flip": SubResource("Animation_w2pxj"),
+"jump5": SubResource("Animation_ed17m"),
+"jump5_flip": SubResource("Animation_eubsa"),
+"nip1": SubResource("17"),
+"nip1_flip": SubResource("Animation_eq0e5"),
+"nip2": SubResource("18"),
+"nip2_flip": SubResource("Animation_uybm4"),
+"nip3": SubResource("19"),
+"nip3_flip": SubResource("Animation_k2n6p"),
+"shark1": SubResource("Animation_l2heh"),
+"shark1_flip": SubResource("Animation_0f6ef"),
+"shark2": SubResource("Animation_kop4y"),
+"shark2_flip": SubResource("Animation_hx5e0"),
+"shuffle1": SubResource("13"),
+"shuffle1_flip": SubResource("Animation_j6xea"),
+"shuffle2": SubResource("14"),
+"shuffle2_flip": SubResource("Animation_vm7ka")
+}
+
+[sub_resource type="Animation" id="10"]
+resource_name = "dance"
+length = 8.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.66, 3.31, 5.17, 5.38, 5.59, 5.79, 6.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"perform_dance_move"
+}, {
+"args": [1],
+"method": &"perform_dance_move"
+}, {
+"args": [2],
+"method": &"perform_dance_move"
+}, {
+"args": [3],
+"method": &"perform_dance_move"
+}, {
+"args": [4],
+"method": &"perform_dance_move"
+}, {
+"args": [5],
+"method": &"perform_dance_move"
+}, {
+"args": [6],
+"method": &"perform_dance_move"
+}, {
+"args": [4],
+"method": &"set_state"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t713b"]
+_data = {
+"dance": SubResource("10")
+}
+
+[node name="DanceBehavior" type="Node"]
+script = ExtResource("1_y2qnt")
+
+[node name="SyncCheckTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+editor_description = "Checks whether the frog needs to adjust their animation to sync back up with the music."
+wait_time = 0.25
+
+[node name="ThinkTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+editor_description = "Makes decisions every few frames"
+wait_time = 0.1
+
+[node name="WaitToDanceTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+editor_description = "Makes the frogs dance after a brief delay."
+wait_time = 1.5
+one_shot = true
+
+[node name="DanceAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+editor_description = "Stores simple looped 4-frame dance animations."
+libraries = {
+"": SubResource("AnimationLibrary_sg7s0")
+}
+script = ExtResource("2_lv1wa")
+dance_names = Array[String](["coy", "hips", "hula", "jump", "nip", "shark", "shuffle"])
+animation_names_by_dance_name = {
+"coy": ["coy1", "coy1_flip", "coy2", "coy2_flip"],
+"hips": ["hips1", "hips1_flip", "hips2", "hips2_flip"],
+"hula": ["hula1", "hula1_flip", "hula2", "hula2_flip"],
+"jump": ["jump1", "jump1_flip", "jump2", "jump2_flip", "jump3", "jump3_flip", "jump4", "jump4_flip", "jump5", "jump5_flip"],
+"nip": ["nip1", "nip1_flip", "nip2", "nip2_flip", "nip3", "nip3_flip"],
+"shark": ["shark1", "shark1_flip", "shark2", "shark2_flip"],
+"shuffle": ["shuffle1", "shuffle1_flip", "shuffle2", "shuffle2_flip"]
+}
+frames_by_dance_name = {
+"coy": [60, 61, 62, 63],
+"hips": [48, 49, 50, 51],
+"hula": [44, 45, 46, 47],
+"jump": [36, 37, 38, 39],
+"nip": [52, 53, 54, 55],
+"shark": [40, 41, 42, 43],
+"shuffle": [56, 57, 58, 59]
+}
+
+[node name="Choreographer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+editor_description = "Strings together a series of dance animations."
+libraries = {
+"": SubResource("AnimationLibrary_t713b")
+}
+
+[connection signal="timeout" from="SyncCheckTimer" to="." method="_on_sync_check_timer_timeout"]
+[connection signal="timeout" from="ThinkTimer" to="." method="_on_think_timer_timeout"]
+[connection signal="timeout" from="WaitToDanceTimer" to="." method="_on_wait_to_dance_timer_timeout"]

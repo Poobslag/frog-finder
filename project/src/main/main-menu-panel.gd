@@ -14,14 +14,11 @@ signal before_shark_found(card)
 signal shark_found(card)
 signal menu_shown
 
-@onready var _game_state := $TitleGameState
-@onready var _title := $Title
-
 func show_menu() -> void:
 	visible = true
-	_game_state.reset()
+	%TitleGameState.reset()
 	menu_shown.emit()
-	_title.randomize_mystery_cards()
+	%Title.randomize_mystery_cards()
 	_connect_title_card_listeners()
 
 
@@ -30,7 +27,7 @@ func _connect_title_card_listeners() -> void:
 	if not is_node_ready():
 		return
 	
-	for card in _title.get_children():
+	for card in %Title.get_children():
 		if card.before_frog_found.is_connected(_on_card_control_before_frog_found):
 			# Avoid connecting redundant listeners for cards which already existed. This happens for mystery cards.
 			continue
