@@ -13,3 +13,4 @@ script = ExtResource("3")
 wiggle_frames = Array[int]([0, 1])
 
 [node name="WiggleTimer" parent="." instance=ExtResource("4")]
+unique_name_in_owner = true

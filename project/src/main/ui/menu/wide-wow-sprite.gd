@@ -37,7 +37,7 @@ func reset_wiggle() -> void:
 func assign_wiggle_frame() -> void:
 	var wiggle_index: int = (_left_wiggle_frames.find(%Left.frame) + 1) % _left_wiggle_frames.size()
 	%Left.frame = _left_wiggle_frames[wiggle_index]
-	$Right.frame = _right_wiggle_frames[wiggle_index]
+	%Right.frame = _right_wiggle_frames[wiggle_index]
 
 
 func _on_wiggle_timer_timeout() -> void:
