@@ -1,23 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b662wm85gb2ml"]
+[gd_scene load_steps=3 format=3 uid="uid://cukg5duqtr381"]
 
-[ext_resource type="Script" path="res://src/demo/background-demo-preset-tab.gd" id="1_xs50c"]
-[ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="2_lxax8"]
+[ext_resource type="Script" path="res://src/demo/background-demo-preset-tab.gd" id="1_oahcl"]
+[ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="2_sv4ti"]
 
-[node name="Preset" type="MarginContainer" node_paths=PackedStringArray("background")]
-visible = false
+[node name="Preset" type="MarginContainer"]
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
-script = ExtResource("1_xs50c")
-background = NodePath("")
+script = ExtResource("1_oahcl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme = ExtResource("2_lxax8")
+theme = ExtResource("2_sv4ti")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -28,7 +26,8 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "<"
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="WorldLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "World 1"

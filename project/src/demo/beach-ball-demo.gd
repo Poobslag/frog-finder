@@ -11,16 +11,9 @@ extends Node
 
 @export var BeachBallScene: PackedScene
 
-@onready var _panel := $Panel
-
 func _ready() -> void:
 	for _i in range(3):
 		_add_ball()
-
-
-## Preemptively initializes onready variables to avoid null references.
-func _enter_tree() -> void:
-		_panel = $Panel
 
 
 func _input(event: InputEvent) -> void:
@@ -32,7 +25,7 @@ func _input(event: InputEvent) -> void:
 		KEY_3:
 			_bounce_ball(2)
 		KEY_SPACE:
-			for i in range(_panel.get_child_count()):
+			for i in range(%Panel.get_child_count()):
 				_bounce_ball(i)
 		KEY_MINUS:
 			if Input.is_key_pressed(KEY_SHIFT):
@@ -50,27 +43,27 @@ func _input(event: InputEvent) -> void:
 
 func _add_ball() -> void:
 	var ball: BeachBall = BeachBallScene.instantiate()
-	ball.bounce_rect = Rect2(Vector2.ZERO, _panel.size)
+	ball.bounce_rect = Rect2(Vector2.ZERO, %Panel.size)
 	ball.position.x = randf_range(ball.bounce_rect.position.x, ball.bounce_rect.end.x)
 	ball.position.y = randf_range(ball.bounce_rect.position.y, ball.bounce_rect.end.y)
-	_panel.add_child(ball)
+	%Panel.add_child(ball)
 
 
 func _remove_ball() -> void:
-	if _panel.get_child_count() > 0:
-		var ball: BeachBall = _panel.get_child(-1)
+	if %Panel.get_child_count() > 0:
+		var ball: BeachBall = %Panel.get_child(-1)
 		ball.queue_free()
-		_panel.remove_child(ball)
+		%Panel.remove_child(ball)
 
 
 func _bounce_ball(index: int) -> void:
-	if _panel.get_child_count() > index:
-		_panel.get_child(index).bounce()
+	if %Panel.get_child_count() > index:
+		%Panel.get_child(index).bounce()
 
 
 func _refresh_bounce_rect() -> void:
-	for ball in _panel.get_children():
-		ball.bounce_rect = Rect2(Vector2.ZERO, _panel.size)
+	for ball in %Panel.get_children():
+		ball.bounce_rect = Rect2(Vector2.ZERO, %Panel.size)
 
 
 func _on_panel_resized() -> void:

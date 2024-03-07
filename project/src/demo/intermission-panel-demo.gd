@@ -12,9 +12,6 @@ extends Node
 ## 	[1..0] -> [W]: Sets the world index.
 ## 	[escape]: Restore the player's hand, so it has all fingers and no ribbon.
 
-@onready var _intermission_panel := $IntermissionPanel
-@onready var _hand := $Hand
-
 ## The most recently pressed number key.
 var number_event: InputEvent
 
@@ -22,8 +19,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	PlayerData.music_preference = PlayerData.MusicPreference.OFF
 	
-	_intermission_panel.show_intermission_panel()
-	_intermission_panel.restart("1-1")
+	%IntermissionPanel.show_intermission_panel()
+	%IntermissionPanel.restart("1-1")
 
 
 func _input(event: InputEvent) -> void:
@@ -39,7 +36,7 @@ func _input(event: InputEvent) -> void:
 			card.queue_free()
 			
 			card.show_front()
-			_intermission_panel.add_level_result(card)
+			%IntermissionPanel.add_level_result(card)
 		KEY_H:
 			_start_frog_hug_timer()
 		KEY_M:
@@ -49,19 +46,19 @@ func _input(event: InputEvent) -> void:
 		KEY_R:
 			_start_frog_ribbon()
 		KEY_S:
-			_intermission_panel.start_shark_spawn_timer(3)
+			%IntermissionPanel.start_shark_spawn_timer(3)
 		KEY_T:
-			if _intermission_panel.has_tweak():
-				_intermission_panel.remove_tweak()
+			if %IntermissionPanel.has_tweak():
+				%IntermissionPanel.remove_tweak()
 			else:
-				_intermission_panel.add_tweak()
+				%IntermissionPanel.add_tweak()
 		KEY_W:
 			_assign_world_index()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			number_event = event
 		KEY_ESCAPE:
-			_hand.reset_fingers()
-			_hand.ribbon = false
+			%Hand.reset_fingers()
+			%Hand.ribbon = false
 
 
 func _start_frog_hug_timer() -> void:
@@ -77,11 +74,11 @@ func _start_frog_hug_timer() -> void:
 		KEY_3, _:
 			frog_count = 3
 			huggable_fingers = 30
-	_intermission_panel.start_frog_hug_timer(frog_count, huggable_fingers)
+	%IntermissionPanel.start_frog_hug_timer(frog_count, huggable_fingers)
 
 
 func _start_frog_dance() -> void:
-	_intermission_panel.reset()
+	%IntermissionPanel.reset()
 	
 	var frog_count: int
 	match Utils.key_scancode(number_event):
@@ -92,13 +89,13 @@ func _start_frog_dance() -> void:
 		_:
 			frog_count = randi_range(1, 10)
 	
-	_intermission_panel.start_frog_dance(frog_count)
+	%IntermissionPanel.start_frog_dance(frog_count)
 
 
 func _start_frog_ribbon() -> void:
-	_intermission_panel.reset()
+	%IntermissionPanel.reset()
 	
-	_intermission_panel.start_frog_ribbon()
+	%IntermissionPanel.start_frog_ribbon()
 
 
 func _assign_world_index() -> void:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://sn44oyirw2l7"]
 
 [ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://btv2b51s8uefp" path="res://src/demo/BackgroundDemoCustomTab.tscn" id="3_q417h"]
+[ext_resource type="PackedScene" path="res://src/demo/BackgroundDemoCustomTab.tscn" id="3_yt2y2"]
+[ext_resource type="PackedScene" path="res://src/demo/BackgroundDemoPresetTab.tscn" id="4_dk6re"]
 [ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="4_ikoou"]
-[ext_resource type="PackedScene" uid="uid://b662wm85gb2ml" path="res://src/demo/BackgroundDemoPresetTab.tscn" id="4_xi02f"]
 
 [node name="BackgroundDemo" type="Node"]
 
@@ -20,14 +20,12 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_ikoou")
-current_tab = 1
 
-[node name="Custom" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("3_q417h")]
-visible = false
+[node name="Custom" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("3_yt2y2")]
 layout_mode = 2
 background = NodePath("../../Background")
 
-[node name="Preset" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("4_xi02f")]
-visible = true
+[node name="Preset" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("4_dk6re")]
+visible = false
 layout_mode = 2
 background = NodePath("../../Background")

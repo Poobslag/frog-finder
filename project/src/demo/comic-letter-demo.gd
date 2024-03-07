@@ -12,10 +12,10 @@ const LETTERS_BY_SCANCODE := {
 	KEY_S:"s", KEY_T:"t", KEY_U:"u", KEY_V:"v", KEY_W:"w", KEY_X:"x", KEY_Y:"y", KEY_Z:"z",
 }
 
-@onready var _current_letter := $Letter1
+@onready var _current_letter := %Letter1
 
 func _ready() -> void:
-	for letter in [$Letter1, $Letter2]:
+	for letter in [%Letter1, %Letter2]:
 		letter.hide_letter()
 		letter.text = Utils.rand_value(["f", "r", "o", "g"])
 		letter.show_letter()
@@ -24,9 +24,9 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_1:
-			_current_letter = $Letter1
+			_current_letter = %Letter1
 		KEY_2:
-			_current_letter = $Letter2
+			_current_letter = %Letter2
 		KEY_SPACE:
 			if _current_letter.visible:
 				_current_letter.hide_letter()

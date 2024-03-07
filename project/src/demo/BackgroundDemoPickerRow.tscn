@@ -8,6 +8,7 @@ alignment = 1
 script = ExtResource("1_8avel")
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("2_8m33r")

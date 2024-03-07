@@ -6,7 +6,8 @@
 [node name="Node" type="Node"]
 script = ExtResource("1_ad1qj")
 
-[node name="Label" type="Label" parent="."]
+[node name="ResourcePathLabel" type="Label" parent="."]
+unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0

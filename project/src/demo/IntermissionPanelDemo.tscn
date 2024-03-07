@@ -8,6 +8,7 @@
 script = ExtResource("2")
 
 [node name="IntermissionPanel" parent="." node_paths=PackedStringArray("hand") instance=ExtResource("1")]
+unique_name_in_owner = true
 offset_left = 50.0
 offset_top = 50.0
 offset_right = -50.0
@@ -15,3 +16,4 @@ offset_bottom = -50.0
 hand = NodePath("../Hand")
 
 [node name="Hand" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
