@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ivpq8dumgu7a"]
+
+[ext_resource type="Script" path="res://src/main/game-state.gd" id="1_5no6i"]
+
+[node name="GameState" type="Node"]
+script = ExtResource("1_5no6i")
+
+[node name="FlipTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
