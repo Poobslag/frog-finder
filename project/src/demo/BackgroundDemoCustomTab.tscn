@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://btv2b51s8uefp"]
+
+[ext_resource type="Script" path="res://src/demo/background-demo-custom-tab.gd" id="1_ikmqs"]
+[ext_resource type="PackedScene" uid="uid://cn8xedg15n2hn" path="res://src/demo/BackgroundDemoPickerRow.tscn" id="2_m2kij"]
+
+[node name="Custom" type="MarginContainer" node_paths=PackedStringArray("background")]
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("1_ikmqs")
+PickerRowScene = ExtResource("2_m2kij")
+background = NodePath("")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "[\"ffffff\", \"eeeeee\"]"
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+"
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "-"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PickerRow" parent="VBoxContainer" instance=ExtResource("2_m2kij")]
+layout_mode = 2
+
+[connection signal="text_changed" from="VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]

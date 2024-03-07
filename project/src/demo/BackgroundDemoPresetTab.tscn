@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://b662wm85gb2ml"]
+
+[ext_resource type="Script" path="res://src/demo/background-demo-preset-tab.gd" id="1_xs50c"]
+[ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="2_lxax8"]
+
+[node name="Preset" type="MarginContainer" node_paths=PackedStringArray("background")]
+visible = false
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("1_xs50c")
+background = NodePath("")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_lxax8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WorldDownButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "<"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "World 1"
+horizontal_alignment = 1
+
+[node name="WorldUpButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = ">"
+
+[node name="GoButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Go!"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/WorldDownButton" to="." method="_on_world_down_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/WorldUpButton" to="." method="_on_world_up_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoButton" to="." method="_on_go_button_pressed"]
