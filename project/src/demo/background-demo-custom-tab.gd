@@ -7,11 +7,6 @@ extends Node
 @export var PickerRowScene: PackedScene
 @export var background: Background
 
-@onready var _text_edit: TextEdit = $VBoxContainer/TextEdit
-@onready var _picker_container: Container = $VBoxContainer
-@onready var _add_button: Button = $VBoxContainer/HBoxContainer/AddButton
-@onready var _remove_button: Button = $VBoxContainer/HBoxContainer/RemoveButton
-
 var _suppress_listeners := false
 
 func _ready() -> void:
@@ -39,7 +34,7 @@ func _refresh_text_from_color_array(colors: Array) -> void:
 	var color_strings := []
 	for color in colors:
 		color_strings.append(color.to_html(false))
-	_text_edit.text = JSON.stringify(color_strings)
+	%TextEdit.text = JSON.stringify(color_strings)
 
 
 ## Calculate the color strings from our picker rows.
@@ -70,8 +65,8 @@ func _refresh_from_text() -> void:
 	# update picker row colors
 	_refresh_picker_row_colors(parsed_colors)
 	
-	_add_button.disabled = parsed_colors.size() >= 10
-	_remove_button.disabled = parsed_colors.size() <= 1
+	%AddButton.disabled = parsed_colors.size() >= 10
+	%RemoveButton.disabled = parsed_colors.size() <= 1
 	
 	_suppress_listeners = false
 
@@ -84,7 +79,7 @@ func _parse_colors_from_text() -> Array:
 	var parsed_colors := []
 	
 	var test_json_conv := JSON.new()
-	test_json_conv.parse(_text_edit.text)
+	test_json_conv.parse(%TextEdit.text)
 	var result_obj = test_json_conv.get_data()
 	if result_obj is Array:
 		for result_item in result_obj:
@@ -122,7 +117,7 @@ func _refresh_picker_row_colors(new_colors: Array) -> void:
 
 func _add_picker_row() -> void:
 	var new_picker: BackgroundDemoPickerRow = PickerRowScene.instantiate()
-	_picker_container.add_child(new_picker)
+	%PickerContainer.add_child(new_picker)
 	
 	# connect listeners
 	new_picker.go_button_pressed.connect(_on_picker_row_color_picked)
@@ -134,7 +129,7 @@ func _remove_picker_row() -> void:
 	var picker_rows := get_tree().get_nodes_in_group("picker_rows")
 	var picker_row: BackgroundDemoPickerRow = picker_rows.back()
 	picker_row.queue_free()
-	_picker_container.remove_child(picker_row )
+	%PickerContainer.remove_child(picker_row )
 
 
 func _on_picker_row_color_picked(color: Color) -> void:

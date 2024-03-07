@@ -20,9 +20,11 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 script = ExtResource("1_3fo1s")
 
 [node name="Letter1" parent="." instance=ExtResource("1_ranxm")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ptj1e")
 position = Vector2(462, 300)
 
 [node name="Letter2" parent="." instance=ExtResource("1_ranxm")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_cbdgp")
 position = Vector2(562, 300)

@@ -15,8 +15,6 @@ var _comic_page: ComicPage
 	1: preload("res://src/main/comic/World2ComicPage.tscn"),
 }
 
-@onready var _label := $Label
-
 func _ready() -> void:
 	_set_page(_comic_scenes_by_index[default_comic_index])
 
@@ -48,4 +46,4 @@ func _set_page(comic_scene: PackedScene) -> void:
 	_comic_page.name = "ComicPage"
 	add_child(_comic_page)
 	
-	_label.text = comic_scene.resource_path
+	%ResourcePathLabel.text = comic_scene.resource_path

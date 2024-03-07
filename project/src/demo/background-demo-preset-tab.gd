@@ -7,15 +7,13 @@ const MAX_WORLD_INDEX := 99
 
 @export var background: Background
 
-@onready var _label := $VBoxContainer/HBoxContainer/Label
-
 func _ready() -> void:
 	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 	_refresh_label_text()
 
 
 func _refresh_label_text() -> void:
-	_label.text = "World %s" % [PlayerData.world_index + 1]
+	%WorldLabel.text = "World %s" % [PlayerData.world_index + 1]
 
 
 func _on_world_down_button_pressed() -> void:

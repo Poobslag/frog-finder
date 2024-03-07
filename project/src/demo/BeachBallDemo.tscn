@@ -9,6 +9,7 @@ script = ExtResource("1_j633c")
 BeachBallScene = ExtResource("1_0dii3")
 
 [node name="Panel" type="Panel" parent="."]
+unique_name_in_owner = true
 y_sort_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
