@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0h2b4udal4qg"]
+[gd_scene load_steps=6 format=3 uid="uid://c0h2b4udal4qg"]
 
 [ext_resource type="Texture2D" uid="uid://1hfy3q1juhfj" path="res://assets/main/arrow-sheet.png" id="1"]
-[ext_resource type="Script" path="res://src/main/ui/menu/wide-wow-sprite.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bk510glt84fg5" path="res://src/main/WideWowSprite.tscn" id="2_dw5kk"]
 [ext_resource type="Script" path="res://src/main/level-buttons.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="4"]
-[ext_resource type="Texture2D" uid="uid://vth8c8qj7unh" path="res://assets/main/wow-sheet.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://crlgaobru7nl" path="res://assets/main/world-1-buttons-sheet.png" id="7"]
 
 [node name="World1Buttons" type="Control"]
@@ -17,33 +16,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3")
 
-[node name="WideWowSprite" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 232.0
-offset_top = 341.0
-offset_right = 692.0
-offset_bottom = 421.0
-script = ExtResource("2")
-
-[node name="Left" type="Sprite2D" parent="WideWowSprite"]
-unique_name_in_owner = true
-position = Vector2(40, 40)
-scale = Vector2(0.333, 0.333)
-texture = ExtResource("6")
-hframes = 8
-vframes = 2
-
-[node name="Right" type="Sprite2D" parent="WideWowSprite"]
-unique_name_in_owner = true
-position = Vector2(420, 40)
-scale = Vector2(0.333, 0.333)
-texture = ExtResource("6")
-hframes = 8
-vframes = 2
-frame = 1
-
-[node name="WiggleTimer" type="Timer" parent="WideWowSprite"]
-unique_name_in_owner = true
+[node name="WideWowSprite" parent="." instance=ExtResource("2_dw5kk")]
 
 [node name="Prev" parent="." instance=ExtResource("4")]
 visible = false
@@ -89,7 +62,6 @@ offset_bottom = 421.0
 icon_texture = ExtResource("1")
 icon_index = 5
 
-[connection signal="timeout" from="WideWowSprite/WiggleTimer" to="WideWowSprite" method="_on_wiggle_timer_timeout"]
 [connection signal="pressed" from="Prev" to="." method="_on_prev_pressed"]
 [connection signal="pressed" from="Level1" to="." method="_on_level_pressed" binds= [0]]
 [connection signal="pressed" from="Level2" to="." method="_on_level_pressed" binds= [1]]
