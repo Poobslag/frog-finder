@@ -17,16 +17,16 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_B:
-			_hand.set_biteable_fingers(1)
+			_hand.biteable_fingers = 1
 			_hand.bite()
 		KEY_R:
 			_hand.ribbon = !_hand.ribbon
 		KEY_3:
 			_hand.set_fingers(3)
 		KEY_MINUS:
-			_hand.set_biteable_fingers(int(clamp(_hand.biteable_fingers - 1, -1, 3)))
+			_hand.biteable_fingers = int(clamp(_hand.biteable_fingers - 1, -1, 3))
 		KEY_EQUAL:
-			_hand.set_biteable_fingers(int(clamp(_hand.biteable_fingers + 1, -1, 3)))
+			_hand.biteable_fingers = int(clamp(_hand.biteable_fingers + 1, -1, 3))
 		KEY_BRACKETLEFT:
 			_hand.huggable_fingers = 0
 			_hand.hugged_fingers = 0
