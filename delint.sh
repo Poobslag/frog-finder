@@ -135,6 +135,37 @@ then
   fi
 fi
 
+# orphaned .import files
+FILES=$(find project/assets -type f -iname "*.import")
+if [ -n "$FILES" ]
+then
+  RESULT=()
+  for FILE in $FILES;
+  do
+    # check for no file without the .import extension
+    if ! [ -f "${FILE%.*}" ]; then
+      RESULT+=(${FILE})
+    fi
+  done
+
+  if [ -n "$RESULT" ]
+  then
+    echo ""
+    echo "Orphaned .import files:"
+    for FILE in ${RESULT[@]};
+    do
+      echo "${FILE}"
+    done
+    if [ "$CLEAN" ]
+    then
+      for FILE in ${RESULT[@]};
+      do
+        rm "${FILE}"
+      done
+    fi
+  fi
+fi
+
 # filenames with bad capitalization
 RESULT=$(find project/src -name "*[A-Z]*.gd" -o -name "[a-z]*.tscn")
 if [ -n "$RESULT" ]
