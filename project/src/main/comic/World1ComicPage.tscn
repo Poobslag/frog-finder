@@ -1,55 +1,46 @@
-[gd_scene load_steps=90 format=3 uid="uid://b8i0xkv3iiuua"]
+[gd_scene load_steps=86 format=3 uid="uid://ci46jehigais"]
 
-[ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_pkd4e"]
-[ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_6jncs"]
-[ext_resource type="Texture2D" uid="uid://xx5sggy6gl1j" path="res://assets/main/comic/world-1/bg.png" id="3_sl1ui"]
-[ext_resource type="Script" path="res://src/main/comic/comic-panel.gd" id="4_msqbo"]
-[ext_resource type="Texture2D" uid="uid://d08hop1a1ny6j" path="res://assets/main/comic/world-1/010-wall.png" id="5_4svje"]
-[ext_resource type="Texture2D" uid="uid://dv8qn3od2cos5" path="res://assets/main/comic/world-1/010-teacher.png" id="6_1wwm8"]
-[ext_resource type="Texture2D" uid="uid://wpyk4guxd20e" path="res://assets/main/comic/world-1/010-students.png" id="7_73je0"]
-[ext_resource type="Texture2D" uid="uid://j484xqdjdftx" path="res://assets/main/comic/world-1/010-frame.png" id="7_rhe48"]
-[ext_resource type="Texture2D" uid="uid://cnor1dr87wdoh" path="res://assets/main/comic/world-1/010-furniture.png" id="8_r3w6e"]
-[ext_resource type="Texture2D" uid="uid://cqghelp4xxr8h" path="res://assets/main/comic/world-1/020-frame.png" id="11_8tov1"]
-[ext_resource type="Texture2D" uid="uid://bytwedpj20a1w" path="res://assets/main/comic/world-1/020-student-sheet.png" id="11_ef3vh"]
-[ext_resource type="Texture2D" uid="uid://ba604tbp5b4wf" path="res://assets/main/comic/world-1/030-frame.png" id="12_uac3t"]
-[ext_resource type="Texture2D" uid="uid://hfumwhcfkh60" path="res://assets/main/comic/world-1/040-frame.png" id="13_1n0wq"]
-[ext_resource type="Texture2D" uid="uid://dd0skt0jkm551" path="res://assets/main/comic/world-1/030-banner.png" id="13_7j570"]
-[ext_resource type="PackedScene" uid="uid://bxarbw5254db" path="res://src/main/comic/ComicTitle.tscn" id="13_gt8kv"]
-[ext_resource type="Texture2D" uid="uid://b73ld58ogyb8b" path="res://assets/main/comic/world-1/030-chalkboard.png" id="14_0qtlc"]
-[ext_resource type="Texture2D" uid="uid://yj5kwnsovtro" path="res://assets/main/comic/world-1/050-frame.png" id="14_bjgee"]
-[ext_resource type="Texture2D" uid="uid://bhwmfs5and0g6" path="res://assets/main/comic/world-1/060-frame.png" id="15_5b74i"]
-[ext_resource type="Texture2D" uid="uid://bgv6bmboanqni" path="res://assets/main/comic/world-1/030-teacher.png" id="15_yj8ay"]
-[ext_resource type="Texture2D" uid="uid://b7h04lhlo5o57" path="res://assets/main/comic/world-1/070-frame.png" id="16_71dhx"]
-[ext_resource type="Texture2D" uid="uid://bjh37u0eit8me" path="res://assets/main/comic/world-1/080-frame.png" id="17_if04a"]
-[ext_resource type="Texture2D" uid="uid://c0mo1w7vynk3u" path="res://assets/main/comic/world-1/040-chalkboard.png" id="17_nioud"]
-[ext_resource type="Texture2D" uid="uid://d22kv6d18c47t" path="res://assets/main/comic/world-1/040-line-sheet.png" id="18_dwv38"]
-[ext_resource type="Texture2D" uid="uid://be6dkriw8xxv3" path="res://assets/main/comic/world-1/040-teacher.png" id="19_7i5yw"]
-[ext_resource type="Texture2D" uid="uid://bc1ww7uwf6ykm" path="res://assets/main/comic/world-1/060-chalkboard.png" id="22_mdhqf"]
-[ext_resource type="Texture2D" uid="uid://rxgxxghm7wx4" path="res://assets/main/comic/world-1/060-chalk.png" id="23_1fx6a"]
-[ext_resource type="Texture2D" uid="uid://bodxbd18kn8sq" path="res://assets/main/comic/world-1/060-teacher.png" id="24_oa63l"]
-[ext_resource type="Texture2D" uid="uid://tjd32743fma7" path="res://assets/main/comic/world-1/070-shark-art-sheet.png" id="26_u7cd6"]
-[ext_resource type="Texture2D" uid="uid://duklkv126no77" path="res://assets/main/comic/world-1/070-vanish-sheet.png" id="27_mao53"]
-[ext_resource type="Texture2D" uid="uid://twaviwummyey" path="res://assets/main/comic/world-1/080-cheer-lines-sheet.png" id="28_qhlnd"]
-[ext_resource type="Texture2D" uid="uid://cr07se8d0j6iu" path="res://assets/main/comic/world-1/080-chalkboard.png" id="29_vc2kk"]
-[ext_resource type="Texture2D" uid="uid://b3ajqdkpo5yqt" path="res://assets/main/comic/world-1/080-shark-art-sheet.png" id="30_t7wsv"]
-[ext_resource type="Texture2D" uid="uid://b4w5rklhoajo0" path="res://assets/main/comic/world-1/080-shark-sheet.png" id="31_8f2rg"]
-[ext_resource type="Texture2D" uid="uid://cn665yi1hatgv" path="res://assets/main/comic/world-1/080-teacher.png" id="32_hfjj4"]
-[ext_resource type="Texture2D" uid="uid://bv25x6beggdk6" path="res://assets/main/comic/world-1/080-vanish-sheet.png" id="33_sjp7u"]
-[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="36_i7rcc"]
-[ext_resource type="AudioStream" uid="uid://ck7au7sepaf6n" path="res://assets/main/sfx/world-1-comic-sfx.ogg" id="41_8413d"]
-[ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="58_6ljnr"]
-[ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="60_7timk"]
+[ext_resource type="PackedScene" uid="uid://dyeu5qh2rbb5t" path="res://src/main/comic/ComicPage.tscn" id="1_1fdmo"]
+[ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_775lf"]
+[ext_resource type="PackedScene" uid="uid://d2m7wha5f6kuj" path="res://src/main/comic/ComicPanel.tscn" id="2_kueuy"]
+[ext_resource type="Texture2D" uid="uid://d08hop1a1ny6j" path="res://assets/main/comic/world-1/010-wall.png" id="3_2sltu"]
+[ext_resource type="Texture2D" uid="uid://xx5sggy6gl1j" path="res://assets/main/comic/world-1/bg.png" id="3_pyu0a"]
+[ext_resource type="Texture2D" uid="uid://cnor1dr87wdoh" path="res://assets/main/comic/world-1/010-furniture.png" id="4_vimga"]
+[ext_resource type="Texture2D" uid="uid://dv8qn3od2cos5" path="res://assets/main/comic/world-1/010-teacher.png" id="5_lmw35"]
+[ext_resource type="Texture2D" uid="uid://wpyk4guxd20e" path="res://assets/main/comic/world-1/010-students.png" id="6_1lxxc"]
+[ext_resource type="PackedScene" uid="uid://bxarbw5254db" path="res://src/main/comic/ComicTitle.tscn" id="7_8c2h1"]
+[ext_resource type="Texture2D" uid="uid://j484xqdjdftx" path="res://assets/main/comic/world-1/010-frame.png" id="8_02mad"]
+[ext_resource type="Texture2D" uid="uid://bytwedpj20a1w" path="res://assets/main/comic/world-1/020-student-sheet.png" id="9_fecl2"]
+[ext_resource type="Texture2D" uid="uid://cqghelp4xxr8h" path="res://assets/main/comic/world-1/020-frame.png" id="10_wkb0q"]
+[ext_resource type="Texture2D" uid="uid://dd0skt0jkm551" path="res://assets/main/comic/world-1/030-banner.png" id="11_xe47v"]
+[ext_resource type="Texture2D" uid="uid://b73ld58ogyb8b" path="res://assets/main/comic/world-1/030-chalkboard.png" id="12_6e3uk"]
+[ext_resource type="Texture2D" uid="uid://bgv6bmboanqni" path="res://assets/main/comic/world-1/030-teacher.png" id="13_aexrp"]
+[ext_resource type="Texture2D" uid="uid://ba604tbp5b4wf" path="res://assets/main/comic/world-1/030-frame.png" id="14_md6gx"]
+[ext_resource type="Texture2D" uid="uid://c0mo1w7vynk3u" path="res://assets/main/comic/world-1/040-chalkboard.png" id="15_ntj10"]
+[ext_resource type="Texture2D" uid="uid://d22kv6d18c47t" path="res://assets/main/comic/world-1/040-line-sheet.png" id="16_jq8y6"]
+[ext_resource type="Texture2D" uid="uid://be6dkriw8xxv3" path="res://assets/main/comic/world-1/040-teacher.png" id="17_1uki8"]
+[ext_resource type="Texture2D" uid="uid://hfumwhcfkh60" path="res://assets/main/comic/world-1/040-frame.png" id="18_apdos"]
+[ext_resource type="Texture2D" uid="uid://yj5kwnsovtro" path="res://assets/main/comic/world-1/050-frame.png" id="19_bs2gc"]
+[ext_resource type="Texture2D" uid="uid://bc1ww7uwf6ykm" path="res://assets/main/comic/world-1/060-chalkboard.png" id="20_caby8"]
+[ext_resource type="Texture2D" uid="uid://bodxbd18kn8sq" path="res://assets/main/comic/world-1/060-teacher.png" id="21_i8ldj"]
+[ext_resource type="Texture2D" uid="uid://rxgxxghm7wx4" path="res://assets/main/comic/world-1/060-chalk.png" id="22_s2cmw"]
+[ext_resource type="Texture2D" uid="uid://bhwmfs5and0g6" path="res://assets/main/comic/world-1/060-frame.png" id="23_emlcc"]
+[ext_resource type="Texture2D" uid="uid://tjd32743fma7" path="res://assets/main/comic/world-1/070-shark-art-sheet.png" id="24_rmrqf"]
+[ext_resource type="Texture2D" uid="uid://duklkv126no77" path="res://assets/main/comic/world-1/070-vanish-sheet.png" id="25_5oyor"]
+[ext_resource type="Texture2D" uid="uid://b7h04lhlo5o57" path="res://assets/main/comic/world-1/070-frame.png" id="26_up15i"]
+[ext_resource type="Texture2D" uid="uid://cr07se8d0j6iu" path="res://assets/main/comic/world-1/080-chalkboard.png" id="27_sd5nh"]
+[ext_resource type="Texture2D" uid="uid://b3ajqdkpo5yqt" path="res://assets/main/comic/world-1/080-shark-art-sheet.png" id="28_bjokp"]
+[ext_resource type="Texture2D" uid="uid://b4w5rklhoajo0" path="res://assets/main/comic/world-1/080-shark-sheet.png" id="29_kcdnr"]
+[ext_resource type="Texture2D" uid="uid://twaviwummyey" path="res://assets/main/comic/world-1/080-cheer-lines-sheet.png" id="30_453ol"]
+[ext_resource type="Texture2D" uid="uid://cn665yi1hatgv" path="res://assets/main/comic/world-1/080-teacher.png" id="31_mq1ct"]
+[ext_resource type="Texture2D" uid="uid://bv25x6beggdk6" path="res://assets/main/comic/world-1/080-vanish-sheet.png" id="32_moit5"]
+[ext_resource type="Texture2D" uid="uid://bjh37u0eit8me" path="res://assets/main/comic/world-1/080-frame.png" id="33_chkf8"]
+[ext_resource type="AudioStream" uid="uid://ck7au7sepaf6n" path="res://assets/main/sfx/world-1-comic-sfx.ogg" id="36_3v2e2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
-shader = ExtResource("2_6jncs")
+shader = ExtResource("2_775lf")
 shader_parameter/texture_scale = Vector2(0.4, 0.4)
 shader_parameter/scroll_velocity = Vector2(0.3, -0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6up80"]
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="Animation" id="Animation_iet6j"]
 length = 0.001
@@ -1893,871 +1884,705 @@ _data = {
 "play": SubResource("Animation_3qj25")
 }
 
-[node name="ComicPage" type="Control"]
-visible = false
-clip_children = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_pkd4e")
+[node name="ComicPage" instance=ExtResource("1_1fdmo")]
 
-[node name="Bg" type="Panel" parent="."]
-clip_children = 2
+[node name="Texture" parent="Bg" index="0"]
 material = SubResource("ShaderMaterial_qo41j")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_6up80")
+texture = ExtResource("3_pyu0a")
 
-[node name="Texture" type="TextureRect" parent="Bg"]
-material = SubResource("ShaderMaterial_qo41j")
+[node name="ComicPanel01" parent="." index="1" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_sl1ui")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="ComicPanel01" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -336.0
 offset_top = -236.0
 offset_right = 1104.0
 offset_bottom = 188.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel01"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Contents" parent="ComicPanel01" index="0"]
+editor_description = ""
 
-[node name="BgGroup" type="Node2D" parent="ComicPanel01/Contents"]
+[node name="BgGroup" type="Node2D" parent="ComicPanel01/Contents" index="0"]
 
-[node name="Wall" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup"]
+[node name="Wall" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup" index="0"]
 position = Vector2(674.286, 211.429)
-texture = ExtResource("5_4svje")
+texture = ExtResource("3_2sltu")
 
-[node name="Furniture" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup"]
+[node name="Furniture" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup" index="1"]
 position = Vector2(722.857, 205.714)
-texture = ExtResource("8_r3w6e")
+texture = ExtResource("4_vimga")
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel01/Contents/BgGroup" index="2"]
 position = Vector2(580, 257.143)
-texture = ExtResource("6_1wwm8")
+texture = ExtResource("5_lmw35")
 
-[node name="FgGroup" type="Node2D" parent="ComicPanel01/Contents"]
+[node name="FgGroup" type="Node2D" parent="ComicPanel01/Contents" index="1"]
 position = Vector2(285.714, 437.143)
 
-[node name="Students1" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup"]
+[node name="Students1" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="0"]
 position = Vector2(0, 6.10352e-05)
-texture = ExtResource("7_73je0")
+texture = ExtResource("6_1lxxc")
 
-[node name="Students4" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup"]
+[node name="Students4" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="1"]
 position = Vector2(937.143, 5.71436)
 rotation = -3.14159
 scale = Vector2(1, -1)
-texture = ExtResource("7_73je0")
+texture = ExtResource("6_1lxxc")
 
-[node name="Students2" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup"]
+[node name="Students2" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="2"]
 position = Vector2(291.429, 88.5715)
-texture = ExtResource("7_73je0")
+texture = ExtResource("6_1lxxc")
 
-[node name="Students3" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup"]
+[node name="Students3" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="3"]
 position = Vector2(665.714, 100)
 rotation = 3.14159
 scale = Vector2(1, -1)
-texture = ExtResource("7_73je0")
+texture = ExtResource("6_1lxxc")
 
-[node name="Title" parent="ComicPanel01/Contents" instance=ExtResource("13_gt8kv")]
+[node name="Title" parent="ComicPanel01/Contents" index="2" instance=ExtResource("7_8c2h1")]
 text = "fr?g f?nder"
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel01"]
-position = Vector2(720, 212)
-texture = ExtResource("7_rhe48")
+[node name="Frame" parent="ComicPanel01" index="1"]
+editor_description = ""
+texture = ExtResource("8_02mad")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel01" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel01" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_tcqoh")
 }
 
-[node name="ComicPanel02" type="Control" parent="."]
-visible = false
+[node name="ComicPanel02" parent="." index="2" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 182.0
 offset_top = -235.0
 offset_right = 625.0
 offset_bottom = 184.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel02"]
+[node name="Contents" parent="ComicPanel02" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Group" type="Node2D" parent="ComicPanel02/Contents"]
+[node name="Group" type="Node2D" parent="ComicPanel02/Contents" index="0"]
 
-[node name="Student1" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student1" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="0"]
 position = Vector2(117.857, 37.1429)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student2" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student2" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="1"]
 position = Vector2(326.429, 77.1429)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student3" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student3" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="2"]
 position = Vector2(29.2858, 182.857)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student4" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student4" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="3"]
 position = Vector2(529.286, 82.8572)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student5" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student5" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="4"]
 position = Vector2(226.429, 220)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel02/Contents/Group/Student5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel02/Contents/Group/Student5" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_dsunt")
 }
 
-[node name="Student6" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student6" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="5"]
 position = Vector2(432.143, 231.429)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 
-[node name="Student7" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student7" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="6"]
 position = Vector2(120.715, 351.429)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 2
 
-[node name="Student8" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student8" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="7"]
 position = Vector2(329.286, 362.857)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student9" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student9" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="8"]
 position = Vector2(635, 237.143)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 
-[node name="Student10" type="Sprite2D" parent="ComicPanel02/Contents/Group"]
+[node name="Student10" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="9"]
 position = Vector2(532.143, 368.571)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Control" type="Control" parent="ComicPanel02/Contents"]
+[node name="Control" type="Control" parent="ComicPanel02/Contents" index="1"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = -1480.0
 offset_top = -2.85715
 offset_right = -1440.0
 offset_bottom = 37.1429
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel02"]
+[node name="Frame" parent="ComicPanel02" index="1"]
+editor_description = ""
 position = Vector2(223, 208.143)
-texture = ExtResource("11_8tov1")
+texture = ExtResource("10_wkb0q")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel02" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel02" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_u3u61")
 }
 
-[node name="ComicPanel03" type="Control" parent="."]
-visible = false
+[node name="ComicPanel03" parent="." index="3" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -335.0
 offset_top = -75.0
 offset_right = 605.0
 offset_bottom = 361.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel03"]
+[node name="Contents" parent="ComicPanel03" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(1, 1, 0.333333, 1)
 
-[node name="Banner" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Banner" type="Sprite2D" parent="ComicPanel03/Contents" index="0"]
 position = Vector2(465.571, -47.7143)
-texture = ExtResource("13_7j570")
+texture = ExtResource("11_xe47v")
 
-[node name="Chalkboard" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Chalkboard" type="Sprite2D" parent="ComicPanel03/Contents" index="1"]
 position = Vector2(591.286, 243.714)
-texture = ExtResource("14_0qtlc")
+texture = ExtResource("12_6e3uk")
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel03/Contents"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel03/Contents" index="2"]
 position = Vector2(248.429, 343.714)
-texture = ExtResource("15_yj8ay")
+texture = ExtResource("13_aexrp")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel03"]
+[node name="Frame" parent="ComicPanel03" index="1"]
+editor_description = ""
 position = Vector2(468.143, 220)
-texture = ExtResource("12_uac3t")
+texture = ExtResource("14_md6gx")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel03" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel03" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_6lqbq")
 }
 
-[node name="ComicPanel04" type="Control" parent="."]
-visible = false
+[node name="ComicPanel04" parent="." index="4" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 9.0
 offset_top = -75.0
 offset_right = 462.0
 offset_bottom = 362.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel04"]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Contents" parent="ComicPanel04" index="0"]
+editor_description = ""
 
-[node name="Group" type="Node2D" parent="ComicPanel04/Contents"]
+[node name="Group" type="Node2D" parent="ComicPanel04/Contents" index="0"]
 
-[node name="Chalkboard" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Chalkboard" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="0"]
 position = Vector2(234.286, 245.714)
-texture = ExtResource("17_nioud")
+texture = ExtResource("15_ntj10")
 
-[node name="Line1" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Line1" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="1"]
 visible = false
 position = Vector2(260, 125.714)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 flip_h = true
 hframes = 4
 vframes = 2
 frame = 4
 
-[node name="Line2" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Line2" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="2"]
 visible = false
 position = Vector2(308.571, 128.571)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 1
 
-[node name="Line3" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Line3" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="3"]
 visible = false
 position = Vector2(357.143, 128.571)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 6
 
-[node name="Line4" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Line4" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="4"]
 visible = false
 position = Vector2(405.714, 134.286)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 flip_h = true
 hframes = 4
 vframes = 2
 frame = 2
 
-[node name="Line5" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Line5" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="5"]
 visible = false
 position = Vector2(451.429, 140)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel04/Contents/Group"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel04/Contents/Group" index="6"]
 position = Vector2(-188.571, 297.143)
-texture = ExtResource("19_7i5yw")
+texture = ExtResource("17_1uki8")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel04"]
+[node name="Frame" parent="ComicPanel04" index="1"]
+editor_description = ""
 position = Vector2(226.286, 218)
-texture = ExtResource("13_1n0wq")
+texture = ExtResource("18_apdos")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel04" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel04" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_t87uh")
 }
 
-[node name="ComicPanel05" type="Control" parent="."]
-visible = false
+[node name="ComicPanel05" parent="." index="5" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 182.0
 offset_top = -75.0
 offset_right = 625.0
 offset_bottom = 362.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel05"]
+[node name="Contents" parent="ComicPanel05" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.607843, 0.823529, 1, 1)
 
-[node name="Group" type="Node2D" parent="ComicPanel05/Contents"]
+[node name="Group" type="Node2D" parent="ComicPanel05/Contents" index="0"]
 position = Vector2(80, 0)
 
-[node name="Student1" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student1" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="0"]
 position = Vector2(-87.8571, 77.1428)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 
-[node name="Student2" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student2" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="1"]
 position = Vector2(120.714, 85.7142)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 
-[node name="Student3" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student3" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="2"]
 position = Vector2(320.714, 97.1428)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 3
 
-[node name="Student4" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student4" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="3"]
 position = Vector2(-173.572, 202.857)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student5" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student5" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="4"]
 position = Vector2(24.2858, 217.143)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student6" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student6" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="5"]
 position = Vector2(224.286, 242.857)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel05/Contents/Group/Student6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel05/Contents/Group/Student6" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_1noh0")
 }
 
-[node name="Student7" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student7" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="6"]
 position = Vector2(432.857, 271.429)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="Student8" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student8" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="7"]
 position = Vector2(123.571, 368.571)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 4
 
-[node name="Student9" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student9" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="8"]
 position = Vector2(-99.2856, 348.571)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 frame = 2
 
-[node name="Student10" type="Sprite2D" parent="ComicPanel05/Contents/Group"]
+[node name="Student10" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="9"]
 position = Vector2(329.286, 414.286)
-texture = ExtResource("11_ef3vh")
+texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel05"]
+[node name="Frame" parent="ComicPanel05" index="1"]
+editor_description = ""
 position = Vector2(223, 219)
-texture = ExtResource("14_bjgee")
+texture = ExtResource("19_bs2gc")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel05" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel05" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_7nfju")
 }
 
-[node name="ComicPanel06" type="Control" parent="."]
-visible = false
+[node name="ComicPanel06" parent="." index="6" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -335.0
 offset_top = 91.0
 offset_right = 116.0
 offset_bottom = 505.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel06"]
+[node name="Contents" parent="ComicPanel06" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.713726, 0.403922, 0.262745, 1)
 
-[node name="Group" type="Node2D" parent="ComicPanel06/Contents"]
+[node name="Group" type="Node2D" parent="ComicPanel06/Contents" index="0"]
 
-[node name="Chalkboard" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Chalkboard" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="0"]
 position = Vector2(140.714, 219.286)
-texture = ExtResource("22_mdhqf")
+texture = ExtResource("20_caby8")
 
-[node name="Line1" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line1" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="1"]
 position = Vector2(-362.857, 102.857)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 6
 
-[node name="Line2" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line2" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="2"]
 position = Vector2(-285.714, 108.571)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 flip_h = true
 hframes = 4
 vframes = 2
 frame = 2
 
-[node name="Line3" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line3" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="3"]
 position = Vector2(-211.429, 114.286)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 
-[node name="Line4" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line4" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="4"]
 position = Vector2(-133.571, 120)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 7
 
-[node name="Line5" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line5" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="5"]
 position = Vector2(-60, 120)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 flip_h = true
 hframes = 4
 vframes = 2
 frame = 4
 
-[node name="Line6" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line6" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="6"]
 position = Vector2(17.1429, 125.714)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 5
 
-[node name="Line7" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line7" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="7"]
 position = Vector2(94.2856, 125.714)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 1
 
-[node name="Line8" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line8" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="8"]
 position = Vector2(174.286, 125.714)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 3
 
-[node name="Line9" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Line9" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="9"]
 position = Vector2(248.571, 134.286)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel06/Contents/Group"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel06/Contents/Group" index="10"]
 position = Vector2(-82.1429, 413.571)
-texture = ExtResource("24_oa63l")
+texture = ExtResource("21_i8ldj")
 
-[node name="Chalk" type="Sprite2D" parent="ComicPanel06/Contents/Group/Teacher"]
+[node name="Chalk" type="Sprite2D" parent="ComicPanel06/Contents/Group/Teacher" index="0"]
 show_behind_parent = true
 position = Vector2(340, -231.428)
-texture = ExtResource("23_1fx6a")
+texture = ExtResource("22_s2cmw")
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel06"]
+[node name="Frame" parent="ComicPanel06" index="1"]
+editor_description = ""
 position = Vector2(223.143, 206.714)
-texture = ExtResource("15_5b74i")
+texture = ExtResource("23_emlcc")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel06" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel06" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_hcrf2")
 }
 
-[node name="ComicPanel07" type="Control" parent="."]
-visible = false
+[node name="ComicPanel07" parent="." index="7" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -162.0
 offset_top = 91.0
 offset_right = 284.0
 offset_bottom = 505.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel07"]
+[node name="Contents" parent="ComicPanel07" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.713726, 0.403922, 0.262745, 1)
 
-[node name="Group" type="Node2D" parent="ComicPanel07/Contents"]
+[node name="Group" type="Node2D" parent="ComicPanel07/Contents" index="0"]
 
-[node name="Chalkboard" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Chalkboard" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="0"]
 position = Vector2(-96.2858, 219.286)
-texture = ExtResource("22_mdhqf")
+texture = ExtResource("20_caby8")
 
-[node name="SharkArt" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="SharkArt" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="1"]
 position = Vector2(254.429, 222.857)
-texture = ExtResource("26_u7cd6")
+texture = ExtResource("24_rmrqf")
 hframes = 3
 frame = 1
 
-[node name="Line3" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line3" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="2"]
 position = Vector2(-448.429, 114.286)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 
-[node name="Line4" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line4" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="3"]
 position = Vector2(-370.572, 120)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 7
 
-[node name="Line5" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line5" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="4"]
 position = Vector2(-297, 120)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 flip_h = true
 hframes = 4
 vframes = 2
 frame = 4
 
-[node name="Line6" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line6" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="5"]
 position = Vector2(-219.857, 125.714)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 5
 
-[node name="Line7" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line7" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="6"]
 position = Vector2(-142.714, 125.714)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 1
 
-[node name="Line8" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line8" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="7"]
 position = Vector2(-62.7144, 125.714)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 3
 
-[node name="Line9" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line9" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="8"]
 position = Vector2(11.5713, 134.286)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 
-[node name="Line10" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line10" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="9"]
 position = Vector2(88.7144, 140)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 1
 
-[node name="Line11" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Line11" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="10"]
 position = Vector2(171.571, 148.571)
 rotation = 3.14159
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_dwv38")
+texture = ExtResource("16_jq8y6")
 hframes = 4
 vframes = 2
 frame = 3
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel07/Contents/Group"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel07/Contents/Group" index="11"]
 position = Vector2(-152.714, 426.428)
-texture = ExtResource("24_oa63l")
+texture = ExtResource("21_i8ldj")
 
-[node name="Chalk" type="Sprite2D" parent="ComicPanel07/Contents/Group/Teacher"]
+[node name="Chalk" type="Sprite2D" parent="ComicPanel07/Contents/Group/Teacher" index="0"]
 visible = false
 show_behind_parent = true
 position = Vector2(340, -231.428)
-texture = ExtResource("23_1fx6a")
+texture = ExtResource("22_s2cmw")
 
-[node name="Vanish" type="Sprite2D" parent="ComicPanel07/Contents/Group/Teacher"]
+[node name="Vanish" type="Sprite2D" parent="ComicPanel07/Contents/Group/Teacher" index="1"]
 visible = false
 position = Vector2(335.714, -243.571)
-texture = ExtResource("27_mao53")
+texture = ExtResource("25_5oyor")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel07/Contents/Group/Teacher/Vanish"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel07/Contents/Group/Teacher/Vanish" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_7r7hk")
 }
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel07"]
+[node name="Frame" parent="ComicPanel07" index="1"]
+editor_description = ""
 position = Vector2(222.857, 208.714)
-texture = ExtResource("16_71dhx")
+texture = ExtResource("26_up15i")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel07" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel07" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_yhoh5")
 }
 
-[node name="ComicPanel08" type="Control" parent="."]
-visible = false
+[node name="ComicPanel08" parent="." index="8" instance=ExtResource("2_kueuy")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = 8.0
 offset_top = 91.0
 offset_right = 947.0
 offset_bottom = 506.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.35, 0.35)
-script = ExtResource("4_msqbo")
 
-[node name="Contents" type="ColorRect" parent="ComicPanel08"]
+[node name="Contents" parent="ComicPanel08" index="0"]
+editor_description = ""
 clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(1, 1, 0.333333, 1)
 
-[node name="Chalkboard" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Chalkboard" type="Sprite2D" parent="ComicPanel08/Contents" index="0"]
 position = Vector2(441.429, 205.714)
-texture = ExtResource("29_vc2kk")
+texture = ExtResource("27_sd5nh")
 
-[node name="SharkArt" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="SharkArt" type="Sprite2D" parent="ComicPanel08/Contents" index="1"]
 position = Vector2(581.429, 200)
-texture = ExtResource("30_t7wsv")
+texture = ExtResource("28_bjokp")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/SharkArt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/SharkArt" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_cj2uj")
 }
 
-[node name="Shark" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Shark" type="Sprite2D" parent="ComicPanel08/Contents" index="2"]
 position = Vector2(767.143, 334.286)
-texture = ExtResource("31_8f2rg")
+texture = ExtResource("29_kcdnr")
 hframes = 2
 
-[node name="CheerLines" type="Sprite2D" parent="ComicPanel08/Contents/Shark"]
+[node name="CheerLines" type="Sprite2D" parent="ComicPanel08/Contents/Shark" index="0"]
 position = Vector2(-74.2861, -151.429)
-texture = ExtResource("28_qhlnd")
+texture = ExtResource("30_453ol")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Shark/CheerLines"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Shark/CheerLines" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_e4b87")
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Shark"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Shark" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_kx7g1")
 }
 
-[node name="Teacher" type="Sprite2D" parent="ComicPanel08/Contents"]
+[node name="Teacher" type="Sprite2D" parent="ComicPanel08/Contents" index="3"]
 position = Vector2(324.286, 268.571)
-texture = ExtResource("32_hfjj4")
+texture = ExtResource("31_mq1ct")
 
-[node name="Vanish" type="Sprite2D" parent="ComicPanel08/Contents/Teacher"]
+[node name="Vanish" type="Sprite2D" parent="ComicPanel08/Contents/Teacher" index="0"]
 position = Vector2(100, -60.0001)
-texture = ExtResource("33_sjp7u")
+texture = ExtResource("32_moit5")
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Teacher/Vanish"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/Teacher/Vanish" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_xfc7d")
 }
 
-[node name="Frame" type="Sprite2D" parent="ComicPanel08"]
+[node name="Frame" parent="ComicPanel08" index="1"]
+editor_description = ""
 position = Vector2(469.143, 208.714)
-texture = ExtResource("17_if04a")
+texture = ExtResource("33_chkf8")
 
-[node name="FramePlayer" type="AnimationPlayer" parent="ComicPanel08" groups=["frame_animation_players"]]
+[node name="FramePlayer" parent="ComicPanel08" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_qujjj")
 }
 
-[node name="SkipButton" parent="." instance=ExtResource("36_i7rcc")]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -100.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-icon_texture = ExtResource("58_6ljnr")
-icon_index = 5
-
-[node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
-unique_name_in_owner = true
+[node name="Conductor" parent="." index="10"]
 libraries = {
 "": SubResource("AnimationLibrary_mkq1g")
 }
-script = ExtResource("60_7timk")
-sfx_player = NodePath("../SfxPlayer")
 
-[node name="Timer" type="Timer" parent="Conductor"]
-wait_time = 0.5
-autostart = true
+[node name="SfxPlayer" parent="." index="11"]
+stream = ExtResource("36_3v2e2")
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("41_8413d")
-
-[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
-[connection signal="timeout" from="Conductor/Timer" to="Conductor" method="_on_timer_timeout"]
+[editable path="ComicPanel01"]
+[editable path="ComicPanel02"]
+[editable path="ComicPanel03"]
+[editable path="ComicPanel04"]
+[editable path="ComicPanel05"]
+[editable path="ComicPanel06"]
+[editable path="ComicPanel07"]
+[editable path="ComicPanel08"]
