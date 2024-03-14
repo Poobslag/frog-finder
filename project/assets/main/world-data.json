@@ -32,6 +32,13 @@
   },
   {
     "title": "s?nshine shoa?s",
+    "background_colors": [
+      "b6925a",
+      "978e39",
+      "57a4a4",
+      "4e9b6c",
+      "be5847"
+    ],
     "dances": [
       "hula",
       "coy",

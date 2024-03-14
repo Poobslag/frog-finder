@@ -6,14 +6,6 @@ const TWEEN_DURATION := 2.5
 const BACKGROUND_COLOR := Color("3679a5")
 const TEXTURE_COLOR := Color("45a5e6")
 
-## key: (int) world index
-## value: (Array, Color) background colors for a world
-const BACKGROUND_COLORS_BY_WORLD_INDEX := {
-	0: [],
-	1: [Color("b6925a"), Color("978e39"), Color("57a4a4"), Color("4e9b6c"), Color("be5847")],
-	2: [],
-}
-
 ## Hue values in the range [0, 1] used for backgrounds. The hue at the front of the list is currently visible.
 var hues := [
 	0.0, 0.05, 0.10, 0.15, 0.20,
@@ -105,9 +97,9 @@ func change_specific(new_texture_color: Color, immediate: bool = false) -> void:
 func _random_texture_color_for_world() -> Color:
 	var result: Color
 	
-	if BACKGROUND_COLORS_BY_WORLD_INDEX.get(PlayerData.world_index):
+	if PlayerData.get_world().background_colors:
 		# the world defines colors; return a random one
-		var possible_colors: Array = BACKGROUND_COLORS_BY_WORLD_INDEX.get(PlayerData.world_index).duplicate()
+		var possible_colors: Array = PlayerData.get_world().background_colors
 		if texture_color in possible_colors and possible_colors.size() >= 2:
 			# don't return the same color we're already using
 			possible_colors.remove_at(possible_colors.find(texture_color))
