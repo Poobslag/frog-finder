@@ -75,6 +75,8 @@ offset_left = -100.0
 offset_top = -100.0
 offset_right = -20.0
 offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
 icon_texture = ExtResource("5")
 
 [node name="IconSprite" parent="ByeButton" index="0"]
