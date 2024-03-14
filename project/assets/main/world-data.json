@@ -1,6 +1,13 @@
 [
   {
     "title": "fr?g f?nder",
+    "background_colors": [
+      "805a21",
+      "208046",
+      "2f4f80",
+      "802828",
+      "338080"
+    ],
     "dances": [
       "shark",
       "jump",
