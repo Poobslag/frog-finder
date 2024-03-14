@@ -19,6 +19,8 @@ func _ready() -> void:
 	
 	_refresh_text_from_color_array(colors)
 	_refresh_from_text()
+	
+	PlayerData.world_index_changed.connect(_on_player_data_world_index_changed)
 
 
 ## Refreshes the TextEdit contents from the picker rows.
@@ -167,3 +169,13 @@ func _on_remove_button_pressed() -> void:
 	colors.pop_back()
 	_refresh_text_from_color_array(colors)
 	_refresh_from_text()
+
+
+## When the world index changes, we refresh the color pickers to the world's colors.
+##
+## This lets us review and edit the color palettes for each world by hopping between the 'preset' and 'custom' tabs.
+func _on_player_data_world_index_changed() -> void:
+	var colors := PlayerData.get_world().background_colors
+	if colors:
+		_refresh_text_from_color_array(colors)
+		_refresh_from_text()
