@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://sn44oyirw2l7"]
 
 [ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://src/demo/BackgroundDemoCustomTab.tscn" id="3_yt2y2"]
-[ext_resource type="PackedScene" path="res://src/demo/BackgroundDemoPresetTab.tscn" id="4_dk6re"]
+[ext_resource type="PackedScene" uid="uid://oymla7s4a4pn" path="res://src/demo/BackgroundDemoCustomTab.tscn" id="3_yt2y2"]
+[ext_resource type="PackedScene" uid="uid://cukg5duqtr381" path="res://src/demo/BackgroundDemoPresetTab.tscn" id="4_dk6re"]
 [ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="4_ikoou"]
 
 [node name="BackgroundDemo" type="Node"]
