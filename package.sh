@@ -23,6 +23,15 @@ if [ -f "$html5_zip_filename" ]; then
   rm "$html5_zip_filename"
 fi
 
+linux_export_filename="project/export/linux-x11/frog-finder-linux-v$version.x86_64.zip"
+linux_new_filename="project/export/linux-x11/frog-finder-linux-v$version.zip"
+
+# Rename the linux zip file
+if [ -f "$linux_export_filename" ]; then
+  echo "Renaming $linux_export_filename to $linux_new_filename"
+  mv -f "$linux_export_filename" "$linux_new_filename"
+fi
+
 # Assemble the html5 zip file
 echo "Packaging $html5_zip_filename"
 zip "$html5_zip_filename" "$html5_export_path/*" -x "*.zip" "$html5_export_path/.*" "*.import" -j
