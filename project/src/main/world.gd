@@ -10,6 +10,8 @@ extends Object
 ## Only certain letters are allowed in titles. Illegal letters will log a warning and show up as a blank space.
 var title: String
 
+var background_colors: Array[Color]
+
 ## List of intermission dances.
 ##
 ## The first dance in the list is mandatory, and the frogs will always perform it. The other dances are optional, and
@@ -47,6 +49,8 @@ func from_json_dict(json: Dictionary) -> void:
 	intermission_tweak_name = json.get("intermission_tweak", "")
 	missions.assign(json.get("missions", []))
 	shark_song = json.get("shark_song", "")
+	for background_color_code in json.get("background_colors", []):
+		background_colors.append(Color(background_color_code))
 	
 	if intermission_tweak_name:
 		intermission_tweak_scene = load(intermission_tweak_name)
