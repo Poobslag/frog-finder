@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpdupikkgdltm"]
+[gd_scene load_steps=8 format=3 uid="uid://dpdupikkgdltm"]
 
 [ext_resource type="PackedScene" uid="uid://bnfmcycpqtjm7" path="res://src/main/ControlParallaxer.tscn" id="1_oy7wx"]
+[ext_resource type="Texture2D" uid="uid://bk4771hkvoy76" path="res://assets/main/world-3-hive-1.png" id="2_qc1pu"]
+[ext_resource type="Texture2D" uid="uid://bjrk6s77wxu83" path="res://assets/main/world-3-hive-2.png" id="3_n0us8"]
+[ext_resource type="Texture2D" uid="uid://804w4njdf1k4" path="res://assets/main/world-3-table.png" id="4_l8myb"]
+[ext_resource type="Texture2D" uid="uid://jxyj8tcudqc3" path="res://assets/main/world-3-stake.png" id="5_rsu14"]
+[ext_resource type="Texture2D" uid="uid://ckj0rv137wmgq" path="res://assets/main/world-3-tree-1.png" id="6_dx0vo"]
+[ext_resource type="Texture2D" uid="uid://bkfws3cfvsp57" path="res://assets/main/world-3-tree-2.png" id="7_kv4je"]
 
 [node name="World3Decorations" type="Control"]
 layout_mode = 3
@@ -9,3 +15,101 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ControlParallaxer" parent="." instance=ExtResource("1_oy7wx")]
+
+[node name="Hive1" type="Sprite2D" parent="."]
+position = Vector2(280, 518)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qc1pu")
+
+[node name="Hive2" type="Sprite2D" parent="."]
+position = Vector2(907, 200)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_n0us8")
+
+[node name="Hive3" type="Sprite2D" parent="."]
+position = Vector2(46, 493)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qc1pu")
+flip_h = true
+
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(661, 351)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_l8myb")
+
+[node name="Stake1" type="Sprite2D" parent="."]
+position = Vector2(214, 389)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_rsu14")
+
+[node name="Tree3" type="Sprite2D" parent="."]
+position = Vector2(-44, 243)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+
+[node name="Tree2" type="Sprite2D" parent="."]
+position = Vector2(52, 288)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_kv4je")
+flip_h = true
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(151, 332)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+
+[node name="Stake2" type="Sprite2D" parent="."]
+position = Vector2(374.5, 289)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_rsu14")
+flip_h = true
+
+[node name="Tree10" type="Sprite2D" parent="."]
+position = Vector2(1, 99)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+flip_h = true
+
+[node name="Tree4" type="Sprite2D" parent="."]
+position = Vector2(116.5, 143)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+
+[node name="Tree5" type="Sprite2D" parent="."]
+position = Vector2(212.5, 188)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_kv4je")
+flip_h = true
+
+[node name="Tree6" type="Sprite2D" parent="."]
+position = Vector2(311.5, 232)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+
+[node name="Stake3" type="Sprite2D" parent="."]
+position = Vector2(546.5, 174)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_rsu14")
+
+[node name="Tree11" type="Sprite2D" parent="."]
+position = Vector2(178, -21)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+
+[node name="Tree7" type="Sprite2D" parent="."]
+position = Vector2(288.5, 28)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+flip_h = true
+
+[node name="Tree8" type="Sprite2D" parent="."]
+position = Vector2(384.5, 73)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_kv4je")
+flip_h = true
+
+[node name="Tree9" type="Sprite2D" parent="."]
+position = Vector2(483.5, 117)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_dx0vo")
+flip_h = true
