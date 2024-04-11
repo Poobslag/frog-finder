@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bk510glt84fg5" path="res://src/main/WideWowSprite.tscn" id="2_tby1o"]
 [ext_resource type="Script" path="res://src/main/level-buttons.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="4"]
-[ext_resource type="Texture2D" uid="uid://cvkx7y05203ka" path="res://assets/main/world-x-buttons-sheet.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cgkapa1mqnj75" path="res://assets/main/world-3-buttons-sheet.png" id="5_2g0jd"]
 
 [node name="World3Buttons" type="Control"]
 layout_mode = 3
@@ -32,7 +32,7 @@ offset_left = 342.0
 offset_top = 341.0
 offset_right = 422.0
 offset_bottom = 421.0
-icon_texture = ExtResource("7")
+icon_texture = ExtResource("5_2g0jd")
 
 [node name="Level2" parent="." instance=ExtResource("4")]
 unique_name_in_owner = true
@@ -40,7 +40,7 @@ offset_left = 422.0
 offset_top = 341.0
 offset_right = 502.0
 offset_bottom = 421.0
-icon_texture = ExtResource("7")
+icon_texture = ExtResource("5_2g0jd")
 icon_index = 3
 
 [node name="Level3" parent="." instance=ExtResource("4")]
@@ -49,7 +49,7 @@ offset_left = 502.0
 offset_top = 341.0
 offset_right = 582.0
 offset_bottom = 421.0
-icon_texture = ExtResource("7")
+icon_texture = ExtResource("5_2g0jd")
 icon_index = 6
 
 [node name="Next" parent="." instance=ExtResource("4")]
