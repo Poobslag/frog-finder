@@ -140,8 +140,8 @@ func _load_raw_json_data() -> void:
 	var arrangements_json: Array = test_json_conv.get_data()
 	for picture_untyped in arrangements_json:
 		var picture: Array[String] = []
-		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
-		# type hints
+		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays
+		# using type hints
 		picture.assign(picture_untyped)
 		var positions := positions_from_picture(picture)
 		if not _arrangements_by_frog_count.has(positions.size()):

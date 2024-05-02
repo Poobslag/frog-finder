@@ -118,7 +118,8 @@ func _on_think_timer_timeout() -> void:
 		else:
 			if friend and not friend.is_hugging() and (run_target - _frog.global_position).length() > PINCER_DISTANCE:
 				# our friend will help us; don't run towards the hand, run behind our friend
-				run_target = friend.global_position + (friend.global_position - run_target).normalized() * PINCER_DISTANCE
+				run_target = friend.global_position + (friend.global_position - run_target).normalized() \
+						* PINCER_DISTANCE
 			else:
 				# we have no friend; run towards the hand
 				pass

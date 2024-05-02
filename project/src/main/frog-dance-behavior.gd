@@ -153,8 +153,8 @@ func _decide_dance_names() -> Array[String]:
 		
 		if not result.is_empty():
 			var new_dance_names: Array[String] = []
-			# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
-			# type hints
+			# workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays
+			# using type hints
 			new_dance_names.assign(Utils.subtract(possible_dance_names, [result.back()]))
 			possible_dance_names = new_dance_names
 		result.append(Utils.rand_value(possible_dance_names))

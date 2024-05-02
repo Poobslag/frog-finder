@@ -321,8 +321,8 @@ func _on_level_cards_before_card_flipped(card: CardControl) -> void:
 func _on_level_cards_before_shark_found(shark_card: CardControl) -> void:
 	var adjacent_face_up_cards := _adjacent_face_up_cards(shark_card)
 	if not _red_or_adjacent_to_red(shark_card):
-		# if the player doesn't a card that's red, or next to a red card -- we reveal a sea of sharks and fish under the blue
-		# cards.
+		# if the player doesn't a card that's red, or next to a red card -- we reveal a sea of sharks and fish under
+		# the blue cards.
 		for card in level_cards.get_cards():
 			if card == shark_card:
 				continue
