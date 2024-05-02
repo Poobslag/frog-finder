@@ -1,7 +1,7 @@
 extends GutTest
 
 func test_positions_from_picture_triangle() -> void:
-	var picture := [
+	var picture: Array[String] = [
 		"  1  ",
 		"     ",
 		" 2 6 ",
@@ -20,7 +20,7 @@ func test_positions_from_picture_triangle() -> void:
 
 
 func test_positions_from_picture_offset() -> void:
-	var picture := [
+	var picture: Array[String] = [
 		"     ",
 		"   1 ",
 		"     ",

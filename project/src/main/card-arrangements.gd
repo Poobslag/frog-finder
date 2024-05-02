@@ -49,8 +49,8 @@ func _ready() -> void:
 	_load_raw_json_data()
 
 
-func get_card_positions(mission_string: String) -> Array:
-	var result: Array = _card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
+func get_card_positions(mission_string: String) -> Array[Vector2]:
+	var result: Array[Vector2] = _card_positions_by_mission_string.get(mission_string, DEFAULT_CARD_POSITIONS)
 	
 	# cheat is enabled; just one frog
 	if one_frog_cheat:
@@ -80,7 +80,7 @@ func get_card_positions(mission_string: String) -> Array:
 ## Returns:
 ## 	An array of Vector2 instances defining an ordering of card positions, measured in card widths. For example,
 ## 	[2, 0.5] corresponds to a card in the third column, and half-way between the first and second rows.
-func positions_from_picture(picture: Array) -> Array:
+func positions_from_picture(picture: Array[String]) -> Array[Vector2]:
 	# key: (int) char index like '1' or '11' corresponding to the picture characters '1' or 'b'
 	# value: (Vector2) coordinate in the picture
 	var coords_by_char_index := {}
@@ -110,7 +110,7 @@ func positions_from_picture(picture: Array) -> Array:
 	sorted_char_indexes.sort()
 	
 	# convert picture positions like [2, 7] into card positions like [1.0, 3.5]
-	var positions := []
+	var positions: Array[Vector2] = []
 	for char_index in sorted_char_indexes:
 		positions.append(coords_by_char_index[char_index] * Vector2(0.5, 0.5))
 	
@@ -126,6 +126,9 @@ func _load_raw_json_data() -> void:
 	test_json_conv.parse(arrangements_text)
 	var arrangements_json: Dictionary = test_json_conv.get_data()
 	for mission_string in arrangements_json:
-		var picture: Array = arrangements_json[mission_string]
+		var picture: Array[String] = []
+		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+		# type hints
+		picture.assign(arrangements_json[mission_string])
 		var positions := positions_from_picture(picture)
 		_card_positions_by_mission_string[mission_string] = positions

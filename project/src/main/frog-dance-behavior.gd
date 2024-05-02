@@ -17,7 +17,7 @@ const DESYNC_THRESHOLD_MSEC := 100
 const REACHED_TARGET_DISTANCE := 20.0
 
 ## RunningFrog instances participating in the current dance. The first frog is the leader.
-var frogs: Array
+var frogs: Array[RunningFrog]
 
 var dance_target: Vector2
 
@@ -140,10 +140,10 @@ func perform_dance_move(dance_move_index: int) -> void:
 ## Calculates a set of dance names the frogs will do.
 ##
 ## The frogs cycle through four dances. It's possible to repeat a dance, but never back-to-back.
-func _decide_dance_names() -> Array:
-	var result := []
+func _decide_dance_names() -> Array[String]:
+	var result: Array[String] = []
 	for _i in range(4):
-		var possible_dance_names: Array[String]
+		var possible_dance_names: Array[String] = []
 		if PlayerData.get_world().dances:
 			# select from one of a few preset dances for the world
 			possible_dance_names.assign(PlayerData.get_world().dances)
@@ -175,16 +175,22 @@ func _decide_dance_names() -> Array:
 ##
 ## A set of dance names is something like ['hips' 'coy' 'hips' 'shuffle'], but this method breaks them down into
 ## animation names and frames, like 'hips1_flip coy2 hips2 22 !21 21 23'
-func _decide_dance_moves(dance_names: Array) -> String:
-	var result := []
+func _decide_dance_moves(dance_names: Array[String]) -> String:
+	var result: Array[String] = []
 	## determine the animation names for the first three dances
 	for i in range(3):
-		var possible_animation_names: Array = %DanceAnimations.animation_names_by_dance_name[dance_names[i]]
+		var possible_animation_names: Array[String] = []
+		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays
+		# using type hints
+		possible_animation_names.assign(%DanceAnimations.animation_names_by_dance_name[dance_names[i]])
 		result.append(Utils.rand_value(possible_animation_names))
 	
 	## determine the animation frames for the four final poses of the fourth dance
-	var all_pose_frames: Array = %DanceAnimations.frames_by_dance_name[dance_names[3]]
-	var new_dance_moves := []
+	var all_pose_frames: Array[int] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	all_pose_frames.assign(%DanceAnimations.frames_by_dance_name[dance_names[3]])
+	var new_dance_moves: Array[int] = []
 	for i in range(4):
 		new_dance_moves.append(Utils.rand_value(all_pose_frames) * Utils.rand_value([-1, 1]))
 		if i >= 1 and new_dance_moves[i] == new_dance_moves[i - 1]:

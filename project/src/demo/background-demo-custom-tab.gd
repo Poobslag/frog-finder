@@ -13,7 +13,7 @@ func _ready() -> void:
 	# remove all color pickers
 	_refresh_picker_row_count(0)
 	
-	var colors := []
+	var colors: Array[Color] = []
 	for _i in range(5):
 		colors.append(background.random_texture_color())
 	
@@ -32,16 +32,16 @@ func _refresh_text_from_picker_buttons() -> void:
 
 
 ## Refreshes the TextEdit contents from the specified color array.
-func _refresh_text_from_color_array(colors: Array) -> void:
-	var color_strings := []
+func _refresh_text_from_color_array(colors: Array[Color]) -> void:
+	var color_strings: Array[String] = []
 	for color in colors:
 		color_strings.append(color.to_html(false))
 	%TextEdit.text = JSON.stringify(color_strings)
 
 
 ## Calculate the color strings from our picker rows.
-func _colors_from_picker_buttons() -> Array:
-	var colors := []
+func _colors_from_picker_buttons() -> Array[Color]:
+	var colors: Array[Color] = []
 	for picker_row_obj in get_tree().get_nodes_in_group("picker_rows"):
 		var picker_row: BackgroundDemoPickerRow = picker_row_obj
 		colors.append(picker_row.color)
@@ -77,8 +77,8 @@ func _refresh_from_text() -> void:
 ##
 ## Returns:
 ## 	A list of Color instances parsed from the TextEdit contents.
-func _parse_colors_from_text() -> Array:
-	var parsed_colors := []
+func _parse_colors_from_text() -> Array[Color]:
+	var parsed_colors: Array[Color] = []
 	
 	var test_json_conv := JSON.new()
 	test_json_conv.parse(%TextEdit.text)
@@ -111,7 +111,7 @@ func _refresh_picker_row_count(new_picker_row_count: int) -> void:
 ##
 ## Parameters:
 ## 	'new_colors': A list of Color instances to assign to the picker rows.
-func _refresh_picker_row_colors(new_colors: Array) -> void:
+func _refresh_picker_row_colors(new_colors: Array[Color]) -> void:
 	var picker_rows := get_tree().get_nodes_in_group("picker_rows")
 	for i in range(picker_rows.size()):
 		picker_rows[i].color = new_colors[i]

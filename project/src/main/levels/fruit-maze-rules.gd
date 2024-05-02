@@ -76,7 +76,7 @@ var _wrong_outer_fruit_cells_by_details := {}
 var _fork_counts_per_fruit := {}
 
 ## Queue of CardControls for cards the player has seen. The front of the queue corresponds to the oldest card.
-var _shown_card_queue := []
+var _shown_card_queue: Array[CardControl] = []
 
 var _correct_outer_fruit_detail := ""
 var _found_correct_inner_fruit := false
@@ -248,7 +248,10 @@ func add_cards() -> void:
 	# reveal center card
 	var center_card := level_cards.get_card(CENTER_CELL_POS)
 	center_card.card_front_type = CardControl.CardType.HEX_ARROW
-	var hex_arrow_details: Array = HEX_ARROW_DETAILS_BY_ARROW_COUNT[inner_fruit_count]
+	var hex_arrow_details: Array[String] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	hex_arrow_details.assign(HEX_ARROW_DETAILS_BY_ARROW_COUNT[inner_fruit_count])
 	var hex_arrow_detail: String = Utils.rand_value(hex_arrow_details)
 	center_card.card_front_details = hex_arrow_detail
 	center_card.show_front()
@@ -301,7 +304,7 @@ func _hide_outer_fruits() -> void:
 	for outer_fruit_cell in _outer_fruit_cells:
 		level_cards.get_card(outer_fruit_cell).hide_front()
 	
-	var inner_fruit_details := []
+	var inner_fruit_details: Array[String] = []
 	for inner_fruit_cell in _inner_fruit_cells:
 		var inner_fruit_card := level_cards.get_card(inner_fruit_cell)
 		inner_fruit_details.append(inner_fruit_card.card_front_details)
@@ -337,7 +340,7 @@ func _before_premature_frog_flipped(card: CardControl) -> void:
 	_correct_outer_fruit_detail = wrong_outer_fruit_detail
 
 
-func _available_fish_forks(card: CardControl, dir_count: int) -> Array:
+func _available_fish_forks(card: CardControl, dir_count: int) -> Array[String]:
 	var card_pos := level_cards.get_cell_pos(card)
 	var available_dir_strings := {}
 	for dir_string in ["n", "e", "f", "s", "x", "w"]:
@@ -352,7 +355,7 @@ func _available_fish_forks(card: CardControl, dir_count: int) -> Array:
 		available_dir_strings[dir_string] = true
 	
 	# which adjacent non-fruit cards haven't been flipped?
-	var valid_fork_strings := []
+	var valid_fork_strings: Array[String] = []
 	for fork_string in HEX_ARROW_DETAILS_BY_ARROW_COUNT[dir_count]:
 		# is this a valid fork string?
 		var valid_fork_string := true

@@ -75,7 +75,7 @@ func refresh_level_cards() -> void:
 
 func add_cards() -> void:
 	_cell_pos_to_revealed_letter.clear()
-	var aliaxes: Array
+	var aliaxes: Array[String]
 	
 	match puzzle_difficulty:
 		0:
@@ -226,8 +226,8 @@ func _aliax(card_word: String, english_word: String = "") -> String:
 ##
 ## Returns:
 ## 	A list of aliaxes like ['frog/frog', 'shark/shark']
-func _aliaxes(words: Array) -> Array:
-	var result := []
+func _aliaxes(words: Array[String]) -> Array[String]:
+	var result: Array[String] = []
 	for word in words:
 		result.append(_aliax(word))
 	return result
@@ -287,7 +287,7 @@ func _replace_letters(aliax: String, replacement: String, chance: float) -> Stri
 
 
 ## Replaces aliaxes with 'troll aliaxes'.
-func _trollify_aliaxes(aliaxes: Array, count: int) -> Array:
+func _trollify_aliaxes(aliaxes: Array[String], count: int) -> Array[String]:
 	var troll_aliax_indexes := range(aliaxes.size())
 	troll_aliax_indexes.shuffle()
 	troll_aliax_indexes = troll_aliax_indexes.slice(0, count)

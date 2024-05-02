@@ -115,14 +115,13 @@ func add_cards() -> void:
 	# fill in the rest of the grid randomly, but make sure to never add the last letter in the word 'frog'
 	var cards := level_cards.get_cards()
 	cards.shuffle()
-	for card_obj in cards:
-		if card_obj in _frog_word_cards:
+	for card in cards:
+		if card in _frog_word_cards:
 			continue
 		
 		if not randf() < _frog_letter_chance:
 			continue
 		
-		var card: CardControl = card_obj
 		var frog_letters := ["f", "r", "o", "g"]
 		frog_letters.shuffle()
 		var good_letter := false

@@ -22,9 +22,9 @@ const FROG_DELAYS := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 ]
 
-var cards: Array = []
-var sharks: Array = []
-var frogs: Array = []
+var cards: Array[CardControl] = []
+var sharks: Array[RunningShark] = []
+var frogs: Array[RunningFrog] = []
 
 ## key: (RunningFrog) frog
 ## value: (RunningFrog) friend
@@ -54,7 +54,7 @@ func restart(mission_string: String) -> void:
 	next_card_index = 0
 	cards.clear()
 	_intermission_cards.reset()
-	var card_positions: Array = CardArrangements.get_card_positions(mission_string)
+	var card_positions: Array[Vector2] = CardArrangements.get_card_positions(mission_string)
 	for i in range(card_positions.size()):
 		var card := _intermission_cards.create_card()
 		_intermission_cards.add_card(card, card_positions[i])
@@ -111,7 +111,7 @@ func start_frog_hug_timer(huggable_fingers: int, new_max_frogs: int) -> void:
 
 
 func start_frog_dance(frog_count: int) -> void:
-	var dance_frogs := []
+	var dance_frogs: Array[RunningFrog] = []
 	
 	# spawn frogs
 	for _i in range(frog_count):
@@ -231,7 +231,7 @@ func _chase(frog: RunningFrog) -> void:
 
 
 ## Puts a frog into 'dance mode'.
-func _dance(frog: RunningFrog, dance_frogs: Array, dance_target: Vector2) -> void:
+func _dance(frog: RunningFrog, dance_frogs: Array[RunningFrog], dance_target: Vector2) -> void:
 	frog.dance(dance_frogs, dance_target)
 
 

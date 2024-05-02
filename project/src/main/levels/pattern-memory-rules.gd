@@ -19,7 +19,7 @@ var _cards_to_hide := 99
 var _remaining_cards_without_hiding := 0
 var _allowed_hidden_lizard_count := 0
 var _shark_chance := 0.5
-var _unhidden_cards := []
+var _unhidden_cards: Array[CardControl] = []
 
 func refresh_level_cards() -> void:
 	if not level_cards:

@@ -65,12 +65,20 @@ func get_cell_pos(card: CardControl) -> Vector2:
 	return cell_positions_by_card.get(card)
 
 
-func get_cards() -> Array:
-	return cell_positions_by_card.keys()
+func get_cards() -> Array[CardControl]:
+	var cards: Array[CardControl] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	cards.assign(cell_positions_by_card.keys())
+	return cards
 
 
-func get_cell_positions() -> Array:
-	return cards_by_cell_pos.keys()
+func get_cell_positions() -> Array[Vector2]:
+	var cell_positions: Array[Vector2] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	cell_positions.assign(cards_by_cell_pos.keys())
+	return cell_positions
 
 
 func reset() -> void:

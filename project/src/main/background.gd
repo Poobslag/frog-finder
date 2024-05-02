@@ -99,7 +99,7 @@ func _random_texture_color_for_world() -> Color:
 	
 	if PlayerData.get_world().background_colors:
 		# the world defines colors; return a random one
-		var possible_colors: Array = PlayerData.get_world().background_colors
+		var possible_colors := PlayerData.get_world().background_colors
 		if texture_color in possible_colors and possible_colors.size() >= 2:
 			# don't return the same color we're already using
 			possible_colors.remove_at(possible_colors.find(texture_color))

@@ -13,7 +13,7 @@ const COL_COUNT := 6
 
 ## Methods used to check whether two cells conflict. Cells conflict if they are in the same row, the same column, or
 ## the same 3x2 region.
-var _compare_methods := [
+var _compare_methods: Array[Callable] = [
 		## Returns 'true' if the two specified cells are in the same row.
 		func(pos_1: Vector2, pos_2: Vector2) -> bool:
 			return pos_1.y == pos_2.y,
@@ -191,8 +191,8 @@ func _hide_bad_moves(count: int) -> void:
 				break
 
 
-func _shown_lizard_cards() -> Array:
-	var result := []
+func _shown_lizard_cards() -> Array[CardControl]:
+	var result: Array[CardControl] = []
 	for card in level_cards.get_cards():
 		if card.is_front_shown() and card.card_front_type == CardControl.CardType.LIZARD:
 			result.append(card)
@@ -208,7 +208,7 @@ func _shown_lizard_cards() -> Array:
 ## 		by row, column, and 3x2 region
 func _conflicting_lizard(card: CardControl, method: Callable = Callable()) -> CardControl:
 	var result: CardControl
-	var methods: Array
+	var methods: Array[Callable]
 	if method:
 		# a comparator method was provided; find a lizard which conflicts in one specific way
 		methods = [method]

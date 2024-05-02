@@ -103,7 +103,8 @@ func _save_frames_by_dance_name() -> void:
 	
 	frames_by_dance_name.clear()
 	for dance_name in frame_sets_by_dance_name.keys():
-		var frames: Array = frame_sets_by_dance_name[dance_name].keys().duplicate()
+		var frames: Array[int] = []
+		frames.assign(frame_sets_by_dance_name[dance_name].keys())
 		frames.sort()
 		frames_by_dance_name[dance_name] = frames
 
@@ -176,7 +177,7 @@ func _flip_flip_h_track(animation: Animation, track_idx: int) -> void:
 func _flip_shimmy_key(animation: Animation, track_idx: int, key_idx: int) -> void:
 	var old_name := animation.method_track_get_name(track_idx, key_idx)
 	var old_params := animation.method_track_get_params(track_idx, key_idx)
-	var new_params := []
+	var new_params: Array[Vector2] = []
 	for old_param in old_params:
 		new_params.append(old_param * Vector2(-1, 1))
 	
