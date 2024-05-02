@@ -46,6 +46,8 @@ func add_cards() -> void:
 	var revealed_lizard_count := 0
 	var revealed_bad_move_count := 0
 	var hidden_bad_move_count := 0
+	
+	# if 'true', one full row, column or 3x2 region of "bad moves" will be revealed
 	var easy_reveal := false
 	
 	match puzzle_difficulty:
@@ -108,8 +110,8 @@ func add_cards() -> void:
 	var cell_positions := level_cards.get_cell_positions()
 	cell_positions.shuffle()
 	for cell_pos in cell_positions:
-		var row: int = cell_pos.y
-		var col: int = cell_pos.x
+		var row: int = int(cell_pos.y)
+		var col: int = int(cell_pos.x)
 		var region := _region(cell_pos)
 		var card := level_cards.get_card(cell_pos)
 		
@@ -181,7 +183,7 @@ func _hide_bad_moves(count: int) -> void:
 	var cards := level_cards.get_cards()
 	cards.shuffle()
 	for card in cards:
-		if card.is_front_shown() and card.card_front_type == CardControl.CardType.FISH\
+		if card.is_front_shown() and card.card_front_type == CardControl.CardType.FISH \
 				and _conflicting_lizard(card):
 			card.hide_front()
 			remaining -= 1

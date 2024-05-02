@@ -188,6 +188,7 @@ func add_cards() -> void:
 		var aliax_cell_pos := Vector2(randi_range(0, 2), i)
 		
 		# shift short aliaxes to the right to keep them centered
+		@warning_ignore("integer_division")
 		aliax_cell_pos.x += int(3 - aliaxes[i].length() / 2)
 		
 		_add_aliax(aliaxes[i], aliax_cell_pos)
