@@ -3,7 +3,7 @@ extends MarginContainer
 ##
 ## This demo is useful for testing the game's logic for picking preset colors.
 
-const MAX_WORLD_INDEX := 99
+const MAX_WORLD_INDEX := 2
 
 @export var background: Background
 

@@ -26,6 +26,9 @@ var cards: Array[CardControl] = []
 var sharks: Array[RunningShark] = []
 var frogs: Array[RunningFrog] = []
 
+## Stores relationships between 'frogs' and 'friends'. Friends affects a frog's pathfinding. As long as a frog's friend
+## is chasing the hand, the frog will chase their friend instead. This prevents frogs from clustering too tightly.
+##
 ## key: (RunningFrog) frog
 ## value: (RunningFrog) friend
 var friends_by_frog := {}
