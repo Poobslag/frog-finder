@@ -52,6 +52,7 @@ func _save_dances() -> void:
 	_save_dance_names()
 	_save_animation_names_by_dance_name()
 	_save_frames_by_dance_name()
+	notify_property_list_changed()
 
 
 ## Populates dance_names with animations from our animation list.
