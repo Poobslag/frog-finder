@@ -127,8 +127,8 @@ func _load_raw_json_data() -> void:
 	var arrangements_json: Dictionary = test_json_conv.get_data()
 	for mission_string in arrangements_json:
 		var picture: Array[String] = []
-		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
-		# type hints
+		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays
+		# using type hints
 		picture.assign(arrangements_json[mission_string])
 		var positions := positions_from_picture(picture)
 		_card_positions_by_mission_string[mission_string] = positions
