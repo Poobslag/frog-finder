@@ -56,7 +56,7 @@ func chase(hand: Hand, friend: RunningFrog) -> void:
 ## Puts the frog into 'dance mode'.
 ##
 ## In dance mode, the frog runs to the middle of the screen, does a little dance and then runs away.
-func dance(frogs: Array, dance_target: Vector2) -> void:
+func dance(frogs: Array[RunningFrog], dance_target: Vector2) -> void:
 	%DanceBehavior.frogs = frogs
 	%DanceBehavior.dance_target = dance_target
 	_start_behavior(%DanceBehavior)

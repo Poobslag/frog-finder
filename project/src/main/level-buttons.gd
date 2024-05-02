@@ -18,7 +18,7 @@ signal level_pressed(level_index)
 @onready var _level_buttons := [%Level1, %Level2, %Level3]
 
 func _ready() -> void:
-	var main_menu_panels: Array = get_tree().get_nodes_in_group("main_menu_panels")
+	var main_menu_panels: Array[Node] = get_tree().get_nodes_in_group("main_menu_panels")
 	if main_menu_panels.size() == 1:
 		main_menu_panels[0].menu_shown.connect(_on_main_menu_panel_menu_shown)
 	else:

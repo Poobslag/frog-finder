@@ -22,7 +22,7 @@ const DEFAULT_TITLE := "fr?g f?nder"
 ## List of CardControl instances for frogs/sharks. These are cached so that when navigating the main menu, we don't
 ## give the player infinite opportunities to find new sharks. This would let the player find infinite frogs without
 ## ever playing the game!
-var _mystery_cards: Array = []
+var _mystery_cards: Array[CardControl] = []
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():

@@ -16,7 +16,7 @@ enum State {
 var state: int = State.ONE_FINGER : set = set_state
 
 ## List of int animation frames which the sprite should alternate between
-var wiggle_frames := []
+var wiggle_frames: Array[int] = []
 
 func _ready() -> void:
 	_refresh_state()

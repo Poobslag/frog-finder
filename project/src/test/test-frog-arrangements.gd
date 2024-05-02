@@ -1,7 +1,7 @@
 extends GutTest
 
 func test_positions_from_picture_triangle() -> void:
-	var picture := [
+	var picture: Array[String] = [
 		"  f  ",
 		"     ",
 		" f f ",
@@ -20,7 +20,7 @@ func test_positions_from_picture_triangle() -> void:
 
 
 func test_positions_from_picture_offset() -> void:
-	var picture := [
+	var picture: Array[String] = [
 		"     ",
 		"  f f",
 		"     ",
@@ -47,8 +47,7 @@ func test_no_duplicates() -> void:
 		# key: (String) string representation of an arrangement array
 		# value: (bool) true
 		var arrangement_strings := {}
-		for arrangement_obj in FrogArrangements.get_arrangements(i):
-			var arrangement: Array = arrangement_obj
+		for arrangement in FrogArrangements.get_arrangements(i):
 			var arrangement_string := str(arrangement)
 			assert_false(arrangement_strings.has(arrangement_string),
 					"Duplicate frog arrangement for size %s: %s" % [i, arrangement_string])

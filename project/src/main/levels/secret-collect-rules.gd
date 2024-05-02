@@ -95,7 +95,7 @@ func add_cards() -> void:
 	
 	# determine the positions for safely clickable fish, and positions for secrets.
 	# safely clickable fish are never adjacent
-	var potential_secret_positions := []
+	var potential_secret_positions: Array[Vector2] = []
 	var potential_fish_positions := remaining_card_positions.duplicate()
 	for _i in range(fish_count):
 		if potential_fish_positions.is_empty():
@@ -158,8 +158,8 @@ func _add_spoiler_arrow(frog_card_position: Vector2) -> void:
 			spoiler_card.card_front_details = "w"
 
 
-func _adjacent_cards(card: CardControl) -> Array:
-	var result := []
+func _adjacent_cards(card: CardControl) -> Array[CardControl]:
+	var result: Array[CardControl] = []
 	var card_position: Vector2 = level_cards.get_cell_pos(card)
 	for adjacent_direction in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
 		var adjacent_cell_pos: Vector2 = card_position + adjacent_direction
@@ -235,8 +235,8 @@ func _red_or_adjacent_to_red(card: CardControl) -> bool:
 	return result
 
 
-func _adjacent_face_up_cards(card: CardControl) -> Array:
-	var result := []
+func _adjacent_face_up_cards(card: CardControl) -> Array[CardControl]:
+	var result: Array[CardControl] = []
 	for adjacent_card in _adjacent_cards(card):
 		if adjacent_card.is_front_shown():
 			result.append(adjacent_card)

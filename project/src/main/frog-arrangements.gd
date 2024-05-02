@@ -35,7 +35,7 @@ var arrangements_path := DEFAULT_ARRANGEMENTS_PATH:
 		_load_raw_json_data()
 
 ## key: (int) Number of frogs in a frog dance
-## value: (Array, Vector2) Arrangements for the specified frog count, measured in frog widths
+## value: (Array, Array, Vector2) Arrangements for the specified frog count, measured in frog widths
 var _arrangements_by_frog_count := {
 }
 
@@ -60,15 +60,19 @@ func get_dancer_count(frog_dance_count: int) -> int:
 ##
 ## Returns:
 ## 	A list of coordinates like [[0, 0], [1, 0], [0, -0.5]] corresponding to the positions of frogs.
-func get_arrangement(frog_count: int) -> Array:
+func get_arrangement(frog_count: int) -> Array[Vector2]:
 	if not _arrangements_by_frog_count.has(frog_count):
 		return DEFAULT_FROG_POSITIONS
 	
 	return Utils.rand_value(_arrangements_by_frog_count[frog_count])
 
 
-func get_arrangements(frog_count: int) -> Array:
-	return _arrangements_by_frog_count[frog_count]
+func get_arrangements(frog_count: int) -> Array[Array]:
+	var result: Array[Array] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	result.assign(_arrangements_by_frog_count[frog_count])
+	return result
 
 
 ## Converts an ASCII picture into a list of coordinates.
@@ -93,8 +97,8 @@ func get_arrangements(frog_count: int) -> Array:
 ## Returns:
 ## 	An array of Vector2 instances defining frog positions, measured in frog widths. For example, [2, 0.5] corresponds
 ## 	to a position two frog widths to the left and one frog width behind the lead frog.
-func positions_from_picture(picture: Array) -> Array:
-	var coords := []
+func positions_from_picture(picture: Array[String]) -> Array[Vector2]:
+	var coords: Array[Vector2] = []
 	
 	# convert the picture to a key/value
 	for pic_y in range(picture.size()):
@@ -134,7 +138,11 @@ func _load_raw_json_data() -> void:
 	var test_json_conv := JSON.new()
 	test_json_conv.parse(arrangements_text)
 	var arrangements_json: Array = test_json_conv.get_data()
-	for picture in arrangements_json:
+	for picture_untyped in arrangements_json:
+		var picture: Array[String] = []
+		# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+		# type hints
+		picture.assign(picture_untyped)
 		var positions := positions_from_picture(picture)
 		if not _arrangements_by_frog_count.has(positions.size()):
 			_arrangements_by_frog_count[positions.size()] = []

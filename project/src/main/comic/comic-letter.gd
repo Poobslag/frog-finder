@@ -66,7 +66,10 @@ func _refresh_text() -> void:
 	if not is_inside_tree():
 		return
 	
-	var frame_indexes: Array = FRAME_INDEXES_BY_LETTER.get(text, EMPTY_FRAME_INDEXES)
+	var frame_indexes: Array[int] = []
+	# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed arrays using
+	# type hints
+	frame_indexes.assign(FRAME_INDEXES_BY_LETTER.get(text, EMPTY_FRAME_INDEXES))
 	
 	if Engine.is_editor_hint():
 		# don't randomize frames in the editor, it causes unnecessary churn in our .tscn files

@@ -40,12 +40,12 @@ var _loose_end_positions := {}
 var _unflipped_card_positions := {}
 
 ## Queue of CardControls for cards the player has seen. The front of the queue corresponds to the oldest card.
-var _shown_card_queue := []
+var _shown_card_queue: Array[CardControl]
 
 ## Queue of CardControls for arrow cards the player has seen. The front of the queue corresponds to the oldest card.
 ## Depending on the level difficulty, these cards may be hidden to force the player to rely on their memory instead of
 ## backtracking.
-var _unblanked_arrow_queue := []
+var _unblanked_arrow_queue: Array[CardControl]
 
 ## key: (CardControl) level card
 ## value: (String) card details string for the card's contents before it was blanked
@@ -172,8 +172,8 @@ func _arrowify_card(card: CardControl, card_front_details: String) -> void:
 			_loose_end_positions[arrow_card_position + direction] = true
 
 
-func _adjacent_cards(card: CardControl) -> Array:
-	var result := []
+func _adjacent_cards(card: CardControl) -> Array[CardControl]:
+	var result: Array[CardControl] = []
 	var card_position: Vector2 = level_cards.get_cell_pos(card)
 	for adjacent_direction in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
 		var adjacent_cell_pos: Vector2 = card_position + adjacent_direction
@@ -183,9 +183,9 @@ func _adjacent_cards(card: CardControl) -> Array:
 	return result
 
 
-func _adjacent_unflipped_dir_strings(card: CardControl) -> Array:
+func _adjacent_unflipped_dir_strings(card: CardControl) -> Array[String]:
 	var card_position := level_cards.get_cell_pos(card)
-	var adjacent_unflipped_dir_strings := []
+	var adjacent_unflipped_dir_strings: Array[String] = []
 	# otherwise, just keep extending the path
 	for dir_string in ["n", "s", "e", "w"]:
 		var direction: Vector2 = DIRECTIONS_BY_STRING[dir_string]
@@ -215,7 +215,7 @@ func _before_loose_end_flipped(card: CardControl) -> void:
 			# there are enough loose ends; this one can be a dead end
 			new_arrow_dir_string = ""
 		else:
-			var valid_forks := []
+			var valid_forks: Array[String] = []
 			if _loose_end_positions.size() + 2 <= _max_loose_end_count:
 				for fork in ["ne", "nw", "se", "sw", "ns", "ew"]:
 					if fork[0] in adjacent_unflipped_dir_strings and fork[1] in adjacent_unflipped_dir_strings:

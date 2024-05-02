@@ -317,7 +317,10 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			Utils.assign_card_texture(card_sprite, _mystery_sheet)
 			var mystery_index: int
 			if MYSTERY_INDEXES_BY_DETAILS.has(card_details):
-				var mystery_indexes: Array = MYSTERY_INDEXES_BY_DETAILS[card_details]
+				var mystery_indexes: Array[int] = []
+				# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed
+				# arrays using type hints
+				mystery_indexes.assign(MYSTERY_INDEXES_BY_DETAILS[card_details])
 				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
 				# from within a class generates a warning
 				@warning_ignore("static_called_on_instance")
@@ -329,7 +332,10 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			Utils.assign_card_texture(card_sprite, _letter_sheet)
 			var letter_index: int
 			if LETTER_INDEXES_BY_DETAILS.has(card_details):
-				var letter_indexes: Array = LETTER_INDEXES_BY_DETAILS[card_details]
+				var letter_indexes: Array[int] = []
+				# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed
+				# arrays using type hints
+				letter_indexes.assign(LETTER_INDEXES_BY_DETAILS[card_details])
 				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
 				# from within a class generates a warning
 				@warning_ignore("static_called_on_instance")
@@ -343,7 +349,10 @@ func _refresh_card_face(card_sprite: Sprite2D, card_type: int, card_details: Str
 			Utils.assign_card_texture(card_sprite, _arrow_sheet)
 			var arrow_index: int
 			if ARROW_INDEXES_BY_DETAILS.has(card_details):
-				var arrow_indexes: Array = ARROW_INDEXES_BY_DETAILS[card_details]
+				var arrow_indexes: Array[int] = []
+				# Workaround for Godot #72627 (https://github.com/godotengine/godot/issues/72627); Cannot cast typed
+				# arrays using type hints
+				arrow_indexes.assign(ARROW_INDEXES_BY_DETAILS[card_details])
 				# Workaround for Godot #69282 (https://github.com/godotengine/godot/issues/69282); calling static function
 				# from within a class generates a warning
 				@warning_ignore("static_called_on_instance")
