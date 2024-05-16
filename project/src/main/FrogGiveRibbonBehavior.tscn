@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://xivwdgu08d5q"]
+[gd_scene load_steps=3 format=3 uid="uid://dyt8gx52k8fj0"]
 
 [ext_resource type="Script" path="res://src/main/frog-give-ribbon-behavior.gd" id="1_ippur"]
 [ext_resource type="AudioStream" uid="uid://0bh5nrb6t4lb" path="res://assets/main/sfx/frog-ribbon.wav" id="2_ra1la"]

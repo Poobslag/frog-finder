@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="6_w52qk"]
 [ext_resource type="PackedScene" uid="uid://b4gqbolgkyiwd" path="res://src/main/CardControl.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://b6uvslmn4v51t" path="res://src/main/MusicControl.tscn" id="8_limnq"]
+[ext_resource type="PackedScene" uid="uid://gu3ngi46bxrb" path="res://src/main/MusicControl.tscn" id="8_limnq"]
 [ext_resource type="PackedScene" uid="uid://dqsc660xqwxyt" path="res://src/main/ui/menu/World2Buttons.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://cx8rtammgc8yh" path="res://assets/main/frog-frame-00-sheet.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://blb4vrsohwask" path="res://assets/main/lizard-sheet.png" id="11"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c0h2b4udal4qg" path="res://src/main/ui/menu/World1Buttons.tscn" id="19"]
 [ext_resource type="Script" path="res://src/main/ui/menu/level-button-holder.gd" id="20"]
 [ext_resource type="PackedScene" uid="uid://blr3fsts3n8wb" path="res://src/main/World2Decorations.tscn" id="21"]
-[ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="21_b4key"]
+[ext_resource type="PackedScene" uid="uid://6d3r3vr4rg0o" path="res://src/main/GameState.tscn" id="21_b4key"]
 [ext_resource type="PackedScene" uid="uid://dpdupikkgdltm" path="res://src/main/World3Decorations.tscn" id="22"]
 [ext_resource type="PackedScene" uid="uid://bknjwua3ybkww" path="res://src/main/World1Decorations.tscn" id="23"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6uvslmn4v51t"]
+[gd_scene load_steps=5 format=3 uid="uid://gu3ngi46bxrb"]
 
 [ext_resource type="Script" path="res://src/main/music-control.gd" id="1_sg3ni"]
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="2_wd3ao"]

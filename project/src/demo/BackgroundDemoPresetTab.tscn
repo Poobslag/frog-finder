@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cukg5duqtr381"]
+[gd_scene load_steps=3 format=3 uid="uid://b5rmdi8ehqsx1"]
 
 [ext_resource type="Script" path="res://src/demo/background-demo-preset-tab.gd" id="1_oahcl"]
 [ext_resource type="Theme" uid="uid://cnmvsalviybmg" path="res://src/main/ui/menu/theme/h4.theme" id="2_sv4ti"]

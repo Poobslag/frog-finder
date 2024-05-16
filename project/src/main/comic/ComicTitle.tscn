@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxarbw5254db"]
+[gd_scene load_steps=3 format=3 uid="uid://s2hg316hwdar"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-title.gd" id="1_1stxg"]
 [ext_resource type="PackedScene" uid="uid://d1kdkkkgqhpm" path="res://src/main/comic/ComicLetter.tscn" id="2_7jhcl"]

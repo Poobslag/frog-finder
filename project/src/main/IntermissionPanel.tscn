@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_ygcmr"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="2_3o2pr"]
-[ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="4_t3el2"]
+[ext_resource type="PackedScene" uid="uid://6d3r3vr4rg0o" path="res://src/main/GameState.tscn" id="4_t3el2"]
 [ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://dp8d8k3cis08f" path="res://src/main/WowSprite.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="6_sagco"]

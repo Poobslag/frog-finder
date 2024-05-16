@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0h2b4udal4qg"]
 
 [ext_resource type="Texture2D" uid="uid://1hfy3q1juhfj" path="res://assets/main/arrow-sheet.png" id="1"]
-[ext_resource type="PackedScene" uid="uid://bk510glt84fg5" path="res://src/main/WideWowSprite.tscn" id="2_dw5kk"]
+[ext_resource type="PackedScene" uid="uid://dauo6v644mt6n" path="res://src/main/WideWowSprite.tscn" id="2_dw5kk"]
 [ext_resource type="Script" path="res://src/main/level-buttons.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://crlgaobru7nl" path="res://assets/main/world-1-buttons-sheet.png" id="7"]

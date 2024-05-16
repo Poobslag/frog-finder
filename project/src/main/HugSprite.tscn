@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccnv0lxmse2ko"]
+[gd_scene load_steps=3 format=3 uid="uid://bk1x5br54yovh"]
 
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="1_gm7vj"]
 [ext_resource type="Texture2D" uid="uid://ddu0thu3dp057" path="res://assets/main/hug-sheet.png" id="1_h2nqv"]

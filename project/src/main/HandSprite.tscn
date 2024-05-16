@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://w0mts35bfghx"]
+[gd_scene load_steps=4 format=3 uid="uid://cax7r4fmy2eng"]
 
 [ext_resource type="Texture2D" uid="uid://cke64hk8y4kr8" path="res://assets/main/hand-sheet.png" id="1_jvhn7"]
 [ext_resource type="Script" path="res://src/main/hand-sprite.gd" id="2_4vj6t"]
