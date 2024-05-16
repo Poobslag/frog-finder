@@ -370,7 +370,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0, 5)
+"times": PackedFloat32Array(0.001, 5)
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -807,7 +807,7 @@ tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0, 4)
+"times": PackedFloat32Array(0.001, 4)
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1644,7 +1644,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": PackedStringArray("RESET", "play", "play", "play", "play"),
-"times": PackedFloat32Array(0, 0.875, 1.375, 2.375, 2.875)
+"times": PackedFloat32Array(0.001, 0.875, 1.375, 2.375, 2.875)
 }
 tracks/4/type = "value"
 tracks/4/imported = false
