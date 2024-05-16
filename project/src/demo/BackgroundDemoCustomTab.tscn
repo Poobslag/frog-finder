@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://oymla7s4a4pn"]
+[gd_scene load_steps=3 format=3 uid="uid://dncx4kqpb3dga"]
 
 [ext_resource type="Script" path="res://src/demo/background-demo-custom-tab.gd" id="1_vyxk3"]
-[ext_resource type="PackedScene" uid="uid://cn8xedg15n2hn" path="res://src/demo/BackgroundDemoPickerRow.tscn" id="2_vw3mi"]
+[ext_resource type="PackedScene" uid="uid://8md7tymitc3w" path="res://src/demo/BackgroundDemoPickerRow.tscn" id="2_vw3mi"]
 
 [node name="Custom" type="MarginContainer"]
 theme_override_constants/margin_left = 25

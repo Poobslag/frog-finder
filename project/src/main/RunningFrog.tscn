@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://src/main/running-frog.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://jfg0guj682cn" path="res://assets/main/frog-sheet.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://d0wv3te6a0ylo" path="res://src/main/FrogChaseBehavior.tscn" id="3_ax3mi"]
-[ext_resource type="PackedScene" uid="uid://d2owesorfjclk" path="res://src/main/FrogDanceBehavior.tscn" id="4_pxx3o"]
-[ext_resource type="PackedScene" uid="uid://xivwdgu08d5q" path="res://src/main/FrogGiveRibbonBehavior.tscn" id="5_jxkvb"]
+[ext_resource type="PackedScene" uid="uid://cjrl412odiwd6" path="res://src/main/FrogChaseBehavior.tscn" id="3_ax3mi"]
+[ext_resource type="PackedScene" uid="uid://nsrvdoqko8af" path="res://src/main/FrogDanceBehavior.tscn" id="4_pxx3o"]
+[ext_resource type="PackedScene" uid="uid://dyt8gx52k8fj0" path="res://src/main/FrogGiveRibbonBehavior.tscn" id="5_jxkvb"]
 
 [sub_resource type="Animation" id="3"]
 length = 0.001

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2m7wha5f6kuj"]
+[gd_scene load_steps=5 format=3 uid="uid://cwmsgbbnkfhuh"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-panel.gd" id="1_xt8py"]
 

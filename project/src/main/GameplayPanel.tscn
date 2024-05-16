@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://dwuudlvawkj6" path="res://src/main/ui/menu/rounded-style-box.tres" id="1_hyfi8"]
 [ext_resource type="Script" path="res://src/main/gameplay-panel.gd" id="2_5x0xm"]
 [ext_resource type="PackedScene" uid="uid://dsf2oyh5o36hf" path="res://src/main/CardShadows.tscn" id="3_25m06"]
-[ext_resource type="PackedScene" uid="uid://ivpq8dumgu7a" path="res://src/main/GameState.tscn" id="4_gima3"]
+[ext_resource type="PackedScene" uid="uid://6d3r3vr4rg0o" path="res://src/main/GameState.tscn" id="4_gima3"]
 [ext_resource type="Script" path="res://src/main/level-cards.gd" id="5_8swc1"]
 
 [node name="GameplayPanel" type="Panel"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0wv3te6a0ylo"]
+[gd_scene load_steps=2 format=3 uid="uid://cjrl412odiwd6"]
 
 [ext_resource type="Script" path="res://src/main/frog-chase-behavior.gd" id="1_80ava"]
 

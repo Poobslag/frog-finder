@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk510glt84fg5"]
+[gd_scene load_steps=3 format=3 uid="uid://dauo6v644mt6n"]
 
 [ext_resource type="Script" path="res://src/main/ui/menu/wide-wow-sprite.gd" id="1_mg3io"]
 [ext_resource type="Texture2D" uid="uid://vth8c8qj7unh" path="res://assets/main/wow-sheet.png" id="2_qme8i"]

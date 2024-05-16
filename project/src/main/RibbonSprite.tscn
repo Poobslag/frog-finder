@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcjhye5f2burb"]
+[gd_scene load_steps=3 format=3 uid="uid://bqycl4eeb7g4l"]
 
 [ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="1_2p1wf"]
 [ext_resource type="Texture2D" uid="uid://byyt6vk04dwme" path="res://assets/main/hand-ribbon-1-sheet.png" id="1_vunk5"]

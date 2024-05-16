@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyeu5qh2rbb5t"]
+[gd_scene load_steps=11 format=3 uid="uid://dlmim8vsn4mqm"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_vv4ag"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_ddnaq"]

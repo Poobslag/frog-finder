@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://1hfy3q1juhfj" path="res://assets/main/arrow-sheet.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://bk510glt84fg5" path="res://src/main/WideWowSprite.tscn" id="2_7vu2s"]
+[ext_resource type="PackedScene" uid="uid://dauo6v644mt6n" path="res://src/main/WideWowSprite.tscn" id="2_7vu2s"]
 [ext_resource type="Script" path="res://src/main/level-buttons.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://4vjtibjqhyq1" path="res://assets/main/world-2-buttons-sheet.png" id="6_c4swi"]
 
