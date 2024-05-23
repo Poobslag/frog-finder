@@ -69,7 +69,7 @@ func show_all() -> void:
 	for child in get_children():
 		if child.name.begins_with("ComicPanel"):
 			child.visible = true
-			child.modulate = Color.WHITE
+			child.panel_modulate = Color.WHITE
 
 
 ## Skips the comic forward or backward.
