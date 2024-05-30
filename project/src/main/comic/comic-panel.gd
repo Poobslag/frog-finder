@@ -30,8 +30,13 @@ func _ensure_unique_animation_library() -> void:
 		# don't modify the ComicPanel scene itself; only modify descendents
 		return
 	
+	var new_animation_library := AnimationLibrary.new()
+	for animation_name in animation_library.get_animation_list():
+		var new_animation := animation_library.get_animation(animation_name).duplicate(true)
+		new_animation_library.add_animation(animation_name, new_animation)
+	
 	%FramePlayer.remove_animation_library("")
-	%FramePlayer.add_animation_library("", animation_library.duplicate(true))
+	%FramePlayer.add_animation_library("", new_animation_library)
 	notify_property_list_changed()
 	
 	var relative_path := get_tree().edited_scene_root.get_parent().get_path_to(self)
