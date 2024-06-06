@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ci46jehigais"]
+[gd_scene load_steps=88 format=3 uid="uid://ci46jehigais"]
 
 [ext_resource type="PackedScene" uid="uid://dlmim8vsn4mqm" path="res://src/main/comic/ComicPage.tscn" id="1_1fdmo"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_775lf"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cqghelp4xxr8h" path="res://assets/main/comic/world-1/020-frame.png" id="10_wkb0q"]
 [ext_resource type="Texture2D" uid="uid://dd0skt0jkm551" path="res://assets/main/comic/world-1/030-banner.png" id="11_xe47v"]
 [ext_resource type="Texture2D" uid="uid://b73ld58ogyb8b" path="res://assets/main/comic/world-1/030-chalkboard.png" id="12_6e3uk"]
+[ext_resource type="Texture2D" uid="uid://50ximbho3ky0" path="res://assets/main/comic/world-1/020-write-sheet.png" id="12_p88x8"]
 [ext_resource type="Texture2D" uid="uid://bgv6bmboanqni" path="res://assets/main/comic/world-1/030-teacher.png" id="13_aexrp"]
 [ext_resource type="Texture2D" uid="uid://ba604tbp5b4wf" path="res://assets/main/comic/world-1/030-frame.png" id="14_md6gx"]
 [ext_resource type="Texture2D" uid="uid://c0mo1w7vynk3u" path="res://assets/main/comic/world-1/040-chalkboard.png" id="15_ntj10"]
@@ -29,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://duklkv126no77" path="res://assets/main/comic/world-1/070-vanish-sheet.png" id="25_5oyor"]
 [ext_resource type="Texture2D" uid="uid://b7h04lhlo5o57" path="res://assets/main/comic/world-1/070-frame.png" id="26_up15i"]
 [ext_resource type="Texture2D" uid="uid://cr07se8d0j6iu" path="res://assets/main/comic/world-1/080-chalkboard.png" id="27_sd5nh"]
+[ext_resource type="Texture2D" uid="uid://f3dtg86kqri1" path="res://assets/main/comic/world-1/070-chomp.png" id="28_13b0b"]
 [ext_resource type="Texture2D" uid="uid://b3ajqdkpo5yqt" path="res://assets/main/comic/world-1/080-shark-art-sheet.png" id="28_bjokp"]
 [ext_resource type="Texture2D" uid="uid://b4w5rklhoajo0" path="res://assets/main/comic/world-1/080-shark-sheet.png" id="29_kcdnr"]
 [ext_resource type="Texture2D" uid="uid://twaviwummyey" path="res://assets/main/comic/world-1/080-cheer-lines-sheet.png" id="30_453ol"]
@@ -270,6 +272,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Contents/Group/Write1:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Contents/Group/Write2:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Contents/Group/Write3:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Contents/Group/Write4:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_yrijt"]
 resource_name = "play"
@@ -319,6 +369,54 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-80, 0), Vector2(-10, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Contents/Group/Write1:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 3.1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 0, 4, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Contents/Group/Write2:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1.7, 2.1, 2.7, 3.1, 3.3, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 4, 0, 1, 0, 2, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Contents/Group/Write3:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.3, 1.9, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 0, 1, 0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Contents/Group/Write4:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.9, 2.1, 2.5, 2.9, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 4, 0, 4, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u3u61"]
@@ -743,6 +841,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(80, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Contents/Group/Write1:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Contents/Group/Write2:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Contents/Group/Write3:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Contents/Group/Write4:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_eshii"]
 resource_name = "play"
@@ -792,6 +938,54 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": PackedStringArray("play", "[stop]"),
 "times": PackedFloat32Array(0.001, 4)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Contents/Group/Write1:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.9, 2.5, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 3, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Contents/Group/Write2:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Contents/Group/Write3:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 4, 0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Contents/Group/Write4:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7nfju"]
@@ -1239,6 +1433,30 @@ tracks/11/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Contents/Chomp:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Contents/Chomp:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_cwaij"]
 resource_name = "play"
@@ -1397,6 +1615,30 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Contents/Chomp:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 2.16667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Contents/Chomp:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(2.16667, 2.66667, 2.83334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yhoh5"]
@@ -1627,7 +1869,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_j5vpg"]
 resource_name = "play"
 length = 5.0
-step = 0.0625
+step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2036,6 +2278,26 @@ hframes = 3
 vframes = 3
 frame = 1
 
+[node name="Write1" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="10"]
+position = Vector2(82.8571, 237.143)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write2" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="11"]
+position = Vector2(114.286, 300)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write3" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="12"]
+position = Vector2(320, 311.429)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write4" type="Sprite2D" parent="ComicPanel02/Contents/Group" index="13"]
+position = Vector2(374.286, 257.143)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
 [node name="Control" type="Control" parent="ComicPanel02/Contents" index="1"]
 layout_mode = 3
 anchors_preset = 0
@@ -2245,6 +2507,26 @@ position = Vector2(329.286, 414.286)
 texture = ExtResource("9_fecl2")
 hframes = 3
 vframes = 3
+
+[node name="Write1" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="10"]
+position = Vector2(60.7143, 235.714)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write2" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="11"]
+position = Vector2(117.143, 325.714)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write3" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="12"]
+position = Vector2(345.714, 331.429)
+texture = ExtResource("12_p88x8")
+vframes = 5
+
+[node name="Write4" type="Sprite2D" parent="ComicPanel05/Contents/Group" index="13"]
+position = Vector2(380.714, 250)
+texture = ExtResource("12_p88x8")
+vframes = 5
 
 [node name="Frame" parent="ComicPanel05" index="1"]
 editor_description = ""
@@ -2489,6 +2771,10 @@ hframes = 2
 libraries = {
 "": SubResource("AnimationLibrary_7r7hk")
 }
+
+[node name="Chomp" type="Sprite2D" parent="ComicPanel07/Contents" index="1"]
+position = Vector2(185.714, 97.1429)
+texture = ExtResource("28_13b0b")
 
 [node name="Frame" parent="ComicPanel07" index="1"]
 editor_description = ""
