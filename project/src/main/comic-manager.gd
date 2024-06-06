@@ -11,6 +11,7 @@ extends Control
 @onready var comic_scenes_by_id := {
 	"world-1-intro": preload("res://src/main/comic/World1ComicPage.tscn"),
 	"world-2-intro": preload("res://src/main/comic/World2ComicPage.tscn"),
+	"world-3-intro": preload("res://src/main/comic/World3ComicPage.tscn"),
 }
 
 ## The number of time the main menu has been shown since launching the game. We play a comic interlude the first time

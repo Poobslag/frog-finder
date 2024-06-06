@@ -13,6 +13,7 @@ var _comic_page: ComicPage
 @onready var _comic_scenes_by_index := {
 	0: preload("res://src/main/comic/World1ComicPage.tscn"),
 	1: preload("res://src/main/comic/World2ComicPage.tscn"),
+	2: preload("res://src/main/comic/World3ComicPage.tscn"),
 }
 
 func _ready() -> void:
@@ -25,6 +26,8 @@ func _input(event: InputEvent) -> void:
 			_set_page(_comic_scenes_by_index[0])
 		KEY_2:
 			_set_page(_comic_scenes_by_index[1])
+		KEY_3:
+			_set_page(_comic_scenes_by_index[2])
 		KEY_P:
 			if _comic_page.is_playing():
 				_comic_page.stop()
