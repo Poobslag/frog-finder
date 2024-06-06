@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bwpec88s1ecq4"]
+[gd_scene load_steps=137 format=3 uid="uid://bwpec88s1ecq4"]
 
 [ext_resource type="PackedScene" uid="uid://dlmim8vsn4mqm" path="res://src/main/comic/ComicPage.tscn" id="1_6w7nc"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_v5cn3"]
@@ -23,7 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://kl2fobd2fqkf" path="res://assets/main/comic/world-2/030-cheer-lines-sheet.png" id="21_f1fn0"]
 [ext_resource type="Texture2D" uid="uid://dimtog50hbn8x" path="res://assets/main/comic/world-2/030-ellipsis-sheet.png" id="22_ca855"]
 [ext_resource type="Texture2D" uid="uid://cdpbpoao2vyg1" path="res://assets/main/comic/world-2/030-frame.png" id="23_1yti7"]
+[ext_resource type="Texture2D" uid="uid://c1fw54uiiy3kq" path="res://assets/main/comic/world-2/030-fn.png" id="23_8ts7y"]
 [ext_resource type="Texture2D" uid="uid://dd41psr3dtccf" path="res://assets/main/comic/world-2/040-frog.png" id="24_2y80u"]
+[ext_resource type="Texture2D" uid="uid://d2e5dx8oqv1ak" path="res://assets/main/comic/world-2/030-id.png" id="24_b6pu7"]
 [ext_resource type="Texture2D" uid="uid://bban4rxsbxs5m" path="res://assets/main/comic/world-2/040-umbrella.png" id="25_3e7e6"]
 [ext_resource type="Texture2D" uid="uid://bnila1jj4sm4i" path="res://assets/main/comic/world-2/040-frame.png" id="26_pi05w"]
 [ext_resource type="Texture2D" uid="uid://dnbn6b7orev7t" path="res://assets/main/comic/world-2/050-frame.png" id="27_0sm2r"]
@@ -33,7 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://u73rwq1a57x7" path="res://assets/main/comic/world-2/060-frame.png" id="31_31fbv"]
 [ext_resource type="Texture2D" uid="uid://bj3trxq7xmmfi" path="res://assets/main/comic/world-2/070-umbrella.png" id="32_opqma"]
 [ext_resource type="Texture2D" uid="uid://byyp06vmtf7f8" path="res://assets/main/comic/world-2/070-frog.png" id="33_spo27"]
+[ext_resource type="Texture2D" uid="uid://b17l26w7bs612" path="res://assets/main/comic/world-2/060-fn.png" id="33_wmvvd"]
 [ext_resource type="Texture2D" uid="uid://coxg2ghdjgtdi" path="res://assets/main/comic/world-2/070-umbrella-pole.png" id="34_fij6f"]
+[ext_resource type="Texture2D" uid="uid://bsb0sfnrkbl7n" path="res://assets/main/comic/world-2/060-id.png" id="34_xv4gs"]
 [ext_resource type="Texture2D" uid="uid://j7glsv1a4ruj" path="res://assets/main/comic/world-2/070-umbrella-shake-sheet.png" id="35_010hs"]
 [ext_resource type="Texture2D" uid="uid://dlpxjvfyy1wvc" path="res://assets/main/comic/world-2/070-shunk.png" id="36_0a370"]
 [ext_resource type="Texture2D" uid="uid://bxa037e8up32j" path="res://assets/main/comic/world-2/070-frame.png" id="37_vyb16"]
@@ -588,6 +592,92 @@ _data = {
 "play": SubResource("Animation_is26p")
 }
 
+[sub_resource type="Animation" id="Animation_ajhj1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114.286, 240)]
+}
+
+[sub_resource type="Animation" id="Animation_qux57"]
+resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_fpqny"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(114.286, 240), Vector2(114.286, 220), Vector2(114.286, 240)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3txsp"]
+_data = {
+"RESET": SubResource("Animation_ajhj1"),
+"empty": SubResource("Animation_qux57"),
+"play": SubResource("Animation_fpqny")
+}
+
+[sub_resource type="Animation" id="Animation_oqll8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114.286, 242.857)]
+}
+
+[sub_resource type="Animation" id="Animation_7daoj"]
+resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_cnryf"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(114.286, 242.857), Vector2(114.286, 222.857), Vector2(114.286, 242.857)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tnfft"]
+_data = {
+"RESET": SubResource("Animation_oqll8"),
+"empty": SubResource("Animation_7daoj"),
+"play": SubResource("Animation_cnryf")
+}
+
 [sub_resource type="Animation" id="Animation_48k7x"]
 length = 0.001
 tracks/0/type = "value"
@@ -672,7 +762,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -697,6 +787,30 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Contents/LettersFn:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Contents/LettersId:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_8hroo"]
@@ -820,6 +934,50 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "animation"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Contents/LettersFn/AnimationPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": PackedStringArray("play", "empty"),
+"times": PackedFloat32Array(0.00101563, 4)
+}
+tracks/11/type = "animation"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Contents/LettersId/AnimationPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": PackedStringArray("play", "empty"),
+"times": PackedFloat32Array(0.25, 4)
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Contents/LettersFn:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Contents/LettersId:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_prpkw"]
@@ -1135,6 +1293,92 @@ _data = {
 "play": SubResource("Animation_qlsbg")
 }
 
+[sub_resource type="Animation" id="Animation_rlrrs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 126.571)]
+}
+
+[sub_resource type="Animation" id="Animation_8u63d"]
+resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_qelwh"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(130, 126.571), Vector2(130, 106.571), Vector2(130, 126.571)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmkay"]
+_data = {
+"RESET": SubResource("Animation_rlrrs"),
+"empty": SubResource("Animation_8u63d"),
+"play": SubResource("Animation_qelwh")
+}
+
+[sub_resource type="Animation" id="Animation_um70d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 126.571)]
+}
+
+[sub_resource type="Animation" id="Animation_15ihr"]
+resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_f50yd"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(130, 126.571), Vector2(130, 106.571), Vector2(130, 126.571)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bsb7p"]
+_data = {
+"RESET": SubResource("Animation_um70d"),
+"empty": SubResource("Animation_15ihr"),
+"play": SubResource("Animation_f50yd")
+}
+
 [sub_resource type="Animation" id="Animation_jv54o"]
 length = 0.001
 step = 0.25
@@ -1269,6 +1513,30 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(191.428, 214.286)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Contents/LettersFn:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Contents/LettersId:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_kvbkn"]
@@ -1416,6 +1684,50 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(191.428, 214.286), Vector2(251.428, 214.286)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Contents/LettersFn:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Contents/LettersId:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "animation"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Contents/LettersFn/AnimationPlayer")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": PackedStringArray("play", "empty"),
+"times": PackedFloat32Array(0.5, 4)
+}
+tracks/15/type = "animation"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Contents/LettersId/AnimationPlayer")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": PackedStringArray("play", "empty"),
+"times": PackedFloat32Array(0.166667, 4)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6c58"]
@@ -2441,7 +2753,7 @@ tracks/16/keys = {
 [sub_resource type="Animation" id="Animation_b4kx1"]
 resource_name = "play"
 length = 5.0
-step = 0.5
+step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -3004,10 +3316,31 @@ libraries = {
 }
 
 [node name="Ellipsis" type="Sprite2D" parent="ComicPanel03/Contents" index="6"]
+visible = false
 position = Vector2(215, 367.5)
 texture = ExtResource("22_ca855")
 hframes = 2
 vframes = 2
+
+[node name="LettersFn" type="Sprite2D" parent="ComicPanel03/Contents" index="7"]
+visible = false
+position = Vector2(114.286, 240)
+texture = ExtResource("23_8ts7y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/LettersFn" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_3txsp")
+}
+
+[node name="LettersId" type="Sprite2D" parent="ComicPanel03/Contents" index="8"]
+visible = false
+position = Vector2(114.286, 242.857)
+texture = ExtResource("24_b6pu7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel03/Contents/LettersId" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_tnfft")
+}
 
 [node name="Frame" parent="ComicPanel03" index="1"]
 editor_description = ""
@@ -3135,6 +3468,26 @@ vframes = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel06/Contents/FrustrationCloud" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_6e3va")
+}
+
+[node name="LettersFn" type="Sprite2D" parent="ComicPanel06/Contents" index="7"]
+visible = false
+position = Vector2(130, 126.571)
+texture = ExtResource("33_wmvvd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel06/Contents/LettersFn" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_kmkay")
+}
+
+[node name="LettersId" type="Sprite2D" parent="ComicPanel06/Contents" index="8"]
+visible = false
+position = Vector2(130, 126.571)
+texture = ExtResource("34_xv4gs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel06/Contents/LettersId" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_bsb7p")
 }
 
 [node name="Frame" parent="ComicPanel06" index="1"]
