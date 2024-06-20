@@ -84,6 +84,7 @@
       "HalfAFrog",
       "SneakySneakyFrogInstrumental"
     ],
+    "intermission_tweak": "res://src/main/BeeTweak.tscn",
     "missions": [
       [
         "frodoku-",
