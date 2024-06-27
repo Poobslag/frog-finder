@@ -53,6 +53,7 @@ func _save_dances() -> void:
 	_save_animation_names_by_dance_name()
 	_save_frames_by_dance_name()
 	notify_property_list_changed()
+	ResourceSaver.save(get_animation_library(""), get_animation_library("").resource_path)
 
 
 ## Populates dance_names with animations from our animation list.
