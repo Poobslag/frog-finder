@@ -78,6 +78,11 @@
   },
   {
     "title": "hone? he?agon",
+    "dances": [
+      "waggle",
+      "pogo",
+      "coy"
+    ],
     "shark_song": "WereGonnaEatYouUp",
     "frog_songs": [
       "StillCantFindTheFrog",
