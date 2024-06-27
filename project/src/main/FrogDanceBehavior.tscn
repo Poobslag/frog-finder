@@ -74,15 +74,17 @@ libraries = {
 "": ExtResource("2_1qs5f")
 }
 script = ExtResource("2_lv1wa")
-dance_names = Array[String](["coy", "hips", "hula", "jump", "nip", "shark", "shuffle"])
+dance_names = Array[String](["coy", "hips", "hula", "jump", "nip", "pogo", "shark", "shuffle", "waggle"])
 animation_names_by_dance_name = {
 "coy": ["coy1", "coy1_flip", "coy2", "coy2_flip"],
 "hips": ["hips1", "hips1_flip", "hips2", "hips2_flip"],
 "hula": ["hula1", "hula1_flip", "hula2", "hula2_flip"],
 "jump": ["jump1", "jump1_flip", "jump2", "jump2_flip", "jump3", "jump3_flip", "jump4", "jump4_flip", "jump5", "jump5_flip"],
 "nip": ["nip1", "nip1_flip", "nip2", "nip2_flip", "nip3", "nip3_flip"],
+"pogo": ["pogo1", "pogo1_flip", "pogo2", "pogo2_flip", "pogo3", "pogo3_flip"],
 "shark": ["shark1", "shark1_flip", "shark2", "shark2_flip"],
-"shuffle": ["shuffle1", "shuffle1_flip", "shuffle2", "shuffle2_flip"]
+"shuffle": ["shuffle1", "shuffle1_flip", "shuffle2", "shuffle2_flip"],
+"waggle": ["waggle1", "waggle1_flip", "waggle2", "waggle2_flip", "waggle3", "waggle3_flip", "waggle4", "waggle4_flip"]
 }
 frames_by_dance_name = {
 "coy": Array[int]([60, 61, 62, 63]),
@@ -90,8 +92,10 @@ frames_by_dance_name = {
 "hula": Array[int]([44, 45, 46, 47]),
 "jump": Array[int]([36, 37, 38, 39]),
 "nip": Array[int]([52, 53, 54, 55]),
+"pogo": Array[int]([64, 65, 66, 67]),
 "shark": Array[int]([40, 41, 42, 43]),
-"shuffle": Array[int]([56, 57, 58, 59])
+"shuffle": Array[int]([56, 57, 58, 59]),
+"waggle": Array[int]([68, 69, 70, 71])
 }
 
 [node name="Choreographer" type="AnimationPlayer" parent="."]
