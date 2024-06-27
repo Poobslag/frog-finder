@@ -78,6 +78,13 @@
   },
   {
     "title": "hone? he?agon",
+    "background_colors": [
+      "805c27",
+      "80793f",
+      "388026",
+      "807622",
+      "5b3780"
+    ],
     "dances": [
       "waggle",
       "pogo",
