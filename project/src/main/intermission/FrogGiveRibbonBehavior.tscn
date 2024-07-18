@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyt8gx52k8fj0"]
+
+[ext_resource type="Script" path="res://src/main/intermission/frog-give-ribbon-behavior.gd" id="1_ippur"]
+[ext_resource type="AudioStream" uid="uid://0bh5nrb6t4lb" path="res://assets/main/sfx/frog-ribbon.wav" id="2_ra1la"]
+
+[node name="GiveRibbonBehavior" type="Node"]
+script = ExtResource("1_ippur")
+
+[node name="ChaseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 8.0
+one_shot = true
+
+[node name="PanicTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[node name="ThinkTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+
+[node name="RibbonSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ra1la")
+bus = &"Sfx"
+
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="PanicTimer" to="." method="_on_panic_timer_timeout"]
+[connection signal="timeout" from="ThinkTimer" to="." method="_on_think_timer_timeout"]

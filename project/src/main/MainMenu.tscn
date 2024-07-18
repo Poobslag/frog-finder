@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvi6cfqfe1xsp" path="res://src/main/GameplayPanel.tscn" id="4_0biuy"]
 [ext_resource type="Script" path="res://src/main/comic-manager.gd" id="6_ova4h"]
 [ext_resource type="PackedScene" uid="uid://bwpec88s1ecq4" path="res://src/main/comic/World2ComicPage.tscn" id="6_unf1o"]
-[ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/IntermissionPanel.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://ppmbm3tpkrj0" path="res://src/main/intermission/IntermissionPanel.tscn" id="15"]
 [ext_resource type="PackedScene" uid="uid://c4osspemyuhmd" path="res://src/main/Hand.tscn" id="17"]
 [ext_resource type="PackedScene" uid="uid://uo0hbda0ic10" path="res://src/main/Background.tscn" id="18"]
 

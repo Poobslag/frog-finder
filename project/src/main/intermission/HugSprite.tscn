@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk1x5br54yovh"]
+
+[ext_resource type="PackedScene" uid="uid://cbfwawa4bt7lv" path="res://src/main/WiggleSprite.tscn" id="1_gm7vj"]
+[ext_resource type="Texture2D" uid="uid://ddu0thu3dp057" path="res://assets/main/intermission/hug-sheet.png" id="1_h2nqv"]
+
+[node name="HugSprite" instance=ExtResource("1_gm7vj")]
+position = Vector2(23, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_h2nqv")
+hframes = 4
+vframes = 2

@@ -19,7 +19,7 @@ config/icon="res://assets/main/icon.png"
 [autoload]
 
 CardArrangements="*res://src/main/card-arrangements.gd"
-FrogArrangements="*res://src/main/frog-arrangements.gd"
+FrogArrangements="*res://src/main/intermission/frog-arrangements.gd"
 Global="*res://src/main/global.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"
 PlayerData="*res://src/main/player-data.gd"

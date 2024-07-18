@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnqvugd53xhmu"]
-
-[ext_resource type="Script" path="res://src/main/levels/pattern-memory-rules.gd" id="1"]
-
-[node name="LevelRules" type="Node"]
-script = ExtResource("1")
