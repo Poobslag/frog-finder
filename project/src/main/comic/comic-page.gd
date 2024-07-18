@@ -34,6 +34,8 @@ var _fade_tween: Tween
 func _ready() -> void:
 	# hide; avoid blocking input
 	visible = false
+	%Conductor.animation_finished.connect(_on_conductor_animation_finished)
+
 
 ## Launches the comic animation.
 ##
@@ -43,6 +45,8 @@ func play() -> void:
 	stop()
 	
 	%Conductor.play("play")
+	fade_in()
+	%SkipButton.hide_briefly()
 
 
 func is_playing() -> bool:
@@ -110,6 +114,11 @@ func fade_out() -> void:
 	_fade_tween = Utils.recreate_tween(self, _fade_tween)
 	_fade_tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.25)
 	_fade_tween.tween_callback(stop)
+
+
+func _on_conductor_animation_finished(animation_name: String) -> void:
+	if animation_name == "play":
+		fade_out()
 
 
 func _on_skip_button_pressed() -> void:

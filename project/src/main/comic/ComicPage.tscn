@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlmim8vsn4mqm"]
+[gd_scene load_steps=10 format=3 uid="uid://dlmim8vsn4mqm"]
 
 [ext_resource type="Script" path="res://src/main/comic/comic-page.gd" id="1_vv4ag"]
 [ext_resource type="Shader" path="res://src/main/comic/scrolling-texture.gdshader" id="2_ddnaq"]
-[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="36_i2bh0"]
-[ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="37_7jecq"]
+[ext_resource type="PackedScene" uid="uid://bvl1olfsdpsvk" path="res://src/main/comic/ComicSkipButton.tscn" id="3_8scq8"]
 [ext_resource type="Script" path="res://src/main/comic/comic-conductor.gd" id="38_76lyf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qo41j"]
@@ -19,42 +18,18 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="Animation" id="Animation_dxbjf"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_3qj25"]
 resource_name = "play"
 length = 28.75
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/path = NodePath("SfxPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -62,13 +37,13 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 37.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -124,7 +99,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 1
 
-[node name="SkipButton" parent="." instance=ExtResource("36_i2bh0")]
+[node name="SkipButton" parent="." instance=ExtResource("3_8scq8")]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -138,8 +113,6 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
-icon_texture = ExtResource("37_7jecq")
-icon_index = 5
 
 [node name="Conductor" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sfx_player")]
 unique_name_in_owner = true

@@ -490,24 +490,6 @@ _data = {
 "play": SubResource("Animation_ee4gp")
 }
 
-[sub_resource type="Animation" id="Animation_nw7yi"]
-resource_name = "play"
-length = 2.0001
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(122.643, 97.0714), Vector2(122.643, 77.071), Vector2(122.643, 97.0714)]
-}
-
 [sub_resource type="Animation" id="Animation_o6uii"]
 length = 0.001
 tracks/0/type = "value"
@@ -526,14 +508,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_mhxgf"]
 resource_name = "empty"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gruid"]
-_data = {
-"RESET": SubResource("Animation_o6uii"),
-"empty": SubResource("Animation_mhxgf"),
-"play": SubResource("Animation_nw7yi")
-}
-
-[sub_resource type="Animation" id="Animation_h22ah"]
+[sub_resource type="Animation" id="Animation_nw7yi"]
 resource_name = "play"
 length = 2.0001
 loop_mode = 1
@@ -549,6 +524,13 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(122.643, 97.0714), Vector2(122.643, 77.071), Vector2(122.643, 97.0714)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gruid"]
+_data = {
+"RESET": SubResource("Animation_o6uii"),
+"empty": SubResource("Animation_mhxgf"),
+"play": SubResource("Animation_nw7yi")
 }
 
 [sub_resource type="Animation" id="Animation_5gqdu"]
@@ -568,6 +550,24 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8lss0"]
 resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_h22ah"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(122.643, 97.0714), Vector2(122.643, 77.071), Vector2(122.643, 97.0714)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jbjky"]
 _data = {
@@ -1380,7 +1380,7 @@ tracks/4/keys = {
 tracks/5/type = "animation"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../ComicPanel04/Contents/Group/Bongo/AnimationPlayer")
+tracks/5/path = NodePath("Contents/Group/Bongo/AnimationPlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1574,24 +1574,6 @@ _data = {
 "play": SubResource("Animation_1wn33")
 }
 
-[sub_resource type="Animation" id="Animation_12wbg"]
-resource_name = "play"
-length = 2.0001
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(648.357, 342.786), Vector2(648.357, 322.786), Vector2(648.357, 342.786)]
-}
-
 [sub_resource type="Animation" id="Animation_xewop"]
 length = 0.001
 tracks/0/type = "value"
@@ -1610,14 +1592,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_lm3e1"]
 resource_name = "empty"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jx8l0"]
-_data = {
-"RESET": SubResource("Animation_xewop"),
-"empty": SubResource("Animation_lm3e1"),
-"play": SubResource("Animation_12wbg")
-}
-
-[sub_resource type="Animation" id="Animation_lq62f"]
+[sub_resource type="Animation" id="Animation_12wbg"]
 resource_name = "play"
 length = 2.0001
 loop_mode = 1
@@ -1633,6 +1608,13 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(648.357, 342.786), Vector2(648.357, 322.786), Vector2(648.357, 342.786)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jx8l0"]
+_data = {
+"RESET": SubResource("Animation_xewop"),
+"empty": SubResource("Animation_lm3e1"),
+"play": SubResource("Animation_12wbg")
 }
 
 [sub_resource type="Animation" id="Animation_p0b7k"]
@@ -1652,6 +1634,24 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_urkc6"]
 resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_lq62f"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(648.357, 342.786), Vector2(648.357, 322.786), Vector2(648.357, 342.786)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfimc"]
 _data = {
@@ -2106,6 +2106,21 @@ _data = {
 "play": SubResource("Animation_k7xsl")
 }
 
+[sub_resource type="Animation" id="Animation_0a3tp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_x2yiq"]
 resource_name = "play"
 length = 1.83335
@@ -2122,21 +2137,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0]
-}
-
-[sub_resource type="Animation" id="Animation_0a3tp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dlhpd"]
@@ -2765,24 +2765,6 @@ _data = {
 "play": SubResource("Animation_f0y2l")
 }
 
-[sub_resource type="Animation" id="Animation_ja2p2"]
-resource_name = "play"
-length = 2.0001
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(336.357, 76.4999), Vector2(336.357, 56.5), Vector2(336.357, 76.4999)]
-}
-
 [sub_resource type="Animation" id="Animation_aydrp"]
 length = 0.001
 tracks/0/type = "value"
@@ -2801,14 +2783,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_nbi1y"]
 resource_name = "empty"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka3s0"]
-_data = {
-"RESET": SubResource("Animation_aydrp"),
-"empty": SubResource("Animation_nbi1y"),
-"play": SubResource("Animation_ja2p2")
-}
-
-[sub_resource type="Animation" id="Animation_kovts"]
+[sub_resource type="Animation" id="Animation_ja2p2"]
 resource_name = "play"
 length = 2.0001
 loop_mode = 1
@@ -2823,7 +2798,14 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(336.357, 76.5), Vector2(336.357, 56.5), Vector2(336.357, 76.5)]
+"values": [Vector2(336.357, 76.4999), Vector2(336.357, 56.5), Vector2(336.357, 76.4999)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka3s0"]
+_data = {
+"RESET": SubResource("Animation_aydrp"),
+"empty": SubResource("Animation_nbi1y"),
+"play": SubResource("Animation_ja2p2")
 }
 
 [sub_resource type="Animation" id="Animation_truav"]
@@ -2843,6 +2825,24 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ig67b"]
 resource_name = "empty"
+
+[sub_resource type="Animation" id="Animation_kovts"]
+resource_name = "play"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(336.357, 76.5), Vector2(336.357, 56.5), Vector2(336.357, 76.5)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j0sv0"]
 _data = {
@@ -3604,42 +3604,18 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dxbjf"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_3qj25"]
 resource_name = "play"
 length = 39.0
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/path = NodePath("SfxPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -3647,110 +3623,93 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
-tracks/2/type = "method"
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ComicPanel01/FramePlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("RESET", "play"),
+"times": PackedFloat32Array(0, 0.25)
+}
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("ComicPanel02/FramePlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 39),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"fade_in"
-}, {
-"args": [],
-"method": &"fade_out"
-}]
+"clips": PackedStringArray("play"),
+"times": PackedFloat32Array(4.75)
 }
 tracks/3/type = "animation"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ComicPanel01/FramePlayer")
+tracks/3/path = NodePath("ComicPanel03/FramePlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": PackedStringArray("RESET", "play"),
-"times": PackedFloat32Array(0, 0.25)
+"clips": PackedStringArray("play"),
+"times": PackedFloat32Array(7.25)
 }
 tracks/4/type = "animation"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ComicPanel02/FramePlayer")
+tracks/4/path = NodePath("ComicPanel04/FramePlayer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(4.75)
+"times": PackedFloat32Array(10.75)
 }
 tracks/5/type = "animation"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ComicPanel03/FramePlayer")
+tracks/5/path = NodePath("ComicPanel05/FramePlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(7.25)
+"times": PackedFloat32Array(16.25)
 }
 tracks/6/type = "animation"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ComicPanel04/FramePlayer")
+tracks/6/path = NodePath("ComicPanel06/FramePlayer")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(10.75)
+"times": PackedFloat32Array(19.75)
 }
 tracks/7/type = "animation"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ComicPanel05/FramePlayer")
+tracks/7/path = NodePath("ComicPanel07/FramePlayer")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(16.25)
+"times": PackedFloat32Array(24)
 }
 tracks/8/type = "animation"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("ComicPanel06/FramePlayer")
+tracks/8/path = NodePath("ComicPanel08/FramePlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(19.75)
+"times": PackedFloat32Array(29.5)
 }
 tracks/9/type = "animation"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("ComicPanel07/FramePlayer")
+tracks/9/path = NodePath("ComicPanel09/FramePlayer")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"clips": PackedStringArray("play"),
-"times": PackedFloat32Array(24)
-}
-tracks/10/type = "animation"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("ComicPanel08/FramePlayer")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"clips": PackedStringArray("play"),
-"times": PackedFloat32Array(29.5)
-}
-tracks/11/type = "animation"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("ComicPanel09/FramePlayer")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
 "clips": PackedStringArray("play"),
 "times": PackedFloat32Array(32)
 }
@@ -3762,7 +3721,6 @@ _data = {
 }
 
 [node name="ComicPage" instance=ExtResource("1_l7rca")]
-visible = true
 
 [node name="Bg" parent="." index="0"]
 material = SubResource("ShaderMaterial_qo41j")
@@ -3771,6 +3729,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6up80")
 [node name="Texture" parent="Bg" index="0"]
 material = SubResource("ShaderMaterial_qo41j")
 texture = ExtResource("3_7g1yb")
+
+[node name="SkipButton" parent="." index="1"]
+unique_name_in_owner = true
 
 [node name="ComicPanel01" parent="." index="2" instance=ExtResource("4_6cv51")]
 layout_mode = 1
@@ -3911,7 +3872,6 @@ libraries = {
 [node name="LettersId" type="Sprite2D" parent="ComicPanel02/Contents" index="4"]
 visible = false
 position = Vector2(122.643, 97.0714)
-scale = Vector2(1, 1)
 texture = ExtResource("19_2jp3p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel02/Contents/LettersId" index="0"]
@@ -3922,7 +3882,6 @@ libraries = {
 [node name="LettersFn" type="Sprite2D" parent="ComicPanel02/Contents" index="5"]
 visible = false
 position = Vector2(122.643, 97.0714)
-scale = Vector2(1, 1)
 texture = ExtResource("18_akut2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel02/Contents/LettersFn" index="0"]
@@ -4138,7 +4097,6 @@ libraries = {
 [node name="LettersId" type="Sprite2D" parent="ComicPanel05/Contents" index="5"]
 visible = false
 position = Vector2(648.357, 342.786)
-scale = Vector2(1, 1)
 texture = ExtResource("19_2jp3p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel05/Contents/LettersId" index="0"]
@@ -4149,7 +4107,6 @@ libraries = {
 [node name="LettersFn" type="Sprite2D" parent="ComicPanel05/Contents" index="6"]
 visible = false
 position = Vector2(648.357, 342.786)
-scale = Vector2(1, 1)
 texture = ExtResource("18_akut2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel05/Contents/LettersFn" index="0"]
@@ -4391,7 +4348,6 @@ libraries = {
 [node name="LettersId" type="Sprite2D" parent="ComicPanel08/Contents" index="4"]
 visible = false
 position = Vector2(336.357, 76.4999)
-scale = Vector2(1, 1)
 texture = ExtResource("51_5aa10")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/LettersId" index="0"]
@@ -4402,7 +4358,6 @@ libraries = {
 [node name="LettersFn" type="Sprite2D" parent="ComicPanel08/Contents" index="5"]
 visible = false
 position = Vector2(336.357, 76.5)
-scale = Vector2(1, 1)
 texture = ExtResource("52_uh5t8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel08/Contents/LettersFn" index="0"]

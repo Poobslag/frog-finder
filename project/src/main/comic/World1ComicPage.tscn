@@ -1979,42 +1979,18 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dxbjf"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_3qj25"]
 resource_name = "play"
 length = 28.75
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/path = NodePath("SfxPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -2022,100 +1998,83 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
-tracks/2/type = "method"
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ComicPanel01/FramePlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("RESET", "play"),
+"times": PackedFloat32Array(0, 0.25)
+}
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("ComicPanel02/FramePlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 28.75),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"fade_in"
-}, {
-"args": [],
-"method": &"fade_out"
-}]
+"clips": PackedStringArray("play"),
+"times": PackedFloat32Array(4.75)
 }
 tracks/3/type = "animation"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ComicPanel01/FramePlayer")
+tracks/3/path = NodePath("ComicPanel03/FramePlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": PackedStringArray("RESET", "play"),
-"times": PackedFloat32Array(0, 0.25)
+"clips": PackedStringArray("play"),
+"times": PackedFloat32Array(8.25)
 }
 tracks/4/type = "animation"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ComicPanel02/FramePlayer")
+tracks/4/path = NodePath("ComicPanel04/FramePlayer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(4.75)
+"times": PackedFloat32Array(11.75)
 }
 tracks/5/type = "animation"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ComicPanel03/FramePlayer")
+tracks/5/path = NodePath("ComicPanel05/FramePlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(8.25)
+"times": PackedFloat32Array(14.75)
 }
 tracks/6/type = "animation"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ComicPanel04/FramePlayer")
+tracks/6/path = NodePath("ComicPanel06/FramePlayer")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(11.75)
+"times": PackedFloat32Array(18.25)
 }
 tracks/7/type = "animation"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ComicPanel05/FramePlayer")
+tracks/7/path = NodePath("ComicPanel07/FramePlayer")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(14.75)
+"times": PackedFloat32Array(20.25)
 }
 tracks/8/type = "animation"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("ComicPanel06/FramePlayer")
+tracks/8/path = NodePath("ComicPanel08/FramePlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"clips": PackedStringArray("play"),
-"times": PackedFloat32Array(18.25)
-}
-tracks/9/type = "animation"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("ComicPanel07/FramePlayer")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"clips": PackedStringArray("play"),
-"times": PackedFloat32Array(20.25)
-}
-tracks/10/type = "animation"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("ComicPanel08/FramePlayer")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "clips": PackedStringArray("play"),
 "times": PackedFloat32Array(23.75)
 }
@@ -2132,7 +2091,10 @@ _data = {
 material = SubResource("ShaderMaterial_qo41j")
 texture = ExtResource("3_pyu0a")
 
-[node name="ComicPanel01" parent="." index="1" instance=ExtResource("2_kueuy")]
+[node name="SkipButton" parent="." index="1"]
+unique_name_in_owner = true
+
+[node name="ComicPanel01" parent="." index="2" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = -336.0
 offset_top = -236.0
@@ -2160,7 +2122,6 @@ texture = ExtResource("5_lmw35")
 position = Vector2(285.714, 437.143)
 
 [node name="Students1" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="0"]
-position = Vector2(0, 0)
 texture = ExtResource("6_1lxxc")
 
 [node name="Students4" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="1"]
@@ -2191,7 +2152,7 @@ libraries = {
 "": SubResource("AnimationLibrary_tcqoh")
 }
 
-[node name="ComicPanel02" parent="." index="2" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel02" parent="." index="3" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = 182.0
 offset_top = -235.0
@@ -2316,7 +2277,7 @@ libraries = {
 "": SubResource("AnimationLibrary_u3u61")
 }
 
-[node name="ComicPanel03" parent="." index="3" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel03" parent="." index="4" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = -335.0
 offset_top = -75.0
@@ -2350,7 +2311,7 @@ libraries = {
 "": SubResource("AnimationLibrary_6lqbq")
 }
 
-[node name="ComicPanel04" parent="." index="4" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel04" parent="." index="5" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = 9.0
 offset_top = -75.0
@@ -2421,7 +2382,7 @@ libraries = {
 "": SubResource("AnimationLibrary_t87uh")
 }
 
-[node name="ComicPanel05" parent="." index="5" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel05" parent="." index="6" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = 182.0
 offset_top = -75.0
@@ -2538,7 +2499,7 @@ libraries = {
 "": SubResource("AnimationLibrary_7nfju")
 }
 
-[node name="ComicPanel06" parent="." index="6" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel06" parent="." index="7" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = -335.0
 offset_top = 91.0
@@ -2651,7 +2612,7 @@ libraries = {
 "": SubResource("AnimationLibrary_hcrf2")
 }
 
-[node name="ComicPanel07" parent="." index="7" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel07" parent="." index="8" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = -162.0
 offset_top = 91.0
@@ -2786,7 +2747,7 @@ libraries = {
 "": SubResource("AnimationLibrary_yhoh5")
 }
 
-[node name="ComicPanel08" parent="." index="8" instance=ExtResource("2_kueuy")]
+[node name="ComicPanel08" parent="." index="9" instance=ExtResource("2_kueuy")]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 91.0

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvl1olfsdpsvk"]
+
+[ext_resource type="PackedScene" uid="uid://c7k50x3n3ahgf" path="res://src/main/ui/menu/ClickableIcon.tscn" id="1_gmkow"]
+[ext_resource type="Script" path="res://src/main/comic/comic-skip-button.gd" id="2_osuog"]
+[ext_resource type="Texture2D" uid="uid://bjadk7hn5xmru" path="res://assets/main/icon-sheet.png" id="3_w6wlk"]
+
+[node name="SkipButton" instance=ExtResource("1_gmkow")]
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("2_osuog")
+icon_texture = ExtResource("3_w6wlk")
+icon_index = 5
+
+[node name="ShowTimer" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="ShowTimer" to="." method="_on_timer_timeout"]
