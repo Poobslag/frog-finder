@@ -23,6 +23,7 @@ wait_time = 0.1
 [node name="RibbonSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_ra1la")
+bus = &"Sfx"
 
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
 [connection signal="timeout" from="PanicTimer" to="." method="_on_panic_timer_timeout"]

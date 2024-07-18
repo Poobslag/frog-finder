@@ -179,3 +179,4 @@ bus = &"Sfx"
 
 [node name="HugSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"Sfx"
