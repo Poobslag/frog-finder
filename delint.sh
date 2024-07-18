@@ -129,18 +129,18 @@ if [ -n "$FILES" ]; then
   for FILE in $FILES; do
     # check for no file without the .import extension
     if ! [ -f "${FILE%.*}" ]; then
-      RESULT+=(${FILE})
+      RESULT+=("${FILE}")
     fi
   done
 
-  if [ -n "$RESULT" ]; then
+  if [ -n "${RESULT[*]}" ]; then
     echo ""
     echo "Orphaned .import files:"
-    for FILE in ${RESULT[@]}; do
+    for FILE in "${RESULT[@]}"; do
       echo "${FILE}"
     done
     if [ "$CLEAN" ]; then
-      for FILE in ${RESULT[@]}; do
+      for FILE in "${RESULT[@]}"; do
         rm "${FILE}"
       done
       echo "...Orphaned .import files deleted."
