@@ -132,6 +132,18 @@ func _flip_animations() -> void:
 
 	for old_animation_name in get_animation_list():
 		_flip_animation(old_animation_name)
+	_reorder_animations()
+
+
+## Alphabetizes the animations in the .tscn file.
+func _reorder_animations() -> void:
+	var animations := {}
+	for animation_name in get_animation_list():
+		animations[animation_name] = get_animation_library("").get_animation(animation_name)
+		get_animation_library("").remove_animation(animation_name)
+	
+	for animation_name in animations:
+		get_animation_library("").add_animation(animation_name, animations[animation_name])
 
 
 ## Creates a flipped copy of an animation.
@@ -145,6 +157,7 @@ func _flip_animation(old_animation_name: String) -> void:
 	var old_animation: Animation = get_animation_library("").get_animation(old_animation_name)
 	var new_animation_name := "%s_flip" % [old_animation_name]
 	var new_animation: Animation = old_animation.duplicate()
+	new_animation.resource_name = new_animation_name
 	
 	for track_idx in range(new_animation.get_track_count()):
 		match new_animation.track_get_type(track_idx):
