@@ -2997,164 +2997,123 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dxbjf"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_3qj25"]
 resource_name = "play"
 length = 37.5
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkipButton:visible")
+tracks/0/path = NodePath("ComicPanel01/FramePlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"clips": PackedStringArray("RESET", "play"),
+"times": PackedFloat32Array(0, 0.25)
 }
 tracks/1/type = "animation"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ComicPanel01/FramePlayer")
+tracks/1/path = NodePath("ComicPanel02/FramePlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": PackedStringArray("RESET", "play"),
-"times": PackedFloat32Array(0, 0.25)
+"clips": PackedStringArray("play"),
+"times": PackedFloat32Array(4.75)
 }
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ComicPanel02/FramePlayer")
+tracks/2/path = NodePath("ComicPanel03/FramePlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(4.75)
+"times": PackedFloat32Array(8.25)
 }
 tracks/3/type = "animation"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ComicPanel03/FramePlayer")
+tracks/3/path = NodePath("ComicPanel04/FramePlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(8.25)
+"times": PackedFloat32Array(11.75)
 }
 tracks/4/type = "animation"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ComicPanel04/FramePlayer")
+tracks/4/path = NodePath("ComicPanel05/FramePlayer")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(11.75)
+"times": PackedFloat32Array(15.25)
 }
 tracks/5/type = "animation"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ComicPanel05/FramePlayer")
+tracks/5/path = NodePath("ComicPanel06/FramePlayer")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(15.25)
+"times": PackedFloat32Array(18.75)
 }
 tracks/6/type = "animation"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ComicPanel06/FramePlayer")
+tracks/6/path = NodePath("ComicPanel07/FramePlayer")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(18.75)
+"times": PackedFloat32Array(22.25)
 }
 tracks/7/type = "animation"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ComicPanel07/FramePlayer")
+tracks/7/path = NodePath("ComicPanel08/FramePlayer")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(22.25)
+"times": PackedFloat32Array(25.75)
 }
 tracks/8/type = "animation"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("ComicPanel08/FramePlayer")
+tracks/8/path = NodePath("ComicPanel09/FramePlayer")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(25.75)
+"times": PackedFloat32Array(29.25)
 }
 tracks/9/type = "animation"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("ComicPanel09/FramePlayer")
+tracks/9/path = NodePath("ComicPanel10/FramePlayer")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "clips": PackedStringArray("play"),
-"times": PackedFloat32Array(29.25)
+"times": PackedFloat32Array(32.75)
 }
-tracks/10/type = "animation"
+tracks/10/type = "method"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("ComicPanel10/FramePlayer")
+tracks/10/path = NodePath("SfxPlayer")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"clips": PackedStringArray("play"),
-"times": PackedFloat32Array(32.75)
-}
-tracks/11/type = "method"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("SfxPlayer")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [0.872],
 "method": &"play"
-}]
-}
-tracks/12/type = "method"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath(".")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 37.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"fade_in"
-}, {
-"args": [],
-"method": &"fade_out"
 }]
 }
 
@@ -3173,6 +3132,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6up80")
 [node name="Texture" parent="Bg" index="0"]
 material = SubResource("ShaderMaterial_qo41j")
 texture = ExtResource("3_3n265")
+
+[node name="SkipButton" parent="." index="1"]
+unique_name_in_owner = true
 
 [node name="ComicPanel01" parent="." index="2" instance=ExtResource("4_ynhcm")]
 layout_mode = 1
@@ -3689,7 +3651,7 @@ vframes = 2
 
 [node name="LettersFn" type="Sprite2D" parent="ComicPanel10/Contents" index="8"]
 visible = false
-position = Vector2(275, 75)
+position = Vector2(275, 65.0017)
 texture = ExtResource("53_wtttd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ComicPanel10/Contents/LettersFn" index="0"]
