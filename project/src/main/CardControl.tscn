@@ -39,11 +39,13 @@ one_shot = true
 [node name="CreatureSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 volume_db = -8.0
+bus = &"Sfx"
 
 [node name="PopBrustSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("1")
 volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="timeout" from="CheerTimer" to="." method="_on_cheer_timer_timeout"]
 [connection signal="timeout" from="FrogFoundTimer" to="." method="_on_frog_found_timer_timeout"]
