@@ -2160,7 +2160,7 @@ texture = ExtResource("5_lmw35")
 position = Vector2(285.714, 437.143)
 
 [node name="Students1" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="0"]
-position = Vector2(0, 6.10352e-05)
+position = Vector2(0, 0)
 texture = ExtResource("6_1lxxc")
 
 [node name="Students4" type="Sprite2D" parent="ComicPanel01/Contents/FgGroup" index="1"]

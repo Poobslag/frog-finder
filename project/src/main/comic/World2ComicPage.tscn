@@ -943,7 +943,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "clips": PackedStringArray("play", "empty"),
-"times": PackedFloat32Array(0.00101563, 4)
+"times": PackedFloat32Array(0.001, 4)
 }
 tracks/11/type = "animation"
 tracks/11/imported = false
