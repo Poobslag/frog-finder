@@ -57,7 +57,7 @@
       "ImGonnaFindThatFrog",
       "ImJustAFrogInstrumental"
     ],
-    "intermission_tweak": "res://src/main/BeachBallTweak.tscn",
+    "intermission_tweak": "res://src/main/intermission/BeachBallTweak.tscn",
     "missions": [
       [
         "secret-collect-",
@@ -96,7 +96,7 @@
       "HalfAFrog",
       "SneakySneakyFrogInstrumental"
     ],
-    "intermission_tweak": "res://src/main/BeeTweak.tscn",
+    "intermission_tweak": "res://src/main/intermission/BeeTweak.tscn",
     "missions": [
       [
         "frodoku-",

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/main/hand.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cax7r4fmy2eng" path="res://src/main/HandSprite.tscn" id="2_gp3vj"]
 [ext_resource type="PackedScene" uid="uid://b7nexmwrtjune" path="res://src/main/FingerSprite.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://bqycl4eeb7g4l" path="res://src/main/RibbonSprite.tscn" id="4_inyvm"]
-[ext_resource type="PackedScene" uid="uid://bk1x5br54yovh" path="res://src/main/HugSprite.tscn" id="5_ydavv"]
+[ext_resource type="PackedScene" uid="uid://bqycl4eeb7g4l" path="res://src/main/intermission/RibbonSprite.tscn" id="4_inyvm"]
+[ext_resource type="PackedScene" uid="uid://bk1x5br54yovh" path="res://src/main/intermission/HugSprite.tscn" id="5_ydavv"]
 
 [node name="Hand" type="Control"]
 layout_mode = 3

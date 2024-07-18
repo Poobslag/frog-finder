@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnlk07auowbta"]
+
+[ext_resource type="Script" path="res://src/main/intermission/bee-tweak.gd" id="1_53ea5"]
+[ext_resource type="PackedScene" uid="uid://ba4t2owtshntv" path="res://src/main/intermission/Flower.tscn" id="2_850jm"]
+[ext_resource type="PackedScene" uid="uid://vc583hg1thx4" path="res://src/main/intermission/Bee.tscn" id="3_bgj0k"]
+
+[node name="Tweak" type="Node"]
+script = ExtResource("1_53ea5")
+FlowerScene = ExtResource("2_850jm")
+BeeScene = ExtResource("3_bgj0k")

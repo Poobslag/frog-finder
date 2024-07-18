@@ -28,13 +28,13 @@ var _start_difficulty := 0
 ## key: (String) level id
 ## value: (PackedScene) scene with LevelRules for the specified level
 @onready var level_rules_scenes_by_id := {
-	"secret-collect": preload("res://src/main/levels/SecretCollectRules.tscn"),
-	"froggo": preload("res://src/main/levels/FroggoRules.tscn"),
-	"frodoku": preload("res://src/main/levels/FrodokuRules.tscn"),
-	"maze": preload("res://src/main/levels/MazeRules.tscn"),
-	"word-find": preload("res://src/main/levels/WordFindRules.tscn"),
-	"pattern-memory": preload("res://src/main/levels/PatternMemoryRules.tscn"),
-	"fruit-maze": preload("res://src/main/levels/FruitMazeRules.tscn"),
+	"secret-collect": preload("res://src/main/level/SecretCollectRules.tscn"),
+	"froggo": preload("res://src/main/level/FroggoRules.tscn"),
+	"frodoku": preload("res://src/main/level/FrodokuRules.tscn"),
+	"maze": preload("res://src/main/level/MazeRules.tscn"),
+	"word-find": preload("res://src/main/level/WordFindRules.tscn"),
+	"pattern-memory": preload("res://src/main/level/PatternMemoryRules.tscn"),
+	"fruit-maze": preload("res://src/main/level/FruitMazeRules.tscn"),
 }
 
 func _ready() -> void:

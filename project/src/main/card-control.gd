@@ -189,9 +189,9 @@ var _shark_sounds := [
 
 var _pending_warning := ""
 
-@onready var _frog_sheet := preload("res://assets/main/frog-frame-00-sheet.png")
+@onready var _frog_sheet := preload("res://assets/main/frog-card-sheet.png")
 @onready var _letter_sheet := preload("res://assets/main/letter-sheet.png")
-@onready var _shark_sheet := preload("res://assets/main/shark-frame-00-sheet.png")
+@onready var _shark_sheet := preload("res://assets/main/shark-card-sheet.png")
 @onready var _mystery_sheet := preload("res://assets/main/mystery-sheet.png")
 @onready var _fish_sheet := preload("res://assets/main/fish-sheet.png")
 @onready var _lizard_sheet := preload("res://assets/main/lizard-sheet.png")

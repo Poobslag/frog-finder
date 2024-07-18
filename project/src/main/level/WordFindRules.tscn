@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvbj13mtdoy4q"]
+
+[ext_resource type="Script" path="res://src/main/level/word-find-rules.gd" id="1"]
+
+[node name="LevelRules" type="Node"]
+script = ExtResource("1")
