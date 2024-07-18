@@ -162,6 +162,7 @@ then
       do
         rm "${FILE}"
       done
+      echo "...Orphaned .import files deleted."
     fi
   fi
 fi
