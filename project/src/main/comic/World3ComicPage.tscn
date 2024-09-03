@@ -330,7 +330,7 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 5)
+"times": PackedFloat32Array(0, 5)
 }
 tracks/8/type = "animation"
 tracks/8/imported = false
@@ -340,7 +340,7 @@ tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 5)
+"times": PackedFloat32Array(0, 5)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tcqoh"]
@@ -1375,7 +1375,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 6)
+"times": PackedFloat32Array(0, 6)
 }
 tracks/5/type = "animation"
 tracks/5/imported = false
@@ -1385,7 +1385,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 6)
+"times": PackedFloat32Array(0, 6)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgyf4"]
@@ -2266,7 +2266,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 5)
+"times": PackedFloat32Array(0, 5)
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -2319,7 +2319,7 @@ tracks/8/path = NodePath("Contents/Group:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 2.5, 3.5, 4.5, 5.00002),
+"times": PackedFloat32Array(0, 2.5, 3.5, 4.5, 5),
 "transitions": PackedFloat32Array(1, 1.5, 0.666667, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(48.5714, 0), Vector2(97.1428, 0), Vector2(97.1428, 0)]
@@ -2554,7 +2554,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 6)
+"times": PackedFloat32Array(0, 6)
 }
 tracks/5/type = "animation"
 tracks/5/imported = false
@@ -3032,7 +3032,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 3)
+"times": PackedFloat32Array(0, 3)
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -3537,7 +3537,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": PackedStringArray("play", "[stop]"),
-"times": PackedFloat32Array(0.001, 7)
+"times": PackedFloat32Array(0, 7)
 }
 tracks/3/type = "animation"
 tracks/3/imported = false
@@ -3547,7 +3547,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": PackedStringArray("play-1", "play-2", "play-3", "[stop]"),
-"times": PackedFloat32Array(0.001, 2.25, 4.5, 7)
+"times": PackedFloat32Array(0, 2.25, 4.5, 7)
 }
 tracks/4/type = "value"
 tracks/4/imported = false
