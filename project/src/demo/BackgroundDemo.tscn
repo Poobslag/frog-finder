@@ -20,12 +20,15 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_ikoou")
+current_tab = 0
 
 [node name="Custom" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("3_yt2y2")]
 layout_mode = 2
 background = NodePath("../../Background")
+metadata/_tab_index = 0
 
 [node name="Preset" parent="TabContainer" node_paths=PackedStringArray("background") instance=ExtResource("4_dk6re")]
 visible = false
 layout_mode = 2
 background = NodePath("../../Background")
+metadata/_tab_index = 1
