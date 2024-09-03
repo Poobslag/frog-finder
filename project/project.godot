@@ -13,7 +13,7 @@ config_version=5
 config/name="Frog Finder"
 config/version="1.26"
 run/main_scene="res://src/main/MainMenu.tscn"
-config/features=PackedStringArray("4.2")
+config/features=PackedStringArray("4.3")
 config/icon="res://assets/main/icon.png"
 
 [autoload]
