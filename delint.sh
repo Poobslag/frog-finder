@@ -39,9 +39,9 @@ if [ -n "$RESULT" ]; then
   echo "$RESULT"
 fi
 
-# whitespace at the start of a line. includes a list of whitelisted places where leading whitespace is acceptable
+# whitespace at the start of a line
 RESULT=$(grep -R -n "^\s* [^\s]" --include="*.gd" project/src \
-  | grep -v "test-piece-kicks-t.gd.*doesn't it look like a rose?")
+  )
 if [ -n "$RESULT" ]; then
   echo ""
   echo "Whitespace at the start of a line:"
